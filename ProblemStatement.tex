@@ -1,0 +1,122 @@
+\documentclass[letterpaper,10pt,titlepage]{article}
+
+% This might mess up formatting
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{alltt}
+\usepackage{float}
+\usepackage{color}
+\usepackage{url}
+\usepackage{listings}
+
+\usepackage{balance}
+\usepackage[TABBOTCAP, tight]{subfigure}
+\usepackage{enumitem}
+\usepackage{pstricks, pst-node}
+
+\usepackage{geometry}
+\geometry{textheight=8.5in, textwidth=6in}
+
+\newcommand{\cred}[1]{{\color{red}#1}}
+\newcommand{\cblue}[1]{{\color{blue}#1}}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\def\name{Brandon Lee}
+
+%pull in the necessary preamble matter for pygments output
+\input{pygments.tex}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {CS461 ``Senior Capstone''},
+  pdftitle = {CS 461 Problem Statement},
+  pdfsubject = {CS 461 Problem Statement},
+  pdfpagemode = UseNone
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{3.5cm}
+
+        \textbf{Problem Statement}
+
+        \vspace{0.5cm}
+
+        \textbf{Brandon Lee, Rutger Farry, Michael Lee}
+
+        \vspace{0.8cm}
+
+        CS 461\\
+        Fall 2016\\
+        14 October 2016\\
+
+        \vspace{1cm}
+
+        \textbf{Abstract}\\
+
+        \vspace{0.5cm}
+
+        iOS Application in Swift is a mobile application developed as a senior software engineering project for the iPhone platform under the supervision of eBay Inc. This app utilizes existing services of the MindBody API as well as various IOS frameworks to provide users an accessible interface for interacting MindBody software on a mobile platform. The app utilizes Apple's new Swift programming language and several diverse and complex Apple frameworks, mainly HealthKit and MapKit, to aggregate a user's health and fitness data. HealthKit will be used to integrate daily activities, like steps and activities, into the app. MapKit will be used to track the location user's during their workouts and provide location based recommendations. Furthermore, the app will integrate the MindBody API to provide the user access to scheduling functions and daily fitness tasks. An additional goal would be to utilize ads for monetization. The intention of the application is to give eBay and OSU's teams experience with the Swift language and Apple's SDKs to determine their usefulness in future mobile projects.
+
+        \vfill
+
+    \end{center}
+\end{titlepage}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Problem Definition}
+
+The MindBody platform allows coaches/instructors to connect with their clients in many ways. One of these connections is the ability to give personalized advice at any time based on the client's workouts, nutrition, etc. The more information a coach has to work with, the better their advice is going to be. Currently, for a client to share their information with their coach, they need to log in to MindBody's online platform and manually input their workout. While this doesn't take much time, it can get repetitive day after day. Since so many people use their phones to track their workouts already, a better solution would be to build an app that tracks workouts and automatically uploads to the MindBody platform after completion. Not only does this make it easier for users to track workouts, it also gives coaches more insight into the workouts. Users also need to schedule coaching/instructional sessions with their coaches online. Adding the ability to schedule classes in an app would be more convenient and open up the world of information that lives in people's phones, from calendar information to payment capabilities, streamlining the class-booking solution.
+
+\section{Proposed Solution}
+
+Our solution is to develop a mobile app to encompass the various features a user would utilize away from the desktop to be able to interact with from the MindBody service. This solution encompases various existing features of the web app such as MindBody Calendar, MindBody Classes, and MindBody Class Registration. Communication between user and coach is streamlined through in app contact versus through web interface. Additionally various new features only available on the mobile front would be brought to light such as HealthKit to keep record of a user's daily exercise and MapKit to track a user's workouts. A combination of data from both MindBody and iOS such as MindBody Classes/Schedules, and HealthKit Activities will be displayed in an intuitive interface for the user to interact with. The proposed solution meets the needs of the problem as moving the MindBody platform over to the mobile front allows for a more engaging interaction between the various MindBody services and the user. The various fields of data previously only accessible through the web interface would be easily viewed on the mobile app. At the OSU Engineering Expo, we expect to display a near production iOS application. The end goal is that this iOS app would be published on the App Store and we intend to complete a viable product for publishing.
+
+\section{Performance Metrics}
+
+The success of our solution will depend on the completion and execution of the general project requirements. The general functions that the app should have were outlined in our meeting with a basic requirements document, but the actual execution of these requirements has been left open to our team. We will assess the effectiveness of our execution through feedback from the eBay team every sprint (bi-weekly). Baseline Metrics that were defined in our meeting are: the solution should be a functional app that can be uploaded to the App Store, it will authenticate though and integrate the Mindbody API, and it will use native IOS HealthKit and MapKit. In addition to these baseline project metrics, the success of our team will be measured on the team-client satisfaction on the finished product, learning experience, and the quality of work done within the timeframe of the class.
+
+\newpage
+
+\section{Signed Participants}
+
+\textbf{Students}
+
+Brandon Lee\\
+Rutger Farry\\
+Michael Lee\\
+
+\textbf{Client}
+
+\end{document}
