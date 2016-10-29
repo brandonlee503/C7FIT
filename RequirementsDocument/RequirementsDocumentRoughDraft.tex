@@ -1,0 +1,450 @@
+\documentclass[letterpaper,10pt,titlepage]{article}
+
+% This might mess up formatting
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{alltt}
+\usepackage{float}
+\usepackage{color}
+\usepackage{url}
+\usepackage{listings}
+
+\usepackage{balance}
+\usepackage[TABBOTCAP, tight]{subfigure}
+\usepackage{enumitem}
+\usepackage{pstricks, pst-node}
+
+\usepackage{geometry}
+\geometry{textheight=8.5in, textwidth=6in}
+
+\newcommand{\cred}[1]{{\color{red}#1}}
+\newcommand{\cblue}[1]{{\color{blue}#1}}
+
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{pgfgantt}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\def\name{Brandon Lee}
+
+%pull in the necessary preamble matter for pygments output
+% \input{pygments.tex}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {CS461 ``Senior Capstone''},
+  pdftitle = {CS 461 Requirements Document},
+  pdfsubject = {CS 461 Requirements Document},
+  pdfpagemode = UseNone
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{3.5cm}
+
+        \textbf{Requirements Document}
+
+        \vspace{0.5cm}
+
+        \textbf{Brandon Lee, Rutger Farry, Michael Lee}
+
+        \vspace{0.8cm}
+
+        CS 461\\
+        Fall 2016\\
+        28 October 2016\\
+
+        \vspace{1cm}
+
+        \textbf{Abstract}\\
+
+        \vspace{0.5cm}
+
+        C7Fit is a mobile application for iPhone developed as a senior software engineering project under the supervision of eBay Inc. This app is essentially a health and fitness application that will be utilized by members of Club Seven Fitness in Portland. Currently Club Seven gym goers have difficulty tracking their workouts, goals, and schedules in the digital world.  C7Fit aims to integrate existing technologies from Club Seven's services (MindBody API) as well as various iOS frameworks to provide users an accessible interface for interacting with their health and fitness goals on a mobile platform. The following document exercises the requirements of this project and formulates the plan of approach in developing this application in the next coming months. Such areas focused on include the project purpose, scope, perspective, interfaces, functions, constraints, and attributes. This document will additionally have elements of the higher level overview of the project's technical components.
+
+        \vfill
+
+    \end{center}
+\end{titlepage}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+\subsection{Purpose}
+
+The purpose of this document is to deliver a clear specification of the requirements for the C7Fit app. The document will define a clear objective for the development of C7Fit including software features, product interfaces, design constraints, product functions, user characteristics, assumptions, and dependencies.
+
+\subsection{Scope}
+
+C7Fit is an iOS mobile application designed for Club Seven Fitness in Portland. The app allows for gym members to engage with Club Seven's content on the mobile platform. Because Club Seven already utilizes MindBody for managing workout schedules and classes, our application can leveraging the existing user platform and bring interaction between users and Club Seven through the mobile platform with MindBody's APIs. In addition to interacting with the data from MindBody, our app will utilize iOS's HealthKit, which brings a plethora of user health data.  Such application includes displaying the user's daily level of activity. Furthermore, an activity tracking feature will allow for users to record running workouts and store such data locally. Finally, this software will extend to incorporate features from the traditional fitness scope including timers/stopwatches, contacting the local gym (Club Seven) through an embedded email service, daily workouts and video tutorials, and health statistics and records (eg. mile time, max bench press). The above is a listing of the essential features required for base viability. Additional features may be incorporated in future development. Stretch goals will be evaluated as development progresses.
+
+\subsection{Definitions}
+
+\begin{center}
+    \begin{tabular}{ | l | l | p{5cm} |}
+    \hline
+Term               & Definition                                               \\ \hline
+User               & An individual who interacts with the mobile application. \\ \hline
+C7Fit              & Our iOS app                                              \\ \hline
+MindBody           & Health/Wellness Service                                  \\ \hline
+Club Seven Fitness & Our client's client, a gym business based in Portland    \\ \hline
+HealthKit          & iOS Health Framework                                     \\ \hline
+MapKit             & iOS Map Framework                                        \\ \hline
+EventKit           & iOS Calendar Framework                                   \\
+    \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Overview}
+
+The following document includes two main sections. The first section illustrates an overall description of the product. Additionally, this part will delve into user characteristics and constraints. The second half of this document goes into the specific requirements of the products including external interface requirements, functional requirements, performance requirements, logical database requirements, and system attributes. Appendices at the end will provide structure for the results and release plans.
+
+\section{Overall Description}
+
+This section will provide an overview of the application and how it interacts with its related components. This section will also detail the general functionality and how the it will be used by customers. Finally it will discuss the constraints and assumptions in the design of the application.
+
+\subsection{Product Perspective}
+
+The product will consist of the mobile iOS application for Club Seven. The application will be used to interact with the MindBody API, the eBay store, and draw data from the native iOS frameworks: HealthKit, MapKit, and EventKit.
+
+\subsubsection{System Interfaces}
+
+The system will be contained and limited to iPhone, running iOS 9 and 10, as the product is purely an iOS application. The MindBody API will provide the users external account data. It will provide the daily available classes and allow them to sign up for personal training, sports training, or more general classes. The application will integrate these features with the phone by syncing up any scheduled classes with the phone's calendar using EventKit. The application will also provide location information using MapKit, so the user knows their relative distance from classes and trainers.\\
+
+The application will also use the MapKit and HealthKit independently of the MindBody API. HealthKit will be used to track the user's general fitness levels, such as: steps per day, sleep, calories burned, etc. MapKit will be used to chart the GPS location of the user during their exercise activities.\\
+
+As a stretch goal, the eBay API will be included as a way to monetize the application. Users will be able to see and purchase relevant products.
+
+\subsubsection{User Interfaces}
+
+The application will consist of 5 main topical screens: Home, Personal Trainer, Classes, Activity, and More(profile). Each screen will maintain a consistent layout shown in the wireframes drawn up in our second meeting (will be displayed later when officially drawn up). In general, the screens will have a navigation bar along the bottom of the screen divided up into the 5 topical screens. The top of the home screen will have a title bar, currently ‘C7Fit', and a ‘Sign In' button. Certain screens that require information from the MindBody API will show different information depending on whether the user is signed in or not. More specifically, each screen will have table rows that either contain information or bring the user to other more specific parts of the app. Once the rows have been clicked, the user will be directed to a new screen and have the option to go back with a ‘<' button on the top bar.
+
+\subsubsection{Hardware Interfaces}
+
+An iPhone capable of running iOS 9 and 10, the iOS versions we're targeting, will be required to use this application. In addition, the phone will need to have the available memory space to download the app.
+
+\subsubsection{Software Interfaces}
+
+The MindBody API and eBay API will require developer accounts and accounts in order to function in our application. Their purpose has been discussed above: the MindBody API is key to the health function of the application, and the eBay API will be used for monetization. Documentation for the MindBody API is available at https://developers.MindBodyonline.com/Documentation/GettingStarted. The documentation for the eBay API will need to be provided by the client, it hasn't been discussed yet as it is currently a stretch goal. The application will be primarily in portrait mode.
+
+\subsubsection{Communication Interfaces}
+
+Not applicable currently.
+
+\subsubsection{Memory Constraints}
+
+The specific memory constraints of the application will depend on the device running the app. We are currently targeting a multitude of devices, iPad, iPhones (5,6,7) so the specific constraints will vary depending on the RAM and space available to each of these devices. However, the application will need to store some data locally like the activity map and personal statistics.
+
+\subsection{Design Constraints}
+
+Not applicable currently.
+
+\subsubsection{Operations}
+
+Not applicable currently.
+
+\subsubsection{Site Adaption Requirements}
+
+Not applicable currently.
+
+\subsection{Product Functions}
+
+This mobile application will be a personalized app that connects the functionality of the MindBody API to the C7Fit gym's customers. The functionality again can be split up into the 5 main portions Home, Personal Trainer, Classes, Activity, and More, with Home having the most varied functionality. Home will be the starting point for the user and provide general overview on their daily options. It will display their schedule - if they're signed up for classes on that day, a daily workout video from YouTube, and a daily motivational quote. The Personal Trainer screen will provide the user with options to sign up for personal and sports training. The Class screen will be similar to the personal trainer screen except the user must select a date and view the available classes, as classes are already scheduled. The Activity screen will display the user's current daily activity, and their PR in various fitness tests. Additionally, this screen will have stopwatches and maps to assist their workouts. Finally, the More screen will contain their profile and personal information in addition to a personal ask trainer option.
+
+\subsection{User Characteristics}
+
+The target audience for the product are the members of C7Fit gym. These gym members will only be able to access the services that are provided by the gym. They won't be able to create classes or add trainers. This functionality is outside the scope of this application and will be left up to the MindBody API.
+
+\subsection{Constraints, Assumptions, and Dependencies}
+
+This application depends on having a MindBody account for the majority of the data. Additionally, it requires the user have internet connection as most of the data is pulled through external API's. The key aspects of the application is constrained by the limitation of this API.\\
+
+We assume that the mobile device has the capability to run our application at an acceptable level. If the phone does not have enough resources, then the application may fail to run as intended or at all.
+
+\section{Specific Requirements}
+
+\subsection{External Interface Requirements}
+
+\subsubsection{User Interfaces}
+
+C7Fit is a user-facing application, so naturally most of the design emphasis will be on the user interface and presenting information from external sources (such as Mindbody API, ebay API, GPS, etc) in a pleasing and easily digestible manner on the user interface. The main objective of the user interface is to help the user accomplish their most common tasks in as little time and effort as possible. Secondary goals are to represent Club Seven Fitness's brand, while not being distracting, and to make tasteful use of animations to keep the user engaged, especially during operations that may require some time to complete such as API calls. (Designers often refer to these animations  as microinteractions.)\\
+
+Apple's UIKit API provides minimally styled basic design elements, such as buttons, labels, sliders, text fields, and more. We intend to use these as the building blocks for our application wherever possible. In the MVP phase, unless a special element is absolutely necessary, we will just use the basic elements given to us by UIKit in their standard form.\\
+
+Following completion of the MVP, we intend to add styling and animations to the most used elements, keeping minimalism, consistency, and reusability as a goal. Near the beginning of the project, we will design each screen using Sketch (a vector design program ideally suited for UIs). We will then implement this design down to the pixel in our app after the MVP stage.\\
+
+The UI will have five tabs: Home, Personal Trainer, Classes, Activity, and More. The tabs will be displayed using UIKit's UITabBar, and each underlying view will be managed by a single UITabBarViewController. Each tab is explained below:\\
+
+ % \begin{enumerate}
+ %   \item Home Tab
+ %   \item First level item
+ %   \begin{enumerate}
+ %     \item Home will be a tableview with five cells. Some of these will be tappable, allowing users to view more detail than the snippet shown in the cell:
+ %     \item Second level item
+ %     \begin{enumerate}
+ %       \item Today's schedule: This is a tappable cell that will show if the user is registered for a class today. If the user is registered, for a class today, it will be shown, if not, it will display the message “No classes today”, perhaps with the option of registering. If the user is not signed in, this will show a list of all the classes occurring today. The expanded view will display a scrollable list of available classes, with classes the user has registered for being highlighted.
+ %       \item Today's workout video
+ %       \begin{enumerate}
+ %         \item This will display a Youtube video
+ %         \item The video URL will be retrieved from a static file in a GitHub repo
+ %         \item The video will be different every day
+ %         \item Selecting the video will open it in a landscape, full-screen view
+ %       \end{enumerate}
+ %     \end{enumerate}
+ %   \end{enumerate}
+ % \end{enumerate}
+
+\begin{enumerate}
+\item Home Tab
+\item Home will be a tableview with five cells. Some of these will be tappable, allowing users to view more detail than the snippet shown in the cell:
+\item Today's schedule: This is a tappable cell that will show if the user is registered for a class today. If the user is registered, for a class today, it will be shown, if not, it will display the message “No classes today”, perhaps with the option of registering. If the user is not signed in, this will show a list of all the classes occurring today. The expanded view will display a scrollable list of available classes, with classes the user has registered for being highlighted.
+\item Today's workout video
+\item This will display a Youtube video
+\item The video URL will be retrieved from a static file in a GitHub repo
+\item The video will be different every day
+\item Selecting the video will open it in a landscape, full-screen view
+\item Today's Motivation
+\item This is a simple cell that just contains a motivational phrase
+\item The phrase will be fetched from a static file in a Github repo
+\item Trainers
+\item This button will be empty, leading to another view
+\item The trainers view will be a tableview of personal trainers at the gym
+\item Each cell will contain a trainer's picture, name, and bio, likely cutting off the bio at a certain length with the option of expanding
+\item Store (Stretch goal)
+\item This cell will be added later if all other required features have been implemented
+\item The store will use the eBay API to list products sold by C7Fit
+\item Each item will be displayed in a cell in a tableview
+\item Tapping a cell will show more information about the item, with the option to purchase it on eBay
+\item Personal Trainer Tab
+\item This screen will be divided into two sections
+\item The top section will be titled Personal Training.
+\item The top section will have a list of personal training classes from the MindBody api.
+\item The bottom section will be titled Sports Training.
+\item The bottom section will have a list of sports training classes from the MindBody api.
+\item Each class shall be tappable.
+\item Tapping on a class shall launch a new screen.
+\item The new screen will be titled Personal Training (2) and a left caret.
+\item Tapping on the left caret shall navigate back to the Personal Trainer main screen.
+\item The personal training 2 shall have content about the selected class.
+\item The class information displayed shall be Location, Training Title, and a section to pick a trainer.
+\item The pick a trainer section shall be a list of trainers from the MindBody api.
+\item Each trainer in the list shall have a picture, name and right caret indicating there is more information.
+\item Pick a trainer screen shall have a title Pick Trainer and a right caret.
+\item The pick trainer screen shall have a section about the trainer including Picture, Name, and Bio.
+\item The pick trainer screen shall have a button to view availability which will navigate to a new availability screen.
+\item The availability screen shall have a title Availability and a right caret.
+\item The availability screen shall have a section that indicates the training title and trainer name.
+\item The availability screen shall have a calendar that allows you to pick a day.
+\item Once a day is selected the availability screen shall show a list of times.
+\item The times for each day shall be provided by the MindBody api.
+\item If a time is selected the user shall navigate to the booking screen.
+\item The booking screen shall have a title Book and a right caret.
+\item The booking screen shall list Training Title, Trainer, Date, and Time.
+\item The booking screen shall have a button to Book.
+\item The book button shall take the user to a booking modal.
+\item The booking modal shall have a Confirm, Cancel, and Add to Calendar option.
+\item The booking modal Confirm shall book the class for the user through the MindBody api.
+\item The Cancel button shall close the modal and return the user to the previous booking screen.
+\item The add to calendar shall use the iOS calendar SDK to add the event to the users phone calendar.
+\item Classes Tab
+\item The classes screen shall have two sections.
+\item The top section shall be a calendar picker.
+\item The calendar picker shall allow the user to select a single day.
+\item The bottom section shall be a list of classes form the MindBody api.
+\item The bottom section shall have a title Classes.
+\item Each class in the list shall indicate class name and time.
+\item Each class shall have a button to book the class.
+\item When a user selects the book button a modal dialog shall appear.
+\item The modal dialog shall have a title Book.
+\item The modal dialog shall have a button to confirm.
+\item If the user confirms the class will be booked for that user.
+\item If the user confirms and the add to calendar is selected the event will be added to the calendar on the user device using the calendar sdk.
+\item The modal dialog shall have a cancel button.
+\item If the user taps the cancel button the modal dialog will close.
+\item Activity Tab
+\item The activity tab screen will be a collection of tools, user activity, and health results.
+\item Today's Activity
+\item The top section of the Activity Tab shall have a title Today Activity.
+\item The content in the today activity section will include steps and active time from the Health Kit SDK.
+\item If the user does not have a profile on Health Kit SDK then a message will be displayed to the user .  “To get activity go to health app on your phone”
+\item Workout Tools
+\item The section session shall have a title “Workout Tools”
+\item There will be three tools in this section.
+\item The first tool will be stop watch.
+\item The stopwatch cell shall have text saying “Stop Watch” and shall have a right caret.
+\item If the user taps the stopwatch cell a new screen shall be started.
+\item The stopwatch screen shall have a title Stop Watch and a left caret.
+\item If the left caret is selected the user will be returned to the activity tab.
+\item The stopwatch screen shall have a timer.
+\item The stopwatch screen shall have a Start button that starts the timer.
+\item The stopwatch screen shall have a Stop button that stops the timer.
+\item The time shall remain on the screen until the user taps the start button again.
+\item The second tool will be countdown time.
+\item The countdown cell shall have text saying “Countdown Timer” and shall have a right caret.
+\item If the user taps the countdown cell a new screen shall be started.
+\item The countdown screen shall have a title Countdown Timer and a left caret.
+\item If the left caret is selected the user will be returned to the activity tab.
+\item The countdown screen shall have a timer.
+\item The countdown screen shall have an option to select a timer duration.
+\item The countdown screen shall have a Start button that starts the timer.
+\item The countdown screen shall have a Stop button that stops the timer.
+\item The time shall remain on the screen until the user taps the start button again.
+\item Map
+\item The map screen shall have a title saying Map and a right caret.
+\item The map shall use the Mapkit SDK.
+\item The map shall show map with current location.
+\item The map shall a Start Activity - have a start activity option.
+\item The map shall a Track Activity - track activity to record the track and draw it on the map.
+\item The map shall a Finish Activity - stop the activity.
+\item The map shall a Activity Details - Time and Distance for activity.
+\item The map shall a Save Activity - Save locally on device in core data with time as title.
+\item The map shall a View an Activity - Stretch goal to remap an activity.
+\item Test Results
+\item The test results section shall list all current recorded results.
+\item The test results section will have an edit option.
+\item The edit option will launch a new screen that list the test results and allows the user to enter the correct data.
+\item Test results will include:  Mile Time, Number of Push Up in a Minute, Number of Situps in a Minute, Leg Press, Bench Press, Lat Pull.
+\item More Tab
+\item The more tab shall display the signed in users profile.
+\item The elements that will be displayed include picture, name, and current info from the MindBody api.
+\item The more tab shall have a section to ask a trainer a question.
+\item There will be the ability to select a trainer from the trainer list in MindBody api.
+\item There will be a button to Ask the trainer.
+\item When the user selects the Ask button a new email will be opened using the device email SDK.
+\item The TO: field will be populated with the C7Fit email.
+\item The Subject field will be populated with the Trainer name and Question.
+\item The User will be able to enter content into the body.
+\end{enumerate}
+
+\subsubsection{Hardware Interfaces}
+
+C7Fit is an iOS 9 application, meaning it will run on any Apple iOS device capable of running iOS 9, 10, or the next approximately 5 iOS operating systems produced in the future. We will ensure to not use any deprecated APIs, and since Apple usually does not deprecate APIs without several years advance notice, we can expect C7Fit to be compatible with future Apple devices for at least the next three years.\\
+
+The app will be specifically designed with the iPhone 5s and up in mind, but will be compatible with all iPhones down to the iPhone 4s. We intend to use an adaptive design to stretch to make maximum use of the variety of displays on these devices.
+
+\subsubsection{Software Interfaces}
+
+The primary software the app will interface with is the iOS operating system, as well as the UI framework provided by iOS called UIKit, and a large collection of helper libraries contained in Apple's Foundation framework. These libraries provide for everything from app instantiation to making network calls, to saving to disk, to drawing UI elements such as buttons and sliders.\\
+
+We may also elect to bring in a few external 3rd party libraries to use instead of the Foundation / UIKit framework in areas that Apple's API is known to be a little rough. We intend to minimize the use of third party frameworks / libraries as little as possible however. We will only use the leader in that field to reduce the likelihood of it being deprecated, and will wrap it in our own API to enable easy swapping of underlying APIs and prevent building dependencies in our code on potentially fickle open-source projects.
+
+\subsubsection{Communication Interfaces}
+
+C7Fit will make extensive use of Internet REST APIs, especially the Mindbody API to provide functionality to the user. It will also make use of the eBay API if we meet our stretch goals to allow users to buy gym equipment online. Additionally, to backup user data and share preferences between devices, we may use Apple's iCloud storage (this is another stretch goal). This saving of user data on Apple's iCloud servers is largely abstracted and doesn't involve making traditional HTTP API calls. Finally, the app will make use of the iPhone / iPad's GPS unit to communicate with satellites and determine the user's precise location during a workout. Luckily, this functionality is largely abstracted by the iOS Location API, and just involves a few lines of code.\\
+
+The most challenging external communications will be those with the MindBody and eBay API, as we will have to build a communication library with them based on their JSON REST APIs.
+
+\subsection{Classes and Objects/Functional Requirements}
+
+The main objective behind our program design is to reduce state to as few places as necessary. We plan on implementing our architecture with the principles of functional reactive programming in mind, so that developers can focus on building functionality of the app instead of worrying about bugs in their data flow.
+
+\subsubsection{DataStore}
+
+We will use the single-source-of-truth principle, along with dependency injection to reduce confusion about where data is coming from. All of the application's state will be kept in a central DataStore. This will have fields containing data structures capable of holding all the data needed for all the app's views, organized hierarchically roughly around the purpose / source of the data. The DataStore will be initialized upon app instantiation and a reference to it will be dependency-injected into each View Controller. This way, every View Controller will share the same source of truth, ensuring consistency between views. This will also ease caching and local storage.\\
+
+Information will be requested from the DataStore using functions exposed by the store's interface. Upon fetching the data through whatever means necessary (network call or GPS call, retrieval from disk, etc) the view controller will be notified with the requested data, allowing it to update its UI. The View Controller will not perform any modifications to the data, besides what is necessary to display it nicely. No methods that modify the display of the information should require asynchronous operations. The method for notifying the ViewController of state changes will be discussed in the next section.
+
+\subsubsection{Responding to State Changes}
+
+There are several ways of responding to state changes, from callbacks to promises. We intend to use a functional reactive approach, in which the state of views is never explicitly changed, only described. Apple does not provide a functional reactive library, but there are two leading 3rd party libraries widely in use today: RxSwift and ReactiveCocoa. Both are similar, but ReactiveCocoa has deeper integration with Apple's UIKit and Cocoa Touch frameworks.
+
+\subsection{Performance Requirements}
+
+Modern iOS devices are relatively overpowered for this sort of application, so computational performance shouldn't be a worry. A much bigger priority than performant code should be readable code.\\
+
+Places we should focus on performance are asynchronous calls, especially network calls. After the MVP, we should put priority on caching and prefetching data. If no cached data exists, we should display a useful animation that indicates progress.
+
+\subsection{Logical Database Requirements}
+
+A small amount of user preferences and cached data will be stored on-device. Apple provides a few APIs for this of varying simplicity and capability. We will probably use the simplest of these, NSUserDefaults for the MVP. NSUserDefaults is a simple key-value store for small pieces of data.\\
+
+After we implement caching however, we will likely be motivated to use a more robust solution: either Apple's CoreData or a third party solution such as Realm. Both provide a database-style interface, with CoreData providing a SQL style relational database-like interface, and Realm providing a more noSQL object-storage interface. Both use a custom query language with a Swift API.
+
+\subsection{Software System Attributes}
+
+\subsubsection{Reliability}
+
+We will implement measures to ensure that the app functions well in all edge situations. Our programming methodologies described in the Classes and Objects section will ensure that developers are unable to compile the application without first accounting for all possible data states, including lack of GPS hardware, lack of network capability, disk failure, and more. Developers will be able to display helpful, user readable messages in all of these situations.
+
+\subsubsection{Availability}
+
+Most of the app's features will require internet access. However we don't intend to restrict access to the applications other features that don't require connectivity in the event that a network connection is lost. Features such as viewing user information, modifying on-device preferences, using the GPS or timer workout tracker, should still be functional. Additionally, the UI should display informative, but not disruptive information in disabled interface elements.\\
+
+While we could cache network requests to the MindBody API while the device is offline, we will opt to just make the API attempt fail quickly and show an error to the user. We've found that this helps prevent users from making unintentional actions to their account.
+
+\subsubsection{Security}
+
+The C7Fit app will contain some potentially sensitive health information, but not to the point where most users would want to add additional security measures such as TouchID or a passcode (common security measures on iOS). While users will be able to purchase appointments on the app, all payment information will be stored on MindBody's servers and will never be on-device. We will secure the payment process by authenticating the user with MindBody's API.\\
+
+Purchasing from eBay will be done in the eBay app, which will handle all payment information and verification. C7Fit will just deep-link to the eBay app (or website if the app is not installed on the user's device)
+
+\subsubsection{Maintainability}
+
+As the application will be used by Club Seven gym goers long after we complete development, there will need to be some form of maintenance in order to ensure C7Fit retains its quality and user base. In order to attain this, the app will be handed off to the eBay mobile team in Portland after publishing on the App Store. A small team of developers, whom we are currently working with will ensure the maintenance. Additionally, eBay Inc. will have the documentation we write this term for reference in the situation the app requires to be maintained long term.
+
+\subsubsection{Portability}
+
+The app is an iOS iPhone application. Because of the architecture of Apple's development ecosystem, it should be relatively easy to port C7Fit to other Apple devices such as iPad. However for an Android application or any non-iOS device, there would be a substantial amount of more work to do before being able to publish.
+
+\subsection{Gantt Chart}
+
+\noindent\resizebox{\textwidth}{!}{
+\begin{tikzpicture}[x=.5cm, y=1cm]
+\begin{ganttchart}{1}{32}
+  \gantttitle{2016-2017}{32} \\
+  \gantttitlelist{1,...,32}{1} \\
+  \ganttbar{Writing}{1}{4} \\
+  \ganttbar{Sketch}{1}{2} \\
+  \ganttbar{Base Code}{3}{4} \\
+  \ganttbar{API/Network}{3}{5} \\
+  \ganttbar{Templating}{3}{4} \\
+  \ganttbar{MVP}{3}{9} \\
+  \ganttbar{Add. Features}{9}{22} \\
+  \ganttbar{Testing}{3}{32} \\
+  \ganttbar{QA}{28}{30} \\
+  \ganttbar{App Store}{30}{32} \\
+\end{ganttchart}
+\end{tikzpicture}
+}
+
+\newpage
+
+\section{Signed Participants}
+
+\textbf{Students}
+
+Brandon Lee\\
+Rutger Farry\\
+Michael Lee\\
+
+\textbf{Client}
+
+\end{document}
