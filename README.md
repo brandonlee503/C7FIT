@@ -1,2 +1,2 @@
-# C7 Fit
+# C7FIT
 The primary repo for iOS-Capstone
