@@ -1,4 +1,4 @@
-TARGET=RequirementsDocumentRoughDraft
+TARGET=RequirementsDocumentFinalDraft
 
 pdf: ps
 	ps2pdf ${TARGET}.ps
