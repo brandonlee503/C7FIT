@@ -16,11 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Initialize tabBar controller and navigation controllers
         let tabBarController = UITabBarController()
-        let tabViewController1 = UIViewController()
-        let tabViewController2 = UIViewController()
-        let tabViewController3 = UIViewController()
-        let tabViewController4 = UIViewController()
-        let tabViewController5 = UIViewController()
+        let tabViewController1 = HomeViewController()
+        let tabViewController2 = PersonalTrainerViewController()
+        let tabViewController3 = ClassesViewController()
+        let tabViewController4 = ActivityViewController()
+        let tabViewController5 = MoreViewController()
         
         let navigationController1 = UINavigationController(rootViewController: tabViewController1)
         let navigationController2 = UINavigationController(rootViewController: tabViewController2)
@@ -61,7 +61,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-
