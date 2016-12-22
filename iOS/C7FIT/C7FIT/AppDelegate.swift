@@ -13,9 +13,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Initialize tabBar controller and navigation controllers
+        let tabBarController = UITabBarController()
+        let tabViewController1 = UIViewController()
+        let tabViewController2 = UIViewController()
+        let tabViewController3 = UIViewController()
+        let tabViewController4 = UIViewController()
+        let tabViewController5 = UIViewController()
+        
+        let navigationController1 = UINavigationController(rootViewController: tabViewController1)
+        let navigationController2 = UINavigationController(rootViewController: tabViewController2)
+        let navigationController3 = UINavigationController(rootViewController: tabViewController3)
+        let navigationController4 = UINavigationController(rootViewController: tabViewController4)
+        let navigationController5 = UINavigationController(rootViewController: tabViewController5)
+        
+        let controllers = [navigationController1, navigationController2, navigationController3, navigationController4, navigationController5]
+        tabBarController.viewControllers = controllers
+        window?.rootViewController = tabBarController
+        
+        navigationController1.tabBarItem = UITabBarItem(title: "Home", image: nil, selectedImage: nil)
+        navigationController2.tabBarItem = UITabBarItem(title: "Personal Trainer", image: nil, selectedImage: nil)
+        navigationController3.tabBarItem = UITabBarItem(title: "Classes", image: nil, selectedImage: nil)
+        navigationController4.tabBarItem = UITabBarItem(title: "Activity", image: nil, selectedImage: nil)
+        navigationController5.tabBarItem = UITabBarItem(title: "More", image: nil, selectedImage: nil)
         return true
     }
 
