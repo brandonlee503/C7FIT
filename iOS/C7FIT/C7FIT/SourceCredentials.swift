@@ -17,9 +17,9 @@ class SourceCredentials {
         return instance
     }()
     
-    var SourceName: String
-    var Password: String
-    var SiteID: String
+    let SourceName: String
+    let Password: String
+    let SiteID: String
         
     init(sourceName: String, password: String, siteID: String) {
         SourceName = sourceName
