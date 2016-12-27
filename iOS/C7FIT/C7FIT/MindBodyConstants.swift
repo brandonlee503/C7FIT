@@ -19,4 +19,13 @@ struct MindBodyConstants {
     static let StaffService = "https://api.mindbodyonline.com/0_5/StaffService.asmx"
     
     static let ContentType = "text/xml; charset=utf-8"
+    
+    enum UserAccessLevel: Int {
+        case UserAccessLevelNone     = 0
+        case UserAccessLevelConsumer = 1
+        case UserAccessLevelStaff    = 3
+        case UserAccessLevelPartner  = 7
+        case UserAccessLevelOwner    = 15
+        case UserAccessLevelAdmin    = 31
+    }
 }

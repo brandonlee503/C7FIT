@@ -10,6 +10,9 @@ import Foundation
 
 struct ClassServiceRequest {
     
+    /**
+        Builds GetClasses request to fetch classes between specific times
+     */
     func getClasses(classIDs: Array<Any>?, staffIDs: Array<Any>?, startDateTime: Date?, endDateTime: Date?, clientID: String?, programIDs: Array<Any>?, sessionTypeIDs: Array<Any>?, locationIDs: Array<Any>?, schedulingWindow: Bool?) -> URLRequest {
         
         // Init request with header

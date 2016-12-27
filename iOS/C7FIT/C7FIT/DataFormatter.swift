@@ -24,4 +24,12 @@ struct DataFormatter {
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
         return formatter.string(from: date)
     }
+    
+    /**
+        Custom concatenate function
+        - returns: Concatenated string if not nil
+     */
+    static func concatenate(str1: String?, str2: String?) -> String {
+        return [str1, str2].flatMap{$0}.joined(separator: "")
+    }
 }
