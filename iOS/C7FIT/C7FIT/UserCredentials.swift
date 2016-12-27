@@ -8,7 +8,9 @@
 
 import Foundation
 
-// Singleton Abstraction of User Credentials for MindBody API Access (Staff/Owner)
+/**
+    Singleton Abstraction of User Credentials for MindBody API Access (Staff/Owner)
+ */
 class UserCredentials {
     static let sharedInstance: UserCredentials = {
         let instance = UserCredentials(username: "Username", password: "Password", siteID: "siteID")

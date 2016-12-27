@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+    Base for formatting various data types
+ */
 struct DataFormatter {
     
     /**

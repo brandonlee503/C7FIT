@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+    Various constants in MindBody
+ */
 struct MindBodyConstants {
     
     // API Endpoints

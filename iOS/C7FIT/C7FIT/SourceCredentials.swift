@@ -8,7 +8,9 @@
 
 import Foundation
 
-// Singleton Abstraction of Source Credentials for MindBody API Access
+/**
+    Singleton Abstraction of Source Credentials for MindBody API Access
+ */
 class SourceCredentials {
     static let sharedInstance: SourceCredentials = {
         let instance = SourceCredentials(sourceName: "SourceName", password: "Password", siteID: "siteID")

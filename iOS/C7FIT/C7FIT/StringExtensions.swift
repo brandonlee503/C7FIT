@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+    Extensions for Swift's String
+ */
 extension String {
     var boolValue: Bool {
         return NSString(string: self).boolValue
