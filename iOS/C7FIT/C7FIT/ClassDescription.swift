@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+    Representation of a class description
+ */
 struct ClassDescription : ObjectMapper {
     var lastUpdated: String?
     var imageURL: String?

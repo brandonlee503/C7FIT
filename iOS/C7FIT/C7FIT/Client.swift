@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+    Representation of a client
+ */
 struct Client : ObjectMapper {
     var firstAppointmentDateString: String?
     var birthDateString: String?

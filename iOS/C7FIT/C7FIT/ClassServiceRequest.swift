@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+    Request builder for Class Services
+ */
 struct ClassServiceRequest {
     
     /**
