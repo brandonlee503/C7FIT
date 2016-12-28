@@ -13,5 +13,5 @@ import Foundation
  */
 protocol ObjectMapper {
     mutating func mapElement(key: String?, value: String?)
-    func finish()
+    mutating func finish()
 }
