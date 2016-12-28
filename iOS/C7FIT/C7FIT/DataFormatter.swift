@@ -29,6 +29,21 @@ struct DataFormatter {
     }
     
     /**
+        Converts ISO formatted string to Date
+        - Parameter date: ISO String to convert
+        - Returns: Date Optional
+     */
+    static func formatDatefromISO(string: String?) -> Date? {
+        guard let string = string else { return nil }
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Locale(identifier: "en_US")
+        formatter.timeZone = TimeZone(abbreviation: "PST")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        return formatter.date(from: string)
+    }
+    
+    /**
         Custom concatenate function
         - returns: Concatenated string if not nil
      */
