@@ -59,3 +59,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+
+*.xcuserstate
+
+iOS/C7FIT/C7FIT.xcodeproj/project.xcworkspace/xcuserdata/BrandonLee.xcuserdatad/UserInterfaceState.xcuserstate
+
+*.xcuserstate

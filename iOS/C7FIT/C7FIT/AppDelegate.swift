@@ -15,9 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        let sourceCredentials = SourceCredentials(sourceName: "SourceName", password: "Password", siteID: "siteID")
-        let userCredentials = UserCredentials(username: "Username", password: "Password", siteID: "siteID")
-        
         // Initialize tabBar controller and navigation controllers
         let tabBarController = UITabBarController()
         let tabViewController1 = HomeViewController()
