@@ -1,5 +1,5 @@
 //
-//  PersonalTrainerView.swift
+//  ProfileView.swift
 //  C7FIT
 //
 //  Created by Brandon Lee on 12/22/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PersonalTrainerView: UIView {
+class ProfileView: UIView {
     
     var titleLabel: UILabel = UILabel()
     
@@ -25,7 +25,7 @@ class PersonalTrainerView: UIView {
     }
     
     func setup() {
-        titleLabel.text = "Personal Trainer"
+        titleLabel.text = "Profile"
         addSubview(titleLabel)
     }
     

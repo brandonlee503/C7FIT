@@ -1,5 +1,5 @@
 //
-//  ClassesViewController.swift
+//  ScheduleViewController.swift
 //  C7FIT
 //
 //  Created by Brandon Lee on 12/22/16.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-class ClassesViewController: UIViewController {
-
-    var classesView = ClassesView()
+class ScheduleViewController: UIViewController {
+    
+    var scheduleView = ScheduleView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Classes"
+        self.title = "Schedule"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 98/255, green: 65/255, blue: 133/255, alpha: 1)
         
-        self.view.addSubview(classesView)
+        self.view.addSubview(scheduleView)
         setupConstraints()
         self.view.setNeedsUpdateConstraints()
     }
@@ -29,9 +29,9 @@ class ClassesViewController: UIViewController {
     }
     
     func setupConstraints() {
-        classesView.translatesAutoresizingMaskIntoConstraints = false
-        let centerViewX = classesView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let centerViewY = classesView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        scheduleView.translatesAutoresizingMaskIntoConstraints = false
+        let centerViewX = scheduleView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        let centerViewY = scheduleView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         NSLayoutConstraint.activate([centerViewX, centerViewY])
     }
 }

@@ -20,10 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize tabBar controller and navigation controllers
         let tabBarController = UITabBarController()
         let tabViewController1 = HomeViewController()
-        let tabViewController2 = PersonalTrainerViewController()
-        let tabViewController3 = ClassesViewController()
+        let tabViewController2 = ScheduleViewController()
+        let tabViewController3 = StoreViewController()
         let tabViewController4 = ActivityViewController()
-        let tabViewController5 = MoreViewController()
+        let tabViewController5 = ProfileViewController()
         
         let navigationController1 = UINavigationController(rootViewController: tabViewController1)
         let navigationController2 = UINavigationController(rootViewController: tabViewController2)
@@ -36,10 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabBarController
         
         navigationController1.tabBarItem = UITabBarItem(title: "Home", image: nil, selectedImage: nil)
-        navigationController2.tabBarItem = UITabBarItem(title: "Personal Trainer", image: nil, selectedImage: nil)
-        navigationController3.tabBarItem = UITabBarItem(title: "Classes", image: nil, selectedImage: nil)
+        navigationController2.tabBarItem = UITabBarItem(title: "Schedule", image: nil, selectedImage: nil)
+        navigationController3.tabBarItem = UITabBarItem(title: "Store", image: nil, selectedImage: nil)
         navigationController4.tabBarItem = UITabBarItem(title: "Activity", image: nil, selectedImage: nil)
-        navigationController5.tabBarItem = UITabBarItem(title: "More", image: nil, selectedImage: nil)
+        navigationController5.tabBarItem = UITabBarItem(title: "Profile", image: nil, selectedImage: nil)
         return true
     }
 
