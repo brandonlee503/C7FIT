@@ -26,6 +26,7 @@
 		16576F171E1295C300BF622D /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16576F161E1295C300BF622D /* StringExtensions.swift */; };
 		1658B9DE1E0F9EFD009D4F67 /* DataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1658B9DD1E0F9EFD009D4F67 /* DataFormatter.swift */; };
 		16FFF43A1E345748009B4F34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16FFF4391E345748009B4F34 /* GoogleService-Info.plist */; };
+		16FFF43D1E3459C2009B4F34 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFF43C1E3459C2009B4F34 /* User.swift */; };
 		DC0EF005D0A9CB5AD7082EE2 /* Pods_C7FIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53076A0C8FE5245144D9ECCE /* Pods_C7FIT.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		16576F161E1295C300BF622D /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		1658B9DD1E0F9EFD009D4F67 /* DataFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFormatter.swift; sourceTree = "<group>"; };
 		16FFF4391E345748009B4F34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		16FFF43C1E3459C2009B4F34 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		53076A0C8FE5245144D9ECCE /* Pods_C7FIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C7FIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F464551DBAC59E09F9A579D3 /* Pods-C7FIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FIT.release.xcconfig"; path = "Pods/Target Support Files/Pods-C7FIT/Pods-C7FIT.release.xcconfig"; sourceTree = "<group>"; };
 		F766E4B10DB4A79B8120E9B5 /* Pods-C7FIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FIT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-C7FIT/Pods-C7FIT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -128,8 +130,7 @@
 		160D9B091E0B5C0D00801627 /* C7FIT */ = {
 			isa = PBXGroup;
 			children = (
-				1658B9DD1E0F9EFD009D4F67 /* DataFormatter.swift */,
-				16576F161E1295C300BF622D /* StringExtensions.swift */,
+				16FFF43B1E3458FE009B4F34 /* Models */,
 				160D9B751E0B7FC500801627 /* Views */,
 				160D9B761E0B7FCE00801627 /* View Controllers */,
 				16FFF4371E3455DE009B4F34 /* Other */,
@@ -183,6 +184,8 @@
 		16FFF4371E3455DE009B4F34 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				1658B9DD1E0F9EFD009D4F67 /* DataFormatter.swift */,
+				16576F161E1295C300BF622D /* StringExtensions.swift */,
 				160D9B0A1E0B5C0D00801627 /* AppDelegate.swift */,
 				160D9B0E1E0B5C0D00801627 /* Main.storyboard */,
 				160D9B111E0B5C0D00801627 /* Assets.xcassets */,
@@ -198,6 +201,14 @@
 				160D9B161E0B5C0D00801627 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		16FFF43B1E3458FE009B4F34 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				16FFF43C1E3459C2009B4F34 /* User.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		1796F25B9292C74D5876C980 /* Frameworks */ = {
@@ -409,6 +420,7 @@
 				160D9B0B1E0B5C0D00801627 /* AppDelegate.swift in Sources */,
 				160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */,
 				160D9B8A1E0BFA7A00801627 /* MoreViewController.swift in Sources */,
+				16FFF43D1E3459C2009B4F34 /* User.swift in Sources */,
 				160D9B7C1E0BF4CC00801627 /* PersonalTrainerViewController.swift in Sources */,
 				160D9B801E0BF91400801627 /* ClassesViewController.swift in Sources */,
 				160D9B821E0BF92700801627 /* ClassesView.swift in Sources */,
