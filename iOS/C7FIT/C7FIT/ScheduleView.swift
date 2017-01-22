@@ -1,5 +1,5 @@
 //
-//  MoreView.swift
+//  ScheduleView.swift
 //  C7FIT
 //
 //  Created by Brandon Lee on 12/22/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoreView: UIView {
+class ScheduleView: UIView {
     
     var titleLabel: UILabel = UILabel()
     
@@ -25,7 +25,7 @@ class MoreView: UIView {
     }
     
     func setup() {
-        titleLabel.text = "More"
+        titleLabel.text = "Schedule"
         addSubview(titleLabel)
     }
     

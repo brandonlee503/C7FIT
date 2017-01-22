@@ -1,5 +1,5 @@
 //
-//  ClassesView.swift
+//  StoreView.swift
 //  C7FIT
 //
 //  Created by Brandon Lee on 12/22/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ClassesView: UIView {
+class StoreView: UIView {
     
     var titleLabel: UILabel = UILabel()
     
@@ -25,7 +25,7 @@ class ClassesView: UIView {
     }
     
     func setup() {
-        titleLabel.text = "Classes"
+        titleLabel.text = "Store"
         addSubview(titleLabel)
     }
     

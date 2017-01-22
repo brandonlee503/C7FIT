@@ -1,5 +1,5 @@
 //
-//  PersonalTrainerViewController.swift
+//  StoreViewController.swift
 //  C7FIT
 //
 //  Created by Brandon Lee on 12/22/16.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-class PersonalTrainerViewController: UIViewController {
-    
-    var personalTrainerView = PersonalTrainerView()
+class StoreViewController: UIViewController {
+
+    var storeView = StoreView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Personal Trainer"
+        self.title = "Store"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 98/255, green: 65/255, blue: 133/255, alpha: 1)
         
-        self.view.addSubview(personalTrainerView)
+        self.view.addSubview(storeView)
         setupConstraints()
         self.view.setNeedsUpdateConstraints()
     }
@@ -29,9 +29,9 @@ class PersonalTrainerViewController: UIViewController {
     }
     
     func setupConstraints() {
-        personalTrainerView.translatesAutoresizingMaskIntoConstraints = false
-        let centerViewX = personalTrainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let centerViewY = personalTrainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        storeView.translatesAutoresizingMaskIntoConstraints = false
+        let centerViewX = storeView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        let centerViewY = storeView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         NSLayoutConstraint.activate([centerViewX, centerViewY])
     }
 }

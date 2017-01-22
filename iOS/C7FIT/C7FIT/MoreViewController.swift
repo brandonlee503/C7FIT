@@ -1,5 +1,5 @@
 //
-//  MoreViewController.swift
+//  ProfileViewController.swift
 //  C7FIT
 //
 //  Created by Brandon Lee on 12/22/16.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-class MoreViewController: UIViewController {
+class ProfileViewController: UIViewController {
 
-    var moreView = MoreView()
+    var profileView = ProfileView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "More"
+        self.title = "Profile"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 98/255, green: 65/255, blue: 133/255, alpha: 1)
         
-        self.view.addSubview(moreView)
+        self.view.addSubview(profileView)
         setupConstraints()
         self.view.setNeedsUpdateConstraints()
     }
@@ -29,9 +29,9 @@ class MoreViewController: UIViewController {
     }
     
     func setupConstraints() {
-        moreView.translatesAutoresizingMaskIntoConstraints = false
-        let centerViewX = moreView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let centerViewY = moreView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        profileView.translatesAutoresizingMaskIntoConstraints = false
+        let centerViewX = profileView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        let centerViewY = profileView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         NSLayoutConstraint.activate([centerViewX, centerViewY])
     }
 }
