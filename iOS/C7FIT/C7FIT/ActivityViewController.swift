@@ -30,8 +30,10 @@ class ActivityViewController: UIViewController {
     
     func setupConstraints() {
         activityView.translatesAutoresizingMaskIntoConstraints = false
-        let centerViewX = activityView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let centerViewY = activityView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        NSLayoutConstraint.activate([centerViewX, centerViewY])
+        let topView = activityView.topAnchor.constraint(equalTo: view.topAnchor)
+        let bottomView = activityView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        let leftView = activityView.leftAnchor.constraint(equalTo: view.leftAnchor)
+        let rightView = activityView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
     }
 }

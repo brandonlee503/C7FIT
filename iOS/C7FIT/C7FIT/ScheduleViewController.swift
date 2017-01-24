@@ -28,10 +28,12 @@ class ScheduleViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setupConstraints() {
+    func setupConstraints() {        
         scheduleView.translatesAutoresizingMaskIntoConstraints = false
-        let centerViewX = scheduleView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let centerViewY = scheduleView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        NSLayoutConstraint.activate([centerViewX, centerViewY])
+        let topView = scheduleView.topAnchor.constraint(equalTo: view.topAnchor)
+        let bottomView = scheduleView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        let leftView = scheduleView.leftAnchor.constraint(equalTo: view.leftAnchor)
+        let rightView = scheduleView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
     }
 }
