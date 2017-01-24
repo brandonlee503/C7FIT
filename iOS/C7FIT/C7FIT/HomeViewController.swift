@@ -30,8 +30,10 @@ class HomeViewController: UIViewController {
     
     func setupConstraints() {
         homeView.translatesAutoresizingMaskIntoConstraints = false
-        let centerViewX = homeView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let centerViewY = homeView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        NSLayoutConstraint.activate([centerViewX, centerViewY])
+        let topView = homeView.topAnchor.constraint(equalTo: view.topAnchor)
+        let bottomView = homeView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        let leftView = homeView.leftAnchor.constraint(equalTo: view.leftAnchor)
+        let rightView = homeView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
     }
 }

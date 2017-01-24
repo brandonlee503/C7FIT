@@ -30,8 +30,10 @@ class StoreViewController: UIViewController {
     
     func setupConstraints() {
         storeView.translatesAutoresizingMaskIntoConstraints = false
-        let centerViewX = storeView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let centerViewY = storeView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        NSLayoutConstraint.activate([centerViewX, centerViewY])
+        let topView = storeView.topAnchor.constraint(equalTo: view.topAnchor)
+        let bottomView = storeView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        let leftView = storeView.leftAnchor.constraint(equalTo: view.leftAnchor)
+        let rightView = storeView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
     }
 }
