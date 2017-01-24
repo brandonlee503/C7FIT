@@ -9,6 +9,9 @@
 import Foundation
 import Firebase
 
+/**
+    A model representation of a User
+ */
 struct User {
     let uid: String
     let email: String
