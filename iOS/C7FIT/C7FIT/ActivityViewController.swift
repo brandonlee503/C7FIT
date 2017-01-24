@@ -9,8 +9,12 @@
 import UIKit
 
 class ActivityViewController: UIViewController {
-
+    
+    // MARK: - Properties
+    
     var activityView = ActivityView()
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +29,9 @@ class ActivityViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Layout
     
     func setupConstraints() {
         activityView.translatesAutoresizingMaskIntoConstraints = false

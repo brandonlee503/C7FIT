@@ -10,7 +10,11 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    // MARK: - Properties
+    
     var homeView = HomeView()
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +29,9 @@ class HomeViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Layout
     
     func setupConstraints() {
         homeView.translatesAutoresizingMaskIntoConstraints = false

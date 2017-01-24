@@ -8,8 +8,11 @@
 
 import UIKit
 import Firebase
+
 class ProfileViewController: UIViewController {
 
+    // MARK: - Properties
+    
     var profileView = ProfileView()
     
     // MARK: - View Lifecycle
@@ -20,7 +23,7 @@ class ProfileViewController: UIViewController {
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
         
-        // Check if user is signed in
+        // Monitor for user login/logout
         FIRAuth.auth()?.addStateDidChangeListener() { auth, user in
             if user != nil {
                 print("User signed in")
@@ -39,7 +42,6 @@ class ProfileViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Layout

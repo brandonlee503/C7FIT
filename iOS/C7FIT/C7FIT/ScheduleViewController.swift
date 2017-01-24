@@ -10,7 +10,11 @@ import UIKit
 
 class ScheduleViewController: UIViewController {
     
+    // MARK: - Properties
+    
     var scheduleView = ScheduleView()
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +29,9 @@ class ScheduleViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Layout
     
     func setupConstraints() {        
         scheduleView.translatesAutoresizingMaskIntoConstraints = false

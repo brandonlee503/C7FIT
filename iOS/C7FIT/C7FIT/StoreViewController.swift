@@ -10,7 +10,11 @@ import UIKit
 
 class StoreViewController: UIViewController {
 
+    // MARK: - Properties
+    
     var storeView = StoreView()
+    
+    // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +29,9 @@ class StoreViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Layout
     
     func setupConstraints() {
         storeView.translatesAutoresizingMaskIntoConstraints = false

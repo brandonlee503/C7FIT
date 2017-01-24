@@ -10,7 +10,9 @@ import UIKit
 import Firebase
 
 class LoginViewController: UIViewController {
-
+    
+    // MARK: - Properties
+    
     var loginView = LoginView()
     
     // MARK: - View Lifecycle
@@ -30,7 +32,6 @@ class LoginViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Layout
@@ -46,15 +47,19 @@ class LoginViewController: UIViewController {
     
     // MARK: - User Interaction
     
-    // TODO: Following two functions have a lot of duplicate code
+    // FIXME: Following two functions have a lot of duplicate code
     func loginPressed() {
         let loginAlert = UIAlertController(title: "Login", message: nil, preferredStyle: .alert)
         let submitAction = UIAlertAction(title: "Submit", style: .default) { action in
             let emailField = loginAlert.textFields![0] as UITextField
             let passwordField = loginAlert.textFields![1] as UITextField
+            
+            // Submit login with credentials, display profileVC if valid
             FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!) { user, error in
                 if error == nil {
                     self.dismiss(animated: true, completion: nil)
+                } else {
+                    print("Login Error: \(error?.localizedDescription)")
                 }
             }
         }
@@ -80,6 +85,8 @@ class LoginViewController: UIViewController {
         let submitAction = UIAlertAction(title: "Submit", style: .default) { action in
             let emailField = createAccountAlert.textFields![0] as UITextField
             let passwordField = createAccountAlert.textFields![1] as UITextField
+            
+            // Submit create user, upon successful creation - login as well
             FIRAuth.auth()?.createUser(withEmail: emailField.text!, password: passwordField.text!) { user, error in
                 if error == nil {
                     FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!) { _,_ in
