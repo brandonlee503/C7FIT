@@ -52,8 +52,10 @@ class LoginViewController: UIViewController {
         let submitAction = UIAlertAction(title: "Submit", style: .default) { action in
             let emailField = loginAlert.textFields![0] as UITextField
             let passwordField = loginAlert.textFields![1] as UITextField
-            FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!) { _,_ in
-                self.dismiss(animated: true, completion: nil)
+            FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!) { user, error in
+                if error == nil {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         }
         
