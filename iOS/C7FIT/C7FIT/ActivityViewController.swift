@@ -16,7 +16,7 @@ class ActivityViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Activity"
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 98/255, green: 65/255, blue: 133/255, alpha: 1)
+        self.navigationController?.navigationBar.barTintColor = .orange
         
         self.view.addSubview(activityView)
         setupConstraints()
