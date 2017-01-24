@@ -10,8 +10,12 @@ import UIKit
 
 class LoginView: UIView {
     
+    // MARK: - Properties
+
     var loginButton: UIButton = UIButton()
     var createAccountButton: UIButton = UIButton()
+    
+    // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,6 +29,8 @@ class LoginView: UIView {
         setupConstraints()
     }
     
+    // MARK: - Layout
+
     func setup() {
         loginButton.setTitle("Login", for: .normal)
         loginButton.setTitleColor(.black, for: .normal)

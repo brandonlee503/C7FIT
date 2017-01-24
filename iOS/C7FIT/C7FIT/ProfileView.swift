@@ -10,8 +10,12 @@ import UIKit
 
 class ProfileView: UIView {
     
+    // MARK: - Properties
+
     var titleLabel: UILabel = UILabel()
     var logoutButton: UIButton = UIButton()
+
+    // MARK: - Initialization
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,6 +29,8 @@ class ProfileView: UIView {
         setupConstraints()
     }
     
+    // MARK: - Layout
+
     func setup() {
         titleLabel.text = "Profile"
         addSubview(titleLabel)
