@@ -11,7 +11,8 @@ import UIKit
 class ProfileView: UIView {
     
     var titleLabel: UILabel = UILabel()
-    
+    var logoutButton: UIButton = UIButton()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -34,5 +35,15 @@ class ProfileView: UIView {
         let centerTitleX = titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         let centerTitleY = titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         NSLayoutConstraint.activate([centerTitleX, centerTitleY])
+    }
+    
+    func setupLogoutButton() {
+        logoutButton.setTitle("Logout", for: .normal)
+        logoutButton.setTitleColor(.black, for: .normal)
+        addSubview(logoutButton)
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        let logoutX = logoutButton.centerXAnchor.constraint(equalTo: titleLabel.centerXAnchor)
+        let logoutY = logoutButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10)
+        NSLayoutConstraint.activate([logoutX, logoutY])
     }
 }
