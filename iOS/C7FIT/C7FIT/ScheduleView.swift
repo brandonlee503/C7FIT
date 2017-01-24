@@ -10,7 +10,11 @@ import UIKit
 
 class ScheduleView: UIView {
     
+    // MARK: - Properties
+    
     var titleLabel: UILabel = UILabel()
+    
+    // MARK: - Initialization
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,6 +27,8 @@ class ScheduleView: UIView {
         setup()
         setupConstraints()
     }
+    
+    // MARK: - Layout
     
     func setup() {
         titleLabel.text = "Schedule"
