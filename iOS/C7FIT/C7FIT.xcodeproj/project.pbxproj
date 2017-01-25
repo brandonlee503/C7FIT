@@ -27,6 +27,9 @@
 		164BAAAC1E36E5D900DE4C71 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164BAAAB1E36E5D900DE4C71 /* LoginView.swift */; };
 		16576F171E1295C300BF622D /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16576F161E1295C300BF622D /* StringExtensions.swift */; };
 		1658B9DE1E0F9EFD009D4F67 /* DataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1658B9DD1E0F9EFD009D4F67 /* DataFormatter.swift */; };
+		16D2D2EA1E38020300F6AA9F /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2D2E91E38020300F6AA9F /* ProfileTableViewCell.swift */; };
+		16D2D2EC1E38638600F6AA9F /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2D2EB1E38638600F6AA9F /* CircularImageView.swift */; };
+		16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2D2ED1E3874F800F6AA9F /* LogoutTableViewCell.swift */; };
 		16FFF43A1E345748009B4F34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16FFF4391E345748009B4F34 /* GoogleService-Info.plist */; };
 		16FFF43D1E3459C2009B4F34 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFF43C1E3459C2009B4F34 /* User.swift */; };
 		DC0EF005D0A9CB5AD7082EE2 /* Pods_C7FIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53076A0C8FE5245144D9ECCE /* Pods_C7FIT.framework */; };
@@ -76,6 +79,9 @@
 		164BAAAB1E36E5D900DE4C71 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		16576F161E1295C300BF622D /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		1658B9DD1E0F9EFD009D4F67 /* DataFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataFormatter.swift; sourceTree = "<group>"; };
+		16D2D2E91E38020300F6AA9F /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
+		16D2D2EB1E38638600F6AA9F /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
+		16D2D2ED1E3874F800F6AA9F /* LogoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutTableViewCell.swift; sourceTree = "<group>"; };
 		16FFF4391E345748009B4F34 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		16FFF43C1E3459C2009B4F34 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		16FFF43E1E345F17009B4F34 /* C7FIT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = C7FIT.entitlements; sourceTree = "<group>"; };
@@ -171,6 +177,8 @@
 				160D9B831E0BFA4500801627 /* ActivityView.swift */,
 				160D9B851E0BFA5A00801627 /* ProfileView.swift */,
 				164BAAAB1E36E5D900DE4C71 /* LoginView.swift */,
+				16D2D2E91E38020300F6AA9F /* ProfileTableViewCell.swift */,
+				16D2D2ED1E3874F800F6AA9F /* LogoutTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -191,6 +199,7 @@
 		16FFF4371E3455DE009B4F34 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				16D2D2EB1E38638600F6AA9F /* CircularImageView.swift */,
 				1658B9DD1E0F9EFD009D4F67 /* DataFormatter.swift */,
 				16576F161E1295C300BF622D /* StringExtensions.swift */,
 				160D9B0A1E0B5C0D00801627 /* AppDelegate.swift */,
@@ -429,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				16576F171E1295C300BF622D /* StringExtensions.swift in Sources */,
+				16D2D2EC1E38638600F6AA9F /* CircularImageView.swift in Sources */,
 				160D9B7A1E0B88EE00801627 /* HomeView.swift in Sources */,
 				160D9B861E0BFA5A00801627 /* ProfileView.swift in Sources */,
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
@@ -439,6 +449,8 @@
 				160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */,
 				160D9B801E0BF91400801627 /* StoreViewController.swift in Sources */,
 				160D9B821E0BF92700801627 /* StoreView.swift in Sources */,
+				16D2D2EA1E38020300F6AA9F /* ProfileTableViewCell.swift in Sources */,
+				16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */,
 				160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */,
 				1658B9DE1E0F9EFD009D4F67 /* DataFormatter.swift in Sources */,
 				160D9B7E1E0BF5DC00801627 /* ScheduleView.swift in Sources */,

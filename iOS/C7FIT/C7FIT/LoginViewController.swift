@@ -55,13 +55,7 @@ class LoginViewController: UIViewController {
             let passwordField = loginAlert.textFields![1] as UITextField
             
             // Submit login with credentials, display profileVC if valid
-            FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!) { user, error in
-                if error == nil {
-                    self.dismiss(animated: true, completion: nil)
-                } else {
-                    print("Login Error: \(error?.localizedDescription)")
-                }
-            }
+            self.signIn(email: emailField.text!, password: passwordField.text!)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -89,9 +83,7 @@ class LoginViewController: UIViewController {
             // Submit create user, upon successful creation - login as well
             FIRAuth.auth()?.createUser(withEmail: emailField.text!, password: passwordField.text!) { user, error in
                 if error == nil {
-                    FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!) { _,_ in
-                        self.dismiss(animated: true, completion: nil)
-                    }
+                    self.signIn(email: emailField.text!, password: passwordField.text!)
                 } else {
                     print("Create Account Error: \(error?.localizedDescription)")
                 }
@@ -112,5 +104,19 @@ class LoginViewController: UIViewController {
         createAccountAlert.addAction(submitAction)
         createAccountAlert.addAction(cancelAction)
         self.present(createAccountAlert, animated: true, completion: nil)
+    }
+    
+    /**
+        Submit login with credentials, display profile screen if valid
+     */
+    func signIn(email: String, password: String) {
+        FIRAuth.auth()?.signIn(withEmail: email, password: password) { user, error in
+            if error != nil {
+                print("USERUSERUSER: \(user?.email)")
+                self.dismiss(animated: true, completion: nil)
+            } else {
+                print("Login Error: \(error?.localizedDescription)")
+            }
+        }
     }
 }
