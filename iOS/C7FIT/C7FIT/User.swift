@@ -13,20 +13,24 @@ import Firebase
     A model representation of a User
  */
 struct User {
-    let uid: String
+//    let uid: String
     let email: String
+//    let name: String?
 //    let weight: Int?
 //    let height: Int?
 //    let bmi: Double?
 //    let mileTime: String?
 
     init(authData: FIRUser) {
-        uid = authData.uid
+//        uid = authData.uid
         email = authData.email!
     }
     
-    init(uid: String, email: String) {
-        self.uid = uid
+    init(email: String) {
         self.email = email
     }
+    
+//    func toAnyObject() -> Any {
+//        return 
+//    }
 }
