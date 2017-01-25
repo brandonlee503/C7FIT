@@ -5,6 +5,11 @@ target 'C7FIT' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+
+  target 'C7FITTests' do
+    inherit! :search_paths
+    pod 'Firebase/Core'
+  end
 end
 
 post_install do |installer|
