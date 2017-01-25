@@ -1,0 +1,10 @@
+language: objective-c
+
+osx_image: xcode8.2
+
+before_install:
+  - bundle install
+  - bundle exec pod repo update --silent
+  - bundle exec pod install
+
+script: fastlane test
