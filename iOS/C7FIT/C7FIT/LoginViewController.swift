@@ -111,8 +111,8 @@ class LoginViewController: UIViewController {
      */
     func signIn(email: String, password: String) {
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { user, error in
-            if error != nil {
-                print("USERUSERUSER: \(user?.email)")
+            print("login screen user: \(user?.email)")
+            if error == nil {
                 self.dismiss(animated: true, completion: nil)
             } else {
                 print("Login Error: \(error?.localizedDescription)")
