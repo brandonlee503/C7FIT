@@ -17,8 +17,6 @@ class ProfileViewController: UITableViewController {
     
     // MARK: - Properties
     
-    var profileView = ProfileView()
-    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -34,11 +32,10 @@ class ProfileViewController: UITableViewController {
         // Monitor for user login/logout
         FIRAuth.auth()?.addStateDidChangeListener() { auth, user in
             if user != nil {
-                print("User signed in")
+                print("User \(user?.email) signed in")
             } else {
                 print("User not signed in")
                 self.present(LoginViewController(), animated: true, completion:nil)
-//                self.navigationController?.pushViewController(LoginViewController(), animated: true)
             }
         }
         
@@ -47,17 +44,6 @@ class ProfileViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-    
-    // MARK: - Layout
-    
-    func setupConstraints() {
-        profileView.translatesAutoresizingMaskIntoConstraints = false
-        let topView = profileView.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomView = profileView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leftView = profileView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        let rightView = profileView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
     }
     
     // MARK: UITableView Delegate and Datasource
