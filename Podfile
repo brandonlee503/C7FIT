@@ -1,10 +1,10 @@
-platform :ios, "10.0"
+platform :ios, '10.0'
 use_frameworks!
 
 target 'C7FIT' do
-pod 'Firebase/Core'
-pod 'Firebase/Database'
-pod 'Firebase/Auth'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'Firebase/Auth'
 end
 
 post_install do |installer|
