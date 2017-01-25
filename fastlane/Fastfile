@@ -1,10 +1,19 @@
 fastlane_version "2.11.0"
 
 desc "Builds and runs all tests on an iPhone 📱"
-
 lane :test do
   scan(
-    scheme: "C7FIT", 
+    scheme: "C7FIT",
     devices: ["iPhone 7"]
+  )
+end
+
+desc "Lints all Swift files to ensure consistent style 💯"
+desc "Results are saved to fastlane/test_output/swiftlint.result.json"
+lane :lint do
+  swiftlint(
+    mode: :lint,
+    output_file: "fastlane/test_output/swiftlint.result.html",
+    reporter: "html"
   )
 end
