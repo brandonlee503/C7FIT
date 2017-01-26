@@ -25,20 +25,12 @@ struct FirebaseDataManager {
      
          - Parameter email: User email string
          - Parameter password: User password string
-         - Parameter completion: A callback that returns a bool
+         - Parameter completion: A callback that returns FIRAuthCallback
          - Returns: Request
      */
-    func createAccount(email: String, password: String, completion: @escaping (_: Bool) -> Void) {
-        var isSuccessful: Bool? = nil
+    func createAccount(email: String, password: String, completion: @escaping (_: FIRUser?, _:Error?) -> Void) {
         FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
-            if error == nil {
-                isSuccessful = true
-            } else {
-                isSuccessful = false
-                print("Create Account Error: \(error?.localizedDescription)")
-            }
-            
-            completion(isSuccessful!)
+            completion(user, error)
         }
     }
     
@@ -47,21 +39,13 @@ struct FirebaseDataManager {
          
          - Parameter email: User email string
          - Parameter password: User password string
-         - Parameter completion: A callback that returns a bool
+         - Parameter completion: A callback that returns FIRAuthCallback
          - Returns: Request.
      */
-    func signIn(email: String, password: String, completion: @escaping (_: Bool, _: String?) -> Void) {
-        var isSuccessful: Bool? = nil
+    func signIn(email: String, password: String, completion: @escaping (_: FIRUser?, _: Error?) -> Void) {
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { user, error in
             print("login screen user: \(user?.email)")
-            if error == nil {
-                isSuccessful = true
-            } else {
-                isSuccessful = false
-                print("Login Error: \(error?.localizedDescription)")
-            }
-            
-            completion(isSuccessful!, user?.uid)
+            completion(user, error)
         }
     }
     

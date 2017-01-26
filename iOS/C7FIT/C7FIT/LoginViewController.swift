@@ -59,11 +59,9 @@ class LoginViewController: UIViewController {
             let passwordField = loginAlert.textFields![1] as UITextField
             
             // Submit login with credentials, display profileVC if valid
-            self.firebaseDataManager.signIn(email: emailField.text!, password: passwordField.text!) { success, uid in
-                if success {
-                    // TODO: On failure print error message
-                    self.dismiss(animated: true, completion: nil)
-                }
+            self.firebaseDataManager.signIn(email: emailField.text!, password: passwordField.text!) { user, error in
+                guard user != nil else { return self.displayError(error: error!) }
+                self.dismiss(animated: true, completion: nil)
             }
         }
         
@@ -90,16 +88,13 @@ class LoginViewController: UIViewController {
             let passwordField = createAccountAlert.textFields![1] as UITextField
             
             // Submit create user, upon successful creation - login as well
-            self.firebaseDataManager.createAccount(email: emailField.text!, password: passwordField.text!) { success in
-                if success {
-                    self.firebaseDataManager.signIn(email: emailField.text!, password: passwordField.text!) { success, uid in
-                        if success {
-                            // TODO: On failure print error message
-                            self.firebaseDataManager.buildUserProfile(uid: uid!, email: emailField.text!)
+            self.firebaseDataManager.createAccount(email: emailField.text!, password: passwordField.text!) { user, error in
+                guard user != nil else { return self.displayError(error: error!) }
+                    self.firebaseDataManager.signIn(email: emailField.text!, password: passwordField.text!) { user, error in
+                        guard let user = user else { return self.displayError(error: error!) }
+                            self.firebaseDataManager.buildUserProfile(uid: user.uid, email: emailField.text!)
                             self.dismiss(animated: true, completion: nil)
-                        }
                     }
-                }
             }
         }
         
@@ -117,5 +112,12 @@ class LoginViewController: UIViewController {
         createAccountAlert.addAction(submitAction)
         createAccountAlert.addAction(cancelAction)
         self.present(createAccountAlert, animated: true, completion: nil)
+    }
+    
+    func displayError(error: Error) {
+        let errorAlert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let submitAction = UIAlertAction(title: "Ok", style: .default)
+        errorAlert.addAction(submitAction)
+        self.present(errorAlert, animated: true, completion: nil)
     }
 }
