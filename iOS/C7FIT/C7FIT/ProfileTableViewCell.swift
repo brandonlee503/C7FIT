@@ -19,7 +19,6 @@ class ProfileTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        print("cell lmao")
         setup()
         setupConstraints()
     }
@@ -43,12 +42,11 @@ class ProfileTableViewCell: UITableViewCell {
         addSubview(nameField)
         
         bioField.backgroundColor = .red
-        bioField.text = "PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT"
+        bioField.text = "Add a bio"
         addSubview(bioField)
     }
     
     func setupConstraints() {
-//        let marginsGuide = contentView.layoutMarginsGuide
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         let imageLeft = profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10)
         let imageTop = profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20)
