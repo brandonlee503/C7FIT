@@ -22,6 +22,7 @@
 		160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B831E0BFA4500801627 /* ActivityView.swift */; };
 		160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B871E0BFA6A00801627 /* ActivityViewController.swift */; };
 		160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B891E0BFA7A00801627 /* ProfileViewController.swift */; };
+		163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163771531E398E2B000B3E87 /* FirebaseDataManager.swift */; };
 		164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164BAAA91E36E5BA00DE4C71 /* LoginViewController.swift */; };
 		164BAAAC1E36E5D900DE4C71 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164BAAAB1E36E5D900DE4C71 /* LoginView.swift */; };
 		16576F171E1295C300BF622D /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16576F161E1295C300BF622D /* StringExtensions.swift */; };
@@ -73,6 +74,7 @@
 		160D9B831E0BFA4500801627 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		160D9B871E0BFA6A00801627 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		160D9B891E0BFA7A00801627 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		163771531E398E2B000B3E87 /* FirebaseDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataManager.swift; sourceTree = "<group>"; };
 		164BAAA91E36E5BA00DE4C71 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		164BAAAB1E36E5D900DE4C71 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		16576F161E1295C300BF622D /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				16FFF43B1E3458FE009B4F34 /* Models */,
 				160D9B751E0B7FC500801627 /* Views */,
 				160D9B761E0B7FCE00801627 /* View Controllers */,
+				163771521E398E07000B3E87 /* Stores */,
 				16FFF4371E3455DE009B4F34 /* Other */,
 				16FFF4381E3455E5009B4F34 /* Supporting Files */,
 			);
@@ -193,12 +196,20 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
+		163771521E398E07000B3E87 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				163771531E398E2B000B3E87 /* FirebaseDataManager.swift */,
+				1658B9DD1E0F9EFD009D4F67 /* DataFormatter.swift */,
+				16576F161E1295C300BF622D /* StringExtensions.swift */,
+			);
+			name = Stores;
+			sourceTree = "<group>";
+		};
 		16FFF4371E3455DE009B4F34 /* Other */ = {
 			isa = PBXGroup;
 			children = (
 				16D2D2EB1E38638600F6AA9F /* CircularImageView.swift */,
-				1658B9DD1E0F9EFD009D4F67 /* DataFormatter.swift */,
-				16576F161E1295C300BF622D /* StringExtensions.swift */,
 				160D9B0A1E0B5C0D00801627 /* AppDelegate.swift */,
 				160D9B0E1E0B5C0D00801627 /* Main.storyboard */,
 				160D9B111E0B5C0D00801627 /* Assets.xcassets */,
@@ -440,6 +451,7 @@
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
 				160D9B0B1E0B5C0D00801627 /* AppDelegate.swift in Sources */,
 				160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */,
+				163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */,
 				160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */,
 				16FFF43D1E3459C2009B4F34 /* User.swift in Sources */,
 				160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */,

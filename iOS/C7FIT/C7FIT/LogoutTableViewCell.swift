@@ -18,7 +18,6 @@ class LogoutTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        print("cell lmao")
         setup()
         setupConstraints()
     }
