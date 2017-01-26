@@ -13,9 +13,7 @@ class ProfileViewController: UITableViewController {
 
     // MARK: - Constants
     
-    let ref = FIRDatabase.database().reference(withPath: "users")
-    
-    // MARK: - Properties
+    let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
     
     // MARK: - View Lifecycle
     
@@ -29,13 +27,23 @@ class ProfileViewController: UITableViewController {
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: "ProfileCell")
         tableView.register(LogoutTableViewCell.self, forCellReuseIdentifier: "LogoutCell")
         
-        // Monitor for user login/logout
-        FIRAuth.auth()?.addStateDidChangeListener() { auth, user in
-            if user != nil {
-                print("User \(user?.email) signed in")
-            } else {
-                print("User not signed in")
+        // Monitor for user login/logout state
+        firebaseDataManager.monitorLoginState() { isLoggedIn in
+            if !isLoggedIn {
+                print("not logged in vc")
                 self.present(LoginViewController(), animated: true, completion:nil)
+            } else {
+                print("is logged in vc")
+            }
+        }
+        
+        // Find user if existing, if not create one
+        firebaseDataManager.userExists(uid: "testUID") { result in
+            if result {
+                print("user exists vc")
+            } else {
+                print("user doesnt exist vc")
+                
             }
         }
         
@@ -86,15 +94,11 @@ class ProfileViewController: UITableViewController {
     // MARK: - User Interaction
     
     func nameFieldDidChange() {
-        print("update name lmao")
+        print("update name")
         
     }
     
     func logoutPressed() {
-        do {
-            try FIRAuth.auth()?.signOut()
-        } catch let signoutError {
-            print("Error signing out: \(signoutError.localizedDescription)")
-        }
+        firebaseDataManager.logout()
     }
 }
