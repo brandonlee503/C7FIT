@@ -14,6 +14,11 @@ class ProfileViewController: UITableViewController {
     
     let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
     
+    // MARK: - Properties
+    
+    var userID: String?
+    var user: User?
+    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -27,22 +32,18 @@ class ProfileViewController: UITableViewController {
         tableView.register(LogoutTableViewCell.self, forCellReuseIdentifier: "LogoutCell")
         
         // Monitor for user login/logout state
-        firebaseDataManager.monitorLoginState() { isLoggedIn in
-            if !isLoggedIn {
-                print("not logged in vc")
-                self.present(LoginViewController(), animated: true, completion:nil)
-            } else {
-                print("is logged in vc")
-            }
-        }
-        
-        // Find user if existing, if not create one
-        firebaseDataManager.userExists(uid: "testUID") { result in
-            if result {
-                print("user exists vc")
-            } else {
-                print("user doesnt exist vc")
-                
+        firebaseDataManager.monitorLoginState() { auth, user in
+            
+            // If user is signed in, set userID else display login screen
+            guard let userID = user?.uid else { return self.present(LoginViewController(), animated: true, completion:nil) }
+            self.userID = userID
+            
+            // Create and build existing user
+            self.firebaseDataManager.fetchUser(uid: userID) { data in
+                // TODO: Create asynchronous error handling protocols
+                guard let json = data.value as? [String: AnyObject] else { return }
+                self.user = DataFormatter.buildExistingUser(json: json)
+                self.tableView.reloadData()
             }
         }
         
@@ -74,8 +75,9 @@ class ProfileViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             if let cell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as? ProfileTableViewCell {
+                cell.nameField.text = user?.name ?? ""
                 // FIXME: Might need to update the control event
-                cell.nameField.addTarget(self, action: #selector(self.nameFieldDidChange), for: .editingDidEnd)
+                cell.nameField.addTarget(self, action: #selector(self.nameFieldDidChange(_:)), for: .editingDidEnd)
                 return cell
             }
         }
@@ -92,9 +94,10 @@ class ProfileViewController: UITableViewController {
     
     // MARK: - User Interaction
     
-    func nameFieldDidChange() {
+    func nameFieldDidChange(_ sender: UITextField) {
         print("update name")
-        
+        guard let newName = sender.text, let userID = self.userID else { return }
+        firebaseDataManager.updateUserAttribute(uid: userID, key: "name", value: newName)
     }
     
     func logoutPressed() {
