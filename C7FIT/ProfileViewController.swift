@@ -84,12 +84,18 @@ class ProfileViewController: UITableViewController {
         
         if indexPath.row == 10 {
             if let cell: LogoutTableViewCell = tableView.dequeueReusableCell(withIdentifier: "LogoutCell") as? LogoutTableViewCell {
-                cell.logoutButton.addTarget(self, action: #selector(self.logoutPressed), for: .touchUpInside)
                 return cell
             }
         }
         
         return UITableViewCell()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Logout user
+        if indexPath.row == 10 {
+            logoutPressed()
+        }
     }
     
     // MARK: - User Interaction
