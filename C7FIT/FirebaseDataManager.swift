@@ -26,7 +26,6 @@ struct FirebaseDataManager {
          - Parameter email: User email string
          - Parameter password: User password string
          - Parameter completion: A callback that returns FIRAuthCallback
-         - Returns: Request
      */
     func createAccount(email: String, password: String, completion: @escaping (_: FIRUser?, _:Error?) -> Void) {
         FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
@@ -40,7 +39,6 @@ struct FirebaseDataManager {
          - Parameter email: User email string
          - Parameter password: User password string
          - Parameter completion: A callback that returns FIRAuthCallback
-         - Returns: Request.
      */
     func signIn(email: String, password: String, completion: @escaping (_: FIRUser?, _: Error?) -> Void) {
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { user, error in
@@ -70,7 +68,7 @@ struct FirebaseDataManager {
         - Parameter email: User email string
      */
     func buildUserProfile(uid: String, email: String) {
-        let newUser = User(email: email, photoURL: nil, name: nil, weight: nil, height: nil, bmi: nil, mileTime: nil, pushups: nil, situps: nil, legPress: nil, benchPress: nil, lateralPull: nil)
+        let newUser = User(email: email, photoURL: nil, name: nil, bio: nil, weight: nil, height: nil, bmi: nil, mileTime: nil, pushups: nil, situps: nil, legPress: nil, benchPress: nil, lateralPull: nil)
         let newUserRef = self.ref.child("users").child(uid)
         newUserRef.setValue(newUser.toAnyObject())
     }
@@ -78,45 +76,33 @@ struct FirebaseDataManager {
     // MARK: - User State
     
     /**
-        Check if user has existing data in Firebase Database.
+        Fetch user from the database.
      
         - Parameter uid: User's universal ID
-        - Parameter completion: A callback that returns a Bool
-        - Returns: Request
+        - Parameter completion: A callback that returns a FIRDataSnapshot
      */
-    func userExists(uid: String, completion: @escaping (_: Bool) -> Void) {
-        var accountExists: Bool? = nil
-        ref.child("users").observeSingleEvent(of: .value, with: { snapshot in
-            if snapshot.hasChild(uid) {
-                print("child exists")
-                accountExists = true
-            } else {
-                print("child doesnt exist")
-                accountExists = false
-            }
-            
-            completion(accountExists!)
+    func fetchUser(uid: String, completion: @escaping (_: FIRDataSnapshot) -> Void) {
+        ref.child("users").child(uid).observeSingleEvent(of: .value, with: { snapshot in
+            completion(snapshot)
         })
     }
     
     /**
         Monitor the login state of the user.
         
-        - Parameter completion: A callback that returns a Bool
-        - Returns: Request
+        - Parameter completion: A callback that returns FIRAuthStateDidChangeListenerHandle
      */
-    func monitorLoginState(completion: @escaping (_: Bool) -> Void) {
-        var isLoggedIn: Bool? = nil
+    func monitorLoginState(completion: @escaping (_: FIRAuth, _: FIRUser?) -> Void) {
         FIRAuth.auth()?.addStateDidChangeListener() { auth, user in
-            if user != nil {
-                print("User \(user?.email) signed in")
-                isLoggedIn = true
-            } else {
-                print("User not signed in")
-                isLoggedIn = false
-            }
-            
-            completion(isLoggedIn!)
+            completion(auth, user)
         }
+    }
+    
+    // MARK: - Data Modification
+    
+    func updateUserAttribute(uid: String, key: String, value: Any) {
+        self.ref.child("users").child(uid).updateChildValues([
+            "\(key)": value
+        ])
     }
 }

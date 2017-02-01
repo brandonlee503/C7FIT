@@ -16,6 +16,7 @@ struct User {
     let email: String
     let photoURL: String?
     let name: String?
+    let bio: String?
     let weight: Int?
     let height: Int?
     let bmi: Double?
@@ -26,10 +27,11 @@ struct User {
     let benchPress: Int?
     let lateralPull: Int?
     
-    init(email: String, photoURL: String?, name: String?, weight: Int?, height: Int?, bmi: Double?, mileTime: TimeInterval?, pushups: Int?, situps: Int?, legPress: Int?, benchPress: Int?, lateralPull: Int?) {
+    init(email: String, photoURL: String?, name: String?, bio: String?, weight: Int?, height: Int?, bmi: Double?, mileTime: TimeInterval?, pushups: Int?, situps: Int?, legPress: Int?, benchPress: Int?, lateralPull: Int?) {
         self.email = email
         self.photoURL = photoURL
         self.name = name
+        self.bio = bio
         self.weight = weight
         self.height = height
         self.bmi = bmi
@@ -46,6 +48,7 @@ struct User {
             "email": email,
             "photoURL": photoURL ?? "",
             "name": name ?? "",
+            "bio": bio ?? "",
             "weight": weight ?? 0,
             "height": height ?? 0,
             "bmi": bmi ?? 0,

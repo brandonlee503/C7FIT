@@ -14,40 +14,27 @@ import Foundation
 struct DataFormatter {
     
     /**
-        Converts Date to ISO formatted string
+        Build existing user from JSON snapshot data.
      
-        - Parameter date: Date to convert
-        - Returns: String Formatted ISO String
-    */
-    static func formatISOfromDate(date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.locale = Locale(identifier: "en_US")
-        formatter.timeZone = TimeZone(abbreviation: "PST")
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-        return formatter.string(from: date)
-    }
-    
-    /**
-        Converts ISO formatted string to Date
-        - Parameter date: ISO String to convert
-        - Returns: Date Optional
+        - Parameter json: JSON Dictionary
+        - Returns: User?
      */
-    static func formatDatefromISO(string: String?) -> Date? {
-        guard let string = string else { return nil }
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.locale = Locale(identifier: "en_US")
-        formatter.timeZone = TimeZone(abbreviation: "PST")
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-        return formatter.date(from: string)
-    }
-    
-    /**
-        Custom concatenate function
-        - returns: Concatenated string if not nil
-     */
-    static func concatenate(str1: String?, str2: String?) -> String {
-        return [str1, str2].flatMap{$0}.joined(separator: "")
+    static func buildExistingUser(json: [String: AnyObject]) -> User? {
+        
+        guard let email = json["email"] as? String,
+            let photoURL = json["photoURL"] as? String,
+            let name = json["name"] as? String,
+            let bio = json["bio"] as? String,
+            let weight = json["weight"] as? Int,
+            let height = json["height"] as? Int,
+            let bmi = json["bmi"] as? Double,
+            let mileTime = json["mileTime"] as? TimeInterval,
+            let pushups = json["pushups"] as? Int,
+            let situps = json["situps"] as? Int,
+            let legPress = json["legPress"] as? Int,
+            let benchPress = json["benchPress"] as? Int,
+            let lateralPull = json["lateralPull"] as? Int else { return nil }
+        
+            return User(email: email, photoURL: photoURL, name: name, bio: bio, weight: weight, height: height, bmi: bmi, mileTime: mileTime, pushups: pushups, situps: situps, legPress: legPress, benchPress: benchPress, lateralPull: lateralPull)
     }
 }
