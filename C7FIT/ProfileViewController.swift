@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UITableViewController {
+class ProfileViewController: UITableViewController, UITextViewDelegate {
 
     // MARK: - Constants
     
@@ -76,8 +76,10 @@ class ProfileViewController: UITableViewController {
         if indexPath.row == 0 {
             if let cell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as? ProfileTableViewCell {
                 cell.nameField.text = user?.name ?? ""
+                cell.bioField.text = user?.bio ?? "Add a bio"
                 // FIXME: Might need to update the control event
                 cell.nameField.addTarget(self, action: #selector(self.nameFieldDidChange(_:)), for: .editingDidEnd)
+                cell.bioField.delegate = self
                 return cell
             }
         }
@@ -96,6 +98,14 @@ class ProfileViewController: UITableViewController {
         if indexPath.row == 10 {
             logoutPressed()
         }
+    }
+    
+    // MARK: - UITextView Delegate
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        print("update bio")
+        guard let newBio = textView.text, let userID = self.userID else { return }
+        firebaseDataManager.updateUserAttribute(uid: userID, key: "bio", value: newBio)
     }
     
     // MARK: - User Interaction

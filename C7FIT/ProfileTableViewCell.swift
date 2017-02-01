@@ -11,9 +11,9 @@ import UIKit
 class ProfileTableViewCell: UITableViewCell {
     
     // MARK: - Properties
-    lazy var profileImageView: CircularImageView = CircularImageView()
-    lazy var nameField: UITextField = UITextField()
-    lazy var bioField: UITextView = UITextView()
+    var profileImageView: CircularImageView = CircularImageView()
+    var nameField: UITextField = UITextField()
+    var bioField: UITextView = UITextView()
     
     // MARK: - Initialization
     
