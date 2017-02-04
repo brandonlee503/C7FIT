@@ -29,6 +29,7 @@ class ProfileViewController: UITableViewController, UITextViewDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: "ProfileCell")
+        tableView.register(AbstractHealthCell.self, forCellReuseIdentifier: "HealthCell")
         tableView.register(LogoutTableViewCell.self, forCellReuseIdentifier: "LogoutCell")
         
         // Monitor for user login/logout state
@@ -37,10 +38,10 @@ class ProfileViewController: UITableViewController, UITextViewDelegate {
             // If user is signed in, set userID else display login screen
             guard let userID = user?.uid else { return self.present(LoginViewController(), animated: true, completion:nil) }
             self.userID = userID
+            print("state change, new user: \(userID)")
             
             // Create and build existing user
             self.firebaseDataManager.fetchUser(uid: userID) { data in
-                // TODO: Create asynchronous error handling protocols
                 // TODO: Create asynchronous error handling NSErrors
                 guard let json = data.value as? [String: AnyObject] else { return }
                 self.user = DataFormatter.buildExistingUser(json: json)
@@ -81,6 +82,16 @@ class ProfileViewController: UITableViewController, UITextViewDelegate {
                 // FIXME: Might need to update the control event
                 cell.nameField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
                 cell.bioField.delegate = self
+                return cell
+            }
+        } else if indexPath.row == 1 {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+                cell.dataLabel.text = "Weight (lbs)"
+                if let weight = user?.weight {
+                    cell.dataField.text = String(describing: weight)
+                }
+                cell.dataField.keyboardType = .numberPad
+                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
                 return cell
             }
         }
