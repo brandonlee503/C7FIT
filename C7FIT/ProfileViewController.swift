@@ -41,6 +41,7 @@ class ProfileViewController: UITableViewController, UITextViewDelegate {
             // Create and build existing user
             self.firebaseDataManager.fetchUser(uid: userID) { data in
                 // TODO: Create asynchronous error handling protocols
+                // TODO: Create asynchronous error handling NSErrors
                 guard let json = data.value as? [String: AnyObject] else { return }
                 self.user = DataFormatter.buildExistingUser(json: json)
                 self.tableView.reloadData()
@@ -54,7 +55,7 @@ class ProfileViewController: UITableViewController, UITextViewDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: UITableView Delegate and Datasource
+    // MARK: - UITableView Delegate and Datasource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -78,7 +79,7 @@ class ProfileViewController: UITableViewController, UITextViewDelegate {
                 cell.nameField.text = user?.name ?? ""
                 cell.bioField.text = user?.bio ?? "Add a bio"
                 // FIXME: Might need to update the control event
-                cell.nameField.addTarget(self, action: #selector(self.nameFieldDidChange(_:)), for: .editingDidEnd)
+                cell.nameField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
                 cell.bioField.delegate = self
                 return cell
             }
@@ -110,10 +111,38 @@ class ProfileViewController: UITableViewController, UITextViewDelegate {
     
     // MARK: - User Interaction
     
-    func nameFieldDidChange(_ sender: UITextField) {
-        print("update name")
-        guard let newName = sender.text, let userID = self.userID else { return }
-        firebaseDataManager.updateUserAttribute(uid: userID, key: "name", value: newName)
+    func textFieldDidEndEditing(_ sender: UITextField) {
+        // Get row from sender
+        var key: String
+        let textFieldPosition: CGPoint = sender.convert(CGPoint.zero, to: self.tableView)
+        let indexPath: IndexPath = self.tableView.indexPathForRow(at: textFieldPosition)!
+        switch indexPath.row {
+        case 0:
+            key = "name"
+        case 1:
+            key = "weight"
+        case 2:
+            key = "height"
+        case 3:
+            key = "bmi"
+        case 4:
+            key = "mileTime"
+        case 5:
+            key = "pushups"
+        case 6:
+            key = "situps"
+        case 7:
+            key = "legPress"
+        case 8:
+            key = "benchPress"
+        case 9:
+            key = "lateralPull"
+        default:
+            key = ""
+        }
+        print("update \(key)")
+        guard let newAttribute = sender.text, let userID = self.userID, key != "" else { return }
+        firebaseDataManager.updateUserAttribute(uid: userID, key: key, value: newAttribute)
     }
     
     func logoutPressed() {
