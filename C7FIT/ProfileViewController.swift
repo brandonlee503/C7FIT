@@ -74,6 +74,7 @@ class ProfileViewController: UITableViewController, UITextViewDelegate {
         }
     }
     
+    // FIXME: Lots of semi-repetitive code here.. Find a way to minimize
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             if let cell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as? ProfileTableViewCell {
@@ -88,15 +89,82 @@ class ProfileViewController: UITableViewController, UITextViewDelegate {
             if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
                 cell.dataLabel.text = "Weight (lbs)"
                 if let weight = user?.weight {
-                    cell.dataField.text = String(describing: weight)
+                    cell.dataField.text = weight
                 }
                 cell.dataField.keyboardType = .numberPad
                 cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
                 return cell
             }
-        }
-        
-        if indexPath.row == 10 {
+        } else if indexPath.row == 2 {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+                cell.dataLabel.text = "Height (ft'inch\")"
+                if let height = user?.height {
+                    cell.dataField.text = height
+                }
+                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                return cell
+            }
+        } else if indexPath.row == 3 {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+                cell.dataLabel.text = "BMI"
+                // TODO: Pull Weight and height data and BMI math here
+                return cell
+            }
+        } else if indexPath.row == 4 {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+                cell.dataLabel.text = "Mile Time (minute, seconds)"
+                if let mileTime = user?.mileTime {
+                    cell.dataField.text = mileTime
+                }
+                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                return cell
+            }
+        } else if indexPath.row == 5 {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+                cell.dataLabel.text = "Pushups"
+                if let pushups = user?.pushups {
+                    cell.dataField.text = pushups
+                }
+                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                return cell
+            }
+        } else if indexPath.row == 6 {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+                cell.dataLabel.text = "Situps"
+                if let situps = user?.situps {
+                    cell.dataField.text = situps
+                }
+                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                return cell
+            }
+        } else if indexPath.row == 7 {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+                cell.dataLabel.text = "Leg Press"
+                if let legPress = user?.legPress {
+                    cell.dataField.text = legPress
+                }
+                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                return cell
+            }
+        } else if indexPath.row == 8 {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+                cell.dataLabel.text = "Bench Press"
+                if let benchPress = user?.benchPress {
+                    cell.dataField.text = benchPress
+                }
+                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                return cell
+            }
+        } else if indexPath.row == 9 {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+                cell.dataLabel.text = "Lateral Pull"
+                if let lateralPull = user?.lateralPull {
+                    cell.dataField.text = lateralPull
+                }
+                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                return cell
+            }
+        } else if indexPath.row == 10 {
             if let cell: LogoutTableViewCell = tableView.dequeueReusableCell(withIdentifier: "LogoutCell") as? LogoutTableViewCell {
                 return cell
             }
