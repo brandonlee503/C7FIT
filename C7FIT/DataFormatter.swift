@@ -20,20 +20,19 @@ struct DataFormatter {
         - Returns: User?
      */
     static func buildExistingUser(json: [String: AnyObject]) -> User? {
-        
         guard let email = json["email"] as? String,
             let photoURL = json["photoURL"] as? String,
             let name = json["name"] as? String,
             let bio = json["bio"] as? String,
-            let weight = json["weight"] as? Int,
-            let height = json["height"] as? Int,
-            let bmi = json["bmi"] as? Double,
-            let mileTime = json["mileTime"] as? TimeInterval,
-            let pushups = json["pushups"] as? Int,
-            let situps = json["situps"] as? Int,
-            let legPress = json["legPress"] as? Int,
-            let benchPress = json["benchPress"] as? Int,
-            let lateralPull = json["lateralPull"] as? Int else { return nil }
+            let weight = json["weight"] as? String,
+            let height = json["height"] as? String,
+            let bmi = json["bmi"] as? String,
+            let mileTime = json["mileTime"] as? String,
+            let pushups = json["pushups"] as? String,
+            let situps = json["situps"] as? String,
+            let legPress = json["legPress"] as? String,
+            let benchPress = json["benchPress"] as? String,
+            let lateralPull = json["lateralPull"] as? String else { return nil }
         
             return User(email: email, photoURL: photoURL, name: name, bio: bio, weight: weight, height: height, bmi: bmi, mileTime: mileTime, pushups: pushups, situps: situps, legPress: legPress, benchPress: benchPress, lateralPull: lateralPull)
     }
