@@ -17,17 +17,17 @@ struct User {
     let photoURL: String?
     let name: String?
     let bio: String?
-    let weight: Int?
-    let height: Int?
-    let bmi: Double?
-    let mileTime: TimeInterval?
-    let pushups: Int?
-    let situps: Int?
-    let legPress: Int?
-    let benchPress: Int?
-    let lateralPull: Int?
+    let weight: String?
+    let height: String?
+    let bmi: String?
+    let mileTime: String?
+    let pushups: String?
+    let situps: String?
+    let legPress: String?
+    let benchPress: String?
+    let lateralPull: String?
     
-    init(email: String, photoURL: String?, name: String?, bio: String?, weight: Int?, height: Int?, bmi: Double?, mileTime: TimeInterval?, pushups: Int?, situps: Int?, legPress: Int?, benchPress: Int?, lateralPull: Int?) {
+    init(email: String, photoURL: String?, name: String?, bio: String?, weight: String?, height: String?, bmi: String?, mileTime: String?, pushups: String?, situps: String?, legPress: String?, benchPress: String?, lateralPull: String?) {
         self.email = email
         self.photoURL = photoURL
         self.name = name
@@ -49,15 +49,15 @@ struct User {
             "photoURL": photoURL ?? "",
             "name": name ?? "",
             "bio": bio ?? "",
-            "weight": weight ?? 0,
-            "height": height ?? 0,
-            "bmi": bmi ?? 0,
-            "mileTime": mileTime ?? 0.0,
-            "pushups": pushups ?? 0,
-            "situps": situps ?? 0,
-            "legPress": legPress ?? 0,
-            "benchPress": benchPress ?? 0,
-            "lateralPull": lateralPull ?? 0
+            "weight": weight ?? "",
+            "height": height ?? "",
+            "bmi": bmi ?? "",
+            "mileTime": mileTime ?? "",
+            "pushups": pushups ?? "",
+            "situps": situps ?? "",
+            "legPress": legPress ?? "",
+            "benchPress": benchPress ?? "",
+            "lateralPull": lateralPull ?? ""
         ]
     }
 }
