@@ -13,6 +13,7 @@ class ScheduleBrowserTableViewCell: UITableViewCell {
     
     lazy var scheduleTitle: UILabel = UILabel()
     lazy var schedulePicture: UIImageView = UIImageView()
+    lazy var scheduleLink: UIButton = UIButton()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -25,20 +26,37 @@ class ScheduleBrowserTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     func setup(){
-        scheduleTitle.backgroundColor = .white
-        scheduleTitle.text = "Monthly Schedule"
-        addSubview(scheduleTitle)
         
         let imageName = "temp.png"
-        let image = UIImage(named: imageName)
-        if (image != nil){
-            schedulePicture.image = image!
+        let bgImage = UIImage(named: imageName)
+
+        
+        if (bgImage != nil){
+            schedulePicture.image = bgImage!
+            schedulePicture.center = self.center
+
             addSubview(schedulePicture)
             print("image success")
         }
         else{
             print("image error")
         }
+        
+        scheduleLink.setImage(bgImage, for: .normal)
+        addSubview(scheduleLink)
+        
+        scheduleTitle.text = "Monthly Schedule"
+        scheduleTitle.textAlignment = NSTextAlignment.center
+        addSubview(scheduleTitle)
+//        if (bgImage != nil){
+//            schedulePicture.image = bgImage!
+//            print("image success")
+//        }
+//        else{
+//            print("image error")
+//        }
+//        self.backgroundView = schedulePicture
+      
     }
 
     func setupConstraints() {
@@ -46,14 +64,22 @@ class ScheduleBrowserTableViewCell: UITableViewCell {
         let titleLead = scheduleTitle.leftAnchor.constraint(equalTo: leftAnchor, constant:10)
         let titleTrail = scheduleTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant:-10)
         let titleTop = scheduleTitle.topAnchor.constraint(equalTo: topAnchor, constant: 20)
-        let titleBot = scheduleTitle.bottomAnchor.constraint(equalTo: schedulePicture.topAnchor, constant: -10)
-        NSLayoutConstraint.activate([titleLead,titleTrail,titleTop,titleBot])
+        NSLayoutConstraint.activate([titleLead,titleTrail,titleTop])
         
-        schedulePicture.translatesAutoresizingMaskIntoConstraints = false
-        let imageLeft = schedulePicture.leftAnchor.constraint(equalTo: leftAnchor, constant: 10)
-        let imageTop = schedulePicture.topAnchor.constraint(equalTo: scheduleTitle.bottomAnchor, constant:10)
-        let imageBottom = schedulePicture.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
-        NSLayoutConstraint.activate([imageLeft, imageTop, imageBottom ])
+////        let cellWidth: CGFloat? = self.contentView.frame.size.width
+//        schedulePicture.translatesAutoresizingMaskIntoConstraints = false
+////        let imageLeft = schedulePicture.leftAnchor.constraint(equalTo: leftAnchor, constant: 0)
+//        let imageTop = schedulePicture.topAnchor.constraint(equalTo: topAnchor, constant:0)
+//        let imageBottom = schedulePicture.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
+//        NSLayoutConstraint.activate([imageTop, imageBottom ])
+        
+        scheduleLink.translatesAutoresizingMaskIntoConstraints = false
+        let linkLead = scheduleLink.leftAnchor.constraint(equalTo: leftAnchor, constant:0)
+        let linkTrail = scheduleLink.trailingAnchor.constraint(equalTo: trailingAnchor, constant:0)
+        let linkTop = scheduleLink.topAnchor.constraint(equalTo: topAnchor, constant: 0)
+        let linkBot = scheduleLink.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
+        NSLayoutConstraint.activate([linkLead,linkTrail,linkTop,linkBot])
+    
     }
     
     

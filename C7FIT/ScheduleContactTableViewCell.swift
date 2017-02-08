@@ -34,10 +34,10 @@ class ScheduleContactTableViewCell: UITableViewCell {
     
     func setupConstraints() {
         contactButton.translatesAutoresizingMaskIntoConstraints = false
-        let titleLead = contactButton.leftAnchor.constraint(equalTo: leftAnchor, constant:10)
-        let titleTrail = contactButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant:-10)
-        let titleTop = contactButton.topAnchor.constraint(equalTo: topAnchor, constant: 10)
-        let titleBot = contactButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        let titleLead = contactButton.leftAnchor.constraint(equalTo: leftAnchor, constant:0)
+        let titleTrail = contactButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant:0)
+        let titleTop = contactButton.topAnchor.constraint(equalTo: topAnchor, constant: 0)
+        let titleBot = contactButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
         NSLayoutConstraint.activate([titleLead,titleTrail,titleTop,titleBot])
         
     }

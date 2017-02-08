@@ -29,7 +29,13 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
    
         tableView.register(ScheduleBioTableViewCell.self, forCellReuseIdentifier: "BioCell")
         tableView.register(ScheduleContactTableViewCell.self, forCellReuseIdentifier: "ContactCell")
-
+        
+        if(tableView.contentSize.height < tableView.frame.size.height) {
+            tableView.isScrollEnabled = false;
+        }
+        else {
+            tableView.isScrollEnabled = true;
+        }
 
         self.view.addSubview(scheduleView)
         setupConstraints()
@@ -62,18 +68,22 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let aspectRatioFirst: CGFloat = 1/2
-        let aspectRatioSecond: CGFloat = 1/4
-//        let aspectRatioThird: CGFloat = 1/4
-        print("loops?")
+        let aspectRatioSecond: CGFloat = 3/8
+        let aspectRatioThird: CGFloat = 1/8
         let screenSize : CGRect = UIScreen.main.bounds
         //use optionals here
         //self.navigationController?...
         let navBarSize : CGFloat? = self.navigationController?.navigationBar.frame.size.height
         let tabBarSize : CGFloat? = self.tabBarController?.tabBar.frame.size.height
+        let statusBarSize: CGFloat? = UIApplication.shared.statusBarFrame.height
+        let barConstants = screenSize.height - (navBarSize! + tabBarSize! + statusBarSize!)
         if indexPath.row < 1 {
-            return aspectRatioFirst * (screenSize.height - navBarSize! - tabBarSize!)
-        } else {
-            return aspectRatioSecond * (screenSize.height - navBarSize! - tabBarSize!) //clean this up later if want different
+            return aspectRatioFirst * barConstants
+        } else if indexPath.row == 1 {
+            return aspectRatioSecond * barConstants //clean this up later if want different
+        }
+        else {
+            return aspectRatioThird * barConstants //clean this up later if want different
         }
     }
 
@@ -82,6 +92,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         if indexPath.row == 0 {
             if let cell: ScheduleBrowserTableViewCell = tableView.dequeueReusableCell(withIdentifier: "BrowserLinkCell") as? ScheduleBrowserTableViewCell {
                 // FIXME: Might need to update the control event
+                cell.scheduleLink.addTarget(self, action: #selector(self.scheduleLinkPressed), for: .touchUpInside)
                 return cell
             }
         }
@@ -97,6 +108,29 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
             }
         }
         return UITableViewCell()
+    }
+    
+    func scheduleLinkPressed(){
+        print("scheduleLinkPressed")
+//        let linkUrl = URL(string: "www.google.com")
+//        UIApplication.shared.open(linkUrl!, options: [:],
+//            completionHandler: {
+//                (success) in
+//                print("open success")
+//        })
+        
+        if let linkUrl = URL(string: "http:google.com") {
+            if #available(iOS 10, *) {
+                UIApplication.shared.open(linkUrl, options: [:],
+                                          completionHandler: {
+                                            (success) in
+                                            print("Open \(success)")
+                })
+            } else {
+                let success = UIApplication.shared.openURL(linkUrl)
+                print("Open \(success)")
+            }
+        }
     }
     
     

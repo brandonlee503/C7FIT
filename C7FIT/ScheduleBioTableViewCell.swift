@@ -30,8 +30,10 @@ class ScheduleBioTableViewCell: UITableViewCell {
         addSubview(bioTitle)
         
         bioText.backgroundColor = .white
-        bioText.text = "club bio placeholder text i love gym woo"
-        bioTitle.textAlignment = NSTextAlignment.center
+        bioText.text = "club bio placeholder text i love gym woo club bio placeholder text i love gym woo club bio placeholder text i love gym woo club bio placeholder text i love gym woo"
+        bioText.numberOfLines = 0
+        bioText.lineBreakMode = .byWordWrapping
+        bioText.textAlignment = NSTextAlignment.center
         addSubview(bioText)
     
     }
@@ -48,8 +50,8 @@ class ScheduleBioTableViewCell: UITableViewCell {
         let TextLead = bioText.leftAnchor.constraint(equalTo: leftAnchor, constant:10)
         let TextTrail = bioText.trailingAnchor.constraint(equalTo: trailingAnchor, constant:-10)
         let TextTop = bioText.topAnchor.constraint(equalTo: bioTitle.bottomAnchor, constant:10)
-        let TextBot = bioText.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
-        NSLayoutConstraint.activate([TextLead,TextTrail,TextTop,TextBot])
+//        let TextBot = bioText.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        NSLayoutConstraint.activate([TextLead,TextTrail,TextTop])
 
     }
     
