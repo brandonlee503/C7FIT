@@ -31,14 +31,10 @@ class ScheduleView: UIView {
     // MARK: - Layout
     
     func setup() {
-//        titleLabel.text = "Schedule"
-//        addSubview(titleLabel)
+
     }
     
     func setupConstraints() {
-//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-//        let centerTitleX = titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
-//        let centerTitleY = titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
-//        NSLayoutConstraint.activate([centerTitleX, centerTitleY])
+
     }
 }

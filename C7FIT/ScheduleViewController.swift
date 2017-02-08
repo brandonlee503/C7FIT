@@ -86,7 +86,6 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
             return aspectRatioThird * barConstants //clean this up later if want different
         }
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
@@ -112,13 +111,6 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
     
     func scheduleLinkPressed(){
         print("scheduleLinkPressed")
-//        let linkUrl = URL(string: "www.google.com")
-//        UIApplication.shared.open(linkUrl!, options: [:],
-//            completionHandler: {
-//                (success) in
-//                print("open success")
-//        })
-        
         if let linkUrl = URL(string: "http:google.com") {
             if #available(iOS 10, *) {
                 UIApplication.shared.open(linkUrl, options: [:],
@@ -199,26 +191,10 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     
     }
+    
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
         controller.dismiss(animated: true, completion: nil)
     }
-    
-//    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
-//        switch (result.value) {
-//        case MessageComposeResultCancelled.value:
-//            println("Message was cancelled")
-//            self.dismissViewControllerAnimated(true, completion: nil)
-//        case MessageComposeResultFailed.value:
-//            println("Message failed")
-//            self.dismissViewControllerAnimated(true, completion: nil)
-//        case MessageComposeResultSent.value:
-//            println("Message was sent")
-//            self.dismissViewControllerAnimated(true, completion: nil)
-//        default:
-//            break;
-//        }
-//    }
-
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
