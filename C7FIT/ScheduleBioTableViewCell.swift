@@ -50,7 +50,6 @@ class ScheduleBioTableViewCell: UITableViewCell {
         let TextLead = bioText.leftAnchor.constraint(equalTo: leftAnchor, constant:10)
         let TextTrail = bioText.trailingAnchor.constraint(equalTo: trailingAnchor, constant:-10)
         let TextTop = bioText.topAnchor.constraint(equalTo: bioTitle.bottomAnchor, constant:10)
-//        let TextBot = bioText.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         NSLayoutConstraint.activate([TextLead,TextTrail,TextTop])
 
     }

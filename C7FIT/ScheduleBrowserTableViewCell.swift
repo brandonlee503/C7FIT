@@ -48,14 +48,6 @@ class ScheduleBrowserTableViewCell: UITableViewCell {
         scheduleTitle.text = "Monthly Schedule"
         scheduleTitle.textAlignment = NSTextAlignment.center
         addSubview(scheduleTitle)
-//        if (bgImage != nil){
-//            schedulePicture.image = bgImage!
-//            print("image success")
-//        }
-//        else{
-//            print("image error")
-//        }
-//        self.backgroundView = schedulePicture
       
     }
 
@@ -66,13 +58,6 @@ class ScheduleBrowserTableViewCell: UITableViewCell {
         let titleTop = scheduleTitle.topAnchor.constraint(equalTo: topAnchor, constant: 20)
         NSLayoutConstraint.activate([titleLead,titleTrail,titleTop])
         
-////        let cellWidth: CGFloat? = self.contentView.frame.size.width
-//        schedulePicture.translatesAutoresizingMaskIntoConstraints = false
-////        let imageLeft = schedulePicture.leftAnchor.constraint(equalTo: leftAnchor, constant: 0)
-//        let imageTop = schedulePicture.topAnchor.constraint(equalTo: topAnchor, constant:0)
-//        let imageBottom = schedulePicture.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
-//        NSLayoutConstraint.activate([imageTop, imageBottom ])
-        
         scheduleLink.translatesAutoresizingMaskIntoConstraints = false
         let linkLead = scheduleLink.leftAnchor.constraint(equalTo: leftAnchor, constant:0)
         let linkTrail = scheduleLink.trailingAnchor.constraint(equalTo: trailingAnchor, constant:0)
@@ -82,17 +67,4 @@ class ScheduleBrowserTableViewCell: UITableViewCell {
     
     }
     
-    
-    
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-
 }
