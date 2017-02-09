@@ -10,9 +10,13 @@ import UIKit
 
 class ScheduleBioTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+
     lazy var bioTitle: UILabel = UILabel()
     lazy var bioText: UILabel = UILabel()
     
+    // MARK: - Initialization
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         print("Bio cell")
@@ -23,7 +27,10 @@ class ScheduleBioTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func setup(){
+    
+    // MARK: - Layout
+    
+    func setup() {
         bioTitle.backgroundColor = .white
         bioTitle.text = "Club Bio"
         bioTitle.textAlignment = NSTextAlignment.center

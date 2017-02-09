@@ -32,8 +32,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         
         if(tableView.contentSize.height < tableView.frame.size.height) {
             tableView.isScrollEnabled = false;
-        }
-        else {
+        } else {
             tableView.isScrollEnabled = true;
         }
 
@@ -47,6 +46,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
     }
     
     // MARK: - Layout
+    
     func setupConstraints() {        
         scheduleView.translatesAutoresizingMaskIntoConstraints = false
         let topView = scheduleView.topAnchor.constraint(equalTo: view.topAnchor)
@@ -81,8 +81,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
             return aspectRatioFirst * barConstants
         } else if indexPath.row == 1 {
             return aspectRatioSecond * barConstants //clean this up later if want different
-        }
-        else {
+        } else {
             return aspectRatioThird * barConstants //clean this up later if want different
         }
     }
@@ -90,17 +89,14 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             if let cell: ScheduleBrowserTableViewCell = tableView.dequeueReusableCell(withIdentifier: "BrowserLinkCell") as? ScheduleBrowserTableViewCell {
-                // FIXME: Might need to update the control event
                 cell.scheduleLink.addTarget(self, action: #selector(self.scheduleLinkPressed), for: .touchUpInside)
                 return cell
             }
-        }
-        if indexPath.row == 1 {
+        } else if indexPath.row == 1 {
             if let cell: ScheduleBioTableViewCell = tableView.dequeueReusableCell(withIdentifier: "BioCell") as? ScheduleBioTableViewCell {
                 return cell
             }
-        }
-        else if indexPath.row == 2 {
+        } else if indexPath.row == 2 {
             if let cell: ScheduleContactTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ContactCell") as? ScheduleContactTableViewCell  {
                 cell.contactButton.addTarget(self, action: #selector(self.contactButtonPressed), for: .touchUpInside)
                 return cell
@@ -109,7 +105,10 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         return UITableViewCell()
     }
     
-    func scheduleLinkPressed(){
+    // MARK: - Cell Functions
+    // MARK: BrowserCell Link Function
+    
+    func scheduleLinkPressed() {
         print("scheduleLinkPressed")
         if let linkUrl = URL(string: "http:google.com") {
             if #available(iOS 10, *) {
@@ -126,7 +125,8 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
     }
     
     
-    func contactButtonPressed(){
+    //MARK: ContactCell Button Function
+    func contactButtonPressed() {
         print("contact button pressed")
         let contactGymAlert: UIAlertController = UIAlertController(title: "Contact Us", message: nil, preferredStyle: .actionSheet)
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) {
@@ -163,7 +163,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
             mail.setMessageBody(sampleBody, isHTML: true)
             
             present(mail, animated: true, completion: nil)
-        } else{
+        } else {
             print(MFMailComposeViewController.canSendMail())
             print("fail to open email box")
         }
@@ -184,9 +184,9 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
     
     }
 
-    func callGym(){
-        let phoneNumber = "9715067484"
-        let phoneString = "tel://" + phoneNumber
+    func callGym() {
+        let gymPhone = "229929292"
+        let phoneString = "tel://" + gymPhone
         let url = URL(string:phoneString)!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     

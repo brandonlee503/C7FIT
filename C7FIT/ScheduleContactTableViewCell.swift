@@ -10,8 +10,12 @@ import UIKit
 
 class ScheduleContactTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
+
     var contactButton: UIButton = UIButton()
     
+    // MARK: - Initialization
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         print("Contact cell")
@@ -23,9 +27,9 @@ class ScheduleContactTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
-    func setup(){
+    // MARK: - Layout
+
+    func setup() {
         contactButton.backgroundColor = .white
         contactButton.setTitle("Contact Us", for: .normal)
         contactButton.setTitleColor(.black, for: .normal)
