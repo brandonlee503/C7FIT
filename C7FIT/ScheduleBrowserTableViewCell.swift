@@ -10,10 +10,13 @@ import UIKit
 
 class ScheduleBrowserTableViewCell: UITableViewCell {
 
+    // MARK: - Properties
     
     lazy var scheduleTitle: UILabel = UILabel()
     lazy var schedulePicture: UIImageView = UIImageView()
     lazy var scheduleLink: UIButton = UIButton()
+
+    // MARK: - Initialization
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -25,20 +28,22 @@ class ScheduleBrowserTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func setup(){
+    
+    // MARK: - Layout
+    
+    func setup() {
         
         let imageName = "temp.png"
         let bgImage = UIImage(named: imageName)
 
         
-        if (bgImage != nil){
+        if (bgImage != nil) {
             schedulePicture.image = bgImage!
             schedulePicture.center = self.center
 
             addSubview(schedulePicture)
             print("image success")
-        }
-        else{
+        } else {
             print("image error")
         }
         
