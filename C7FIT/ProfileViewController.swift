@@ -345,7 +345,7 @@ extension ProfileViewController: PickerCellDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int, forCell: AbstractHealthCell) -> Int {
         switch pickerView.tag {
         case 1:
-            return ProfileViewModel.personalHeight.count
+            return ProfileViewModel.personalWeight.count
         case 2:
             return ProfileViewModel.personalHeight.count
         case 5, 6:
