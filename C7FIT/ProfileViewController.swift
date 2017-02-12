@@ -35,6 +35,7 @@ class ProfileViewController: UITableViewController {
         
         // Add save button
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
+        navigationItem.rightBarButtonItem?.tintColor = .black
         navigationItem.rightBarButtonItem = saveButton
         
         // Monitor for user login/logout state
@@ -220,6 +221,8 @@ class ProfileViewController: UITableViewController {
             // Logout user
             logoutPressed()
         }
+        
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: - User Interaction
