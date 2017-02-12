@@ -1,5 +1,5 @@
 //
-//  DataFormatter.swift
+//  ProfileViewModel.swift
 //  C7FIT
 //
 //  Created by Brandon Lee on 12/24/16.
@@ -9,9 +9,31 @@
 import Foundation
 
 /**
-    Base for formatting various data types
+    Base struct for formatting various data types
  */
-struct DataFormatter {
+struct ProfileViewModel {
+    
+    // Personal Weight Array
+    static let personalWeight: Array = {
+        (0...400).map {"\($0)"}
+    }()
+    
+    // Imperial Height Array
+    static let personalHeight: Array = {
+        (12...120).map {
+            ("\($0 / 12)' \($0 % 12)\"")
+        }
+    }()
+    
+    // Rep Array
+    static let repetitions: Array = {
+        (0...1000).map {"\($0)"}
+    }()
+    
+    // Weight Array
+    static let weights: Array = {
+        stride(from: 0, to: 450, by: 5).map {"\($0)"}
+    }()
     
     /**
         Build existing user from JSON snapshot data.
@@ -36,4 +58,17 @@ struct DataFormatter {
         
             return User(email: email, photoURL: photoURL, name: name, bio: bio, weight: weight, height: height, bmi: bmi, mileTime: mileTime, pushups: pushups, situps: situps, legPress: legPress, benchPress: benchPress, lateralPull: lateralPull)
     }
+    
+    /**
+        Calculate BMI from imperial units.
+        http://extoxnet.orst.edu/faqs/dietcancer/web2/twohowto.html
+     
+        - Parameter weight: String Optional in imperial units
+        - Parameter height: String Optional in imperial units
+        - Returns: String?
+     */
+//    static func calculateBMI(weight: String?, height: String?) -> String? {
+//        guard let weight = weight?.intValue else { return }
+//        guard 
+//    }
 }
