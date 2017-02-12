@@ -254,13 +254,13 @@ class ProfileViewController: UITableViewController {
         self.view.endEditing(true)
         var userDict = [String: String]()
         
-        // Profile Cell
+        // Add profile attributes
         if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProfileTableViewCell {
             userDict["name"] = cell.nameField.text
             userDict["bio"] = cell.bioField.text
         }
         
-        // Abstract Health Cells
+        // Add health attributes
         for row in 1...9 {
             if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? AbstractHealthCell {
                 switch row {
@@ -288,6 +288,7 @@ class ProfileViewController: UITableViewController {
             }
         }
         
+        // Build new user and send update
         guard let userID = self.userID, let userEmail = self.user?.email else { return }
         let updatedUser: User = User(email: userEmail, photoURL: nil, name: userDict["name"], bio: userDict["bio"], weight: userDict["weight"], height: userDict["height"], bmi: userDict["bmi"], mileTime: userDict["mileTime"], pushups: userDict["pushups"], situps: userDict["situps"], legPress: userDict["legPress"], benchPress: userDict["benchPress"], lateralPull: userDict["lateralPull"])
         firebaseDataManager.updateUser(uid: userID, user: updatedUser)
