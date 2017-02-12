@@ -183,10 +183,7 @@
 				160D9B7D1E0BF5DC00801627 /* ScheduleView.swift */,
 				160D9B811E0BF92700801627 /* StoreView.swift */,
 				160D9B831E0BFA4500801627 /* ActivityView.swift */,
-				164BAAAB1E36E5D900DE4C71 /* LoginView.swift */,
-				16D2D2E91E38020300F6AA9F /* ProfileTableViewCell.swift */,
-				163DFC0F1E41A43A00593CF9 /* AbstractHealthCell.swift */,
-				16D2D2ED1E3874F800F6AA9F /* LogoutTableViewCell.swift */,
+				166983D91E5088A800B36107 /* Profile */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -198,9 +195,7 @@
 				160D9B7B1E0BF4CC00801627 /* ScheduleViewController.swift */,
 				160D9B7F1E0BF91400801627 /* StoreViewController.swift */,
 				160D9B871E0BFA6A00801627 /* ActivityViewController.swift */,
-				160D9B891E0BFA7A00801627 /* ProfileViewController.swift */,
-				1658B9DD1E0F9EFD009D4F67 /* ProfileViewModel.swift */,
-				164BAAA91E36E5BA00DE4C71 /* LoginViewController.swift */,
+				166983DA1E5088D500B36107 /* Profile */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -212,6 +207,27 @@
 				16576F161E1295C300BF622D /* StringExtensions.swift */,
 			);
 			name = Stores;
+			sourceTree = "<group>";
+		};
+		166983D91E5088A800B36107 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				164BAAAB1E36E5D900DE4C71 /* LoginView.swift */,
+				16D2D2E91E38020300F6AA9F /* ProfileTableViewCell.swift */,
+				163DFC0F1E41A43A00593CF9 /* AbstractHealthCell.swift */,
+				16D2D2ED1E3874F800F6AA9F /* LogoutTableViewCell.swift */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		166983DA1E5088D500B36107 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				164BAAA91E36E5BA00DE4C71 /* LoginViewController.swift */,
+				160D9B891E0BFA7A00801627 /* ProfileViewController.swift */,
+				1658B9DD1E0F9EFD009D4F67 /* ProfileViewModel.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 		16FFF4371E3455DE009B4F34 /* Other */ = {
