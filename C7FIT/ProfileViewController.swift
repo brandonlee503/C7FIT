@@ -8,11 +8,33 @@
 
 import UIKit
 
-class ProfileViewController: UITableViewController, UITextViewDelegate {
+class ProfileViewController: UITableViewController {
 
     // MARK: - Constants
     
     let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
+    
+    // Imperial Height Array
+    let personalHeight: Array = {
+        (12...120).map {
+            ("\($0 / 12)' \($0 % 12)\"")
+        }
+    }()
+    
+    // Rep Array
+    let repetitions: Array = {
+        (0...1000).map {"\($0)"}
+    }()
+    
+    // Personal Weight Array
+    let personalWeight: Array = {
+        (0...400).map {"\($0)"}
+    }()
+    
+    // Weight Array
+    let weights: Array = {
+        stride(from: 0, to: 450, by: 5).map {"\($0)"}
+    }()
     
     // MARK: - Properties
     
@@ -31,6 +53,11 @@ class ProfileViewController: UITableViewController, UITextViewDelegate {
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: "ProfileCell")
         tableView.register(AbstractHealthCell.self, forCellReuseIdentifier: "HealthCell")
         tableView.register(LogoutTableViewCell.self, forCellReuseIdentifier: "LogoutCell")
+        tableView.tableFooterView = UIView()
+        
+        // Add save button
+        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
+        navigationItem.rightBarButtonItem = saveButton
         
         // Monitor for user login/logout state
         firebaseDataManager.monitorLoginState() { auth, user in
@@ -42,7 +69,6 @@ class ProfileViewController: UITableViewController, UITextViewDelegate {
             
             // Create and build existing user
             self.firebaseDataManager.fetchUser(uid: userID) { data in
-                // TODO: Create asynchronous error handling NSErrors
                 guard let json = data.value as? [String: AnyObject] else { return }
                 self.user = DataFormatter.buildExistingUser(json: json)
                 self.tableView.reloadData()
@@ -74,94 +100,93 @@ class ProfileViewController: UITableViewController, UITextViewDelegate {
         }
     }
     
-    // FIXME: Lots of semi-repetitive code here.. Find a way to minimize
+    // FIXME: Lots of semi-repetitive code here.. Find a way to minimize if possible
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             if let cell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as? ProfileTableViewCell {
                 cell.nameField.text = user?.name ?? ""
                 cell.bioField.text = user?.bio ?? "Add a bio"
-                // FIXME: Might need to update the control event
-                cell.nameField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
-                cell.bioField.delegate = self
                 return cell
             }
         } else if indexPath.row == 1 {
             if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
-                cell.dataLabel.text = "Weight (lbs)"
+                cell.dataTitle.text = "Weight (lbs)"
                 if let weight = user?.weight {
-                    cell.dataField.text = weight
+                    cell.dataLabel.text = weight
                 }
-                cell.dataField.keyboardType = .numberPad
-                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                cell.inputView?.tag = indexPath.row
                 return cell
             }
         } else if indexPath.row == 2 {
             if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
-                cell.dataLabel.text = "Height (ft'inch\")"
+                cell.dataTitle.text = "Height"
                 if let height = user?.height {
-                    cell.dataField.text = height
+                    cell.dataLabel.text = height
                 }
-                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                cell.inputView?.tag = indexPath.row
                 return cell
             }
         } else if indexPath.row == 3 {
             if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
-                cell.dataLabel.text = "BMI"
+                cell.dataTitle.text = "BMI"
                 // TODO: Pull Weight and height data and BMI math here
+                if let bmi = user?.bmi {
+                    cell.dataLabel.text = bmi
+                }
                 return cell
             }
         } else if indexPath.row == 4 {
             if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
-                cell.dataLabel.text = "Mile Time (minute, seconds)"
+                cell.dataTitle.text = "Mile Time (minute, seconds)"
                 if let mileTime = user?.mileTime {
-                    cell.dataField.text = mileTime
+                    cell.dataLabel.text = mileTime
                 }
-                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                cell.inputView?.tag = indexPath.row
                 return cell
             }
         } else if indexPath.row == 5 {
             if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
-                cell.dataLabel.text = "Pushups"
+                cell.dataTitle.text = "Pushups"
                 if let pushups = user?.pushups {
-                    cell.dataField.text = pushups
+                    cell.dataLabel.text = pushups
                 }
-                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                cell.inputView?.tag = indexPath.row
                 return cell
             }
         } else if indexPath.row == 6 {
             if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
-                cell.dataLabel.text = "Situps"
+                cell.dataTitle.text = "Situps"
                 if let situps = user?.situps {
-                    cell.dataField.text = situps
+                    cell.dataLabel.text = situps
                 }
-                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                cell.inputView?.tag = indexPath.row
                 return cell
             }
         } else if indexPath.row == 7 {
             if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
-                cell.dataLabel.text = "Leg Press"
+                cell.dataTitle.text = "Leg Press"
                 if let legPress = user?.legPress {
-                    cell.dataField.text = legPress
+                    cell.dataLabel.text = legPress
                 }
-                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                cell.inputView?.tag = indexPath.row
                 return cell
             }
         } else if indexPath.row == 8 {
             if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
-                cell.dataLabel.text = "Bench Press"
+                cell.dataTitle.text = "Bench Press"
                 if let benchPress = user?.benchPress {
-                    cell.dataField.text = benchPress
+                    cell.dataLabel.text = benchPress
                 }
-                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                cell.inputView?.tag = indexPath.row
                 return cell
             }
         } else if indexPath.row == 9 {
             if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
-                cell.dataLabel.text = "Lateral Pull"
+                cell.dataTitle.text = "Lateral Pull"
                 if let lateralPull = user?.lateralPull {
-                    cell.dataField.text = lateralPull
+                    cell.dataLabel.text = lateralPull
                 }
-                cell.dataField.addTarget(self, action: #selector(self.textFieldDidEndEditing(_:)), for: .editingDidEnd)
+                cell.inputView?.tag = indexPath.row
                 return cell
             }
         } else if indexPath.row == 10 {
@@ -174,57 +199,179 @@ class ProfileViewController: UITableViewController, UITextViewDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Logout user
-        if indexPath.row == 10 {
+        let editableCells = [1, 2, 5, 6, 7, 8, 9]
+        
+        // If cell is one of the UIPickerView editable cells
+        if editableCells.contains(indexPath.row) {
+            if let cell = tableView.cellForRow(at: indexPath) as? AbstractHealthCell {
+                cell.delegate = self
+                cell.dataSource = self
+                if !cell.isFirstResponder {
+                    _ = cell.becomeFirstResponder()
+                }
+            }
+        } else if indexPath.row == 4 {
+            // Custom edit mile time
+            if let cell = tableView.cellForRow(at: indexPath) as? AbstractHealthCell {
+                let timeAlert = UIAlertController(title: "Enter Your Mile Time", message: nil, preferredStyle: .alert)
+                let submitAction = UIAlertAction(title: "Submit", style: .default) { action in
+                    let minuteField = timeAlert.textFields![0] as UITextField
+                    let secondField = timeAlert.textFields![1] as UITextField
+                    guard let minutes = minuteField.text, let seconds = secondField.text, minutes != "", seconds != "" else { return }
+                    cell.dataLabel.text = "\(minutes):\(seconds)"
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                
+                timeAlert.addTextField { textMinutes in
+                    textMinutes.placeholder = "Minutes"
+                    textMinutes.keyboardType = .numberPad
+                }
+                
+                timeAlert.addTextField { textSeconds in
+                    textSeconds.placeholder = "Seconds"
+                    textSeconds.keyboardType = .numberPad
+                }
+                
+                timeAlert.addAction(submitAction)
+                timeAlert.addAction(cancelAction)
+                self.present(timeAlert, animated: true, completion: nil)
+            }
+        } else if indexPath.row == 10 {
+            // Logout user
             logoutPressed()
         }
     }
     
-    // MARK: - UITextView Delegate
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        print("update bio")
-        guard let newBio = textView.text, let userID = self.userID else { return }
-        firebaseDataManager.updateUserAttribute(uid: userID, key: "bio", value: newBio)
-    }
-    
     // MARK: - User Interaction
     
-    func textFieldDidEndEditing(_ sender: UITextField) {
-        // Get row from sender
-        var key: String
-        let textFieldPosition: CGPoint = sender.convert(CGPoint.zero, to: self.tableView)
-        let indexPath: IndexPath = self.tableView.indexPathForRow(at: textFieldPosition)!
-        switch indexPath.row {
-        case 0:
-            key = "name"
-        case 1:
-            key = "weight"
-        case 2:
-            key = "height"
-        case 3:
-            key = "bmi"
-        case 4:
-            key = "mileTime"
-        case 5:
-            key = "pushups"
-        case 6:
-            key = "situps"
-        case 7:
-            key = "legPress"
-        case 8:
-            key = "benchPress"
-        case 9:
-            key = "lateralPull"
-        default:
-            key = ""
+    /**
+        Pulls data from all client fields and updates user on server
+     */
+    // TODO: Make this better if possible...
+    func saveButtonPressed() {
+        self.view.endEditing(true)
+        var userDict = [String: String]()
+        
+        // Profile Cell
+        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProfileTableViewCell {
+            userDict["name"] = cell.nameField.text
+            userDict["bio"] = cell.bioField.text
         }
-        print("update \(key)")
-        guard let newAttribute = sender.text, let userID = self.userID, key != "" else { return }
-        firebaseDataManager.updateUserAttribute(uid: userID, key: key, value: newAttribute)
+        
+        // Abstract Health Cells
+        for row in 1...9 {
+            if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? AbstractHealthCell {
+                switch row {
+                case 1:
+                    userDict["weight"] = cell.dataLabel.text
+                case 2:
+                    userDict["height"] = cell.dataLabel.text
+                case 3:
+                    userDict["bmi"] = cell.dataLabel.text
+                case 4:
+                    userDict["mileTime"] = cell.dataLabel.text
+                case 5:
+                    userDict["pushups"] = cell.dataLabel.text
+                case 6:
+                    userDict["situps"] = cell.dataLabel.text
+                case 7:
+                    userDict["legPress"] = cell.dataLabel.text
+                case 8:
+                    userDict["benchPress"] = cell.dataLabel.text
+                case 9:
+                    userDict["lateralPull"] = cell.dataLabel.text
+                default:
+                    break
+                }
+            }
+        }
+        
+        guard let userID = self.userID, let userEmail = self.user?.email else { return }
+        let updatedUser: User = User(email: userEmail, photoURL: nil, name: userDict["name"], bio: userDict["bio"], weight: userDict["weight"], height: userDict["height"], bmi: userDict["bmi"], mileTime: userDict["mileTime"], pushups: userDict["pushups"], situps: userDict["situps"], legPress: userDict["legPress"], benchPress: userDict["benchPress"], lateralPull: userDict["lateralPull"])
+        firebaseDataManager.updateUser(uid: userID, user: updatedUser)
     }
     
     func logoutPressed() {
         firebaseDataManager.logout()
+    }
+}
+
+// MARK: - PickerCellDelegate
+
+/// Adapter Pattern for UIPickerView and UITableViewCells
+extension ProfileViewController: PickerCellDelegate {
+    func onPickerOpen(_ cell: AbstractHealthCell) {
+        switch cell.picker.tag {
+        case 1:
+            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? personalWeight[0] : cell.dataLabel.text
+        case 2:
+            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? personalHeight[0] : cell.dataLabel.text
+        case 5, 6:
+            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? repetitions[0] : cell.dataLabel.text
+        case 7, 8, 9:
+            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? weights[0] : cell.dataLabel.text
+        default:
+            break
+        }
+        cell.dataLabel.textColor = .red
+    }
+    
+    func onPickerClose(_ cell: AbstractHealthCell) {
+        cell.dataLabel.textColor = .black
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int, forCell cell: AbstractHealthCell) -> String? {
+        switch pickerView.tag {
+        case 1:
+            return personalWeight[row]
+        case 2:
+            return personalHeight[row]
+        case 5, 6:
+            return repetitions[row]
+        case 7, 8, 9:
+            return weights[row]
+        default:
+            return nil
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int, forCell cell: AbstractHealthCell) {
+        switch pickerView.tag {
+        case 1:
+            cell.dataLabel.text = personalWeight[row]
+        case 2:
+            cell.dataLabel.text = personalHeight[row]
+        case 5, 6:
+            cell.dataLabel.text = repetitions[row]
+        case 7, 8, 9:
+            cell.dataLabel.text = weights[row]
+        default:
+            break
+        }
+    }
+}
+
+// MARK: - PickerCellDataSource
+
+extension ProfileViewController: PickerCellDataSource {
+    public func numberOfComponents(in pickerView: UIPickerView, forCell cell: AbstractHealthCell) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int, forCell: AbstractHealthCell) -> Int {
+        switch pickerView.tag {
+        case 1:
+            return personalHeight.count
+        case 2:
+            return personalHeight.count
+        case 5, 6:
+            return repetitions.count
+        case 7, 8, 9:
+            return weights.count
+        default:
+            return 0
+        }
     }
 }
