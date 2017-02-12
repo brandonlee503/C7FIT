@@ -105,4 +105,9 @@ struct FirebaseDataManager {
             "\(key)": value
         ])
     }
+    
+    func updateUser(uid: String, user: User) {
+        let newUserRef = self.ref.child("users").child(uid)
+        newUserRef.setValue(user.toAnyObject())
+    }
 }
