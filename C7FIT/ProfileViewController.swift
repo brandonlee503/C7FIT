@@ -14,28 +14,6 @@ class ProfileViewController: UITableViewController {
     
     let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
     
-    // Imperial Height Array
-    let personalHeight: Array = {
-        (12...120).map {
-            ("\($0 / 12)' \($0 % 12)\"")
-        }
-    }()
-    
-    // Rep Array
-    let repetitions: Array = {
-        (0...1000).map {"\($0)"}
-    }()
-    
-    // Personal Weight Array
-    let personalWeight: Array = {
-        (0...400).map {"\($0)"}
-    }()
-    
-    // Weight Array
-    let weights: Array = {
-        stride(from: 0, to: 450, by: 5).map {"\($0)"}
-    }()
-    
     // MARK: - Properties
     
     var userID: String?
@@ -70,7 +48,7 @@ class ProfileViewController: UITableViewController {
             // Create and build existing user
             self.firebaseDataManager.fetchUser(uid: userID) { data in
                 guard let json = data.value as? [String: AnyObject] else { return }
-                self.user = DataFormatter.buildExistingUser(json: json)
+                self.user = ProfileViewModel.buildExistingUser(json: json)
                 self.tableView.reloadData()
             }
         }
@@ -306,13 +284,13 @@ extension ProfileViewController: PickerCellDelegate {
     func onPickerOpen(_ cell: AbstractHealthCell) {
         switch cell.picker.tag {
         case 1:
-            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? personalWeight[0] : cell.dataLabel.text
+            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? ProfileViewModel.personalWeight[0] : cell.dataLabel.text
         case 2:
-            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? personalHeight[0] : cell.dataLabel.text
+            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? ProfileViewModel.personalHeight[0] : cell.dataLabel.text
         case 5, 6:
-            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? repetitions[0] : cell.dataLabel.text
+            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? ProfileViewModel.repetitions[0] : cell.dataLabel.text
         case 7, 8, 9:
-            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? weights[0] : cell.dataLabel.text
+            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? ProfileViewModel.weights[0] : cell.dataLabel.text
         default:
             break
         }
@@ -326,13 +304,13 @@ extension ProfileViewController: PickerCellDelegate {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int, forCell cell: AbstractHealthCell) -> String? {
         switch pickerView.tag {
         case 1:
-            return personalWeight[row]
+            return ProfileViewModel.personalWeight[row]
         case 2:
-            return personalHeight[row]
+            return ProfileViewModel.personalHeight[row]
         case 5, 6:
-            return repetitions[row]
+            return ProfileViewModel.repetitions[row]
         case 7, 8, 9:
-            return weights[row]
+            return ProfileViewModel.weights[row]
         default:
             return nil
         }
@@ -341,13 +319,13 @@ extension ProfileViewController: PickerCellDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int, forCell cell: AbstractHealthCell) {
         switch pickerView.tag {
         case 1:
-            cell.dataLabel.text = personalWeight[row]
+            cell.dataLabel.text = ProfileViewModel.personalWeight[row]
         case 2:
-            cell.dataLabel.text = personalHeight[row]
+            cell.dataLabel.text = ProfileViewModel.personalHeight[row]
         case 5, 6:
-            cell.dataLabel.text = repetitions[row]
+            cell.dataLabel.text = ProfileViewModel.repetitions[row]
         case 7, 8, 9:
-            cell.dataLabel.text = weights[row]
+            cell.dataLabel.text = ProfileViewModel.weights[row]
         default:
             break
         }
@@ -364,13 +342,13 @@ extension ProfileViewController: PickerCellDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int, forCell: AbstractHealthCell) -> Int {
         switch pickerView.tag {
         case 1:
-            return personalHeight.count
+            return ProfileViewModel.personalHeight.count
         case 2:
-            return personalHeight.count
+            return ProfileViewModel.personalHeight.count
         case 5, 6:
-            return repetitions.count
+            return ProfileViewModel.repetitions.count
         case 7, 8, 9:
-            return weights.count
+            return ProfileViewModel.weights.count
         default:
             return 0
         }
