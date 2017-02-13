@@ -12,13 +12,12 @@ class LogoutTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     
-    var logoutButton: UIButton = UIButton()
+    var logoutLabel: UILabel = UILabel()
     
     // MARK: - Initialization
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        print("cell lmao")
         setup()
         setupConstraints()
     }
@@ -30,15 +29,15 @@ class LogoutTableViewCell: UITableViewCell {
     // MARK: - Layout
     
     func setup() {
-        logoutButton.setTitle("Logout", for: .normal)
-        logoutButton.setTitleColor(.black, for: .normal)
-        addSubview(logoutButton)
+        logoutLabel.text = "Logout"
+        logoutLabel.textColor = .black
+        addSubview(logoutLabel)
     }
     
     func setupConstraints() {
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
-        let logoutX = logoutButton.centerXAnchor.constraint(equalTo: centerXAnchor)
-        let logoutY = logoutButton.centerYAnchor.constraint(equalTo: centerYAnchor)
+        logoutLabel.translatesAutoresizingMaskIntoConstraints = false
+        let logoutX = logoutLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+        let logoutY = logoutLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         NSLayoutConstraint.activate([logoutX, logoutY])
     }
 }
