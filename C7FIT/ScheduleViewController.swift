@@ -110,7 +110,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
     
     func scheduleLinkPressed() {
         print("scheduleLinkPressed")
-        if let linkUrl = URL(string: "http:google.com") {
+        if let linkUrl = URL(string: "http:clubsevenfitness.com") {
             if #available(iOS 10, *) {
                 UIApplication.shared.open(linkUrl, options: [:],
                                           completionHandler: {
