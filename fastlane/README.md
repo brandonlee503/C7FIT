@@ -9,7 +9,14 @@ sudo gem install fastlane
 ```
 fastlane test
 ```
-Builds and runs all tests on an iPhone
+Builds and runs all tests on an iPhone 📱
+### lint
+```
+fastlane lint
+```
+Lints all Swift files to ensure consistent style 💯
+
+Results are saved to `fastlane/test_output/swiftlint.result.json`
 
 ----
 
