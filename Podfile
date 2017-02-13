@@ -4,6 +4,7 @@ use_frameworks!
 target 'C7FIT' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
   pod 'Firebase/Auth'
 
   target 'C7FITTests' do

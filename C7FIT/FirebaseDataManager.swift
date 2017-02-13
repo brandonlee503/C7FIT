@@ -110,4 +110,26 @@ struct FirebaseDataManager {
         let newUserRef = self.ref.child("users").child(uid)
         newUserRef.setValue(user.toAnyObject())
     }
+    
+    /**
+        Uploads new profile picture to Firebase Storage
+     
+        - Parameter uid: User's universal ID
+        - Parameter user: User data to update
+        - Parameter data: Image data to upload
+        - Returns completion: A callback that returns a URL?
+     */
+    func uploadProfilePicture(uid: String, data: Data, completion: @escaping (_: URL?) -> Void) {
+        let storageRef = FIRStorage.storage().reference(withPath: "profilePics/\(uid).jpg")
+        let uploadMetaData = FIRStorageMetadata()
+        uploadMetaData.contentType = "image/jpeg"
+        storageRef.put(data, metadata: uploadMetaData) { (metaData, error) in
+            if error == nil {
+                // Update user profilePicURL
+                completion(metaData?.downloadURL())
+            } else {
+                print("Upload profile pic error: \(error?.localizedDescription)")
+            }
+        }
+    }
 }
