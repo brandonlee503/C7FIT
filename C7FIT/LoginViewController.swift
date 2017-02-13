@@ -7,9 +7,12 @@
 //
 
 import UIKit
-import Firebase
 
 class LoginViewController: UIViewController {
+    
+    // MARK: - Constants
+    
+    let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
     
     // MARK: - Properties
     
@@ -55,7 +58,10 @@ class LoginViewController: UIViewController {
             let passwordField = loginAlert.textFields![1] as UITextField
             
             // Submit login with credentials, display profileVC if valid
-            self.signIn(email: emailField.text!, password: passwordField.text!)
+            self.firebaseDataManager.signIn(email: emailField.text!, password: passwordField.text!) { user, error in
+                guard user != nil else { return self.displayError(error: error!) }
+                self.dismiss(animated: true, completion: nil)
+            }
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -81,12 +87,13 @@ class LoginViewController: UIViewController {
             let passwordField = createAccountAlert.textFields![1] as UITextField
             
             // Submit create user, upon successful creation - login as well
-            FIRAuth.auth()?.createUser(withEmail: emailField.text!, password: passwordField.text!) { user, error in
-                if error == nil {
-                    self.signIn(email: emailField.text!, password: passwordField.text!)
-                } else {
-                    print("Create Account Error: \(error?.localizedDescription)")
-                }
+            self.firebaseDataManager.createAccount(email: emailField.text!, password: passwordField.text!) { user, error in
+                guard user != nil else { return self.displayError(error: error!) }
+                    self.firebaseDataManager.signIn(email: emailField.text!, password: passwordField.text!) { user, error in
+                        guard let user = user else { return self.displayError(error: error!) }
+                            self.firebaseDataManager.buildUserProfile(uid: user.uid, email: emailField.text!)
+                            self.dismiss(animated: true, completion: nil)
+                    }
             }
         }
         
@@ -106,17 +113,10 @@ class LoginViewController: UIViewController {
         self.present(createAccountAlert, animated: true, completion: nil)
     }
     
-    /**
-        Submit login with credentials, display profile screen if valid
-     */
-    func signIn(email: String, password: String) {
-        FIRAuth.auth()?.signIn(withEmail: email, password: password) { user, error in
-            if error != nil {
-                print("USERUSERUSER: \(user?.email)")
-                self.dismiss(animated: true, completion: nil)
-            } else {
-                print("Login Error: \(error?.localizedDescription)")
-            }
-        }
+    func displayError(error: Error) {
+        let errorAlert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let submitAction = UIAlertAction(title: "Ok", style: .default)
+        errorAlert.addAction(submitAction)
+        self.present(errorAlert, animated: true, completion: nil)
     }
 }

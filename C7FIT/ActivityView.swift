@@ -24,8 +24,6 @@ class ActivityView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
-        setupConstraints()
     }
     
     // MARK: - Layout

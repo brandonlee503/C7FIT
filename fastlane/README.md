@@ -9,7 +9,7 @@ sudo gem install fastlane
 ```
 fastlane test
 ```
-Builds and runs all tests on an iPhone
+Builds and runs all tests on an iPhone 📱
 
 ----
 
