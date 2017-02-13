@@ -35,8 +35,8 @@ class ProfileViewController: UITableViewController {
         
         // Add save button
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
-        navigationItem.rightBarButtonItem?.tintColor = .black
         navigationItem.rightBarButtonItem = saveButton
+        navigationItem.rightBarButtonItem?.tintColor = .black
         
         // Monitor for user login/logout state
         firebaseDataManager.monitorLoginState() { auth, user in
