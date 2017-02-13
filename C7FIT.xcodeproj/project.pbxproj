@@ -33,6 +33,9 @@
 		16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2D2ED1E3874F800F6AA9F /* LogoutTableViewCell.swift */; };
 		16FFF43A1E345748009B4F34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16FFF4391E345748009B4F34 /* GoogleService-Info.plist */; };
 		16FFF43D1E3459C2009B4F34 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFF43C1E3459C2009B4F34 /* User.swift */; };
+		7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7699391E3962E90086519A /* ScheduleBrowserTableViewCell.swift */; };
+		7AAB23641E4297BA00AD7040 /* ScheduleBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23631E4297BA00AD7040 /* ScheduleBioTableViewCell.swift */; };
+		7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23651E4298BB00AD7040 /* ScheduleContactTableViewCell.swift */; };
 		8DDE8CB2A52DA4DDF6CE47C9 /* Pods_C7FITTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */; };
 		DC0EF005D0A9CB5AD7082EE2 /* Pods_C7FIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53076A0C8FE5245144D9ECCE /* Pods_C7FIT.framework */; };
 /* End PBXBuildFile section */
@@ -90,6 +93,9 @@
 		16FFF43E1E345F17009B4F34 /* C7FIT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = C7FIT.entitlements; sourceTree = "<group>"; };
 		53076A0C8FE5245144D9ECCE /* Pods_C7FIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C7FIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F1638978FFA2B1F2F25C7A2 /* Pods-C7FITTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FITTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-C7FITTests/Pods-C7FITTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7A7699391E3962E90086519A /* ScheduleBrowserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleBrowserTableViewCell.swift; sourceTree = "<group>"; };
+		7AAB23631E4297BA00AD7040 /* ScheduleBioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleBioTableViewCell.swift; sourceTree = "<group>"; };
+		7AAB23651E4298BB00AD7040 /* ScheduleContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleContactTableViewCell.swift; sourceTree = "<group>"; };
 		A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C7FITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9EF0CEA2106516B1ECAAB5E /* Pods-C7FITTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FITTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-C7FITTests/Pods-C7FITTests.release.xcconfig"; sourceTree = "<group>"; };
 		F464551DBAC59E09F9A579D3 /* Pods-C7FIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FIT.release.xcconfig"; path = "Pods/Target Support Files/Pods-C7FIT/Pods-C7FIT.release.xcconfig"; sourceTree = "<group>"; };
@@ -179,8 +185,8 @@
 		160D9B751E0B7FC500801627 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7A3E51BC1E4BD1B5009BA84A /* ScheduleViews */,
 				160D9B791E0B88EE00801627 /* HomeView.swift */,
-				160D9B7D1E0BF5DC00801627 /* ScheduleView.swift */,
 				160D9B811E0BF92700801627 /* StoreView.swift */,
 				160D9B831E0BFA4500801627 /* ActivityView.swift */,
 				166983D91E5088A800B36107 /* Profile */,
@@ -269,6 +275,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7A3E51BC1E4BD1B5009BA84A /* ScheduleViews */ = {
+			isa = PBXGroup;
+			children = (
+				160D9B7D1E0BF5DC00801627 /* ScheduleView.swift */,
+				7A7699391E3962E90086519A /* ScheduleBrowserTableViewCell.swift */,
+				7AAB23631E4297BA00AD7040 /* ScheduleBioTableViewCell.swift */,
+				7AAB23651E4298BB00AD7040 /* ScheduleContactTableViewCell.swift */,
+			);
+			name = ScheduleViews;
+			sourceTree = "<group>";
+		};
 		8A4DDC890BA1A12937B3948E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,7 +371,7 @@
 				TargetAttributes = {
 					160D9B061E0B5C0D00801627 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = 27G39RU5P8;
+						DevelopmentTeam = 66VR475WF9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -525,6 +542,8 @@
 				160D9B7A1E0B88EE00801627 /* HomeView.swift in Sources */,
 				163DFC101E41A43A00593CF9 /* AbstractHealthCell.swift in Sources */,
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
+				7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */,
+				7AAB23641E4297BA00AD7040 /* ScheduleBioTableViewCell.swift in Sources */,
 				160D9B0B1E0B5C0D00801627 /* AppDelegate.swift in Sources */,
 				160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */,
 				163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */,
@@ -534,6 +553,7 @@
 				160D9B801E0BF91400801627 /* StoreViewController.swift in Sources */,
 				160D9B821E0BF92700801627 /* StoreView.swift in Sources */,
 				16D2D2EA1E38020300F6AA9F /* ProfileTableViewCell.swift in Sources */,
+				7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */,
 				16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */,
 				160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */,
 				1658B9DE1E0F9EFD009D4F67 /* ProfileViewModel.swift in Sources */,
@@ -691,10 +711,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = C7FIT/C7FIT.entitlements;
-				DEVELOPMENT_TEAM = 27G39RU5P8;
+				DEVELOPMENT_TEAM = 66VR475WF9;
 				INFOPLIST_FILE = C7FIT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitness.C7FIT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest.C7FIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -706,10 +726,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = C7FIT/C7FIT.entitlements;
-				DEVELOPMENT_TEAM = 27G39RU5P8;
+				DEVELOPMENT_TEAM = 66VR475WF9;
 				INFOPLIST_FILE = C7FIT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitness.C7FIT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest.C7FIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
