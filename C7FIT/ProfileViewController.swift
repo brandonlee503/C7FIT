@@ -275,6 +275,18 @@ class ProfileViewController: UITableViewController {
         firebaseDataManager.updateUser(uid: userID, user: updatedUser)
     }
     
+    /**
+        Update BMI as user updates their weight/height
+     */
+    func updateBMI() {
+        guard let weightCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? AbstractHealthCell, let heightCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? AbstractHealthCell else { return }
+        guard let weight = weightCell.dataLabel.text, let height = heightCell.dataLabel.text else { return }
+        let updatedBMI = ProfileViewModel.calculateBMI(weight: weight, height: height)
+        if let cell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? AbstractHealthCell {
+            cell.dataLabel.text = updatedBMI
+        }
+    }
+    
     func logoutPressed() {
         firebaseDataManager.logout()
     }
@@ -323,8 +335,10 @@ extension ProfileViewController: PickerCellDelegate {
         switch pickerView.tag {
         case 1:
             cell.dataLabel.text = ProfileViewModel.personalWeight[row]
+            updateBMI()
         case 2:
             cell.dataLabel.text = ProfileViewModel.personalHeight[row]
+            updateBMI()
         case 5, 6:
             cell.dataLabel.text = ProfileViewModel.repetitions[row]
         case 7, 8, 9:
