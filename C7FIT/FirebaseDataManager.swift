@@ -25,7 +25,7 @@ struct FirebaseDataManager {
      
          - Parameter email: User email string
          - Parameter password: User password string
-         - Parameter completion: A callback that returns FIRAuthCallback
+         - Returns completion: A callback that returns FIRAuthCallback
      */
     func createAccount(email: String, password: String, completion: @escaping (_: FIRUser?, _:Error?) -> Void) {
         FIRAuth.auth()?.createUser(withEmail: email, password: password) { user, error in
@@ -38,7 +38,7 @@ struct FirebaseDataManager {
          
          - Parameter email: User email string
          - Parameter password: User password string
-         - Parameter completion: A callback that returns FIRAuthCallback
+         - Returns completion: A callback that returns FIRAuthCallback
      */
     func signIn(email: String, password: String, completion: @escaping (_: FIRUser?, _: Error?) -> Void) {
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { user, error in
@@ -79,7 +79,7 @@ struct FirebaseDataManager {
         Fetch user from the database.
      
         - Parameter uid: User's universal ID
-        - Parameter completion: A callback that returns a FIRDataSnapshot
+        - Returns completion: A callback that returns a FIRDataSnapshot
      */
     func fetchUser(uid: String, completion: @escaping (_: FIRDataSnapshot) -> Void) {
         ref.child("users").child(uid).observeSingleEvent(of: .value, with: { snapshot in
@@ -90,7 +90,7 @@ struct FirebaseDataManager {
     /**
         Monitor the login state of the user.
         
-        - Parameter completion: A callback that returns FIRAuthStateDidChangeListenerHandle
+        - Returns completion: A callback that returns FIRAuthStateDidChangeListenerHandle
      */
     func monitorLoginState(completion: @escaping (_: FIRAuth, _: FIRUser?) -> Void) {
         FIRAuth.auth()?.addStateDidChangeListener() { auth, user in
@@ -100,6 +100,12 @@ struct FirebaseDataManager {
     
     // MARK: - Data Modification
     
+    /**
+        Updates any new attributes of a given existing user
+     
+        - Parameter uid: User's universal ID
+        - Parameter user: User data to update
+     */
     func updateUser(uid: String, user: User) {
         let newUserRef = self.ref.child("users").child(uid)
         newUserRef.setValue(user.toAnyObject())
