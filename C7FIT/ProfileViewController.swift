@@ -273,6 +273,12 @@ class ProfileViewController: UITableViewController {
         guard let userID = self.userID, let userEmail = self.user?.email else { return }
         let updatedUser: User = User(email: userEmail, photoURL: nil, name: userDict["name"], bio: userDict["bio"], weight: userDict["weight"], height: userDict["height"], bmi: userDict["bmi"], mileTime: userDict["mileTime"], pushups: userDict["pushups"], situps: userDict["situps"], legPress: userDict["legPress"], benchPress: userDict["benchPress"], lateralPull: userDict["lateralPull"])
         firebaseDataManager.updateUser(uid: userID, user: updatedUser)
+        
+        // Display save alert
+        let saveAlert = UIAlertController(title: "Data Saved", message: nil, preferredStyle: .alert)
+        let submitAction = UIAlertAction(title: "Ok", style: .default)
+        saveAlert.addAction(submitAction)
+        self.present(saveAlert, animated: true, completion: nil)
     }
     
     /**
