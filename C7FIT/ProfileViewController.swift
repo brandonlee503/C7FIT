@@ -52,6 +52,13 @@ class ProfileViewController: UITableViewController {
             self.firebaseDataManager.fetchUser(uid: userID) { data in
                 guard let json = data.value as? [String: AnyObject] else { return }
                 self.user = ProfileViewModel.buildExistingUser(json: json)
+                
+                if let urlString = self.user?.photoURL {
+                    self.updateprofileImage(url: URL(string: urlString))
+                } else {
+                    self.updateprofileImage(url: nil)
+                }
+                
                 self.tableView.reloadData()
             }
         }
@@ -297,6 +304,21 @@ class ProfileViewController: UITableViewController {
         self.present(imagePicker, animated: true, completion: nil)
     }
     
+    func updateprofileImage(url: URL?) {
+        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProfileTableViewCell {
+            if let url = url {
+                do {
+                    let imageData = try Data(contentsOf: url)
+                    cell.profileImageView.image = UIImage(data: imageData)
+                } catch {
+                    print("Image could not be downloaded")
+                }
+            } else {
+                cell.profileImageView.image = nil
+            }
+        }
+    }
+    
     /**
         Update BMI as user updates their weight/height
      */
@@ -335,6 +357,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
                 firebaseDataManager.uploadProfilePicture(uid: userID, data: imageData, completion: { (url) in
                     guard let url = url else { return }
                     self.profileURL = url
+                    self.updateprofileImage(url: url)
                 })
             }
         }
