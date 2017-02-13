@@ -189,7 +189,7 @@
 				160D9B791E0B88EE00801627 /* HomeView.swift */,
 				160D9B811E0BF92700801627 /* StoreView.swift */,
 				160D9B831E0BFA4500801627 /* ActivityView.swift */,
-				166983D91E5088A800B36107 /* Profile */,
+				166983D91E5088A800B36107 /* ProfileViews */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -215,7 +215,7 @@
 			name = Stores;
 			sourceTree = "<group>";
 		};
-		166983D91E5088A800B36107 /* Profile */ = {
+		166983D91E5088A800B36107 /* ProfileViews */ = {
 			isa = PBXGroup;
 			children = (
 				164BAAAB1E36E5D900DE4C71 /* LoginView.swift */,
@@ -223,7 +223,7 @@
 				163DFC0F1E41A43A00593CF9 /* AbstractHealthCell.swift */,
 				16D2D2ED1E3874F800F6AA9F /* LogoutTableViewCell.swift */,
 			);
-			name = Profile;
+			name = ProfileViews;
 			sourceTree = "<group>";
 		};
 		166983DA1E5088D500B36107 /* Profile */ = {
