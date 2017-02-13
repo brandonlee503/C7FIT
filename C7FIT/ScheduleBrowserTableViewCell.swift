@@ -33,7 +33,7 @@ class ScheduleBrowserTableViewCell: UITableViewCell {
     
     func setup() {
         
-        let imageName = "temp.png"
+        let imageName = "club front.jpg"
         let bgImage = UIImage(named: imageName)
 
         
