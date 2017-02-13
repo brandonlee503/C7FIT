@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 class ProfileViewController: UITableViewController {
 
@@ -18,6 +19,7 @@ class ProfileViewController: UITableViewController {
     
     var userID: String?
     var user: User?
+    var profileURL: URL?
     
     // MARK: - View Lifecycle
     
@@ -42,7 +44,7 @@ class ProfileViewController: UITableViewController {
         firebaseDataManager.monitorLoginState() { auth, user in
             
             // If user is signed in, set userID else display login screen
-            guard let userID = user?.uid else { return self.present(LoginViewController(), animated: true, completion:nil) }
+            guard let userID = user?.uid else { return self.present(LoginViewController(), animated: true, completion: nil) }
             self.userID = userID
             print("state change, new user: \(userID)")
             
@@ -85,6 +87,7 @@ class ProfileViewController: UITableViewController {
             if let cell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as? ProfileTableViewCell {
                 cell.nameField.text = user?.name ?? ""
                 cell.bioField.text = user?.bio ?? "Add a bio"
+                cell.updateProfileButton.addTarget(self, action: #selector(updateProfilePicPressed(sender:)), for: .touchUpInside)
                 return cell
             }
         } else if indexPath.row == 1 {
@@ -108,7 +111,6 @@ class ProfileViewController: UITableViewController {
         } else if indexPath.row == 3 {
             if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
                 cell.dataTitle.text = "BMI"
-                // TODO: Pull Weight and height data and BMI math here
                 if let bmi = user?.bmi {
                     cell.dataLabel.text = bmi
                 }
@@ -236,6 +238,12 @@ class ProfileViewController: UITableViewController {
         var userDict = [String: String]()
         
         // Add profile attributes
+        if let profilePic = self.profileURL?.absoluteString {
+            userDict["profilePic"] = profilePic
+        } else {
+            userDict["profilePic"] = nil
+        }
+        
         if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProfileTableViewCell {
             userDict["name"] = cell.nameField.text
             userDict["bio"] = cell.bioField.text
@@ -271,7 +279,7 @@ class ProfileViewController: UITableViewController {
         
         // Build new user and send update
         guard let userID = self.userID, let userEmail = self.user?.email else { return }
-        let updatedUser: User = User(email: userEmail, photoURL: nil, name: userDict["name"], bio: userDict["bio"], weight: userDict["weight"], height: userDict["height"], bmi: userDict["bmi"], mileTime: userDict["mileTime"], pushups: userDict["pushups"], situps: userDict["situps"], legPress: userDict["legPress"], benchPress: userDict["benchPress"], lateralPull: userDict["lateralPull"])
+        let updatedUser: User = User(email: userEmail, photoURL: userDict["profilePic"], name: userDict["name"], bio: userDict["bio"], weight: userDict["weight"], height: userDict["height"], bmi: userDict["bmi"], mileTime: userDict["mileTime"], pushups: userDict["pushups"], situps: userDict["situps"], legPress: userDict["legPress"], benchPress: userDict["benchPress"], lateralPull: userDict["lateralPull"])
         firebaseDataManager.updateUser(uid: userID, user: updatedUser)
         
         // Display save alert
@@ -279,6 +287,14 @@ class ProfileViewController: UITableViewController {
         let submitAction = UIAlertAction(title: "Ok", style: .default)
         saveAlert.addAction(submitAction)
         self.present(saveAlert, animated: true, completion: nil)
+    }
+    
+    func updateProfilePicPressed(sender: UIButton) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.mediaTypes = [kUTTypeImage as String]
+        imagePicker.delegate = self
+        self.present(imagePicker, animated: true, completion: nil)
     }
     
     /**
@@ -295,6 +311,35 @@ class ProfileViewController: UITableViewController {
     
     func logoutPressed() {
         firebaseDataManager.logout()
+    }
+}
+
+// MARK: - UIImagePickerControllerDelegate
+
+/// Adapter Pattern for UIImagePickerController
+extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let mediaType: String = info[UIImagePickerControllerMediaType] as? String else {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        // Make sure media is an image, if so upload it and update download URL
+        if mediaType == (kUTTypeImage as String) {
+            if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let imageData = UIImageJPEGRepresentation(originalImage, 0.8) {
+                guard let userID = self.userID else { return }
+                firebaseDataManager.uploadProfilePicture(uid: userID, data: imageData, completion: { (url) in
+                    guard let url = url else { return }
+                    self.profileURL = url
+                })
+            }
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
 }
 
