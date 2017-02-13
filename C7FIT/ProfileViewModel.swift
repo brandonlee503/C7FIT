@@ -63,12 +63,15 @@ struct ProfileViewModel {
         Calculate BMI from imperial units.
         http://extoxnet.orst.edu/faqs/dietcancer/web2/twohowto.html
      
-        - Parameter weight: String Optional in imperial units
-        - Parameter height: String Optional in imperial units
-        - Returns: String?
+        - Parameter weight: String in imperial units
+        - Parameter height: String in imperial units
+        - Returns: String
      */
-//    static func calculateBMI(weight: String?, height: String?) -> String? {
-//        guard let weight = weight?.intValue else { return }
-//        guard 
-//    }
+    static func calculateBMI(weight: String, height: String) -> String {
+        let metricWeight = Double(weight.intValue) * 0.45
+        let parsedHeight = height.components(separatedBy: ["\'", " ", "\""])
+        let metricHeight = Double(parsedHeight[0].intValue * 12 + parsedHeight[2].intValue) * 0.025
+        let squaredHeight = pow(metricHeight, 2)
+        return String(format: "%.2f" ,(metricWeight / squaredHeight))
+    }
 }
