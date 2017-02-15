@@ -13,6 +13,7 @@ class HealthKitViewController: UIViewController {
     // MARK: - Properties
     
     var healthView = HealthKit()
+    var healthKitManager = HealthKitManager()
     
     // MARK: - View Lifecycle
     
@@ -21,6 +22,8 @@ class HealthKitViewController: UIViewController {
         self.title = "Health"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
+        
+        healthView.authButton.addTarget(self, action: #selector(authorizeHealthKit), for: .touchUpInside)
         
         self.view.addSubview(healthView)
         setupConstraints()
@@ -40,6 +43,12 @@ class HealthKitViewController: UIViewController {
         let leftView = healthView.leftAnchor.constraint(equalTo: view.leftAnchor)
         let rightView = healthView.rightAnchor.constraint(equalTo: view.rightAnchor)
         NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
+    }
+    
+    func authorizeHealthKit() {
+        print("authorizing health kit")
+        // FIXME: build error/success handling into manager
+        healthKitManager.authorizeHealthKit()
     }
 
 }

@@ -51,6 +51,8 @@
 		7AF7BC001E5467AF0059A62A /* WatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBFF1E5467AF0059A62A /* WatchViewController.swift */; };
 		7AF7BC021E5467B90059A62A /* CountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC011E5467B90059A62A /* CountViewController.swift */; };
 		7AF7BC041E5467C10059A62A /* HeartRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */; };
+		7AF7BC061E54EDDE0059A62A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF7BC051E54EDDE0059A62A /* HealthKit.framework */; };
+		7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */; };
 		8DDE8CB2A52DA4DDF6CE47C9 /* Pods_C7FITTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */; };
 		DC0EF005D0A9CB5AD7082EE2 /* Pods_C7FIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53076A0C8FE5245144D9ECCE /* Pods_C7FIT.framework */; };
 /* End PBXBuildFile section */
@@ -126,6 +128,8 @@
 		7AF7BBFF1E5467AF0059A62A /* WatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchViewController.swift; sourceTree = "<group>"; };
 		7AF7BC011E5467B90059A62A /* CountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountViewController.swift; sourceTree = "<group>"; };
 		7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateViewController.swift; sourceTree = "<group>"; };
+		7AF7BC051E54EDDE0059A62A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C7FITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9EF0CEA2106516B1ECAAB5E /* Pods-C7FITTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FITTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-C7FITTests/Pods-C7FITTests.release.xcconfig"; sourceTree = "<group>"; };
 		F464551DBAC59E09F9A579D3 /* Pods-C7FIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FIT.release.xcconfig"; path = "Pods/Target Support Files/Pods-C7FIT/Pods-C7FIT.release.xcconfig"; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC0EF005D0A9CB5AD7082EE2 /* Pods_C7FIT.framework in Frameworks */,
+				7AF7BC061E54EDDE0059A62A /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +246,7 @@
 			children = (
 				163771531E398E2B000B3E87 /* FirebaseDataManager.swift */,
 				16576F161E1295C300BF622D /* StringExtensions.swift */,
+				7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */,
 			);
 			name = Stores;
 			sourceTree = "<group>";
@@ -299,6 +305,7 @@
 		1796F25B9292C74D5876C980 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7AF7BC051E54EDDE0059A62A /* HealthKit.framework */,
 				53076A0C8FE5245144D9ECCE /* Pods_C7FIT.framework */,
 				A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */,
 			);
@@ -451,6 +458,9 @@
 						DevelopmentTeam = 66VR475WF9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
 							com.apple.Keychain = {
 								enabled = 1;
 							};
@@ -637,6 +647,7 @@
 				160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */,
 				163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */,
 				160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */,
+				7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */,
 				16FFF43D1E3459C2009B4F34 /* User.swift in Sources */,
 				7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */,
 				160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */,

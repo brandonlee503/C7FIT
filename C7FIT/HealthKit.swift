@@ -12,7 +12,7 @@ class HealthKit: UIView {
 
     // MARK: - Properties
     
-    var titleLabel: UILabel = UILabel()
+    var authButton: UIButton = UIButton()
     
     // MARK: - Initialization
     
@@ -29,14 +29,15 @@ class HealthKit: UIView {
     // MARK: - Layout
     
     func setup() {
-        titleLabel.text = "Health Stuff"
-        addSubview(titleLabel)
+        authButton.setTitle("Authorize HealthKit", for: .normal)
+        authButton.setTitleColor(.black, for: .normal)
+        addSubview(authButton)
     }
     
     func setupConstraints() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        let centerTitleX = titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
-        let centerTitleY = titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
+        authButton.translatesAutoresizingMaskIntoConstraints = false
+        let centerTitleX = authButton.centerXAnchor.constraint(equalTo: centerXAnchor)
+        let centerTitleY = authButton.centerYAnchor.constraint(equalTo: centerYAnchor)
         NSLayoutConstraint.activate([centerTitleX, centerTitleY])
     }
 
