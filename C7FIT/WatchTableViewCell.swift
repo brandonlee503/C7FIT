@@ -10,6 +10,7 @@ import UIKit
 
 class WatchTableViewCell: UITableViewCell {
     
+    
     // MARK: - Properties
     
     lazy var ActivityTitle: UILabel = UILabel()
