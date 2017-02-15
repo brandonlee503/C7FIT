@@ -78,6 +78,7 @@ class ActivityViewController: UITableViewController {
         }
         if indexPath.row == 2 {
             if let cell: WatchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WatchCell") as? WatchTableViewCell {
+//                cell.watchButton.addTarget(self, action: #selector(self.watchButtonPressed), for: .touchUpInside)
                 return cell
             }
         }
@@ -93,5 +94,35 @@ class ActivityViewController: UITableViewController {
         }
         return UITableViewCell()
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            let destination = HealthKitViewController()
+            navigationController?.pushViewController(destination, animated: true)
+        }
+        if indexPath.row == 1 {
+            let destination = MapViewController()
+            navigationController?.pushViewController(destination, animated: true)
+        }
+        if indexPath.row == 2 {
+            let destination = WatchViewController()
+            navigationController?.pushViewController(destination, animated: true)
+        }
+        if indexPath.row == 3 {
+            let destination = CountViewController()
+            navigationController?.pushViewController(destination, animated: true)
+        }
+        if indexPath.row == 4 {
+            let destination = HeartRateViewController()
+            navigationController?.pushViewController(destination, animated: true)
+        }
+    }
+    
+//    func watchButtonPressed() {
+//        //not possible url scheme doesnt work.
+//        print("watch button clicked")
+//        let watchString = "clock-timer:"
+//        let url = URL(string:watchString)!
+//        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//    }
 }

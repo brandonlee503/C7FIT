@@ -41,6 +41,16 @@
 		7A8B9D361E52753800B88316 /* HeartRateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D351E52753800B88316 /* HeartRateTableViewCell.swift */; };
 		7AAB23641E4297BA00AD7040 /* ScheduleBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23631E4297BA00AD7040 /* ScheduleBioTableViewCell.swift */; };
 		7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23651E4298BB00AD7040 /* ScheduleContactTableViewCell.swift */; };
+		7AF7BBF21E5460770059A62A /* HealthKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF11E5460770059A62A /* HealthKitViewController.swift */; };
+		7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF31E5460860059A62A /* HealthKit.swift */; };
+		7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF51E5464250059A62A /* WatchView.swift */; };
+		7AF7BBF81E5464310059A62A /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF71E5464310059A62A /* CountView.swift */; };
+		7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF91E54643E0059A62A /* HeartRateView.swift */; };
+		7AF7BBFC1E5464470059A62A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBFB1E5464470059A62A /* MapView.swift */; };
+		7AF7BBFE1E5467A10059A62A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBFD1E5467A10059A62A /* MapViewController.swift */; };
+		7AF7BC001E5467AF0059A62A /* WatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBFF1E5467AF0059A62A /* WatchViewController.swift */; };
+		7AF7BC021E5467B90059A62A /* CountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC011E5467B90059A62A /* CountViewController.swift */; };
+		7AF7BC041E5467C10059A62A /* HeartRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */; };
 		8DDE8CB2A52DA4DDF6CE47C9 /* Pods_C7FITTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */; };
 		DC0EF005D0A9CB5AD7082EE2 /* Pods_C7FIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53076A0C8FE5245144D9ECCE /* Pods_C7FIT.framework */; };
 /* End PBXBuildFile section */
@@ -106,6 +116,16 @@
 		7A8B9D351E52753800B88316 /* HeartRateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateTableViewCell.swift; sourceTree = "<group>"; };
 		7AAB23631E4297BA00AD7040 /* ScheduleBioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleBioTableViewCell.swift; sourceTree = "<group>"; };
 		7AAB23651E4298BB00AD7040 /* ScheduleContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleContactTableViewCell.swift; sourceTree = "<group>"; };
+		7AF7BBF11E5460770059A62A /* HealthKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitViewController.swift; sourceTree = "<group>"; };
+		7AF7BBF31E5460860059A62A /* HealthKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
+		7AF7BBF51E5464250059A62A /* WatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchView.swift; sourceTree = "<group>"; };
+		7AF7BBF71E5464310059A62A /* CountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
+		7AF7BBF91E54643E0059A62A /* HeartRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateView.swift; sourceTree = "<group>"; };
+		7AF7BBFB1E5464470059A62A /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		7AF7BBFD1E5467A10059A62A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		7AF7BBFF1E5467AF0059A62A /* WatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchViewController.swift; sourceTree = "<group>"; };
+		7AF7BC011E5467B90059A62A /* CountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountViewController.swift; sourceTree = "<group>"; };
+		7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateViewController.swift; sourceTree = "<group>"; };
 		A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C7FITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9EF0CEA2106516B1ECAAB5E /* Pods-C7FITTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FITTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-C7FITTests/Pods-C7FITTests.release.xcconfig"; sourceTree = "<group>"; };
 		F464551DBAC59E09F9A579D3 /* Pods-C7FIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FIT.release.xcconfig"; path = "Pods/Target Support Files/Pods-C7FIT/Pods-C7FIT.release.xcconfig"; sourceTree = "<group>"; };
@@ -210,7 +230,7 @@
 				160D9B771E0B80DE00801627 /* HomeViewController.swift */,
 				160D9B7B1E0BF4CC00801627 /* ScheduleViewController.swift */,
 				160D9B7F1E0BF91400801627 /* StoreViewController.swift */,
-				160D9B871E0BFA6A00801627 /* ActivityViewController.swift */,
+				7AF7BBED1E545FEE0059A62A /* Activity */,
 				166983DA1E5088D500B36107 /* Profile */,
 			);
 			name = "View Controllers";
@@ -299,14 +319,48 @@
 		7A8B9D2C1E5272C600B88316 /* ActivityViews */ = {
 			isa = PBXGroup;
 			children = (
+				7AF7BBEE1E5460420059A62A /* UIViews */,
+				7AF7BBEA1E545DDD0059A62A /* CellViews */,
 				160D9B831E0BFA4500801627 /* ActivityView.swift */,
+			);
+			name = ActivityViews;
+			sourceTree = "<group>";
+		};
+		7AF7BBEA1E545DDD0059A62A /* CellViews */ = {
+			isa = PBXGroup;
+			children = (
 				7A8B9D2D1E52735600B88316 /* HealthKitTableViewCell.swift */,
 				7A8B9D2F1E52751500B88316 /* MapTableViewCell.swift */,
 				7A8B9D311E52752200B88316 /* WatchTableViewCell.swift */,
 				7A8B9D331E52752D00B88316 /* CountTableViewCell.swift */,
 				7A8B9D351E52753800B88316 /* HeartRateTableViewCell.swift */,
 			);
-			name = ActivityViews;
+			name = CellViews;
+			sourceTree = "<group>";
+		};
+		7AF7BBED1E545FEE0059A62A /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				160D9B871E0BFA6A00801627 /* ActivityViewController.swift */,
+				7AF7BBF11E5460770059A62A /* HealthKitViewController.swift */,
+				7AF7BBFD1E5467A10059A62A /* MapViewController.swift */,
+				7AF7BBFF1E5467AF0059A62A /* WatchViewController.swift */,
+				7AF7BC011E5467B90059A62A /* CountViewController.swift */,
+				7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
+		7AF7BBEE1E5460420059A62A /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				7AF7BBF31E5460860059A62A /* HealthKit.swift */,
+				7AF7BBFB1E5464470059A62A /* MapView.swift */,
+				7AF7BBF51E5464250059A62A /* WatchView.swift */,
+				7AF7BBF71E5464310059A62A /* CountView.swift */,
+				7AF7BBF91E54643E0059A62A /* HeartRateView.swift */,
+			);
+			name = UIViews;
 			sourceTree = "<group>";
 		};
 		8A4DDC890BA1A12937B3948E /* Pods */ = {
@@ -560,28 +614,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AF7BC021E5467B90059A62A /* CountViewController.swift in Sources */,
 				16576F171E1295C300BF622D /* StringExtensions.swift in Sources */,
 				7A8B9D321E52752200B88316 /* WatchTableViewCell.swift in Sources */,
 				16D2D2EC1E38638600F6AA9F /* CircularImageView.swift in Sources */,
 				7A8B9D2E1E52735600B88316 /* HealthKitTableViewCell.swift in Sources */,
+				7AF7BBFC1E5464470059A62A /* MapView.swift in Sources */,
 				160D9B7A1E0B88EE00801627 /* HomeView.swift in Sources */,
 				163DFC101E41A43A00593CF9 /* AbstractHealthCell.swift in Sources */,
 				7A8B9D361E52753800B88316 /* HeartRateTableViewCell.swift in Sources */,
 				7A8B9D301E52751500B88316 /* MapTableViewCell.swift in Sources */,
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
+				7AF7BC001E5467AF0059A62A /* WatchViewController.swift in Sources */,
 				7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */,
 				7AAB23641E4297BA00AD7040 /* ScheduleBioTableViewCell.swift in Sources */,
+				7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */,
+				7AF7BBFE1E5467A10059A62A /* MapViewController.swift in Sources */,
 				160D9B0B1E0B5C0D00801627 /* AppDelegate.swift in Sources */,
+				7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */,
+				7AF7BBF21E5460770059A62A /* HealthKitViewController.swift in Sources */,
+				7AF7BBF81E5464310059A62A /* CountView.swift in Sources */,
 				160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */,
 				163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */,
 				160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */,
 				16FFF43D1E3459C2009B4F34 /* User.swift in Sources */,
+				7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */,
 				160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */,
 				160D9B801E0BF91400801627 /* StoreViewController.swift in Sources */,
 				160D9B821E0BF92700801627 /* StoreView.swift in Sources */,
 				16D2D2EA1E38020300F6AA9F /* ProfileTableViewCell.swift in Sources */,
 				7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */,
 				16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */,
+				7AF7BC041E5467C10059A62A /* HeartRateViewController.swift in Sources */,
 				160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */,
 				1658B9DE1E0F9EFD009D4F67 /* ProfileViewModel.swift in Sources */,
 				160D9B7E1E0BF5DC00801627 /* ScheduleView.swift in Sources */,
@@ -742,7 +806,7 @@
 				DEVELOPMENT_TEAM = 66VR475WF9;
 				INFOPLIST_FILE = C7FIT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest.C7FIT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest2.C7FIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -757,7 +821,7 @@
 				DEVELOPMENT_TEAM = 66VR475WF9;
 				INFOPLIST_FILE = C7FIT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest.C7FIT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest2.C7FIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
