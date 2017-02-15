@@ -1,0 +1,384 @@
+\documentclass[letterpaper,10pt,titlepage]{article}
+
+% This might mess up formatting
+\setlength{\parindent}{0pt}
+
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\usepackage{alltt}
+\usepackage{float}
+\usepackage{color}
+\usepackage{url}
+\usepackage{listings}
+
+\usepackage{balance}
+\usepackage[TABBOTCAP, tight]{subfigure}
+\usepackage{enumitem}
+\usepackage{pstricks, pst-node}
+
+\usepackage{geometry}
+\geometry{textheight=8.5in, textwidth=6in}
+
+\newcommand{\cred}[1]{{\color{red}#1}}
+\newcommand{\cblue}[1]{{\color{blue}#1}}
+
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{pgfgantt}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\def\name{Brandon Lee}
+
+%pull in the necessary preamble matter for pygments output
+% \input{pygments.tex}
+
+%% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {CS461 ``Senior Capstone''},
+  pdftitle = {CS 461 Requirements Document},
+  pdfsubject = {CS 461 Requirements Document},
+  pdfpagemode = UseNone
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{3.5cm}
+
+        \textbf{Requirements Document}
+
+        \vspace{0.5cm}
+
+        \textbf{Brandon Lee, Rutger Farry, Michael Lee}
+
+        \vspace{0.8cm}
+
+        CS 461\\
+        Fall 2016\\
+        4 November 2016\\
+
+        \vspace{1cm}
+
+        \textbf{Abstract}\\
+
+        \vspace{0.5cm}
+
+        C7FIT is a mobile application for iPhone developed as a senior software engineering project under the supervision of eBay Inc. This app is essentially a health and fitness application that will be utilized by members of Club Seven Fitness in Portland. Currently Club Seven gym clients have difficulty tracking their workouts, goals, and schedules in the digital world. C7FIT aims to integrate existing technologies from Club Seven’s website as well as various iOS frameworks to provide users an accessible interface for interacting with their health and fitness goals on a mobile platform. The following document exercises the requirements of this project and formulates the plan of approach in developing this application in the next coming months. Such areas focused on include the project purpose, scope, perspective, interfaces, functions, constraints, and attributes. This document will additionally have elements of the higher level overview of the project’s technical components.
+
+        \vfill
+
+    \end{center}
+\end{titlepage}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+\subsection{Purpose}
+
+The purpose of this document is to deliver a clear specification of the requirements for the C7FIT app. The document will define a clear objective for the development of C7FIT including software features, product interfaces, design constraints, product functions, user characteristics, assumptions, and dependencies.
+
+\subsection{Scope}
+
+C7FIT is an iOS mobile application designed for Club Seven Fitness in Portland. The app allows for gym members to engage with Club Seven’s content on the mobile platform. In addition to interacting with user inputted data from Firebase, our app will utilize iOS’s HealthKit, which brings a plethora of user health data.  Such application includes displaying the user’s daily level of activity. Furthermore, an activity tracking feature will allow for users to record running workouts and store such data locally. Finally, this software will extend to incorporate features from the traditional fitness scope including timers/stopwatches, contacting the local gym (Club Seven) through an embedded messaging service, daily workouts and video tutorials, and health statistics and records (eg. mile time, max bench press). Links to the eBay store for fitness equipment will also be natively built. The above is a listing of the essential features required for base viability. Additional features may be incorporated in future development. Stretch goals will be evaluated as development progresses.
+
+\subsection{Definitions}
+
+\begin{center}
+    \begin{tabular}{ | l | l | p{5cm} |}
+    \hline
+Term               & Definition                                               \\ \hline
+User               & An individual who interacts with the mobile application \\ \hline
+C7FIT              & Our iOS app                                              \\ \hline
+Firebase           & Google's Backend as a Service                                  \\ \hline
+Club Seven Fitness & Our client's client, a gym business based in Portland    \\ \hline
+HealthKit          & iOS Health Framework                                     \\ \hline
+MapKit             & iOS Map Framework                                        \\ \hline
+API                & Interface to a piece of software exposed to the developer \\ \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Overview}
+
+The following document includes two main sections. The first section illustrates an overall description of the product. Additionally, this part will delve into user characteristics and constraints.\\
+
+The second half of this document goes into the specific requirements of the products including external interface requirements, functional requirements, performance requirements, logical database requirements, and system attributes. Appendices at the end will provide structure for the results and release plans.\\
+
+\section{Overall Description}
+
+This section will provide an overview of the application and how it interacts with its related components. This section will also detail the general functionality and how the it will be used by customers. Finally it will discuss the constraints and assumptions in the design of the application.
+
+\subsection{Product Perspective}
+
+The product will consist of the mobile iOS application for Club Seven. The application will be used to interact with the Firebase API, the eBay store, and draw data from the native iOS frameworks: HealthKit and MapKit.
+
+\subsubsection{System Interfaces}
+
+The system will be contained and limited to iPhone, running iOS 10, as the product is purely an iOS application. The Firebase API will provide the users external account data. It will provide users the ability to create a profile and input relevant health data. The application will also provide location information using MapKit, so the user knows their relative distance for classes and trainers.\\
+
+The application will also use the MapKit and HealthKit independently of the Firebase API. HealthKit will be used to track the user’s general fitness levels, such as: steps per day, sleep, calories burned, etc. MapKit will be used to chart the GPS location of the user during their exercise activities.\\
+
+As a stretch goal, the eBay API will be included as a way to monetize the application. Users will be able to see and purchase relevant products.\\
+
+\subsubsection{User Interfaces}
+
+The application will consist of 5 main topical screens: Home, Schedule, Store, Activity, and Profile. Each screen will maintain a consistent layout shown in the wireframes drawn up in our second meeting. In general, the screens will have a navigation bar along the bottom of the screen divided up into the 5 topical screens. Certain screens that require information from the Firebase API will show different information depending on whether the user is signed in or not. More specifically, each screen will have table rows that either contain information or bring the user to other more specific parts of the app. Once the rows have been tapped, the user will be directed to a new screen and have the option to go back with a ‘<’ button on the top bar.\\
+
+\subsubsection{Hardware Interfaces}
+
+An iPhone capable of running iOS 10, the iOS version we’re targeting, will be required to use this application. In addition, the phone will need to have the available memory space to download the app.
+
+\subsubsection{Software Interfaces}
+
+The Firebase API and eBay API will require developer accounts and accounts in order to function in our application. Their purpose has been discussed above: the Firebase API is key to the health data storage of the application, and the eBay API will be used for monetization. The application will be primarily in portrait mode.
+
+\subsubsection{Communication Interfaces}
+
+Wifi and cellular data will provide internet access to get the data from the Firebase API.
+
+\subsubsection{Memory Constraints}
+
+The specific memory constraints of the application will depend on the device running the app. We are currently targeting a multitude of devices, iPhones (4s, 5, 6, 7) so the specific constraints will vary depending on the RAM and space available to each of these devices. However, the application will need to store some data locally like the activity map and personal statistics.
+
+\subsection{Design Constraints}
+
+\subsubsection{Operations}
+
+The user will be required to sign in to Firebase to access the full capabilities of this application.
+
+\subsubsection{Site Adaption Requirements}
+
+The User Interface of this application will be in English. We will not provide other languages (as of initial release). The application will fit and work on current iPhones running iOS 10: including iPhone 4S to 7 and sizes 4,5,6, and 6 plus.
+
+\subsection{Product Functions}
+
+This mobile application will be a personalized app that connects the functionality of the MindBody API to the C7FIT gym’s customers. The functionality again can be split up into the 5 main portions Home, Schedule, Store, Activity, and Profile, with Home having the most varied functionality. Home will be the starting point for the user and provide general overview on their daily options. This includes a daily workout video from YouTube, and a daily motivational quote. The schedule screen links to the online schedule and contact information for the gym. The Store screen will display shopping information for curated fitness products from the eBay API. The Activity screen will display the user’s current daily activity, and their PR in various fitness tests. Additionally, this screen will have stopwatches and maps to assist their workouts. Finally, the Profile screen will contain their profile and personal information.
+
+\subsection{User Characteristics}
+
+The target audience for the product are the members of C7FIT gym. These gym members will only be able to access the services that are provided by the gym.
+
+\subsection{Constraints, Assumptions, and Dependencies}
+
+This application depends on having a Firebase account for the majority of the data. Additionally, it requires the user have internet connection as most of the data is pulled through external API’s. The key aspects of the application is constrained by the limitation of this API.\\
+
+Additional caching of the Firebase data will not be supported outside of the suite of tools Firebase already provides, and as such the application will not display information when the user does not have access to the API be it through internet or lack of account. The daily videos and motivational quotes come from Firebase and will cycle through a static set of quotes and video links.\\
+
+We assume that the mobile device has the capability to run our application at an acceptable level. If the phone does not have enough resources, then the application may fail to run as intended or at all.\\
+
+The application is dependent on the Firebase API, native HealthKit and MapKit, for most of its functions.\\
+
+\section{Specific Requirements}
+
+\subsection{External Interface Requirements}
+
+\subsubsection{User Interfaces}
+
+C7FIT is a user-facing application, so naturally most of the design emphasis will be on the user interface and presenting information from external sources (such as the ebay API, GPS, external files etc) in a pleasing and easily digestible manner on the user interface. The main objective of the user interface is to help the user accomplish their most common tasks in as little time and effort as possible. Secondary goals are to represent Club Seven Fitness’s brand, while not being distracting, and to make tasteful use of animations to keep the user engaged, especially during operations that may require some time to complete such as API calls. (Designers often refer to these animations as microinteractions.)\\
+
+
+Apple’s UIKit API provides minimally styled basic design elements, such as buttons, labels, sliders, text fields, and more. We intend to use these as the building blocks for our application wherever possible. In the MVP phase, unless a special element is absolutely necessary, we will just use the basic elements given to us by UIKit in their standard form.\\
+
+
+Following completion of the MVP, we intend to add styling and animations to the most used elements, keeping minimalism, consistency, and reusability as a goal. Near the beginning of the project, we will design each screen using Sketch (a vector design program ideally suited for UIs). We will then implement this design down to the pixel in our app after the MVP stage.\\
+
+
+The UI will have five tabs: Home, Store, Schedule, Activity, and Profile. The tabs will be displayed using UIKit’s UITabBar, and each underlying view will be managed by a single UITabBarViewController. Each tab is explained below:\\
+
+\begin{enumerate}
+\item Home Tab
+\item Home will be a tableview with three cells. Some of these will be tappable, allowing users to view more detail than the snippet shown in the cell:
+\item Today’s workout video
+\item This will display a Youtube video
+\item The video URL will be retrieved from a static file either in Firebase or a GitHub repo
+\item The video will be different every day
+\item Selecting the video will open it in a landscape, full-screen view
+\item Today’s Motivation
+\item This is a simple cell that just contains a motivational phrase
+\item The phrase will be fetched from a static file in a GitHub repo
+\item Store
+\item The Store view will be a tableview of items available for sale from the Club Seven eBay store
+\item Each cell will contain a picture of the item, its price, and name. Other metadata from eBay may be included
+\item The store will use the eBay API to list products sold by C7Fit
+\item Tapping a cell will show more information about the item, with the option to purchase it on eBay
+\item Schedule Tab
+\item The schedule will be a WKWebView (basically an embedded web browser) that opens the schedule webpage from Club Seven Fitness's website
+\item As a stretch goal, we may hook into a Google Calendar or parse the HTML to display a calendar using native elements
+\item Activity Tab
+\item The activity tab screen will be a collection of tools, user activity, and health results.
+\item Today’s Activity
+\item The top section of the Activity Tab shall have a title Today Activity.
+\item The content in the today activity section will include steps and active time from the Health Kit SDK.
+\item If the user does not have a profile on Health Kit SDK then a message will be displayed to the user .  “To get activity go to health app on your phone”
+\item Workout Tools
+\item The section session shall have a title “Workout Tools”
+\item There will be three tools in this section.
+\item The first tool will be stop watch.
+\item The stopwatch cell shall have text saying “Stop Watch” and shall have a right caret.
+\item If the user taps the stopwatch cell a new screen shall be started.
+\item The stopwatch screen shall have a title Stop Watch and a left caret.
+\item If the left caret is selected the user will be returned to the activity tab.
+\item The stopwatch screen shall have a timer.
+\item The stopwatch screen shall have a Start button that starts the timer.
+\item The stopwatch screen shall have a Stop button that stops the timer.
+\item The time shall remain on the screen until the user taps the start button again.
+\item The second tool will be countdown time.
+\item The countdown cell shall have text saying “Countdown Timer” and shall have a right caret.
+\item If the user taps the countdown cell a new screen shall be started.
+\item The countdown screen shall have a title Countdown Timer and a left caret.
+\item If the left caret is selected the user will be returned to the activity tab.
+\item The countdown screen shall have a timer.
+\item The countdown screen shall have an option to select a timer duration.
+\item The countdown screen shall have a Start button that starts the timer.
+\item The countdown screen shall have a Stop button that stops the timer.
+\item The time shall remain on the screen until the user taps the start button again.
+\item Map
+\item The map screen shall have a title saying Map and a right caret.
+\item The map shall use the Mapkit SDK.
+\item The map shall show map with current location.
+\item The map shall a Start Activity - have a start activity option.
+\item The map shall a Track Activity - track activity to record the track and draw it on the map.
+\item The map shall a Finish Activity - stop the activity.
+\item The map shall a Activity Details - Time and Distance for activity.
+\item The map shall a Save Activity - Save locally on device in core data with time as title.
+\item The map shall a View an Activity - Stretch goal to remap an activity.
+\item Test Results
+\item The test results section shall list all current recorded results.
+\item The test results section will have an edit option.
+\item The edit option will launch a new screen that list the test results and allows the user to enter the correct data.
+\item Test results will include:  Mile Time, Number of Push Up in a Minute, Number of Situps in a Minute, Leg Press, Bench Press, Lat Pull.
+\item Profile Tab
+\item The more tab shall display the signed in users profile.
+\item The elements that will be displayed include picture, name, and info from the HealthKit service.
+\end{enumerate}
+
+\subsubsection{Hardware Interfaces}
+
+C7FIT is an iOS 10 application, meaning it will run on any Apple iOS device capable of running iOS 10, or the next approximately 5 iOS operating systems produced in the future. We will ensure to not use any deprecated APIs, and since Apple usually does not deprecate APIs without several years advance notice, we can expect C7FIT to be compatible with future Apple devices for at least the next three years.\\
+
+The app will be specifically designed with the iPhone 5s and up in mind, but will be compatible with all iPhones down to the iPhone 4s. We intend to use an adaptive design to stretch to make maximum use of the variety of displays on these devices.\\
+
+\subsubsection{Software Interfaces}
+
+The primary software the app will interface with is the iOS operating system, as well as the UI framework provided by iOS called UIKit, and a large collection of helper libraries contained in Apple’s Foundation framework. These libraries provide for everything from app instantiation to making network calls, to saving to disk, to drawing UI elements such as buttons and sliders.\\
+
+We may also elect to bring in a few external 3rd party libraries to use instead of the Foundation / UIKit framework in areas that Apple’s API is known to be a little rough. We intend to minimize the use of third party frameworks / libraries as little as possible however. We will only use the leader in that field to reduce the likelihood of it being deprecated, and will wrap it in our own API to enable easy swapping of underlying APIs and prevent building dependencies in our code on potentially fickle open-source projects.\\
+
+\subsubsection{Communication Interfaces}
+
+C7FIT will make extensive use of Internet REST APIs, especially the Firebase API to provide functionality to the user. It will also make use of the eBay API if we meet our stretch goals to allow users to buy gym equipment online. Finally, the app will make use of the iPhone’s GPS unit to communicate with satellites and determine the user’s precise location during a workout. Luckily, this functionality is largely abstracted by the iOS Location API, and just involves a few lines of code.\\
+
+The most challenging external communications will be those with the MindBody and eBay API, as we will have to build a communication library with them based on their JSON REST APIs.\\
+
+\subsection{Classes and Objects/Functional Requirements}
+
+The main objective behind our program design is to reduce state to as few places as necessary. We plan on implementing our architecture with the principles of functional reactive programming in mind, so that developers can focus on building functionality of the app instead of worrying about bugs in their data flow.\\
+
+\subsubsection{DataStore}
+
+We will use the single-source-of-truth principle, along with dependency injection to reduce confusion about where data is coming from. All of the application’s state will be kept in a central DataStore. This will have fields containing data structures capable of holding all the data needed for all the app’s views, organized hierarchically roughly around the purpose / source of the data. The DataStore will be initialized upon app instantiation and a reference to it will be dependency-injected into each View Controller. This way, every View Controller will share the same source of truth, ensuring consistency between views. This will also ease caching and local storage.\\
+
+Information will be requested from the DataStore using functions exposed by the store’s interface. Upon fetching the data through whatever means necessary (network call or GPS call, retrieval from disk, etc) the view controller will be notified with the requested data, allowing it to update its UI. The View Controller will not perform any modifications to the data, besides what is necessary to display it nicely. No methods that modify the display of the information should require asynchronous operations. The method for notifying the ViewController of state changes will be discussed in the next section.
+
+\subsubsection{Responding to State Changes}
+
+There are several ways of responding to state changes, from callbacks to promises. We intend to use a functional reactive approach, in which the state of views is never explicitly changed, only described. Apple does not provide a functional reactive library, but there are two leading 3rd party libraries widely in use today: RxSwift and ReactiveCocoa. Both are similar, but ReactiveCocoa has deeper integration with Apple’s UIKit and Cocoa Touch frameworks.
+Receiving data from the API, the user changing screens, inputting text, pushing buttons, etc are state changes the app will respond to.\\
+
+\subsection{Performance Requirements}
+
+Modern iOS devices are relatively overpowered for this sort of application, so computational performance shouldn’t be a worry. A much bigger priority than performant code should be readable code.\\
+
+Places we should focus on performance are asynchronous calls, especially network calls. After the MVP, we should put priority on caching and prefetching data. If no cached data exists, we should display a useful animation that indicates progress.
+
+\subsection{Logical Database Requirements}
+
+We will be using Firebase for all database needs. Apple does provide a few set of APIs for caching on-device, but our source of truth will be coming from the Firebase API.\\
+
+\subsection{Software System Attributes}
+
+\subsubsection{Reliability}
+
+We will implement measures to ensure that the app functions well in all edge situations. Our programming methodologies described in the Classes and Objects section will ensure that developers are unable to compile the application without first accounting for all possible data states, including lack of GPS hardware, lack of network capability, disk failure, and more. Developers will be able to display helpful, user readable messages in all of these situations.
+
+\subsubsection{Availability}
+
+Most of the app’s features will require internet access. However we don’t intend to restrict access to the applications other features that don’t require connectivity in the event that a network connection is lost. Features such as using the GPS or timer workout tracker, should still be functional. Additionally, the UI should display informative, but not disruptive information in disabled interface elements.\\
+
+While we could cache network requests to the Firebase API while the device is offline, we will opt to just make the API attempt fail quickly and show an error to the user. We’ve found that this helps prevent users from making unintentional actions to their account.
+
+\subsubsection{Security}
+
+The C7FIT app will contain some potentially sensitive health information, but not to the point where most users would want to add additional security measures such as TouchID or a passcode (common security measures on iOS).\\
+
+Purchasing from eBay will be done in the eBay app/mobile website, which will handle all payment information and verification. C7FIT will just deep-link to the eBay app (or website if the app is not installed on the user’s device)
+
+\subsubsection{Maintainability}
+
+As the application will be used by Club Seven gym goers long after we complete development, there will need to be some form of maintenance in order to ensure C7FIT retains its quality and user base. In order to attain this, the app will be handed off to the eBay mobile team in Portland after publishing on the App Store. A small team of developers, whom we are currently working with will ensure the maintenance. Additionally, eBay Inc. will have the documentation we write this term for reference in the situation the app requires to be maintained long term.
+
+\subsubsection{Portability}
+
+The app is an iOS iPhone application. Because of the architecture of Apple’s development ecosystem, it should be relatively easy to port C7FIT to other Apple devices such as iPad. However for an Android application or any non-iOS device, there would be a substantial amount of more work to do before being able to publish. In terms of translation portability, we can use NSLocalizableString to load localized strings from a centralized source of truth upon our client's request.\\
+
+\subsection{Gantt Chart}
+
+\noindent\resizebox{\textwidth}{!}{
+\begin{tikzpicture}[x=.5cm, y=1cm]
+\begin{ganttchart}{1}{32}
+  \gantttitle{2016-2017 (Working Weeks)}{32} \\
+  \gantttitlelist{1,...,32}{1} \\
+  \ganttbar{Writing}{1}{4} \\
+  \ganttbar{Sketch}{1}{2} \\
+  \ganttbar{Base Code}{3}{4} \\
+  \ganttbar{API/Network}{3}{5} \\
+  \ganttbar{Templating}{3}{4} \\
+  \ganttbar{MVP}{3}{9} \\
+  \ganttbar{Add. Features}{9}{22} \\
+  \ganttbar{Testing}{3}{32} \\
+  \ganttbar{QA}{28}{30} \\
+  \ganttbar{App Store}{30}{32} \\
+\end{ganttchart}
+\end{tikzpicture}
+}
+
+\newpage
+
+\section{Signed Participants}
+
+\textbf{Students}
+
+Brandon Lee\\
+Rutger Farry\\
+Michael Lee\\
+
+\textbf{Client}
+
+\end{document}
+% * <brandonlee503@gmail.com> 2017-02-15T01:46:45.844Z:
+%
+% ^.
