@@ -371,7 +371,7 @@
 				TargetAttributes = {
 					160D9B061E0B5C0D00801627 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = 66VR475WF9;
+						DevelopmentTeam = 27G39RU5P8;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -711,7 +711,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = C7FIT/C7FIT.entitlements;
-				DEVELOPMENT_TEAM = 66VR475WF9;
+				DEVELOPMENT_TEAM = 27G39RU5P8;
 				INFOPLIST_FILE = C7FIT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest.C7FIT;
@@ -726,7 +726,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = C7FIT/C7FIT.entitlements;
-				DEVELOPMENT_TEAM = 66VR475WF9;
+				DEVELOPMENT_TEAM = 27G39RU5P8;
 				INFOPLIST_FILE = C7FIT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest.C7FIT;
