@@ -67,7 +67,8 @@ struct ProfileViewModel {
         - Parameter height: String in imperial units
         - Returns: String
      */
-    static func calculateBMI(weight: String, height: String) -> String {
+    static func calculateBMI(weight: String, height: String) -> String? {
+        guard weight != "", height != "" else { return nil }
         let metricWeight = Double(weight.intValue) * 0.45
         let parsedHeight = height.components(separatedBy: ["\'", " ", "\""])
         let metricHeight = Double(parsedHeight[0].intValue * 12 + parsedHeight[2].intValue) * 0.025
