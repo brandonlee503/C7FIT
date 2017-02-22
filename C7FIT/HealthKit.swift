@@ -13,6 +13,7 @@ class HealthKit: UIView {
     // MARK: - Properties
     
     var authButton: UIButton = UIButton()
+    var weightLabel: UILabel = UILabel()
     
     // MARK: - Initialization
     
@@ -32,6 +33,10 @@ class HealthKit: UIView {
         authButton.setTitle("Authorize HealthKit", for: .normal)
         authButton.setTitleColor(.black, for: .normal)
         addSubview(authButton)
+        
+        weightLabel.text = "Weight:"
+        weightLabel.textColor = .black
+        addSubview(weightLabel)
     }
     
     func setupConstraints() {
@@ -39,6 +44,13 @@ class HealthKit: UIView {
         let centerTitleX = authButton.centerXAnchor.constraint(equalTo: centerXAnchor)
         let centerTitleY = authButton.centerYAnchor.constraint(equalTo: centerYAnchor)
         NSLayoutConstraint.activate([centerTitleX, centerTitleY])
+        
+        weightLabel.translatesAutoresizingMaskIntoConstraints = false
+        let titleLead = weightLabel.leftAnchor.constraint(equalTo: leftAnchor, constant:0)
+        let titleTrail = weightLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant:0)
+        let titleTop = weightLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0)
+        let titleBot = weightLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
+        NSLayoutConstraint.activate([titleLead,titleTrail,titleTop,titleBot])
     }
 
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HealthKit
 
 class HealthKitViewController: UIViewController {
     
@@ -14,6 +15,7 @@ class HealthKitViewController: UIViewController {
     
     var healthView = HealthKit()
     var healthKitManager = HealthKitManager()
+    var height, weight:HKQuantitySample?
     
     // MARK: - View Lifecycle
     
@@ -49,6 +51,24 @@ class HealthKitViewController: UIViewController {
         print("authorizing health kit")
         // FIXME: build error/success handling into manager
         healthKitManager.authorizeHealthKit()
+        updateWeight()
+    }
+    
+    func updateWeight() {
+        let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)
+        self.healthKitManager.queryUserData(sampleType: sampleType!, completion : { (mostRecentWeight, error) -> Void in
+            if (error != nil){
+                print("Error")
+                return;
+            }
+            self.weight = mostRecentWeight as? HKQuantitySample
+            let weightNum = self.weight?.quantity.doubleValue(for: HKUnit.gramUnit(with: HKMetricPrefix(rawValue: 0)!))
+            //placed in different thread
+            DispatchQueue.main.async() {
+                //update the text async
+                self.healthView.weightLabel.text = "Weight: " + String(weightNum!)
+            }
+        })
     }
 
 }
