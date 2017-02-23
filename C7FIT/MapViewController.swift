@@ -21,24 +21,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     var seconds = 0.0
     var distance = 0.0
     var pace = ""
-    lazy var locations = [CLLocation()]
+    lazy var locations = [CLLocation]()
     lazy var timer = Timer()
     
-    var lastRun = runData()
-    
-    class runData {
-        var time = 0.0
-        var distance = 0.0
-        var pace = ""
-        var locations = [Location()]
-    }
-    
-    struct Location {
-        var timestamp = Date()
-        var latitude = CLLocationDegrees()
-        var longtitude = CLLocationDegrees()
-    }
-    
+    var lastRun = RunData()
+
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -56,7 +43,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.view.setNeedsUpdateConstraints()
         
         
-        setupLocationTracking()
+//        setupLocationTracking()
     }
     
     override func didReceiveMemoryWarning() {
@@ -88,31 +75,42 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     func stopTrackRun(){
         //open up run in detail view here
         
+//        print(locations)
         //ask user if they want to save run
-        saveRun()
+        createRunData()
+        self.navigationController?.pushViewController(MapDetailViewController(run:lastRun), animated: true)
         timer.invalidate()
         locationManager.stopUpdatingLocation()
     }
     
     // MARK: Save run
-    func saveRun() {
-        let tempRun = runData()
-        var savedLocations = [Location()]
+    func createRunData() {
+        var tempRun = RunData()
+        var savedLocations = [Location]()
         
+        print("initial")
+        print(savedLocations)
+        var i = 0
         for location in locations {
+//            print(location)
             var tempLocation = Location()
             tempLocation.timestamp = location.timestamp
             tempLocation.latitude = location.coordinate.latitude
-            tempLocation.longtitude = location.coordinate.longitude
+            tempLocation.longitude = location.coordinate.longitude
+//            print(i)
+//            print(tempLocation)
             savedLocations.append(tempLocation)
+            i = i + 1
         }
         
         tempRun.distance = distance
         tempRun.time = seconds
         tempRun.pace = pace
         tempRun.locations = savedLocations
-        
+        print("printing saved locations")
+        print(savedLocations)
         lastRun = tempRun
+    
     }
     
     // MARK: location tracking
@@ -129,14 +127,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        print("printing locations")
         for location in locations {
             if location.horizontalAccuracy < 20 {
                 if self.locations.count > 0 {
                     distance += location.distance(from: self.locations.last!)
                 }
+                self.locations.append(location)
             }
             
-            self.locations.append(location)
+//            print(location)
+            
         }
     }
     
