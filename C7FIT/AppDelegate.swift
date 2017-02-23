@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
+        window = UIWindow(frame: UIScreen.main.bounds)
         
         // Initialize tabBar controller and navigation controllers
         let tabBarController = UITabBarController()
@@ -33,13 +34,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let controllers = [navigationController1, navigationController2, navigationController3, navigationController4, navigationController5]
         tabBarController.viewControllers = controllers
-        window?.rootViewController = tabBarController
         
         navigationController1.tabBarItem = UITabBarItem(title: "Home", image: nil, selectedImage: nil)
         navigationController2.tabBarItem = UITabBarItem(title: "Schedule", image: nil, selectedImage: nil)
         navigationController3.tabBarItem = UITabBarItem(title: "Store", image: nil, selectedImage: nil)
         navigationController4.tabBarItem = UITabBarItem(title: "Activity", image: nil, selectedImage: nil)
         navigationController5.tabBarItem = UITabBarItem(title: "Profile", image: nil, selectedImage: nil)
+        
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
         return true
     }
 
