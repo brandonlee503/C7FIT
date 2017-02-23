@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import HealthKit
 import CoreLocation
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
@@ -16,7 +17,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: - Properties
     
     var mapViewApp = MapView()
-    var locationManager = CLLocationManager()
+    lazy var locationManager = CLLocationManager()
+    var seconds = 0.0
+    var distance = 0.0
+    lazy var locations = [CLLocation()]
+    lazy var timer = Timer()
     
     // MARK: - View Lifecycle
     
@@ -25,13 +30,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         self.title = "Map"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
+        self.edgesForExtendedLayout = []
+        
+        mapViewApp.startButton.addTarget(self, action: #selector(startTrackRun), for: .touchUpInside)
+        mapViewApp.stopButton.addTarget(self, action: #selector(stopTrackRun), for: .touchUpInside)
         
         self.view.addSubview(mapViewApp)
         setupConstraints()
         self.view.setNeedsUpdateConstraints()
         
         
-        getUserLocation()
+        setupLocationTracking()
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,9 +59,27 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
     }
     
-    func getUserLocation() {
+    // MARK: - Tracking run
+    
+    func startTrackRun(){
+        seconds = 0.0
+        distance = 0.0
+        locations.removeAll(keepingCapacity: false)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(eachSecond), userInfo: nil, repeats: true)
+        setupLocationTracking()
+    }
+    
+    func stopTrackRun(){
+        timer.invalidate()
+        locationManager.stopUpdatingLocation()
+        //save run data here
+    }
+    
+    func setupLocationTracking() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.activityType = .fitness
+        locationManager.distanceFilter = 10
         locationManager.requestAlwaysAuthorization()
         
         if (CLLocationManager.locationServicesEnabled()) {
@@ -61,16 +88,30 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    func eachSecond(timer: Timer) {
+        seconds = seconds + 1
+        let secondsQuantity = HKQuantity(unit: HKUnit.second(), doubleValue: seconds)
+        mapViewApp.secondsQuantity.text = "Time: " + secondsQuantity.description
+        
+        let distanceQuantity = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
+        mapViewApp.distanceQuantity.text = "Distance: " + distanceQuantity.description
+        
+        //convert to mph
+        let paceUnit = HKUnit.meter().unitDivided(by: HKUnit.second())
+        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: distance / seconds)
+        mapViewApp.paceQuantity.text = "Pace: " + paceQuantity.description
+     }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation:CLLocation = locations[0] as CLLocation
-        
-        // Call stopUpdatingLocation() to stop listening for location updates,
-        // other wise this function will be called every time when user location changes.
-        
-        // manager.stopUpdatingLocation()
-        
-        print("user latitude = \(userLocation.coordinate.latitude)")
-        print("user longitude = \(userLocation.coordinate.longitude)")
+        for location in locations {
+            if location.horizontalAccuracy < 20 {
+                if self.locations.count > 0 {
+                    distance += location.distance(from: self.locations.last!)
+                }
+            }
+            
+            self.locations.append(location)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
