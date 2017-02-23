@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ActivityViewController: UIViewController {
+class ActivityViewController: UITableViewController {
     
     // MARK: - Properties
     
     var activityView = ActivityView()
+
     
     // MARK: - View Lifecycle
     
@@ -22,16 +23,22 @@ class ActivityViewController: UIViewController {
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
         
-        self.view.addSubview(activityView)
-        setupConstraints()
-        self.view.setNeedsUpdateConstraints()
-    }
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.register(HealthKitTableViewCell.self, forCellReuseIdentifier: "HealthKitCell")
+        tableView.register(MapTableViewCell.self, forCellReuseIdentifier: "MapCell")
+        tableView.register(WatchTableViewCell.self, forCellReuseIdentifier: "WatchCell")
+        tableView.register(CountTableViewCell.self, forCellReuseIdentifier: "CountCell")
+        tableView.register(HeartRateTableViewCell.self, forCellReuseIdentifier: "HeartRateCell")
+        
+   }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: - Layout
+    //Mark: - Layout
     
     func setupConstraints() {
         activityView.translatesAutoresizingMaskIntoConstraints = false
@@ -41,4 +48,81 @@ class ActivityViewController: UIViewController {
         let rightView = activityView.rightAnchor.constraint(equalTo: view.rightAnchor)
         NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
     }
+    
+    
+    // MARK: UITableView Delegate and Datasource
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//    }
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            if let cell: HealthKitTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HealthKitCell") as? HealthKitTableViewCell {
+                return cell
+            }
+        }
+        if indexPath.row == 1 {
+            if let cell: MapTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MapCell") as? MapTableViewCell {
+                return cell
+            }
+        }
+        if indexPath.row == 2 {
+            if let cell: WatchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WatchCell") as? WatchTableViewCell {
+//                cell.watchButton.addTarget(self, action: #selector(self.watchButtonPressed), for: .touchUpInside)
+                return cell
+            }
+        }
+        if indexPath.row == 3 {
+            if let cell: CountTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CountCell") as? CountTableViewCell {
+                return cell
+            }
+        }
+        if indexPath.row == 4 {
+            if let cell: HeartRateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HeartRateCell") as? HeartRateTableViewCell {
+                return cell
+            }
+        }
+        return UITableViewCell()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            let destination = HealthKitViewController()
+            navigationController?.pushViewController(destination, animated: true)
+        }
+        if indexPath.row == 1 {
+            let destination = MapViewController()
+            navigationController?.pushViewController(destination, animated: true)
+        }
+        if indexPath.row == 2 {
+            let destination = WatchViewController()
+            navigationController?.pushViewController(destination, animated: true)
+        }
+        if indexPath.row == 3 {
+            let destination = CountViewController()
+            navigationController?.pushViewController(destination, animated: true)
+        }
+        if indexPath.row == 4 {
+            let destination = HeartRateViewController()
+            navigationController?.pushViewController(destination, animated: true)
+        }
+    }
+    
+//    func watchButtonPressed() {
+//        //not possible url scheme doesnt work.
+//        print("watch button clicked")
+//        let watchString = "clock-timer:"
+//        let url = URL(string:watchString)!
+//        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+//    }
 }
