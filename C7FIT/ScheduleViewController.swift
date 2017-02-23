@@ -189,7 +189,6 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         let phoneString = "tel://" + gymPhone
         let url = URL(string:phoneString)!
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
-    
     }
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
