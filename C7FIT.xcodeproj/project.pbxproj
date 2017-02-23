@@ -801,6 +801,7 @@
 			baseConfigurationReference = F766E4B10DB4A79B8120E9B5 /* Pods-C7FIT.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = C7FIT/C7FIT.entitlements;
 				DEVELOPMENT_TEAM = 27G39RU5P8;
 				INFOPLIST_FILE = C7FIT/Info.plist;
@@ -816,6 +817,7 @@
 			baseConfigurationReference = F464551DBAC59E09F9A579D3 /* Pods-C7FIT.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = C7FIT/C7FIT.entitlements;
 				DEVELOPMENT_TEAM = 27G39RU5P8;
 				INFOPLIST_FILE = C7FIT/Info.plist;
