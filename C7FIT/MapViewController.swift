@@ -20,8 +20,24 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     lazy var locationManager = CLLocationManager()
     var seconds = 0.0
     var distance = 0.0
+    var pace = ""
     lazy var locations = [CLLocation()]
     lazy var timer = Timer()
+    
+    var lastRun = runData()
+    
+    class runData {
+        var time = 0.0
+        var distance = 0.0
+        var pace = ""
+        var locations = [Location()]
+    }
+    
+    struct Location {
+        var timestamp = Date()
+        var latitude = CLLocationDegrees()
+        var longtitude = CLLocationDegrees()
+    }
     
     // MARK: - View Lifecycle
     
@@ -47,7 +63,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         super.didReceiveMemoryWarning()
     }
     
-
     // MARK: - Layout
     
     func setupConstraints() {
@@ -61,6 +76,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: - Tracking run
     
+    // MARK: Start/Stop Buttons
     func startTrackRun(){
         seconds = 0.0
         distance = 0.0
@@ -70,11 +86,36 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func stopTrackRun(){
+        //open up run in detail view here
+        
+        //ask user if they want to save run
+        saveRun()
         timer.invalidate()
         locationManager.stopUpdatingLocation()
-        //save run data here
     }
     
+    // MARK: Save run
+    func saveRun() {
+        let tempRun = runData()
+        var savedLocations = [Location()]
+        
+        for location in locations {
+            var tempLocation = Location()
+            tempLocation.timestamp = location.timestamp
+            tempLocation.latitude = location.coordinate.latitude
+            tempLocation.longtitude = location.coordinate.longitude
+            savedLocations.append(tempLocation)
+        }
+        
+        tempRun.distance = distance
+        tempRun.time = seconds
+        tempRun.pace = pace
+        tempRun.locations = savedLocations
+        
+        lastRun = tempRun
+    }
+    
+    // MARK: location tracking
     func setupLocationTracking() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -85,22 +126,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         if (CLLocationManager.locationServicesEnabled()) {
             locationManager.startUpdatingLocation()
         }
-        
     }
-    
-    func eachSecond(timer: Timer) {
-        seconds = seconds + 1
-        let secondsQuantity = HKQuantity(unit: HKUnit.second(), doubleValue: seconds)
-        mapViewApp.secondsQuantity.text = "Time: " + secondsQuantity.description
-        
-        let distanceQuantity = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
-        mapViewApp.distanceQuantity.text = "Distance: " + distanceQuantity.description
-        
-        //convert to mph
-        let paceUnit = HKUnit.meter().unitDivided(by: HKUnit.second())
-        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: distance / seconds)
-        mapViewApp.paceQuantity.text = "Pace: " + paceQuantity.description
-     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         for location in locations {
@@ -117,6 +143,22 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
     {
         print("Error \(error)")
+    }
+    
+    // MARK: Timer
+    func eachSecond(timer: Timer) {
+        seconds = seconds + 1
+        let secondsQuantity = HKQuantity(unit: HKUnit.second(), doubleValue: seconds)
+        mapViewApp.secondsQuantity.text = "Time: " + secondsQuantity.description
+        
+        let distanceQuantity = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
+        mapViewApp.distanceQuantity.text = "Distance: " + distanceQuantity.description
+        
+        //convert to mph
+        let paceUnit = HKUnit.meter().unitDivided(by: HKUnit.second())
+        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: distance / seconds)
+        mapViewApp.paceQuantity.text = "Pace: " + paceQuantity.description
+        pace = paceQuantity.description
     }
 
 }
