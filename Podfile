@@ -6,6 +6,7 @@ target 'C7FIT' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'Firebase/Auth'
+  pod 'OAuthSwift'
 
   target 'C7FITTests' do
     inherit! :search_paths
