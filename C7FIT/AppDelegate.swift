@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarController = UITabBarController()
         let tabViewController1 = HomeViewController()
         let tabViewController2 = ScheduleViewController()
-        let tabViewController3 = StoreViewController()
+        let tabViewController3 = StoreViewController(collectionViewLayout: UICollectionViewFlowLayout())
         let tabViewController4 = ActivityViewController()
         let tabViewController5 = ProfileViewController()
         
