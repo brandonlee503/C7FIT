@@ -8,37 +8,55 @@
 
 import UIKit
 
-class StoreViewController: UIViewController {
+class StoreViewController: UICollectionViewController {
 
+    // MARK: - Constants
+    
+    let storeCellIdentifier = "StoreCell"
+    
     // MARK: - Properties
     
-    var storeView = StoreView()
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Store"
-        self.view.backgroundColor = .white
+        self.collectionView?.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
+        collectionView?.register(StoreCell.self, forCellWithReuseIdentifier: storeCellIdentifier)
+
+        let url = URL(string: "http://138.68.48.26:5000/")
         
-        self.view.addSubview(storeView)
-        setupConstraints()
-        self.view.setNeedsUpdateConstraints()
+        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
+            guard error == nil, let data = data else {
+                print("error")
+                return
+            }
+            
+            let json = try! JSONSerialization.jsonObject(with: data, options: [])
+            print(json)
+        }
+        
+        task.resume()
+        
+        collectionView?.setNeedsUpdateConstraints()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    // MARK: - UICollectionView Delegate and Datasource
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
     
-    // MARK: - Layout
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
     
-    func setupConstraints() {
-        storeView.translatesAutoresizingMaskIntoConstraints = false
-        let topView = storeView.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomView = storeView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leftView = storeView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        let rightView = storeView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: storeCellIdentifier, for: indexPath)
+        return cell
     }
 }
