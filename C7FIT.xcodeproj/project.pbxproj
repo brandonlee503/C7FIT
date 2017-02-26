@@ -216,10 +216,10 @@
 		160D9B751E0B7FC500801627 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7A8B9D2C1E5272C600B88316 /* ActivityViews */,
 				160D9B791E0B88EE00801627 /* HomeView.swift */,
 				7A3E51BC1E4BD1B5009BA84A /* ScheduleViews */,
 				160D9B811E0BF92700801627 /* StoreView.swift */,
+				7A8B9D2C1E5272C600B88316 /* ActivityViews */,
 				166983D91E5088A800B36107 /* ProfileViews */,
 			);
 			name = Views;
