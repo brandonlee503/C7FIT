@@ -16,7 +16,6 @@
 		160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B7B1E0BF4CC00801627 /* ScheduleViewController.swift */; };
 		160D9B7E1E0BF5DC00801627 /* ScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B7D1E0BF5DC00801627 /* ScheduleView.swift */; };
 		160D9B801E0BF91400801627 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B7F1E0BF91400801627 /* StoreViewController.swift */; };
-		160D9B821E0BF92700801627 /* StoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B811E0BF92700801627 /* StoreView.swift */; };
 		160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B831E0BFA4500801627 /* ActivityView.swift */; };
 		160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B871E0BFA6A00801627 /* ActivityViewController.swift */; };
 		160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B891E0BFA7A00801627 /* ProfileViewController.swift */; };
@@ -88,7 +87,6 @@
 		160D9B7B1E0BF4CC00801627 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		160D9B7D1E0BF5DC00801627 /* ScheduleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleView.swift; sourceTree = "<group>"; };
 		160D9B7F1E0BF91400801627 /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
-		160D9B811E0BF92700801627 /* StoreView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreView.swift; sourceTree = "<group>"; };
 		160D9B831E0BFA4500801627 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		160D9B871E0BFA6A00801627 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		160D9B891E0BFA7A00801627 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -218,7 +216,7 @@
 			children = (
 				160D9B791E0B88EE00801627 /* HomeView.swift */,
 				7A3E51BC1E4BD1B5009BA84A /* ScheduleViews */,
-				160D9B811E0BF92700801627 /* StoreView.swift */,
+				1626F8331E62B173002E2A9B /* StoreViews */,
 				7A8B9D2C1E5272C600B88316 /* ActivityViews */,
 				166983D91E5088A800B36107 /* ProfileViews */,
 			);
@@ -235,6 +233,13 @@
 				166983DA1E5088D500B36107 /* Profile */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		1626F8331E62B173002E2A9B /* StoreViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = StoreViews;
 			sourceTree = "<group>";
 		};
 		163771521E398E07000B3E87 /* Stores */ = {
@@ -644,7 +649,6 @@
 				7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */,
 				160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */,
 				160D9B801E0BF91400801627 /* StoreViewController.swift in Sources */,
-				160D9B821E0BF92700801627 /* StoreView.swift in Sources */,
 				16D2D2EA1E38020300F6AA9F /* ProfileTableViewCell.swift in Sources */,
 				7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */,
 				16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */,
