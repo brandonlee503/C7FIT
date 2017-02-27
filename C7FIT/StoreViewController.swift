@@ -13,6 +13,7 @@ class StoreViewController: UICollectionViewController {
     // MARK: - Constants
     
     let storeCellIdentifier = "StoreCell"
+    let ebayDataManager = eBayDataManager()
     
     // MARK: - Properties
     
@@ -27,20 +28,10 @@ class StoreViewController: UICollectionViewController {
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.register(StoreCell.self, forCellWithReuseIdentifier: storeCellIdentifier)
-
-        let url = URL(string: "http://138.68.48.26:5000/")
         
-        let task = URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            guard error == nil, let data = data else {
-                print("error")
-                return
-            }
-            
-            let json = try! JSONSerialization.jsonObject(with: data, options: [])
-            print(json)
+        ebayDataManager.getOAuth2Token() { token in
+            print("da token: \(token)")
         }
-        
-        task.resume()
         
         collectionView?.setNeedsUpdateConstraints()
     }
