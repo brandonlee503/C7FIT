@@ -29,7 +29,6 @@ class StoreViewController: UICollectionViewController {
         collectionView?.dataSource = self
         collectionView?.register(StoreCell.self, forCellWithReuseIdentifier: storeCellIdentifier)
         
-        ebayDataManager.getItem(itemID: "v1%7C110187921047%7C0") { data in
             print(data)
         }
         
