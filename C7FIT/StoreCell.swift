@@ -28,6 +28,7 @@ class StoreCell: UICollectionViewCell {
     // MARK: - Layout
     
     func setup() {
+        self.backgroundColor = .green
         storeLabel.text = "Logout"
         storeLabel.textColor = .black
         addSubview(storeLabel)

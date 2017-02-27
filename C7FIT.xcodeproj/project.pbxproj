@@ -20,6 +20,7 @@
 		160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B871E0BFA6A00801627 /* ActivityViewController.swift */; };
 		160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B891E0BFA7A00801627 /* ProfileViewController.swift */; };
 		1626F8351E62B204002E2A9B /* StoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1626F8341E62B204002E2A9B /* StoreCell.swift */; };
+		1626F8371E62BD1A002E2A9B /* eBayDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */; };
 		163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163771531E398E2B000B3E87 /* FirebaseDataManager.swift */; };
 		163DFC101E41A43A00593CF9 /* AbstractHealthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163DFC0F1E41A43A00593CF9 /* AbstractHealthCell.swift */; };
 		164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164BAAA91E36E5BA00DE4C71 /* LoginViewController.swift */; };
@@ -92,6 +93,7 @@
 		160D9B871E0BFA6A00801627 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		160D9B891E0BFA7A00801627 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		1626F8341E62B204002E2A9B /* StoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCell.swift; sourceTree = "<group>"; };
+		1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayDataManager.swift; sourceTree = "<group>"; };
 		163771531E398E2B000B3E87 /* FirebaseDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataManager.swift; sourceTree = "<group>"; };
 		163DFC0F1E41A43A00593CF9 /* AbstractHealthCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractHealthCell.swift; sourceTree = "<group>"; };
 		164BAAA91E36E5BA00DE4C71 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				163771531E398E2B000B3E87 /* FirebaseDataManager.swift */,
 				16576F161E1295C300BF622D /* StringExtensions.swift */,
 				7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */,
+				1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */,
 			);
 			name = Stores;
 			sourceTree = "<group>";
@@ -654,6 +657,7 @@
 				160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */,
 				160D9B801E0BF91400801627 /* StoreViewController.swift in Sources */,
 				16D2D2EA1E38020300F6AA9F /* ProfileTableViewCell.swift in Sources */,
+				1626F8371E62BD1A002E2A9B /* eBayDataManager.swift in Sources */,
 				7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */,
 				16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */,
 				7AF7BC041E5467C10059A62A /* HeartRateViewController.swift in Sources */,
