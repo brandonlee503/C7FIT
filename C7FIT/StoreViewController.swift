@@ -29,8 +29,8 @@ class StoreViewController: UICollectionViewController {
         collectionView?.dataSource = self
         collectionView?.register(StoreCell.self, forCellWithReuseIdentifier: storeCellIdentifier)
         
-        ebayDataManager.getOAuth2Token() { token in
-            print("da token: \(token)")
+        ebayDataManager.getItem(itemID: "v1%7C110187921047%7C0") { data in
+            print(data)
         }
         
         collectionView?.setNeedsUpdateConstraints()
