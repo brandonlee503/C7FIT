@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapView: UIView, MKMapViewDelegate {
+class MapView: UIView {
     // MARK: - Properties
     
     var titleLabel: UILabel = UILabel()

@@ -6,19 +6,12 @@
 //  Copyright © 2017 Brandon Lee. All rights reserved.
 //
 
-//
-//  MapDetailViewViewController.swift
-//  C7FIT
-//
-//  Created by Michael Lee on 2/23/17.
-//  Copyright © 2017 Brandon Lee. All rights reserved.
-//
 
 import UIKit
 import HealthKit
 import MapKit
 
-class MapDetailViewController: UIViewController {
+class MapDetailViewController: UIViewController, MKMapViewDelegate {
     
     var mapView = MapDetailView()
     var currentRun: RunData
@@ -27,10 +20,21 @@ class MapDetailViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
+        
         self.edgesForExtendedLayout = []
+        mapView.mapView.showsUserLocation = true
+        self.mapView.mapView.delegate = self
         
         self.view.addSubview(mapView)
-        loadMap()
+        
+        if(loadMap()) {
+            let saveAlert = UIAlertController(title: "Do you want to save your run?", message: "Please allow C7Fit to use your location to track your run", preferredStyle: UIAlertControllerStyle.alert)
+            //add save function
+            saveAlert.addAction(UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: nil))
+            saveAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+            self.present(saveAlert, animated: true, completion: nil)
+        }
+        
         setupConstraints()
     }
     
@@ -59,9 +63,8 @@ class MapDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     func mapRegion() -> MKCoordinateRegion {
-        let initialLoc = currentRun.locations[1]
+        let initialLoc = currentRun.locations[0]
         
         var minLat = initialLoc.latitude
         var minLng = initialLoc.longitude
@@ -71,59 +74,49 @@ class MapDetailViewController: UIViewController {
         let locations = currentRun.locations
         
         for location in locations {
-//            print(location.latitude)
-//            print(location.longitude)
             minLat = min(minLat, location.latitude)
             minLng = min(minLng, location.longitude)
             maxLat = max(maxLat, location.latitude)
             maxLng = max(maxLng, location.longitude)
         }
         
-//        print("minLat \(minLat)")
-//        print("minLng \(minLng)")
-//        print("maxLat \(maxLat)")
-//        print("maxLng \(maxLng)")
         return MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: (minLat + maxLat)/2,
-                                           longitude: (minLng + maxLng)/2),
-            span: MKCoordinateSpan(latitudeDelta: (maxLat - minLat)*1.1,
-                                   longitudeDelta: (maxLng - minLng)*1.1))
+            center: CLLocationCoordinate2D(latitude: (minLat + maxLat)/2, longitude: (minLng + maxLng)/2),
+            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     }
     
-    func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
-        if !overlay.isKind(of: MKPolyline.self) {
-            return nil
-        }
-        
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let polyline = overlay as! MKPolyline
         let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.strokeColor = UIColor.black
-        renderer.lineWidth = 3
+        renderer.lineWidth = 4.0
         return renderer
     }
     
     func polyline() -> MKPolyline {
         var coords = [CLLocationCoordinate2D]()
         
+        print("polyline")
         let locations = currentRun.locations
         for location in locations {
             coords.append(CLLocationCoordinate2D(latitude: location.latitude,
                                                  longitude: location.longitude))
         }
-        
+        print(coords)
         return MKPolyline(coordinates: &coords, count: currentRun.locations.count)
     }
     
-    func loadMap() {
+    func loadMap() -> Bool {
         if currentRun.locations.count > 0 {
             print("loading map")
             mapView.mapView.isHidden = false
             
-            // Set the map bounds
             mapView.mapView.region = mapRegion()
+            print("region done")
             
-            // Make the line(s!) on the map
-            mapView.mapView.add(polyline())
+            mapView.mapView.add(polyline(), level: MKOverlayLevel.aboveRoads)
+            print("line added")
+            return true
         } else {
             // No locations were found!
             mapView.mapView.isHidden = true
@@ -132,9 +125,8 @@ class MapDetailViewController: UIViewController {
 //                        message: "Sorry, this run has no locations saved",
 //                        delegate:nil,
 //                        cancelButtonTitle: "OK").show()
+            return false
         }
     }
-    
-    
     
 }

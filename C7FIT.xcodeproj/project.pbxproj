@@ -33,6 +33,7 @@
 		16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2D2ED1E3874F800F6AA9F /* LogoutTableViewCell.swift */; };
 		16FFF43A1E345748009B4F34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16FFF4391E345748009B4F34 /* GoogleService-Info.plist */; };
 		16FFF43D1E3459C2009B4F34 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFF43C1E3459C2009B4F34 /* User.swift */; };
+		7A1CD7A81E6400E600953698 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1CD7A71E6400E600953698 /* MapKit.framework */; };
 		7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7699391E3962E90086519A /* ScheduleBrowserTableViewCell.swift */; };
 		7A8B9D2E1E52735600B88316 /* HealthKitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D2D1E52735600B88316 /* HealthKitTableViewCell.swift */; };
 		7A8B9D301E52751500B88316 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D2F1E52751500B88316 /* MapTableViewCell.swift */; };
@@ -114,6 +115,7 @@
 		16FFF43E1E345F17009B4F34 /* C7FIT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = C7FIT.entitlements; sourceTree = "<group>"; };
 		53076A0C8FE5245144D9ECCE /* Pods_C7FIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C7FIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F1638978FFA2B1F2F25C7A2 /* Pods-C7FITTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FITTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-C7FITTests/Pods-C7FITTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7A1CD7A71E6400E600953698 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7A7699391E3962E90086519A /* ScheduleBrowserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleBrowserTableViewCell.swift; sourceTree = "<group>"; };
 		7A8B9D2D1E52735600B88316 /* HealthKitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitTableViewCell.swift; sourceTree = "<group>"; };
 		7A8B9D2F1E52751500B88316 /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC0EF005D0A9CB5AD7082EE2 /* Pods_C7FIT.framework in Frameworks */,
+				7A1CD7A81E6400E600953698 /* MapKit.framework in Frameworks */,
 				7AF7BC061E54EDDE0059A62A /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,6 +318,7 @@
 		1796F25B9292C74D5876C980 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7A1CD7A71E6400E600953698 /* MapKit.framework */,
 				7AF7BC051E54EDDE0059A62A /* HealthKit.framework */,
 				53076A0C8FE5245144D9ECCE /* Pods_C7FIT.framework */,
 				A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */,
@@ -474,6 +478,9 @@
 								enabled = 1;
 							};
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
 						};

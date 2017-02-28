@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapDetailView: UIView {
+class MapDetailView: UIView, MKMapViewDelegate{
     
     // MARK: - Properties
     
