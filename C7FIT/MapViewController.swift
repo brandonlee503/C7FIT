@@ -11,7 +11,7 @@ import MapKit
 import HealthKit
 import CoreLocation
 
-class MapViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate{
 
     
     // MARK: - Properties
@@ -37,6 +37,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         
         mapViewApp.startButton.addTarget(self, action: #selector(startTrackRun), for: .touchUpInside)
         mapViewApp.stopButton.addTarget(self, action: #selector(stopTrackRun), for: .touchUpInside)
+        mapViewApp.stopButton.isEnabled = false
+        mapViewApp.mapView.showsUserLocation = true
         
         self.view.addSubview(mapViewApp)
         setupConstraints()
@@ -65,6 +67,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     
     // MARK: Start/Stop Buttons
     func startTrackRun(){
+        if(!CLLocationManager.locationServicesEnabled()) {
+            let alert = UIAlertController(title: "Location Services Disabled", message: "Please allow C7Fit to use your location to track your run", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return;
+        }
+        
+        mapViewApp.stopButton.isEnabled = true
+        mapViewApp.startButton.isEnabled = false
+        
         seconds = 0.0
         distance = 0.0
         locations.removeAll(keepingCapacity: false)
@@ -73,9 +85,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func stopTrackRun(){
-        //open up run in detail view here
+        mapViewApp.startButton.isEnabled = true
+        mapViewApp.stopButton.isEnabled = false
         
-//        print(locations)
+        //open up run in detail view here
         //ask user if they want to save run
         createRunData()
         self.navigationController?.pushViewController(MapDetailViewController(run:lastRun), animated: true)
@@ -83,7 +96,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     
-    // MARK: Save run
+    // MARK: Create Run Data
     func createRunData() {
         var tempRun = RunData()
         var savedLocations = [Location]()
@@ -92,52 +105,45 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         print(savedLocations)
         var i = 0
         for location in locations {
-//            print(location)
             var tempLocation = Location()
             tempLocation.timestamp = location.timestamp
             tempLocation.latitude = location.coordinate.latitude
             tempLocation.longitude = location.coordinate.longitude
-//            print(i)
-//            print(tempLocation)
             savedLocations.append(tempLocation)
             i = i + 1
         }
-        
         tempRun.distance = distance
         tempRun.time = seconds
         tempRun.pace = pace
         tempRun.locations = savedLocations
-        print("printing saved locations")
-        print(savedLocations)
         lastRun = tempRun
-    
     }
     
     // MARK: location tracking
     func setupLocationTracking() {
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.activityType = .fitness
-        locationManager.distanceFilter = 10
+        locationManager.distanceFilter = 5
         locationManager.requestAlwaysAuthorization()
-        
         if (CLLocationManager.locationServicesEnabled()) {
             locationManager.startUpdatingLocation()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        print("printing locations")
         for location in locations {
-            if location.horizontalAccuracy < 20 {
+            //Focus on the runner
+            let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            mapViewApp.mapView.setRegion(region, animated: true)
+            
+            if location.horizontalAccuracy < 50 {
                 if self.locations.count > 0 {
                     distance += location.distance(from: self.locations.last!)
                 }
                 self.locations.append(location)
             }
-            
-//            print(location)
-            
         }
     }
     
@@ -149,13 +155,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     // MARK: Timer
     func eachSecond(timer: Timer) {
         seconds = seconds + 1
-        let secondsQuantity = HKQuantity(unit: HKUnit.second(), doubleValue: seconds)
-        mapViewApp.secondsQuantity.text = "Time: " + secondsQuantity.description
+        let totalTimeQuantity = seconds
+        let minuteQuantity = HKQuantity(unit: HKUnit.minute(), doubleValue: floor(seconds/60))
+        let secondsQuantity = HKQuantity(unit: HKUnit.second(), doubleValue: seconds.truncatingRemainder(dividingBy: 60.0))
+        mapViewApp.secondsQuantity.text = "Time: " + minuteQuantity.description + " " + secondsQuantity.description
         
         let distanceQuantity = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
         mapViewApp.distanceQuantity.text = "Distance: " + distanceQuantity.description
         
-        //convert to mph
+    // convert to mile per minute
         let paceUnit = HKUnit.meter().unitDivided(by: HKUnit.second())
         let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: distance / seconds)
         mapViewApp.paceQuantity.text = "Pace: " + paceQuantity.description
