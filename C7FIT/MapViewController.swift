@@ -101,12 +101,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
         var tempRun = RunData()
         var savedLocations = [Location]()
         
-        print("initial")
         print(savedLocations)
         var i = 0
         for location in locations {
             var tempLocation = Location()
-            tempLocation.timestamp = location.timestamp
+            tempLocation.timestamp = location.timestamp.description
             tempLocation.latitude = location.coordinate.latitude
             tempLocation.longitude = location.coordinate.longitude
             savedLocations.append(tempLocation)
@@ -155,10 +154,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     // MARK: Timer
     func eachSecond(timer: Timer) {
         seconds = seconds + 1
-        let totalTimeQuantity = seconds
+//        let totalTimeQuantity = seconds
         let minuteQuantity = HKQuantity(unit: HKUnit.minute(), doubleValue: floor(seconds/60))
         let secondsQuantity = HKQuantity(unit: HKUnit.second(), doubleValue: seconds.truncatingRemainder(dividingBy: 60.0))
-        mapViewApp.secondsQuantity.text = "Time: " + minuteQuantity.description + " " + secondsQuantity.description
+        mapViewApp.secondsQuantity.text = "Time Elapsed: " + minuteQuantity.description + " " + secondsQuantity.description
         
         let distanceQuantity = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
         mapViewApp.distanceQuantity.text = "Distance: " + distanceQuantity.description

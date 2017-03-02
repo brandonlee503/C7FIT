@@ -18,6 +18,8 @@ class MapDetailView: UIView, MKMapViewDelegate{
     var secondsQuantity: UILabel = UILabel()
     var distanceQuantity: UILabel = UILabel()
     var paceQuantity: UILabel = UILabel()
+    
+    var saveButton: UIButton = UIButton()
 
     // MARK: - Initialization
     
@@ -33,6 +35,10 @@ class MapDetailView: UIView, MKMapViewDelegate{
     
     
     func setup() {
+        //save button
+        saveButton.setTitle("Save Run", for: .normal)
+        saveButton.backgroundColor = .yellow
+        addSubview(saveButton)
         
         secondsQuantity.text = "Seconds: "
         addSubview(secondsQuantity)
@@ -53,10 +59,16 @@ class MapDetailView: UIView, MKMapViewDelegate{
     }
     
     func setupConstraints() {
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        let saveLead = saveButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 0)
+        let saveTrail = saveButton.rightAnchor.constraint(equalTo: rightAnchor)
+        let saveTop = saveButton.topAnchor.constraint(equalTo: topAnchor, constant: 0)
+        NSLayoutConstraint.activate([saveLead, saveTrail, saveTop])
+        
         
         distanceQuantity.translatesAutoresizingMaskIntoConstraints = false
         let distanceLead = distanceQuantity.leftAnchor.constraint(equalTo: leftAnchor, constant: 10)
-        let distanceTop = distanceQuantity.topAnchor.constraint(equalTo: topAnchor, constant: 10)
+        let distanceTop = distanceQuantity.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 10)
         NSLayoutConstraint.activate([distanceLead, distanceTop])
         
         secondsQuantity.translatesAutoresizingMaskIntoConstraints = false
