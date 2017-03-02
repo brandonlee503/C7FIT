@@ -13,6 +13,10 @@ import MapKit
 
 class MapDetailViewController: UIViewController, MKMapViewDelegate {
     
+    let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
+    
+    
+    var userID: String?
     var mapView = MapDetailView()
     var currentRun: RunData
     
@@ -25,15 +29,23 @@ class MapDetailViewController: UIViewController, MKMapViewDelegate {
         mapView.mapView.showsUserLocation = true
         self.mapView.mapView.delegate = self
         
+        
+        
         self.view.addSubview(mapView)
         
+        
         if(loadMap()) {
-            let saveAlert = UIAlertController(title: "Do you want to save your run?", message: "Please allow C7Fit to use your location to track your run", preferredStyle: UIAlertControllerStyle.alert)
-            //add save function
-            saveAlert.addAction(UIAlertAction(title: "Save", style: UIAlertActionStyle.default, handler: nil))
-            saveAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
-            self.present(saveAlert, animated: true, completion: nil)
+            self.mapView.saveButton.addTarget(self, action: #selector(saveRun), for: .touchUpInside)
+        } else {
+            self.mapView.saveButton.addTarget(self, action: #selector(cantSaveRun), for: .touchUpInside)
         }
+
+        //what data display for run?
+        
+        //save run
+        
+        //mile breakdown?
+        
         
         setupConstraints()
     }
@@ -82,6 +94,7 @@ class MapDetailViewController: UIViewController, MKMapViewDelegate {
         
         return MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: (minLat + maxLat)/2, longitude: (minLng + maxLng)/2),
+            //change span doesnt work for long runs
             span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     }
     
@@ -93,6 +106,7 @@ class MapDetailViewController: UIViewController, MKMapViewDelegate {
         return renderer
     }
     
+    //draw line from coordinates
     func polyline() -> MKPolyline {
         var coords = [CLLocationCoordinate2D]()
         
@@ -119,8 +133,8 @@ class MapDetailViewController: UIViewController, MKMapViewDelegate {
             return true
         } else {
             // No locations were found!
-            mapView.mapView.isHidden = true
-            
+//            mapView.mapView.isHidden = true
+        
 //            UIAlertView(title: "Error",
 //                        message: "Sorry, this run has no locations saved",
 //                        delegate:nil,
@@ -128,5 +142,22 @@ class MapDetailViewController: UIViewController, MKMapViewDelegate {
             return false
         }
     }
+    
+    func saveRun() {
+        firebaseDataManager.monitorLoginState() { auth, user in
+            guard let userID = user?.uid else { return self.present(LoginViewController(), animated: true, completion: nil) }
+            self.userID = userID
+            print("state change, new Run: \(self.currentRun.runTitle)")
+            self.firebaseDataManager.updateUserRun(uid: userID, runTitle:self.currentRun.runTitle, userRun: self.currentRun)
+        }
+    }
+    
+    func cantSaveRun() {
+        let alert = UIAlertController(title: "Location Data Error", message: "This run couldn't be saved sorry", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     
 }

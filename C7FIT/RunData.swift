@@ -7,10 +7,50 @@
 //
 
 import Foundation
+import Firebase
 
 struct RunData {
-    var time = 0.0
-    var distance = 0.0
-    var pace = ""
-    var locations = [Location()]
+    var runTitle: String
+    var time: Double
+    var distance: Double
+    var pace: String
+    var locations: [Location]
+//    let dateTime: NSDate
+    
+    init(){
+        self.runTitle = "testing"
+        self.time = 0.0
+        self.distance = 0.0
+        self.pace = ""
+        self.locations = []
+    }
+    
+    init(runTitle: String, time: Double, distance: Double, pace: String, locations: [Location], dateTime: NSDate) {
+        self.runTitle = runTitle
+        self.time = time
+        self.distance = distance
+        self.pace = pace
+        self.locations = locations
+//        self.dateTime = dateTime
+    }
+    
+    func convertLocToString() -> [String] {
+        var resultArr = [String]()
+        for item in self.locations {
+            var tempString = item.toJSON()
+            resultArr.append(tempString)
+        }
+        return resultArr
+    }
+    
+    func toAnyObject() -> Any {
+        return [
+            "runTitle": runTitle,
+            "time": time.description,
+            "distance": distance.description,
+            "pace": pace,
+            "locations": convertLocToString(),
+//            dateTime: dateTime
+        ]
+    }
 }
