@@ -97,7 +97,7 @@ class eBayDataManager {
     }
     
     /**
-        Fetches a list of items based off of a search query.
+        Fetches a list of items based off of a search query with a limit of 10 items.
         - Parameter query: The item search query
         - Returns completion: A callback that returns a list of items in JSON
      */
@@ -105,7 +105,7 @@ class eBayDataManager {
         let headers = [
             "authorization": OAuth2Token
         ]
-        let url = URL(string: "\(browseAPIbaseURL)item_summary/search?q=\(query)")!
+        let url = URL(string: "\(browseAPIbaseURL)item_summary/search?q=\(query)&limit=10")!
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
