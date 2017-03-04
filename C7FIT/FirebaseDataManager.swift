@@ -88,6 +88,15 @@ struct FirebaseDataManager {
     }
     
     /**
+     fetch user runs
+    */
+    func fetchUserRun(uid: String, runTitle: String, completion: @escaping (_: FIRDataSnapshot) -> Void) {
+        ref.child("userRun").child(uid).child(runTitle).observeSingleEvent(of: .value, with: { snapshot in
+            completion(snapshot)
+        })
+    }
+    
+    /**
         Monitor the login state of the user.
         
         - Returns completion: A callback that returns FIRAuthStateDidChangeListenerHandle
@@ -112,6 +121,15 @@ struct FirebaseDataManager {
     }
     
     /**
+        Updates any new attributes of a given user's run
+    */
+    func updateUserRun(uid: String, runTitle: String, userRun: RunData) {
+        let newUserRun = self.ref.child("userRun").child(uid).child(runTitle)
+        newUserRun.setValue(userRun.toAnyObject())
+    }
+    
+    
+    /**
         Uploads new profile picture to Firebase Storage
      
         - Parameter uid: User's universal ID
@@ -132,4 +150,7 @@ struct FirebaseDataManager {
             }
         }
     }
+    
+    
+    
 }
