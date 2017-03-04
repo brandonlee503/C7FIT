@@ -67,6 +67,12 @@ class eBayDataManager {
         dataTask.resume()
     }
   
+    
+    /**
+        Fetches an item based off of its ID.
+         - Parameter itemID: ItemID
+         - Returns completion: A callback that returns the item JSON
+     */
     func getItem(itemID: String, completion: @escaping ([String: Any]?) -> Void) {
         let headers = [
             "authorization": OAuth2Token
@@ -75,7 +81,7 @@ class eBayDataManager {
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
-        let dataTask = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
+        let dataTask = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             guard let data = data, error == nil else {
                 print("Error in retrieving item: \(error?.localizedDescription)")
                 return
@@ -85,7 +91,35 @@ class eBayDataManager {
             }
             
             completion(dataDict)
-        })
+        }
+        
+        dataTask.resume()
+    }
+    
+    /**
+        Fetches a list of items based off of a search query.
+        - Parameter query: The item search query
+        - Returns completion: A callback that returns a list of items in JSON
+     */
+    func searchItem(query: String, completion: @escaping([String: Any]?) -> Void) {
+        let headers = [
+            "authorization": OAuth2Token
+        ]
+        let url = URL(string: "\(browseAPIbaseURL)item_summary/search?q=\(query)")!
+        let request = NSMutableURLRequest(url: url)
+        request.httpMethod = "GET"
+        request.allHTTPHeaderFields = headers
+        let dataTask = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
+            guard let data = data, error == nil else {
+                print("Error in retrieving item: \(error?.localizedDescription)")
+                return
+            }
+            guard let dataJSON = try? JSONSerialization.jsonObject(with: data, options: []), let dataDict = dataJSON as? [String: Any] else {
+                return
+            }
+            
+            completion(dataDict)
+        }
         
         dataTask.resume()
     }
