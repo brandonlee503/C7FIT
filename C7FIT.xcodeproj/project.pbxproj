@@ -19,7 +19,7 @@
 		160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B831E0BFA4500801627 /* ActivityView.swift */; };
 		160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B871E0BFA6A00801627 /* ActivityViewController.swift */; };
 		160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B891E0BFA7A00801627 /* ProfileViewController.swift */; };
-		1626F8351E62B204002E2A9B /* StoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1626F8341E62B204002E2A9B /* StoreCell.swift */; };
+		1626F8351E62B204002E2A9B /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1626F8341E62B204002E2A9B /* CategoryCell.swift */; };
 		1626F8371E62BD1A002E2A9B /* eBayDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */; };
 		163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163771531E398E2B000B3E87 /* FirebaseDataManager.swift */; };
 		163DFC101E41A43A00593CF9 /* AbstractHealthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163DFC0F1E41A43A00593CF9 /* AbstractHealthCell.swift */; };
@@ -27,6 +27,7 @@
 		164BAAAC1E36E5D900DE4C71 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164BAAAB1E36E5D900DE4C71 /* LoginView.swift */; };
 		16576F171E1295C300BF622D /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16576F161E1295C300BF622D /* StringExtensions.swift */; };
 		1658B9DE1E0F9EFD009D4F67 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1658B9DD1E0F9EFD009D4F67 /* ProfileViewModel.swift */; };
+		16BFBBB41E6A7C7A001D088A /* eBayItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BFBBB31E6A7C7A001D088A /* eBayItemCell.swift */; };
 		16D2D2EA1E38020300F6AA9F /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2D2E91E38020300F6AA9F /* ProfileTableViewCell.swift */; };
 		16D2D2EC1E38638600F6AA9F /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2D2EB1E38638600F6AA9F /* CircularImageView.swift */; };
 		16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2D2ED1E3874F800F6AA9F /* LogoutTableViewCell.swift */; };
@@ -97,7 +98,7 @@
 		160D9B831E0BFA4500801627 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		160D9B871E0BFA6A00801627 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		160D9B891E0BFA7A00801627 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		1626F8341E62B204002E2A9B /* StoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreCell.swift; sourceTree = "<group>"; };
+		1626F8341E62B204002E2A9B /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayDataManager.swift; sourceTree = "<group>"; };
 		163771531E398E2B000B3E87 /* FirebaseDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataManager.swift; sourceTree = "<group>"; };
 		163DFC0F1E41A43A00593CF9 /* AbstractHealthCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractHealthCell.swift; sourceTree = "<group>"; };
@@ -105,6 +106,7 @@
 		164BAAAB1E36E5D900DE4C71 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		16576F161E1295C300BF622D /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		1658B9DD1E0F9EFD009D4F67 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		16BFBBB31E6A7C7A001D088A /* eBayItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayItemCell.swift; sourceTree = "<group>"; };
 		16D2D2E91E38020300F6AA9F /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		16D2D2EB1E38638600F6AA9F /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
 		16D2D2ED1E3874F800F6AA9F /* LogoutTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutTableViewCell.swift; sourceTree = "<group>"; };
@@ -243,7 +245,7 @@
 			children = (
 				160D9B771E0B80DE00801627 /* HomeViewController.swift */,
 				160D9B7B1E0BF4CC00801627 /* ScheduleViewController.swift */,
-				160D9B7F1E0BF91400801627 /* StoreViewController.swift */,
+				16BFBBB21E6A7B82001D088A /* Store */,
 				7AF7BBED1E545FEE0059A62A /* Activity */,
 				166983DA1E5088D500B36107 /* Profile */,
 			);
@@ -253,7 +255,7 @@
 		1626F8331E62B173002E2A9B /* StoreViews */ = {
 			isa = PBXGroup;
 			children = (
-				1626F8341E62B204002E2A9B /* StoreCell.swift */,
+				16BFBBB31E6A7C7A001D088A /* eBayItemCell.swift */,
 			);
 			name = StoreViews;
 			sourceTree = "<group>";
@@ -288,6 +290,15 @@
 				1658B9DD1E0F9EFD009D4F67 /* ProfileViewModel.swift */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		16BFBBB21E6A7B82001D088A /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				160D9B7F1E0BF91400801627 /* StoreViewController.swift */,
+				1626F8341E62B204002E2A9B /* CategoryCell.swift */,
+			);
+			name = Store;
 			sourceTree = "<group>";
 		};
 		16FFF4371E3455DE009B4F34 /* Other */ = {
@@ -661,6 +672,7 @@
 				7AF7BC001E5467AF0059A62A /* WatchViewController.swift in Sources */,
 				7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */,
 				7AAB23641E4297BA00AD7040 /* ScheduleBioTableViewCell.swift in Sources */,
+				16BFBBB41E6A7C7A001D088A /* eBayItemCell.swift in Sources */,
 				7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */,
 				7AF7BBFE1E5467A10059A62A /* MapViewController.swift in Sources */,
 				160D9B0B1E0B5C0D00801627 /* AppDelegate.swift in Sources */,
@@ -671,7 +683,7 @@
 				7AD3DEF61E5EDC44001580CC /* MapDetailViewController.swift in Sources */,
 				163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */,
 				160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */,
-				1626F8351E62B204002E2A9B /* StoreCell.swift in Sources */,
+				1626F8351E62B204002E2A9B /* CategoryCell.swift in Sources */,
 				7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */,
 				16FFF43D1E3459C2009B4F34 /* User.swift in Sources */,
 				7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */,
