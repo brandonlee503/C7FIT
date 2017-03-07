@@ -97,6 +97,14 @@ struct FirebaseDataManager {
     }
     
     /**
+     fetch list of user runs
+    */
+    func fetchUserRunList(uid:String, completion: @escaping (_: FIRDataSnapshot) -> Void) {
+        ref.child("userRun").child(uid).observeSingleEvent(of: .value, with: { snapshot in
+            completion(snapshot)
+        })
+    }
+    /**
         Monitor the login state of the user.
         
         - Returns completion: A callback that returns FIRAuthStateDidChangeListenerHandle
@@ -128,7 +136,6 @@ struct FirebaseDataManager {
         newUserRun.setValue(userRun.toAnyObject())
     }
     
-    
     /**
         Uploads new profile picture to Firebase Storage
      
@@ -149,6 +156,37 @@ struct FirebaseDataManager {
                 print("Upload profile pic error: \(error?.localizedDescription)")
             }
         }
+    }
+    
+    
+    /**
+        Helper function to build runData from JSON, after retrived from fireBase Db
+    */
+    func buildRunFromJson(json: [String: AnyObject]) -> RunData? {
+        guard let runTitle = json["runTitle"] as? String,
+            let time = Double((json["time"] as? String)!),
+            let distance = Double((json["distance"] as? String)!),
+            let pace = json["pace"] as? String,
+            let locationsString = json["locations"] as? NSArray else { return nil }
+        
+        var convertedLoc = [Location]()
+        for locString in locationsString {
+            let tempLocation = self.buildLocFromJson(json: locString as! [String : AnyObject])
+            if(tempLocation != nil) {
+                convertedLoc.append(tempLocation!)
+            }
+        }
+        return RunData(runTitle: runTitle, time: time, distance: distance, pace: pace, locations: convertedLoc)
+    }
+    
+    /**
+        Helper function to build location data from JSON, after retrieved from fireBase Db
+    */
+    func buildLocFromJson(json: [String: AnyObject]) -> Location? {
+        guard let timestamp = json["timestamp"] as? String,
+            let latitude = Double((json["latitude"] as? String)!),
+            let longitude = Double((json["longitude"] as? String)!) else { return nil }
+        return Location(timestamp: timestamp, latitude: latitude, longitude: longitude)
     }
     
     

@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import HealthKit
 
 struct RunData {
     var runTitle: String
@@ -17,15 +18,15 @@ struct RunData {
     var locations: [Location]
 //    let dateTime: NSDate
     
-    init(){
-        self.runTitle = "testing"
+    init() {
+        self.runTitle = "testing1"
         self.time = 0.0
         self.distance = 0.0
         self.pace = ""
         self.locations = []
     }
     
-    init(runTitle: String, time: Double, distance: Double, pace: String, locations: [Location], dateTime: NSDate) {
+    init(runTitle: String, time: Double, distance: Double, pace: String, locations: [Location]) {
         self.runTitle = runTitle
         self.time = time
         self.distance = distance
@@ -34,11 +35,20 @@ struct RunData {
 //        self.dateTime = dateTime
     }
     
-    func convertLocToString() -> [String] {
-        var resultArr = [String]()
+    func dispTimePretty() -> String {
+        let seconds = time
+        let HourQuantity = HKQuantity(unit: HKUnit.hour(), doubleValue: floor(seconds/360))
+        let minuteQuantity = HKQuantity(unit: HKUnit.minute(), doubleValue: floor(seconds/60))
+        let secondsQuantity = HKQuantity(unit: HKUnit.second(), doubleValue: seconds.truncatingRemainder(dividingBy: 60.0))
+        let prettyString = "Time Elapsed: " + HourQuantity.description + " "  + minuteQuantity.description + " " + secondsQuantity.description
+        
+        return prettyString
+    }
+    
+    func convertLocToString() -> [Any] {
+        var resultArr = [Any]()
         for item in self.locations {
-            var tempString = item.toJSON()
-            resultArr.append(tempString)
+            resultArr.append(item.toAnyObject())
         }
         return resultArr
     }

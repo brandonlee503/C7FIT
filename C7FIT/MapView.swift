@@ -21,6 +21,7 @@ class MapView: UIView {
     
     var startButton: UIButton = UIButton()
     var stopButton: UIButton = UIButton()
+    var oldRunButton: UIButton = UIButton()
     
     // MARK: - Initialization
     
@@ -46,6 +47,10 @@ class MapView: UIView {
         stopButton.setTitle("Stop Run", for: .normal)
         stopButton.backgroundColor = .red
         addSubview(stopButton)
+        
+        oldRunButton.setTitle("Old Runs", for: .normal)
+        oldRunButton.backgroundColor = .purple
+        addSubview(oldRunButton)
         
         secondsQuantity.text = "Seconds: "
         addSubview(secondsQuantity)
@@ -101,9 +106,15 @@ class MapView: UIView {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         let mapLeftMargin = mapView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10)
         let mapTopMargin = mapView.topAnchor.constraint(equalTo: paceQuantity.bottomAnchor, constant: 10)
-        let mapBottom = mapView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        let mapBottom = mapView.bottomAnchor.constraint(equalTo: oldRunButton.topAnchor, constant: -10)
         let mapTrailingMargin = mapView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
         NSLayoutConstraint.activate([mapTopMargin,mapTrailingMargin,mapBottom,mapLeftMargin])
+        
+        oldRunButton.translatesAutoresizingMaskIntoConstraints = false
+        let oldRunLeft = oldRunButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 0)
+        let oldRunBottom = oldRunButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
+        let oldRunRight = oldRunButton.rightAnchor.constraint(equalTo: rightAnchor, constant: 0)
+        NSLayoutConstraint.activate([oldRunLeft, oldRunBottom, oldRunRight])
         
     }
 
