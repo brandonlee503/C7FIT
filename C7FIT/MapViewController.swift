@@ -40,6 +40,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
         mapViewApp.stopButton.isEnabled = false
         mapViewApp.mapView.showsUserLocation = true
         
+        mapViewApp.oldRunButton.addTarget(self, action: #selector(gotoRunList), for: .touchUpInside)
+        
         self.view.addSubview(mapViewApp)
         setupConstraints()
         self.view.setNeedsUpdateConstraints()
@@ -66,7 +68,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     // MARK: - Tracking run
     
     // MARK: Start/Stop Buttons
-    func startTrackRun(){
+    func startTrackRun() {
         if(!CLLocationManager.locationServicesEnabled()) {
             let alert = UIAlertController(title: "Location Services Disabled", message: "Please allow C7Fit to use your location to track your run", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
@@ -84,7 +86,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
         setupLocationTracking()
     }
     
-    func stopTrackRun(){
+    func stopTrackRun() {
         mapViewApp.startButton.isEnabled = true
         mapViewApp.stopButton.isEnabled = false
         
@@ -94,6 +96,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
         self.navigationController?.pushViewController(MapDetailViewController(run:lastRun), animated: true)
         timer.invalidate()
         locationManager.stopUpdatingLocation()
+    }
+    
+    func gotoRunList() {
+        self.navigationController?.pushViewController(RunListTableViewController(), animated: true)
     }
     
     // MARK: Create Run Data
@@ -134,7 +140,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
         for location in locations {
             //Focus on the runner
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
             mapViewApp.mapView.setRegion(region, animated: true)
             
             if location.horizontalAccuracy < 50 {

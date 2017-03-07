@@ -29,30 +29,29 @@ class MapDetailViewController: UIViewController, MKMapViewDelegate {
         mapView.mapView.showsUserLocation = true
         self.mapView.mapView.delegate = self
         
-        
-        
         self.view.addSubview(mapView)
         
+        setup()
+        setupConstraints()
         
         if(loadMap()) {
             self.mapView.saveButton.addTarget(self, action: #selector(saveRun), for: .touchUpInside)
+//            self.mapView.saveButton.addTarget(self, action: #selector(fetchRun), for: .touchUpInside)
         } else {
             self.mapView.saveButton.addTarget(self, action: #selector(cantSaveRun), for: .touchUpInside)
         }
-
-        //what data display for run?
-        
-        //save run
-        
-        //mile breakdown?
-        
-        
-        setupConstraints()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setup() {
+        mapView.distanceQuantity.text = self.currentRun.distance.description
+        mapView.paceQuantity.text = self.currentRun.pace
+        mapView.secondsQuantity.text = self.currentRun.dispTimePretty()
+        
     }
     
     func setupConstraints() {
@@ -95,7 +94,8 @@ class MapDetailViewController: UIViewController, MKMapViewDelegate {
         return MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: (minLat + maxLat)/2, longitude: (minLng + maxLng)/2),
             //change span doesnt work for long runs
-            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+//            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+            span: MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 1.3, longitudeDelta: (maxLng - minLng) * 1.3))
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -159,5 +159,14 @@ class MapDetailViewController: UIViewController, MKMapViewDelegate {
     }
     
     
-    
+    func fetchRun() {
+        firebaseDataManager.monitorLoginState() { auth, user in
+            guard let userID = user?.uid else { return self.present(LoginViewController(), animated: true, completion: nil) }
+            self.userID = userID
+            self.firebaseDataManager.fetchUserRun(uid: userID, runTitle: self.currentRun.runTitle) { data in
+                guard let json = data.value as? [String: AnyObject] else { return }
+                var newRun = self.firebaseDataManager.buildRunFromJson(json: json)
+            }
+        }
+    }
 }
