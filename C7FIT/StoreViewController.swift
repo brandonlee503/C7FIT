@@ -28,7 +28,7 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
         self.navigationController?.navigationBar.barTintColor = .orange
         collectionView?.delegate = self
         collectionView?.dataSource = self
-        collectionView?.register(CategoryCell.self, forCellWithReuseIdentifier: categoryCellIdentifier)
+        collectionView?.register(CategoryCellController.self, forCellWithReuseIdentifier: categoryCellIdentifier)
         submitPrecuratedQueries()
         collectionView?.setNeedsUpdateConstraints()
     }
@@ -38,6 +38,16 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
      */
     func submitPrecuratedQueries() {
         ebayDataManager.searchItem(query: "Yoga Ball") { itemCategory in
+            self.categoryCellData.append(itemCategory)
+            self.collectionView?.reloadData()
+        }
+        
+        ebayDataManager.searchItem(query: "Gym Shoes") { itemCategory in
+            self.categoryCellData.append(itemCategory)
+            self.collectionView?.reloadData()
+        }
+        
+        ebayDataManager.searchItem(query: "Exercise Mat") { itemCategory in
             self.categoryCellData.append(itemCategory)
             self.collectionView?.reloadData()
         }
@@ -54,8 +64,8 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellIdentifier, for: indexPath) as! CategoryCell
-        cell.categoryTitle.text = categoryCellData[indexPath.row].title
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellIdentifier, for: indexPath) as! CategoryCellController
+        cell.categoryCellView.categoryTitle.text = categoryCellData[indexPath.row].title
         cell.itemCategory = categoryCellData[indexPath.row]
         return cell
     }
