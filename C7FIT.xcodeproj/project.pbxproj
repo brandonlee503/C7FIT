@@ -271,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				163771531E398E2B000B3E87 /* FirebaseDataManager.swift */,
-				16576F161E1295C300BF622D /* StringExtensions.swift */,
 				7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */,
 				1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */,
 			);
@@ -311,9 +310,10 @@
 		16FFF4371E3455DE009B4F34 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				16D2D2EB1E38638600F6AA9F /* CircularImageView.swift */,
 				160D9B0A1E0B5C0D00801627 /* AppDelegate.swift */,
 				160D9B111E0B5C0D00801627 /* Assets.xcassets */,
+				16D2D2EB1E38638600F6AA9F /* CircularImageView.swift */,
+				16576F161E1295C300BF622D /* StringExtensions.swift */,
 			);
 			name = Other;
 			sourceTree = "<group>";
