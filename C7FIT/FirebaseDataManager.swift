@@ -164,10 +164,10 @@ struct FirebaseDataManager {
     */
     func buildRunFromJson(json: [String: AnyObject]) -> RunData? {
         guard let runTitle = json["runTitle"] as? String,
-            let time = Double((json["time"] as? String)!),
-            let distance = Double((json["distance"] as? String)!),
+            let time = ((json["time"] as? Double)),
+            let distance = ((json["distance"] as? Double)),
             let pace = json["pace"] as? String,
-            let locationsString = json["locations"] as? NSArray else { return nil }
+            let locationsString = json["locations"] as? [AnyObject] else { return nil }
         
         var convertedLoc = [Location]()
         for locString in locationsString {
@@ -184,11 +184,9 @@ struct FirebaseDataManager {
     */
     func buildLocFromJson(json: [String: AnyObject]) -> Location? {
         guard let timestamp = json["timestamp"] as? String,
-            let latitude = Double((json["latitude"] as? String)!),
-            let longitude = Double((json["longitude"] as? String)!) else { return nil }
+            let latitude = (json["latitude"] as? Double),
+            let longitude = (json["longitude"] as? Double) else { return nil }
         return Location(timestamp: timestamp, latitude: latitude, longitude: longitude)
     }
-    
-    
     
 }

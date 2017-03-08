@@ -35,6 +35,11 @@
 		16FFF43D1E3459C2009B4F34 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFF43C1E3459C2009B4F34 /* User.swift */; };
 		7A1CD7A81E6400E600953698 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1CD7A71E6400E600953698 /* MapKit.framework */; };
 		7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7699391E3962E90086519A /* ScheduleBrowserTableViewCell.swift */; };
+		7A76A7A41E6F66A100C7D8F2 /* StartStopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76A7A31E6F66A100C7D8F2 /* StartStopCell.swift */; };
+		7A76A7A61E6F66DA00C7D8F2 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76A7A51E6F66DA00C7D8F2 /* MapCell.swift */; };
+		7A76A7A81E6F66FD00C7D8F2 /* RunDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76A7A71E6F66FD00C7D8F2 /* RunDetailCell.swift */; };
+		7A76A7AA1E6F6DD200C7D8F2 /* MapTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76A7A91E6F6DD200C7D8F2 /* MapTableViewController.swift */; };
+		7A76A7AC1E6F914A00C7D8F2 /* MapDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76A7AB1E6F914A00C7D8F2 /* MapDetailTableViewController.swift */; };
 		7A8B9D2E1E52735600B88316 /* HealthKitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D2D1E52735600B88316 /* HealthKitTableViewCell.swift */; };
 		7A8B9D301E52751500B88316 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D2F1E52751500B88316 /* MapTableViewCell.swift */; };
 		7A8B9D321E52752200B88316 /* WatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D311E52752200B88316 /* WatchTableViewCell.swift */; };
@@ -42,19 +47,15 @@
 		7A8B9D361E52753800B88316 /* HeartRateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D351E52753800B88316 /* HeartRateTableViewCell.swift */; };
 		7AAB23641E4297BA00AD7040 /* ScheduleBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23631E4297BA00AD7040 /* ScheduleBioTableViewCell.swift */; };
 		7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23651E4298BB00AD7040 /* ScheduleContactTableViewCell.swift */; };
-		7AB9EFA61E6DEF09000C20C6 /* RunListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9EFA51E6DEF09000C20C6 /* RunListTableViewCell.swift */; };
+		7AB9EFA61E6DEF09000C20C6 /* RunListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9EFA51E6DEF09000C20C6 /* RunListCell.swift */; };
 		7AB9EFAA1E6DEF3A000C20C6 /* RunListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9EFA91E6DEF3A000C20C6 /* RunListTableViewController.swift */; };
-		7AD3DEEE1E5ED194001580CC /* MapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3DEED1E5ED194001580CC /* MapDetailView.swift */; };
 		7AD3DEF21E5ED7CF001580CC /* RunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3DEF11E5ED7CF001580CC /* RunData.swift */; };
 		7AD3DEF41E5ED860001580CC /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3DEF31E5ED860001580CC /* LocationData.swift */; };
-		7AD3DEF61E5EDC44001580CC /* MapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3DEF51E5EDC44001580CC /* MapDetailViewController.swift */; };
 		7AF7BBF21E5460770059A62A /* HealthKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF11E5460770059A62A /* HealthKitViewController.swift */; };
 		7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF31E5460860059A62A /* HealthKit.swift */; };
 		7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF51E5464250059A62A /* WatchView.swift */; };
 		7AF7BBF81E5464310059A62A /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF71E5464310059A62A /* CountView.swift */; };
 		7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF91E54643E0059A62A /* HeartRateView.swift */; };
-		7AF7BBFC1E5464470059A62A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBFB1E5464470059A62A /* MapView.swift */; };
-		7AF7BBFE1E5467A10059A62A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBFD1E5467A10059A62A /* MapViewController.swift */; };
 		7AF7BC001E5467AF0059A62A /* WatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBFF1E5467AF0059A62A /* WatchViewController.swift */; };
 		7AF7BC021E5467B90059A62A /* CountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC011E5467B90059A62A /* CountViewController.swift */; };
 		7AF7BC041E5467C10059A62A /* HeartRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */; };
@@ -119,6 +120,11 @@
 		6F1638978FFA2B1F2F25C7A2 /* Pods-C7FITTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FITTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-C7FITTests/Pods-C7FITTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A1CD7A71E6400E600953698 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7A7699391E3962E90086519A /* ScheduleBrowserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleBrowserTableViewCell.swift; sourceTree = "<group>"; };
+		7A76A7A31E6F66A100C7D8F2 /* StartStopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartStopCell.swift; sourceTree = "<group>"; };
+		7A76A7A51E6F66DA00C7D8F2 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
+		7A76A7A71E6F66FD00C7D8F2 /* RunDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDetailCell.swift; sourceTree = "<group>"; };
+		7A76A7A91E6F6DD200C7D8F2 /* MapTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTableViewController.swift; sourceTree = "<group>"; };
+		7A76A7AB1E6F914A00C7D8F2 /* MapDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDetailTableViewController.swift; sourceTree = "<group>"; };
 		7A8B9D2D1E52735600B88316 /* HealthKitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitTableViewCell.swift; sourceTree = "<group>"; };
 		7A8B9D2F1E52751500B88316 /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		7A8B9D311E52752200B88316 /* WatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchTableViewCell.swift; sourceTree = "<group>"; };
@@ -126,19 +132,15 @@
 		7A8B9D351E52753800B88316 /* HeartRateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateTableViewCell.swift; sourceTree = "<group>"; };
 		7AAB23631E4297BA00AD7040 /* ScheduleBioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleBioTableViewCell.swift; sourceTree = "<group>"; };
 		7AAB23651E4298BB00AD7040 /* ScheduleContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleContactTableViewCell.swift; sourceTree = "<group>"; };
-		7AB9EFA51E6DEF09000C20C6 /* RunListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunListTableViewCell.swift; sourceTree = "<group>"; };
+		7AB9EFA51E6DEF09000C20C6 /* RunListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunListCell.swift; sourceTree = "<group>"; };
 		7AB9EFA91E6DEF3A000C20C6 /* RunListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunListTableViewController.swift; sourceTree = "<group>"; };
-		7AD3DEED1E5ED194001580CC /* MapDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDetailView.swift; sourceTree = "<group>"; };
 		7AD3DEF11E5ED7CF001580CC /* RunData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunData.swift; sourceTree = "<group>"; };
 		7AD3DEF31E5ED860001580CC /* LocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
-		7AD3DEF51E5EDC44001580CC /* MapDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDetailViewController.swift; sourceTree = "<group>"; };
 		7AF7BBF11E5460770059A62A /* HealthKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitViewController.swift; sourceTree = "<group>"; };
 		7AF7BBF31E5460860059A62A /* HealthKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 		7AF7BBF51E5464250059A62A /* WatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchView.swift; sourceTree = "<group>"; };
 		7AF7BBF71E5464310059A62A /* CountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
 		7AF7BBF91E54643E0059A62A /* HeartRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateView.swift; sourceTree = "<group>"; };
-		7AF7BBFB1E5464470059A62A /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		7AF7BBFD1E5467A10059A62A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7AF7BBFF1E5467AF0059A62A /* WatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchViewController.swift; sourceTree = "<group>"; };
 		7AF7BC011E5467B90059A62A /* CountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountViewController.swift; sourceTree = "<group>"; };
 		7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateViewController.swift; sourceTree = "<group>"; };
@@ -354,9 +356,10 @@
 		7AB9EFA71E6DEF14000C20C6 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				7AF7BBFB1E5464470059A62A /* MapView.swift */,
-				7AB9EFA51E6DEF09000C20C6 /* RunListTableViewCell.swift */,
-				7AD3DEED1E5ED194001580CC /* MapDetailView.swift */,
+				7AB9EFA51E6DEF09000C20C6 /* RunListCell.swift */,
+				7A76A7A31E6F66A100C7D8F2 /* StartStopCell.swift */,
+				7A76A7A51E6F66DA00C7D8F2 /* MapCell.swift */,
+				7A76A7A71E6F66FD00C7D8F2 /* RunDetailCell.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -364,9 +367,9 @@
 		7AB9EFA81E6DEF1F000C20C6 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				7AF7BBFD1E5467A10059A62A /* MapViewController.swift */,
-				7AD3DEF51E5EDC44001580CC /* MapDetailViewController.swift */,
 				7AB9EFA91E6DEF3A000C20C6 /* RunListTableViewController.swift */,
+				7A76A7A91E6F6DD200C7D8F2 /* MapTableViewController.swift */,
+				7A76A7AB1E6F914A00C7D8F2 /* MapDetailTableViewController.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -668,32 +671,31 @@
 				7AF7BC021E5467B90059A62A /* CountViewController.swift in Sources */,
 				16576F171E1295C300BF622D /* StringExtensions.swift in Sources */,
 				7A8B9D321E52752200B88316 /* WatchTableViewCell.swift in Sources */,
+				7A76A7AC1E6F914A00C7D8F2 /* MapDetailTableViewController.swift in Sources */,
 				16D2D2EC1E38638600F6AA9F /* CircularImageView.swift in Sources */,
 				7A8B9D2E1E52735600B88316 /* HealthKitTableViewCell.swift in Sources */,
-				7AF7BBFC1E5464470059A62A /* MapView.swift in Sources */,
 				160D9B7A1E0B88EE00801627 /* HomeView.swift in Sources */,
 				163DFC101E41A43A00593CF9 /* AbstractHealthCell.swift in Sources */,
 				7A8B9D361E52753800B88316 /* HeartRateTableViewCell.swift in Sources */,
 				7A8B9D301E52751500B88316 /* MapTableViewCell.swift in Sources */,
-				7AD3DEEE1E5ED194001580CC /* MapDetailView.swift in Sources */,
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
 				7AF7BC001E5467AF0059A62A /* WatchViewController.swift in Sources */,
 				7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */,
 				7AAB23641E4297BA00AD7040 /* ScheduleBioTableViewCell.swift in Sources */,
 				7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */,
-				7AF7BBFE1E5467A10059A62A /* MapViewController.swift in Sources */,
 				160D9B0B1E0B5C0D00801627 /* AppDelegate.swift in Sources */,
 				7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */,
 				7AF7BBF21E5460770059A62A /* HealthKitViewController.swift in Sources */,
+				7A76A7A41E6F66A100C7D8F2 /* StartStopCell.swift in Sources */,
 				7AF7BBF81E5464310059A62A /* CountView.swift in Sources */,
 				160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */,
-				7AD3DEF61E5EDC44001580CC /* MapDetailViewController.swift in Sources */,
 				163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */,
 				160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */,
 				7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */,
 				16FFF43D1E3459C2009B4F34 /* User.swift in Sources */,
 				7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */,
 				160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */,
+				7A76A7AA1E6F6DD200C7D8F2 /* MapTableViewController.swift in Sources */,
 				7AD3DEF21E5ED7CF001580CC /* RunData.swift in Sources */,
 				160D9B801E0BF91400801627 /* StoreViewController.swift in Sources */,
 				160D9B821E0BF92700801627 /* StoreView.swift in Sources */,
@@ -702,10 +704,12 @@
 				7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */,
 				16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */,
 				7AF7BC041E5467C10059A62A /* HeartRateViewController.swift in Sources */,
+				7A76A7A81E6F66FD00C7D8F2 /* RunDetailCell.swift in Sources */,
 				160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */,
-				7AB9EFA61E6DEF09000C20C6 /* RunListTableViewCell.swift in Sources */,
+				7AB9EFA61E6DEF09000C20C6 /* RunListCell.swift in Sources */,
 				1658B9DE1E0F9EFD009D4F67 /* ProfileViewModel.swift in Sources */,
 				160D9B7E1E0BF5DC00801627 /* ScheduleView.swift in Sources */,
+				7A76A7A61E6F66DA00C7D8F2 /* MapCell.swift in Sources */,
 				7AD3DEF41E5ED860001580CC /* LocationData.swift in Sources */,
 				7A8B9D341E52752D00B88316 /* CountTableViewCell.swift in Sources */,
 				164BAAAC1E36E5D900DE4C71 /* LoginView.swift in Sources */,

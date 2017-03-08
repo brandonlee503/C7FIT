@@ -1,8 +1,8 @@
 //
-//  MapViewController.swift
+//  MapTableViewController.swift
 //  C7FIT
 //
-//  Created by Michael Lee on 2/15/17.
+//  Created by Michael Lee on 3/7/17.
 //  Copyright © 2017 Brandon Lee. All rights reserved.
 //
 
@@ -11,90 +11,130 @@ import MapKit
 import HealthKit
 import CoreLocation
 
-class MapViewController: UIViewController, CLLocationManagerDelegate{
-
+class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+    
+    // MARK: - Identifiers
+    
+    let mapCellID = "mapCell"
+    let startStopID = "startStopCell"
     
     // MARK: - Properties
     
-    var mapViewApp = MapView()
-    lazy var locationManager = CLLocationManager()
     var seconds = 0.0
     var distance = 0.0
     var pace = ""
+    lazy var locationManager = CLLocationManager()
     lazy var locations = [CLLocation]()
     lazy var timer = Timer()
-    
     var lastRun = RunData()
-
-    // MARK: - View Lifecycle
     
+    let startStopCell = StartStopCell()
+    let mapCell = MapCell()
+    
+    
+    // MARK: - Table View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Map"
-        self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barTintColor = .orange
-        self.edgesForExtendedLayout = []
         
-        mapViewApp.startButton.addTarget(self, action: #selector(startTrackRun), for: .touchUpInside)
-        mapViewApp.stopButton.addTarget(self, action: #selector(stopTrackRun), for: .touchUpInside)
-        mapViewApp.stopButton.isEnabled = false
-        mapViewApp.mapView.showsUserLocation = true
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(MapCell.self, forCellReuseIdentifier: mapCellID)
+        tableView.register(StartStopCell.self, forCellReuseIdentifier: startStopID)
         
-        mapViewApp.oldRunButton.addTarget(self, action: #selector(gotoRunList), for: .touchUpInside)
+        setup()
         
-        self.view.addSubview(mapViewApp)
-        setupConstraints()
-        self.view.setNeedsUpdateConstraints()
-        
-        
-//        setupLocationTracking()
     }
     
+    //setup the cells
+    func setup() {
+        // old run button
+        let oldRunButton = UIBarButtonItem(title: "Old Runs", style: .plain, target: self, action: #selector(gotoRunList))
+        navigationItem.rightBarButtonItem = oldRunButton
+        navigationItem.rightBarButtonItem?.tintColor = .black
+        
+        //cell buttons
+        startStopCell.startButton.addTarget(self, action: #selector(startTrackRun), for: .touchUpInside)
+        startStopCell.stopButton.addTarget(self, action: #selector(stopTrackRun), for: .touchUpInside)
+        startStopCell.startButton.isEnabled = true
+        startStopCell.stopButton.isEnabled = false
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    // MARK: - Layout
-    
-    func setupConstraints() {
-        mapViewApp.translatesAutoresizingMaskIntoConstraints = false
-        let topView = mapViewApp.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomView = mapViewApp.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leftView = mapViewApp.leftAnchor.constraint(equalTo: view.leftAnchor)
-        let rightView = mapViewApp.rightAnchor.constraint(equalTo: view.rightAnchor)
-        NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
+
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
     }
     
-    // MARK: - Tracking run
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if(indexPath.row  == 0) {
+            let cell = self.startStopCell
+            return cell
+        } else if(indexPath.row == 1) {
+            let cell = self.mapCell
+            return cell
+        }
+        return UITableViewCell()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        //TODO: find a better way to calc viewable screen size
+        let screenSize : CGRect = UIScreen.main.bounds
+        let navBarSize : CGFloat? = self.navigationController?.navigationBar.frame.size.height
+        let tabBarSize : CGFloat? = self.tabBarController?.tabBar.frame.size.height
+        let statusBarSize: CGFloat? = UIApplication.shared.statusBarFrame.height
+        let barConstants = screenSize.height - (navBarSize! + tabBarSize! + statusBarSize!)
+        let cellHeight: CGFloat = 40.0
+        
+        if(indexPath.row == 1) {
+            return barConstants - cellHeight
+        }
+        return cellHeight
+    }
     
     // MARK: Start/Stop Buttons
+    
     func startTrackRun() {
+        //check location services
         if(!CLLocationManager.locationServicesEnabled()) {
             let alert = UIAlertController(title: "Location Services Disabled", message: "Please allow C7Fit to use your location to track your run", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             return;
         }
-        
-        mapViewApp.stopButton.isEnabled = true
-        mapViewApp.startButton.isEnabled = false
-        
+        //stop user invalid input
+        self.startStopCell.stopButton.isEnabled = true
+        self.startStopCell.startButton.isEnabled = false
+       
         seconds = 0.0
         distance = 0.0
         locations.removeAll(keepingCapacity: false)
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(eachSecond), userInfo: nil, repeats: true)
         setupLocationTracking()
+        
+        self.tableView.reloadData()
     }
     
     func stopTrackRun() {
-        mapViewApp.startButton.isEnabled = true
-        mapViewApp.stopButton.isEnabled = false
+        //stop user from invalid input
+        self.startStopCell.startButton.isEnabled = true
+        self.startStopCell.stopButton.isEnabled = false
+        self.tableView.reloadData()
         
-        //open up run in detail view here
-        //ask user if they want to save run
+        //create runData struct from run data and push to map detail view
         createRunData()
-        self.navigationController?.pushViewController(MapDetailViewController(run:lastRun), animated: true)
+        self.navigationController?.pushViewController(MapDetailTableViewController(run:lastRun, hideSave:false), animated: true)
+        //remove timer
         timer.invalidate()
+        //stop tracking user
         locationManager.stopUpdatingLocation()
     }
     
@@ -103,6 +143,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     // MARK: Create Run Data
+    
     func createRunData() {
         var tempRun = RunData()
         var savedLocations = [Location]()
@@ -125,7 +166,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     // MARK: location tracking
+    
     func setupLocationTracking() {
+        //start tracking location
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.activityType = .fitness
@@ -141,8 +184,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
             //Focus on the runner
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
-            mapViewApp.mapView.setRegion(region, animated: true)
+            self.mapCell.mapView.setRegion(region, animated: true)
             
+            //dont record location if accuracy too low
             if location.horizontalAccuracy < 50 {
                 if self.locations.count > 0 {
                     distance += location.distance(from: self.locations.last!)
@@ -158,20 +202,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     // MARK: Timer
+    
     func eachSecond(timer: Timer) {
+        //total time for the run
         seconds = seconds + 1
-//        let totalTimeQuantity = seconds
-        let minuteQuantity = HKQuantity(unit: HKUnit.minute(), doubleValue: floor(seconds/60))
-        let secondsQuantity = HKQuantity(unit: HKUnit.second(), doubleValue: seconds.truncatingRemainder(dividingBy: 60.0))
-        mapViewApp.secondsQuantity.text = "Time Elapsed: " + minuteQuantity.description + " " + secondsQuantity.description
         
-        let distanceQuantity = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
-        mapViewApp.distanceQuantity.text = "Distance: " + distanceQuantity.description
-        
-    // convert to mile per minute
+        //calculate the pace
         let paceUnit = HKUnit.meter().unitDivided(by: HKUnit.second())
         let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: distance / seconds)
-        mapViewApp.paceQuantity.text = "Pace: " + paceQuantity.description
         pace = paceQuantity.description
     }
 

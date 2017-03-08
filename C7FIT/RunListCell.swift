@@ -8,11 +8,15 @@
 
 import UIKit
 
-class RunListTableViewCell: UITableViewCell {
+class RunListCell: UITableViewCell {
+    
+    // MARK: - Properties
     
     var titleLabel: UILabel = UILabel()
     var dateLabel: UILabel = UILabel()
 
+    // MARK: - Initialization
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
@@ -22,6 +26,8 @@ class RunListTableViewCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Layout
 
     func setup() {
         titleLabel.backgroundColor = .green
