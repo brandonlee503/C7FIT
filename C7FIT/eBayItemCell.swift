@@ -15,7 +15,6 @@ class eBayItemCell: UICollectionViewCell {
     var itemImageView: UIImageView = UIImageView()
     var itemTitle: UILabel = UILabel()
     var price: UILabel = UILabel()
-//    var item
     
     // MARK: - Initialization
     

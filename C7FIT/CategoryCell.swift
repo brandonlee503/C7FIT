@@ -2,23 +2,17 @@
 //  CategoryCell.swift
 //  C7FIT
 //
-//  Created by Brandon Lee on 2/25/17.
+//  Created by Brandon Lee on 3/7/17.
 //  Copyright © 2017 Brandon Lee. All rights reserved.
 //
 
 import UIKit
 
-// TODO: Move view code to seperate class
-class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    // MARK: - Constants
-    
-    private let itemCellIdentifier = "ItemCell"
+class CategoryCell: UIView {
     
     // MARK: - Properties
     
     var categoryTitle: UILabel = UILabel()
-    var dividerLine: UIView = UIView()
     
     var itemCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -27,7 +21,7 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
         return collectionView
     }()
     
-    var itemCategory: eBayItemCategory?
+    var dividerLine: UIView = UIView()
     
     // MARK: - Initialization
     
@@ -51,9 +45,6 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
         categoryTitle.backgroundColor = .cyan
         addSubview(categoryTitle)
         
-        itemCollectionView.delegate = self
-        itemCollectionView.dataSource = self
-        itemCollectionView.register(eBayItemCell.self, forCellWithReuseIdentifier: itemCellIdentifier)
         itemCollectionView.backgroundColor = .blue
         addSubview(itemCollectionView)
         
@@ -81,32 +72,5 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
         let dividerLineLeft = dividerLine.leftAnchor.constraint(equalTo: leftAnchor)
         let dividerLineRight = dividerLine.rightAnchor.constraint(equalTo: rightAnchor)
         NSLayoutConstraint.activate([dividerLineTop, dividerLineBottom, dividerLineLeft, dividerLineRight])
-    }
-    
-    // MARK: - UICollectionView Delegate and Data Source
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellIdentifier, for: indexPath) as! eBayItemCell
-        if let title = itemCategory?.items[indexPath.row].title {
-            cell.itemTitle.text = title
-        }
-        if let price = itemCategory?.items[indexPath.row].price {
-            cell.price.text = price
-        }
-        return cell
-    }
-    
-    // MARK: - UICollectionViewDelegateFlowLayout
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150, height: frame.height - 0.5 - 30) // 0.5 offset for divider line, 30 offset for title
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0, 14, 0, 14)
     }
 }

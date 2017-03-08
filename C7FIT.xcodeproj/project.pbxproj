@@ -19,7 +19,7 @@
 		160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B831E0BFA4500801627 /* ActivityView.swift */; };
 		160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B871E0BFA6A00801627 /* ActivityViewController.swift */; };
 		160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B891E0BFA7A00801627 /* ProfileViewController.swift */; };
-		1626F8351E62B204002E2A9B /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1626F8341E62B204002E2A9B /* CategoryCell.swift */; };
+		1626F8351E62B204002E2A9B /* CategoryCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1626F8341E62B204002E2A9B /* CategoryCellController.swift */; };
 		1626F8371E62BD1A002E2A9B /* eBayDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */; };
 		163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163771531E398E2B000B3E87 /* FirebaseDataManager.swift */; };
 		163DFC101E41A43A00593CF9 /* AbstractHealthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163DFC0F1E41A43A00593CF9 /* AbstractHealthCell.swift */; };
@@ -29,6 +29,7 @@
 		1658B9DE1E0F9EFD009D4F67 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1658B9DD1E0F9EFD009D4F67 /* ProfileViewModel.swift */; };
 		16594B361E6C5B350032AD26 /* eBayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16594B351E6C5B350032AD26 /* eBayItem.swift */; };
 		16BEBE521E6FB4E10034D422 /* eBayItemCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEBE511E6FB4E10034D422 /* eBayItemCategory.swift */; };
+		16BEBE541E6FEE050034D422 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEBE531E6FEE050034D422 /* CategoryCell.swift */; };
 		16BFBBB41E6A7C7A001D088A /* eBayItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BFBBB31E6A7C7A001D088A /* eBayItemCell.swift */; };
 		16D2D2EA1E38020300F6AA9F /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2D2E91E38020300F6AA9F /* ProfileTableViewCell.swift */; };
 		16D2D2EC1E38638600F6AA9F /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2D2EB1E38638600F6AA9F /* CircularImageView.swift */; };
@@ -100,7 +101,7 @@
 		160D9B831E0BFA4500801627 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		160D9B871E0BFA6A00801627 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		160D9B891E0BFA7A00801627 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		1626F8341E62B204002E2A9B /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		1626F8341E62B204002E2A9B /* CategoryCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCellController.swift; sourceTree = "<group>"; };
 		1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayDataManager.swift; sourceTree = "<group>"; };
 		163771531E398E2B000B3E87 /* FirebaseDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataManager.swift; sourceTree = "<group>"; };
 		163DFC0F1E41A43A00593CF9 /* AbstractHealthCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractHealthCell.swift; sourceTree = "<group>"; };
@@ -110,6 +111,7 @@
 		1658B9DD1E0F9EFD009D4F67 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		16594B351E6C5B350032AD26 /* eBayItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayItem.swift; sourceTree = "<group>"; };
 		16BEBE511E6FB4E10034D422 /* eBayItemCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayItemCategory.swift; sourceTree = "<group>"; };
+		16BEBE531E6FEE050034D422 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		16BFBBB31E6A7C7A001D088A /* eBayItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayItemCell.swift; sourceTree = "<group>"; };
 		16D2D2E91E38020300F6AA9F /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		16D2D2EB1E38638600F6AA9F /* CircularImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				16BFBBB31E6A7C7A001D088A /* eBayItemCell.swift */,
+				16BEBE531E6FEE050034D422 /* CategoryCell.swift */,
 			);
 			name = StoreViews;
 			sourceTree = "<group>";
@@ -300,7 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				160D9B7F1E0BF91400801627 /* StoreViewController.swift */,
-				1626F8341E62B204002E2A9B /* CategoryCell.swift */,
+				1626F8341E62B204002E2A9B /* CategoryCellController.swift */,
 			);
 			name = Store;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				163DFC101E41A43A00593CF9 /* AbstractHealthCell.swift in Sources */,
 				7A8B9D361E52753800B88316 /* HeartRateTableViewCell.swift in Sources */,
 				7A8B9D301E52751500B88316 /* MapTableViewCell.swift in Sources */,
+				16BEBE541E6FEE050034D422 /* CategoryCell.swift in Sources */,
 				7AD3DEEE1E5ED194001580CC /* MapDetailView.swift in Sources */,
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
 				7AF7BC001E5467AF0059A62A /* WatchViewController.swift in Sources */,
@@ -690,7 +694,7 @@
 				7AD3DEF61E5EDC44001580CC /* MapDetailViewController.swift in Sources */,
 				163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */,
 				160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */,
-				1626F8351E62B204002E2A9B /* CategoryCell.swift in Sources */,
+				1626F8351E62B204002E2A9B /* CategoryCellController.swift in Sources */,
 				7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */,
 				16FFF43D1E3459C2009B4F34 /* User.swift in Sources */,
 				7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */,
