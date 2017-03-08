@@ -26,24 +26,11 @@ struct Location {
         self.longitude = longitude
     }
     
-//    func toJSON() -> String {
-//        let props = ["timestamp": self.timestamp, "latitude": self.latitude.description, "longitude": self.longitude.description]
-//        do {
-//            let jsonData = try JSONSerialization.data(withJSONObject: props,
-//                                                                      options: .prettyPrinted)
-//            return String(data: jsonData, encoding: String.Encoding.utf8)!
-//        } catch let error {
-//            print("error converting to json: \(error)")
-//            return ""
-//        }
-//    }
-//    
-    
     func toAnyObject() -> Any {
         return [
             "timestamp": timestamp,
-            "latitude": latitude.description,
-            "longitude": longitude.description
+            "latitude": latitude,
+            "longitude": longitude
         ]
     }
 }

@@ -101,7 +101,8 @@ class ActivityViewController: UITableViewController {
             navigationController?.pushViewController(destination, animated: true)
         }
         if indexPath.row == 1 {
-            let destination = MapViewController()
+//            let destination = MapViewController()
+            let destination = MapTableViewController()
             navigationController?.pushViewController(destination, animated: true)
         }
         if indexPath.row == 2 {

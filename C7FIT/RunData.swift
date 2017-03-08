@@ -19,7 +19,7 @@ struct RunData {
 //    let dateTime: NSDate
     
     init() {
-        self.runTitle = "testing1"
+        self.runTitle = "run"
         self.time = 0.0
         self.distance = 0.0
         self.pace = ""
@@ -56,8 +56,8 @@ struct RunData {
     func toAnyObject() -> Any {
         return [
             "runTitle": runTitle,
-            "time": time.description,
-            "distance": distance.description,
+            "time": time,
+            "distance": distance,
             "pace": pace,
             "locations": convertLocToString(),
 //            dateTime: dateTime
