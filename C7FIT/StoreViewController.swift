@@ -17,6 +17,7 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
     
     // MARK: - Properties
     
+    var categoryCellData: [eBayItemCategory] = []
     
     // MARK: - View Lifecycle
     
@@ -28,16 +29,18 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.register(CategoryCell.self, forCellWithReuseIdentifier: categoryCellIdentifier)
-        
-//        ebayDataManager.getItem(itemID: "v1%7c122179063569%7c422420247304") { data in
-//            print(data)
-//        }
-        
-//        ebayDataManager.searchItem(query: "yoga%20ball") { data in
-//            print(data)
-//        }
-        
+        submitPrecuratedQueries()
         collectionView?.setNeedsUpdateConstraints()
+    }
+    
+    /**
+        Submit pre-curated queries for fitness eBay items
+     */
+    func submitPrecuratedQueries() {
+        ebayDataManager.searchItem(query: "Yoga Ball") { itemCategory in
+            self.categoryCellData.append(itemCategory)
+            self.collectionView?.reloadData()
+        }
     }
     
     // MARK: - UICollectionView Delegate and Datasource
@@ -47,16 +50,19 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return categoryCellData.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellIdentifier, for: indexPath) as! CategoryCell
+        cell.categoryTitle.text = categoryCellData[indexPath.row].title
+        cell.itemCategory = categoryCellData[indexPath.row]
         return cell
     }
+    
+    // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 200)
     }
-
 }
