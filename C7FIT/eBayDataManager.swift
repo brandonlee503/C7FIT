@@ -77,7 +77,8 @@ class eBayDataManager {
         let headers = [
             "authorization": OAuth2Token
         ]
-        let url = URL(string: "\(browseAPIbaseURL)item/\(itemID)")!
+        let urlEncodedString = "\(browseAPIbaseURL)item/\(itemID)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = URL(string: urlEncodedString)!
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
@@ -90,7 +91,9 @@ class eBayDataManager {
                 return
             }
             
-            completion(dataDict)
+            DispatchQueue.main.async {
+                completion(dataDict)
+            }
         }
         
         dataTask.resume()
@@ -99,13 +102,14 @@ class eBayDataManager {
     /**
         Fetches a list of items based off of a search query with a limit of 10 items.
         - Parameter query: The item search query
-        - Returns completion: A callback that returns a list of items in JSON
+        - Returns completion: A callback that returns an eBayItemCategory model
      */
-    func searchItem(query: String, completion: @escaping([String: Any]?) -> Void) {
+    func searchItem(query: String, completion: @escaping(eBayItemCategory) -> Void) {
         let headers = [
             "authorization": OAuth2Token
         ]
-        let url = URL(string: "\(browseAPIbaseURL)item_summary/search?q=\(query)&limit=10")!
+        let urlEncodedString = "\(browseAPIbaseURL)item_summary/search?q=\(query)&limit=10".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = URL(string: urlEncodedString)!
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
@@ -118,7 +122,18 @@ class eBayDataManager {
                 return
             }
             
-            completion(dataDict)
+            // Convert raw JSON into respective models, TODO: - Potentially decouple this in the future...
+            guard let items = dataDict["itemSummaries"] as? [[String: Any]] else { return }
+            
+            var itemArray = [eBayItem]()
+            for item in items {
+                let newItem = eBayItem(itemJSON: item)
+                itemArray.append(newItem)
+            }
+            
+            DispatchQueue.main.async {
+                completion(eBayItemCategory(title: query, items: itemArray))
+            }
         }
         
         dataTask.resume()

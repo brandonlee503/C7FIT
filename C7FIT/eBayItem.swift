@@ -11,9 +11,9 @@ import Foundation
 /**
     A model representation of an eBay item
  */
-struct eBayitem {
+struct eBayItem {
     let mainImage: String?
-    var additionalImages: [String]?
+    var additionalImages = [String?]()
     let title: String?
     let price: String?
     let shippingCost: String?
@@ -27,15 +27,11 @@ struct eBayitem {
             mainImage = nil
         }
         
-        if let addImagesDict = itemJSON["additionalImages"] as? [String: Any] {
-            for image in addImagesDict {
-                additionalImages?.append(image.value as! String)
+        if let additionalImagesDict = itemJSON["additionalImages"] as? [String: Any] {
+            for image in additionalImagesDict {
+                additionalImages.append(image.value as? String)
             }
-        } else {
-            additionalImages = nil
         }
-        
-        additionalImages = itemJSON["additionalImages"] as! [String]?
         
         title = itemJSON["title"] as! String?
         

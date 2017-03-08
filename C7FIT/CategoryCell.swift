@@ -8,6 +8,7 @@
 
 import UIKit
 
+// TODO: Move view code to seperate class
 class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Constants
@@ -25,6 +26,8 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return collectionView
     }()
+    
+    var itemCategory: eBayItemCategory?
     
     // MARK: - Initialization
     
@@ -87,7 +90,13 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDelegate, UICollection
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellIdentifier, for: indexPath) as! eBayItemCell
+        if let title = itemCategory?.items[indexPath.row].title {
+            cell.itemTitle.text = title
+        }
+        if let price = itemCategory?.items[indexPath.row].price {
+            cell.price.text = price
+        }
         return cell
     }
     

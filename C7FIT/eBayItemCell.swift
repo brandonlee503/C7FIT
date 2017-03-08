@@ -42,7 +42,7 @@ class eBayItemCell: UICollectionViewCell {
         
         itemTitle.font = UIFont.systemFont(ofSize: 8)
         itemTitle.textColor = .black
-        itemTitle.backgroundColor = .blue
+        itemTitle.backgroundColor = .green
         itemTitle.text = "Item Title"
         addSubview(itemTitle)
         
