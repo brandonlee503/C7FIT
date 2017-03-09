@@ -22,7 +22,7 @@ struct eBayItem {
     // A bit ugly with nested JSON, but it's done how Apple says - https://developer.apple.com/swift/blog/?id=37
     init(itemJSON: [String: Any]) {
         if let imageDict = itemJSON["image"] as? [String: Any] {
-            mainImage = imageDict["imageURL"] as! String?
+            mainImage = imageDict["imageUrl"] as! String?
         } else {
             mainImage = nil
         }
