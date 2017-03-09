@@ -36,6 +36,11 @@
 		<string>MKDirectionsModeBike</string>
 		<string>MKDirectionsModePedestrian</string>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Do you allow this app to access your HealthKit data?</string>
 	<key>NSHealthUpdateUsageDescription</key>

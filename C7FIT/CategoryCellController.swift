@@ -16,6 +16,8 @@ class CategoryCellController: UICollectionViewCell, UICollectionViewDelegate, UI
     
     let categoryCellView = CategoryCell()
     
+    // MARK: - Properties
+    
     var itemCategory: eBayItemCategory?
     
     // MARK: - Initialization
@@ -53,6 +55,9 @@ class CategoryCellController: UICollectionViewCell, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellIdentifier, for: indexPath) as! eBayItemCell
+        if let itemImage = itemCategory?.items[indexPath.row].mainImage {
+            cell.itemImageView.downloadFrom(urlString: itemImage)
+        }
         if let title = itemCategory?.items[indexPath.row].title {
             cell.itemTitle.text = title
         }
