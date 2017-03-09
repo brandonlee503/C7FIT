@@ -62,7 +62,7 @@ class CategoryCellController: UICollectionViewCell, UICollectionViewDelegate, UI
             cell.itemTitle.text = title
         }
         if let price = itemCategory?.items[indexPath.row].price {
-            cell.price.text = price
+            cell.price.text = "$\(price)"
         }
         return cell
     }
