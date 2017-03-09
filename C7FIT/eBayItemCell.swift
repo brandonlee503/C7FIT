@@ -34,29 +34,31 @@ class eBayItemCell: UICollectionViewCell {
         self.backgroundColor = .purple
         
         itemImageView.contentMode = .scaleAspectFill
+        itemImageView.layer.borderColor = UIColor.gray.cgColor
+        itemImageView.layer.borderWidth = 1
         itemImageView.layer.masksToBounds = true
         itemImageView.backgroundColor = .green
-        itemImageView.image = UIImage(named: "club front")
+        itemImageView.image = UIImage(named: "club front") // TODO: Add a default image
         addSubview(itemImageView)
         
         itemTitle.font = UIFont.systemFont(ofSize: 8)
         itemTitle.textColor = .black
         itemTitle.backgroundColor = .green
-        itemTitle.text = "Item Title"
+        itemTitle.lineBreakMode = .byWordWrapping
+        itemTitle.numberOfLines = 2
         addSubview(itemTitle)
         
         price.font = UIFont.systemFont(ofSize: 8)
         price.textColor = .black
         price.backgroundColor = .red
-        price.text = "Item Price"
         addSubview(price)
     }
     
     func setupConstraints() {
         itemImageView.translatesAutoresizingMaskIntoConstraints = false
-        let imageTop = itemImageView.topAnchor.constraint(equalTo: topAnchor, constant: 5)
-        let imageLeft = itemImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10)
-        let imageRight = itemImageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -10)
+        let imageTop = itemImageView.topAnchor.constraint(equalTo: topAnchor)
+        let imageLeft = itemImageView.leftAnchor.constraint(equalTo: leftAnchor)
+        let imageRight = itemImageView.rightAnchor.constraint(equalTo: rightAnchor)
         let imageBottom = itemImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30)
         NSLayoutConstraint.activate([imageTop, imageLeft, imageRight, imageBottom])
         
