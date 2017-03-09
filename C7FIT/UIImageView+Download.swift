@@ -14,13 +14,13 @@ import UIKit
  */
 public extension UIImageView {
     
-    public func downloadFrom(urlString: String) {
+    public func downloadFrom(urlString: String, imageMode: UIViewContentMode) {
         guard let url = URL(string: urlString) else { return }
-        downloadFrom(url: url)
+        downloadFrom(url: url, imageMode: contentMode)
     }
     
-    public func downloadFrom(url: URL) {
-        contentMode = .scaleAspectFit
+    public func downloadFrom(url: URL, imageMode: UIViewContentMode) {
+        contentMode = imageMode
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else { return }
             DispatchQueue.main.async {
