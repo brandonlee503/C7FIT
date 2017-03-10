@@ -9,6 +9,10 @@
 import UIKit
 import MobileCoreServices
 
+private let profileIdentifier = "ProfileCell"
+private let healthIdentifier = "HealthCell"
+private let logoutIdentifier = "LogoutCell"
+
 class ProfileViewController: UITableViewController {
 
     // MARK: - Constants
@@ -30,9 +34,9 @@ class ProfileViewController: UITableViewController {
         self.navigationController?.navigationBar.barTintColor = .orange
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: "ProfileCell")
-        tableView.register(AbstractHealthCell.self, forCellReuseIdentifier: "HealthCell")
-        tableView.register(LogoutTableViewCell.self, forCellReuseIdentifier: "LogoutCell")
+        tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: profileIdentifier)
+        tableView.register(AbstractHealthCell.self, forCellReuseIdentifier: healthIdentifier)
+        tableView.register(LogoutTableViewCell.self, forCellReuseIdentifier: logoutIdentifier)
         tableView.tableFooterView = UIView()
         
         // Add save button
@@ -91,14 +95,14 @@ class ProfileViewController: UITableViewController {
     // FIXME: Lots of semi-repetitive code here.. Find a way to minimize if possible
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            if let cell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as? ProfileTableViewCell {
+            if let cell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: profileIdentifier) as? ProfileTableViewCell {
                 cell.nameField.text = user?.name ?? ""
                 cell.bioField.text = user?.bio ?? "Add a bio"
                 cell.updateProfileButton.addTarget(self, action: #selector(updateProfilePicPressed(sender:)), for: .touchUpInside)
                 return cell
             }
         } else if indexPath.row == 1 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
                 cell.dataTitle.text = "Weight (lbs)"
                 if let weight = user?.weight {
                     cell.dataLabel.text = weight
@@ -107,7 +111,7 @@ class ProfileViewController: UITableViewController {
                 return cell
             }
         } else if indexPath.row == 2 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
                 cell.dataTitle.text = "Height"
                 if let height = user?.height {
                     cell.dataLabel.text = height
@@ -116,7 +120,7 @@ class ProfileViewController: UITableViewController {
                 return cell
             }
         } else if indexPath.row == 3 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
                 cell.dataTitle.text = "BMI"
                 if let bmi = user?.bmi {
                     cell.dataLabel.text = bmi
@@ -124,7 +128,7 @@ class ProfileViewController: UITableViewController {
                 return cell
             }
         } else if indexPath.row == 4 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
                 cell.dataTitle.text = "Mile Time (minute, seconds)"
                 if let mileTime = user?.mileTime {
                     cell.dataLabel.text = mileTime
@@ -133,7 +137,7 @@ class ProfileViewController: UITableViewController {
                 return cell
             }
         } else if indexPath.row == 5 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
                 cell.dataTitle.text = "Pushups"
                 if let pushups = user?.pushups {
                     cell.dataLabel.text = pushups
@@ -142,7 +146,7 @@ class ProfileViewController: UITableViewController {
                 return cell
             }
         } else if indexPath.row == 6 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
                 cell.dataTitle.text = "Situps"
                 if let situps = user?.situps {
                     cell.dataLabel.text = situps
@@ -151,7 +155,7 @@ class ProfileViewController: UITableViewController {
                 return cell
             }
         } else if indexPath.row == 7 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
                 cell.dataTitle.text = "Leg Press"
                 if let legPress = user?.legPress {
                     cell.dataLabel.text = legPress
@@ -160,7 +164,7 @@ class ProfileViewController: UITableViewController {
                 return cell
             }
         } else if indexPath.row == 8 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
                 cell.dataTitle.text = "Bench Press"
                 if let benchPress = user?.benchPress {
                     cell.dataLabel.text = benchPress
@@ -169,7 +173,7 @@ class ProfileViewController: UITableViewController {
                 return cell
             }
         } else if indexPath.row == 9 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: "HealthCell") as? AbstractHealthCell {
+            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
                 cell.dataTitle.text = "Lateral Pull"
                 if let lateralPull = user?.lateralPull {
                     cell.dataLabel.text = lateralPull
@@ -178,7 +182,7 @@ class ProfileViewController: UITableViewController {
                 return cell
             }
         } else if indexPath.row == 10 {
-            if let cell: LogoutTableViewCell = tableView.dequeueReusableCell(withIdentifier: "LogoutCell") as? LogoutTableViewCell {
+            if let cell: LogoutTableViewCell = tableView.dequeueReusableCell(withIdentifier: logoutIdentifier) as? LogoutTableViewCell {
                 return cell
             }
         }

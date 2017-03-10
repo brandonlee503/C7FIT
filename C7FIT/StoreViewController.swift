@@ -8,11 +8,12 @@
 
 import UIKit
 
+private let categoryCellIdentifier = "CategoryCell"
+
 class StoreViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     // MARK: - Constants
     
-    private let categoryCellIdentifier = "CategoryCell"
     let eBayToken = eBayAPIToken()
     let ebayDataManager = eBayDataManager()
     
