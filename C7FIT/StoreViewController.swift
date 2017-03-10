@@ -13,6 +13,7 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
     // MARK: - Constants
     
     private let categoryCellIdentifier = "CategoryCell"
+    let eBayToken = eBayAPIToken()
     let ebayDataManager = eBayDataManager()
     
     // MARK: - Properties
@@ -37,19 +38,23 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
         Submit pre-curated queries for fitness eBay items
      */
     func submitPrecuratedQueries() {
-        ebayDataManager.searchItem(query: "Yoga Ball") { itemCategory in
-            self.categoryCellData.append(itemCategory)
-            self.collectionView?.reloadData()
-        }
         
-        ebayDataManager.searchItem(query: "Gym Shoes") { itemCategory in
-            self.categoryCellData.append(itemCategory)
-            self.collectionView?.reloadData()
-        }
-        
-        ebayDataManager.searchItem(query: "Exercise Mat") { itemCategory in
-            self.categoryCellData.append(itemCategory)
-            self.collectionView?.reloadData()
+        eBayToken.getOAuth2Token { OAuth2Token in
+            guard let token = OAuth2Token else { return }
+            self.ebayDataManager.searchItem(query: "Yoga Ball", OAuth2Token: token) { itemCategory in
+                self.categoryCellData.append(itemCategory)
+                self.collectionView?.reloadData()
+            }
+            
+            self.ebayDataManager.searchItem(query: "Gym Shoes", OAuth2Token: token) { itemCategory in
+                self.categoryCellData.append(itemCategory)
+                self.collectionView?.reloadData()
+            }
+            
+            self.ebayDataManager.searchItem(query: "Exercise Mat", OAuth2Token: token) { itemCategory in
+                self.categoryCellData.append(itemCategory)
+                self.collectionView?.reloadData()
+            }
         }
     }
     
