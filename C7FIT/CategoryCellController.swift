@@ -8,11 +8,11 @@
 
 import UIKit
 
+private let itemCellIdentifier = "ItemCell"
+
 class CategoryCellController: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Constants
-    
-    private let itemCellIdentifier = "ItemCell"
     
     let categoryCellView = CategoryCell()
     
