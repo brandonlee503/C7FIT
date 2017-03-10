@@ -60,8 +60,9 @@ class eBayDataManager {
             guard let dataDict = dataJSON as? [String: Any], let token = dataDict["access_token"] as? String else {
                 return
             }
-            
-            completion("Bearer \"\(token)\"")
+            DispatchQueue.main.async {
+                completion("Bearer \"\(token)\"")
+            }
         }
         
         dataTask.resume()
@@ -106,9 +107,9 @@ class eBayDataManager {
      */
     func searchItem(query: String, completion: @escaping(eBayItemCategory) -> Void) {
         let headers = [
-            "authorization": OAuth2Token
+            "authorization": self.OAuth2Token
         ]
-        let urlEncodedString = "\(browseAPIbaseURL)item_summary/search?q=\(query)&limit=10".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let urlEncodedString = "\(self.browseAPIbaseURL)item_summary/search?q=\(query)&limit=10".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: urlEncodedString)!
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
