@@ -12,7 +12,7 @@ class eBayItemCell: UICollectionViewCell {
     
     // MARK - Properties
     
-    var itemImageView: UIImageView = UIImageView()
+    var itemImageView: C7FUIImageView = C7FUIImageView()
     var itemTitle: UILabel = UILabel()
     var price: UILabel = UILabel()
     
