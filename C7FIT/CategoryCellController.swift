@@ -50,7 +50,10 @@ class CategoryCellController: UICollectionViewCell, UICollectionViewDelegate, UI
     // MARK: - UICollectionView Delegate and Data Source
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if let itemCount = itemCategory?.items.count {
+            return itemCount
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
