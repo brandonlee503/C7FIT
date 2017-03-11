@@ -58,7 +58,7 @@ class CategoryCellController: UICollectionViewCell, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellIdentifier, for: indexPath) as! eBayItemCell
-        if let itemImage = itemCategory?.items[indexPath.row].mainImage {
+        if let itemImage = itemCategory?.items[indexPath.row].mainImageURLString {
             cell.itemImageView.downloadImageFrom(urlString: itemImage, imageMode: .scaleAspectFit)
         }
         if let title = itemCategory?.items[indexPath.row].title {
