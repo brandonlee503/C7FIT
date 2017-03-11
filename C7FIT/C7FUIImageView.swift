@@ -35,9 +35,12 @@ class C7FUIImageView: UIImageView {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data, error == nil else { return }
                 DispatchQueue.main.async {
-                    let imageToCache = UIImage(data: data)
-                    self.imageCache.setObject(imageToCache!, forKey: url.absoluteString as NSString)
-                    self.image = imageToCache
+                    if let imageToCache = UIImage(data: data) {
+                        self.imageCache.setObject(imageToCache, forKey: url.absoluteString as NSString)
+                        self.image = imageToCache
+                    } else {
+                        self.image = nil
+                    }
                 }
             }.resume()
         }
