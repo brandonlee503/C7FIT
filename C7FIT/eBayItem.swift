@@ -12,8 +12,8 @@ import Foundation
     A model representation of an eBay item
  */
 struct eBayItem {
-    let mainImage: String?
-    var additionalImages = [String?]()
+    let mainImageURLString: String?
+    var additionalImageURLStrings = [String?]()
     let title: String?
     let price: String?
     let shippingCost: String?
@@ -22,14 +22,14 @@ struct eBayItem {
     // A bit ugly with nested JSON, but it's done how Apple says - https://developer.apple.com/swift/blog/?id=37
     init(itemJSON: [String: Any]) {
         if let imageDict = itemJSON["image"] as? [String: Any] {
-            mainImage = imageDict["imageUrl"] as! String?
+            mainImageURLString = imageDict["imageUrl"] as! String?
         } else {
-            mainImage = nil
+            mainImageURLString = nil
         }
         
         if let additionalImagesDict = itemJSON["additionalImages"] as? [String: Any] {
             for image in additionalImagesDict {
-                additionalImages.append(image.value as? String)
+                additionalImageURLStrings.append(image.value as? String)
             }
         }
         
