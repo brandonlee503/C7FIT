@@ -38,20 +38,22 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
         Submit pre-curated queries for fitness eBay items
      */
     func submitPrecuratedQueries() {
-        
         eBayToken.getOAuth2Token { OAuth2Token in
             guard let token = OAuth2Token else { return }
             self.ebayDataManager.searchItem(query: "Yoga Ball", OAuth2Token: token) { itemCategory in
+                guard let itemCategory = itemCategory else { return }
                 self.categoryCellData.append(itemCategory)
                 self.collectionView?.reloadData()
             }
             
             self.ebayDataManager.searchItem(query: "Gym Shoes", OAuth2Token: token) { itemCategory in
+                guard let itemCategory = itemCategory else { return }
                 self.categoryCellData.append(itemCategory)
                 self.collectionView?.reloadData()
             }
             
             self.ebayDataManager.searchItem(query: "Exercise Mat", OAuth2Token: token) { itemCategory in
+                guard let itemCategory = itemCategory else { return }
                 self.categoryCellData.append(itemCategory)
                 self.collectionView?.reloadData()
             }
