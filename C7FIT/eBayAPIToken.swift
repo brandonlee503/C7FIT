@@ -21,7 +21,7 @@ struct eBayAPIToken {
          Obtain a new bearer token
          - Returns completion: A callback that returns an optional string token
      */
-    func getOAuth2Token(completion: @escaping (_:String?) -> Void) {
+    func getOAuth2Token(completion: @escaping (String?) -> Void) {
         let headers = [
             "content-type": "application/x-www-form-urlencoded",
             "authorization": "Basic \(encodedOAuthCreds)",
@@ -36,13 +36,13 @@ struct eBayAPIToken {
         let dataTask = URLSession.shared.downloadTask(with: request as URLRequest) { (location, response, error) in
             guard let location = location, error == nil else {
                 print("Error in retrieving bearer token: \(error?.localizedDescription)")
-                return
+                return completion(nil)
             }
             guard let dataObject = try? Data(contentsOf: location), let dataJSON = try? JSONSerialization.jsonObject(with: dataObject, options: []) else {
-                return
+                return completion(nil)
             }
             guard let dataDict = dataJSON as? [String: Any], let token = dataDict["access_token"] as? String else {
-                return
+                return completion(nil)
             }
             DispatchQueue.main.async {
                 completion("Bearer \"\(token)\"")
