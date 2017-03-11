@@ -33,10 +33,10 @@ struct eBayDataManager {
         let dataTask = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             guard let data = data, error == nil else {
                 print("Error in retrieving item: \(error?.localizedDescription)")
-                return
+                return completion(nil)
             }
             guard let dataJSON = try? JSONSerialization.jsonObject(with: data, options: []), let dataDict = dataJSON as? [String: Any] else {
-                return
+                return completion(nil)
             }
             
             DispatchQueue.main.async {
@@ -52,7 +52,7 @@ struct eBayDataManager {
         - Parameter query: The item search query
         - Returns completion: A callback that returns an eBayItemCategory model
      */
-    func searchItem(query: String, OAuth2Token: String, completion: @escaping(eBayItemCategory) -> Void) {
+    func searchItem(query: String, OAuth2Token: String, completion: @escaping(eBayItemCategory?) -> Void) {
         let headers = [
             "authorization": OAuth2Token
         ]
@@ -64,10 +64,10 @@ struct eBayDataManager {
         let dataTask = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             guard let data = data, error == nil else {
                 print("Error in retrieving item: \(error?.localizedDescription)")
-                return
+                return completion(nil)
             }
             guard let dataJSON = try? JSONSerialization.jsonObject(with: data, options: []), let dataDict = dataJSON as? [String: Any] else {
-                return
+                return completion(nil)
             }
             
             // Convert raw JSON into respective models, TODO: - Potentially decouple this in the future...
