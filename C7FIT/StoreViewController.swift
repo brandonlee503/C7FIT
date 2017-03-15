@@ -25,9 +25,9 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Store"
-        self.collectionView?.backgroundColor = .white
-        self.navigationController?.navigationBar.barTintColor = .orange
+        title = "Store"
+        collectionView?.backgroundColor = .white
+        navigationController?.navigationBar.barTintColor = .orange
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.register(CategoryCellController.self, forCellWithReuseIdentifier: categoryCellIdentifier)
@@ -73,8 +73,9 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellIdentifier, for: indexPath) as! CategoryCellController
-        cell.categoryCellView.categoryTitle.text = categoryCellData[indexPath.row].title
-        cell.itemCategory = categoryCellData[indexPath.row]
+        cell.categoryCellView.categoryTitle.text = categoryCellData[indexPath.item].title
+        cell.itemCategory = categoryCellData[indexPath.item]
+        cell.storeViewController = self
         return cell
     }
     
