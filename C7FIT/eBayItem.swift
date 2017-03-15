@@ -9,7 +9,7 @@
 import Foundation
 
 /**
-    A model representation of an eBay item
+    A model representation of an eBay item fetched from search
  */
 struct eBayItem {
     let mainImage: URL?
@@ -27,9 +27,9 @@ struct eBayItem {
             mainImage = nil
         }
         
-        if let additionalImagesDict = itemJSON["additionalImages"] as? [String: Any] {
+        if let additionalImagesDict = itemJSON["additionalImages"] as? [[String: Any]] {
             for image in additionalImagesDict {
-                additionalImages.append(URL(string: image.value as! String))
+                additionalImages.append(URL(string: image["imageUrl"] as! String))
             }
         }
         
