@@ -79,6 +79,12 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
         return cell
     }
     
+    // MARK: - Navigation
+    
+    func showItemDetail(item: eBayItem) {
+        navigationController?.pushViewController(ItemDetailController(item: item), animated: true)
+    }
+    
     // MARK: - UICollectionViewDelegateFlowLayout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

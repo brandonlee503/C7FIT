@@ -19,6 +19,7 @@ class CategoryCellController: UICollectionViewCell, UICollectionViewDelegate, UI
     // MARK: - Properties
     
     var itemCategory: eBayItemCategory?
+    var storeViewController: StoreViewController?
     
     // MARK: - Initialization
     
@@ -68,6 +69,12 @@ class CategoryCellController: UICollectionViewCell, UICollectionViewDelegate, UI
             cell.price.text = "$\(price)"
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let item = itemCategory?.items[indexPath.item] {
+            storeViewController?.showItemDetail(item: item)
+        }
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
