@@ -9,8 +9,9 @@
 import UIKit
 
 private let reuseIdentifier = "ItemDetailCell"
+private let headerReuseIdentifer = "ItemHeader"
 
-class ItemDetailController: UICollectionViewController {
+class ItemDetailController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Constants
     
@@ -32,25 +33,26 @@ class ItemDetailController: UICollectionViewController {
     }
     
     // MARK: - View Controller Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Item"
         collectionView?.backgroundColor = .white
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        navigationController?.navigationBar.tintColor = .black
+        collectionView?.register(ItemHeaderCellController.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifer)
+        collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        print(detailItem?.webURL ?? "missing")
     }
 
-    // MARK: UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return 1
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -60,8 +62,20 @@ class ItemDetailController: UICollectionViewController {
     
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerReuseIdentifer, for: indexPath) as! ItemHeaderCellController
+        // Get all images into one array
+        if let mainImage = detailItem?.mainImage {
+            header.itemImages.append(mainImage)
+        }
+        if let additionalImages = detailItem?.additionalImages {
+            header.itemImages.append(contentsOf: additionalImages)
+        }
+        return header
+    }
+    
+    // MARK: - UICollectionViewDelegate
 
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
@@ -92,4 +106,9 @@ class ItemDetailController: UICollectionViewController {
     }
     */
 
+    // MARK: - UICollectionViewDelegateFlowLayout
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 250)
+    }
 }
