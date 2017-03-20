@@ -23,6 +23,9 @@
 		1626F8371E62BD1A002E2A9B /* eBayDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */; };
 		163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163771531E398E2B000B3E87 /* FirebaseDataManager.swift */; };
 		163DFC101E41A43A00593CF9 /* AbstractHealthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163DFC0F1E41A43A00593CF9 /* AbstractHealthCell.swift */; };
+		16461B341E7F40A1003A8723 /* ItemHeaderCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16461B331E7F40A1003A8723 /* ItemHeaderCellController.swift */; };
+		16461B361E7F435E003A8723 /* ItemHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16461B351E7F435E003A8723 /* ItemHeaderCell.swift */; };
+		16461B381E7F4AF2003A8723 /* ItemImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16461B371E7F4AF2003A8723 /* ItemImageCell.swift */; };
 		164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164BAAA91E36E5BA00DE4C71 /* LoginViewController.swift */; };
 		164BAAAC1E36E5D900DE4C71 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164BAAAB1E36E5D900DE4C71 /* LoginView.swift */; };
 		16576F171E1295C300BF622D /* String+Conversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16576F161E1295C300BF622D /* String+Conversions.swift */; };
@@ -108,6 +111,9 @@
 		1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayDataManager.swift; sourceTree = "<group>"; };
 		163771531E398E2B000B3E87 /* FirebaseDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataManager.swift; sourceTree = "<group>"; };
 		163DFC0F1E41A43A00593CF9 /* AbstractHealthCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbstractHealthCell.swift; sourceTree = "<group>"; };
+		16461B331E7F40A1003A8723 /* ItemHeaderCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemHeaderCellController.swift; sourceTree = "<group>"; };
+		16461B351E7F435E003A8723 /* ItemHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemHeaderCell.swift; sourceTree = "<group>"; };
+		16461B371E7F4AF2003A8723 /* ItemImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemImageCell.swift; sourceTree = "<group>"; };
 		164BAAA91E36E5BA00DE4C71 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		164BAAAB1E36E5D900DE4C71 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		16576F161E1295C300BF622D /* String+Conversions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Conversions.swift"; sourceTree = "<group>"; };
@@ -267,8 +273,10 @@
 		1626F8331E62B173002E2A9B /* StoreViews */ = {
 			isa = PBXGroup;
 			children = (
-				16BFBBB31E6A7C7A001D088A /* eBayItemCell.swift */,
 				16BEBE531E6FEE050034D422 /* CategoryCell.swift */,
+				16BFBBB31E6A7C7A001D088A /* eBayItemCell.swift */,
+				16461B351E7F435E003A8723 /* ItemHeaderCell.swift */,
+				16461B371E7F4AF2003A8723 /* ItemImageCell.swift */,
 			);
 			name = StoreViews;
 			sourceTree = "<group>";
@@ -310,6 +318,7 @@
 			children = (
 				1626F8341E62B204002E2A9B /* CategoryCellController.swift */,
 				16BEB6C71E72AE20001BE973 /* ItemDetailController.swift */,
+				16461B331E7F40A1003A8723 /* ItemHeaderCellController.swift */,
 				160D9B7F1E0BF91400801627 /* StoreViewController.swift */,
 			);
 			name = Store;
@@ -689,6 +698,7 @@
 				16BEBE541E6FEE050034D422 /* CategoryCell.swift in Sources */,
 				7AD3DEEE1E5ED194001580CC /* MapDetailView.swift in Sources */,
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
+				16461B361E7F435E003A8723 /* ItemHeaderCell.swift in Sources */,
 				16BEB6C81E72AE20001BE973 /* ItemDetailController.swift in Sources */,
 				7AF7BC001E5467AF0059A62A /* WatchViewController.swift in Sources */,
 				7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */,
@@ -712,9 +722,11 @@
 				160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */,
 				1694BE1C1E71330F004E2E7D /* C7FUIImageView.swift in Sources */,
 				7AD3DEF21E5ED7CF001580CC /* RunData.swift in Sources */,
+				16461B341E7F40A1003A8723 /* ItemHeaderCellController.swift in Sources */,
 				160D9B801E0BF91400801627 /* StoreViewController.swift in Sources */,
 				16D2D2EA1E38020300F6AA9F /* ProfileTableViewCell.swift in Sources */,
 				1626F8371E62BD1A002E2A9B /* eBayDataManager.swift in Sources */,
+				16461B381E7F4AF2003A8723 /* ItemImageCell.swift in Sources */,
 				7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */,
 				16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */,
 				7AF7BC041E5467C10059A62A /* HeartRateViewController.swift in Sources */,
