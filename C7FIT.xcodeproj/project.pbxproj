@@ -32,6 +32,7 @@
 		1658B9DE1E0F9EFD009D4F67 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1658B9DD1E0F9EFD009D4F67 /* ProfileViewModel.swift */; };
 		16594B361E6C5B350032AD26 /* eBayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16594B351E6C5B350032AD26 /* eBayItem.swift */; };
 		1694BE1C1E71330F004E2E7D /* C7FUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1694BE1B1E71330F004E2E7D /* C7FUIImageView.swift */; };
+		1699EB331E80BBEE008171AF /* ItemInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699EB321E80BBEE008171AF /* ItemInfoCell.swift */; };
 		16BEB6C61E72966A001BE973 /* eBayAPIToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEB6C51E72966A001BE973 /* eBayAPIToken.swift */; };
 		16BEB6C81E72AE20001BE973 /* ItemDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEB6C71E72AE20001BE973 /* ItemDetailController.swift */; };
 		16BEBE521E6FB4E10034D422 /* eBayItemCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEBE511E6FB4E10034D422 /* eBayItemCategory.swift */; };
@@ -120,6 +121,7 @@
 		1658B9DD1E0F9EFD009D4F67 /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		16594B351E6C5B350032AD26 /* eBayItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayItem.swift; sourceTree = "<group>"; };
 		1694BE1B1E71330F004E2E7D /* C7FUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = C7FUIImageView.swift; sourceTree = "<group>"; };
+		1699EB321E80BBEE008171AF /* ItemInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemInfoCell.swift; sourceTree = "<group>"; };
 		16BEB6C51E72966A001BE973 /* eBayAPIToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayAPIToken.swift; sourceTree = "<group>"; };
 		16BEB6C71E72AE20001BE973 /* ItemDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailController.swift; sourceTree = "<group>"; };
 		16BEBE511E6FB4E10034D422 /* eBayItemCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayItemCategory.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				16BFBBB31E6A7C7A001D088A /* eBayItemCell.swift */,
 				16461B351E7F435E003A8723 /* ItemHeaderCell.swift */,
 				16461B371E7F4AF2003A8723 /* ItemImageCell.swift */,
+				1699EB321E80BBEE008171AF /* ItemInfoCell.swift */,
 			);
 			name = StoreViews;
 			sourceTree = "<group>";
@@ -710,6 +713,7 @@
 				160D9B0B1E0B5C0D00801627 /* AppDelegate.swift in Sources */,
 				7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */,
 				7AF7BBF21E5460770059A62A /* HealthKitViewController.swift in Sources */,
+				1699EB331E80BBEE008171AF /* ItemInfoCell.swift in Sources */,
 				7AF7BBF81E5464310059A62A /* CountView.swift in Sources */,
 				160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */,
 				7AD3DEF61E5EDC44001580CC /* MapDetailViewController.swift in Sources */,
@@ -872,6 +876,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = C7FIT/C7FIT.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 27G39RU5P8;
 				INFOPLIST_FILE = C7FIT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -889,6 +894,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = C7FIT/C7FIT.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 27G39RU5P8;
 				INFOPLIST_FILE = C7FIT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
