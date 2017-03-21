@@ -10,6 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "ItemDetailCell"
 private let headerReuseIdentifer = "ItemHeader"
+private let infoIdentifier = "ItemInfoCell"
 
 class ItemDetailController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
@@ -40,8 +41,8 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
         collectionView?.backgroundColor = .white
         navigationController?.navigationBar.tintColor = .black
         collectionView?.register(ItemHeaderCellController.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifer)
-        collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        print(detailItem?.webURL ?? "missing")
+        collectionView?.register(ItemInfoCell.self, forCellWithReuseIdentifier: infoIdentifier)
+        print("shipping: \(detailItem?.shippingCost)")
     }
 
     // MARK: - UICollectionViewDataSource
@@ -56,11 +57,26 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
-        return cell
+        if indexPath.item == 0 {
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: infoIdentifier, for: indexPath) as? ItemInfoCell {
+                cell.itemTitle.text = detailItem?.title
+                // TODO - Potentially put price and cost parsing into a view model
+                if let price = detailItem?.price {
+                    cell.price.text = "$\(price)"
+                } else {
+                    cell.price.text = "Unavailable"
+                }
+                if detailItem?.shippingCost == "0.00" {
+                    cell.shippingCost.text = "Free"
+                } else {
+                    cell.shippingCost.text = detailItem?.shippingCost
+                }
+                
+                return cell
+            }
+        }
+        
+        return UICollectionViewCell()
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -76,6 +92,10 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
     }
 
     // MARK: - UICollectionViewDelegateFlowLayout
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 150)
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width, height: 250)
