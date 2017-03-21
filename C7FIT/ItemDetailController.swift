@@ -42,9 +42,14 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
         navigationController?.navigationBar.tintColor = .black
         collectionView?.register(ItemHeaderCellController.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerReuseIdentifer)
         collectionView?.register(ItemInfoCell.self, forCellWithReuseIdentifier: infoIdentifier)
-        print("shipping: \(detailItem?.shippingCost)")
     }
 
+    func buyButtonPressed() {
+        if let urlString = detailItem?.webURL, let url = URL(string: urlString) {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
     // MARK: - UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -71,6 +76,7 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
                 } else {
                     cell.shippingCost.text = detailItem?.shippingCost
                 }
+                cell.buyButton.addTarget(self, action: #selector(self.buyButtonPressed), for: .touchUpInside)
                 
                 return cell
             }

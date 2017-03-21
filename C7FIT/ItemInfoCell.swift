@@ -16,6 +16,7 @@ class ItemInfoCell: UICollectionViewCell {
     var price: UILabel = UILabel()
     var shippingTitle: UILabel = UILabel()
     var shippingCost: UILabel = UILabel()
+    var buyButton: UIButton = UIButton()
     
     // MARK: - Initialization
     
@@ -56,6 +57,12 @@ class ItemInfoCell: UICollectionViewCell {
         shippingTitle.backgroundColor = .orange
         shippingTitle.text = "Shipping"
         addSubview(shippingTitle)
+        
+        buyButton.setTitle("Buy It Now", for: .normal)
+        buyButton.setTitleColor(.white, for: .normal)
+        buyButton.backgroundColor = .blue
+        buyButton.layer.cornerRadius = 5
+        addSubview(buyButton)
     }
     
     func setupConstraints() {
@@ -80,5 +87,11 @@ class ItemInfoCell: UICollectionViewCell {
         let shippingTitleTop = shippingTitle.topAnchor.constraint(equalTo: shippingCost.bottomAnchor, constant: 2)
         let shippingTitleRight = shippingTitle.rightAnchor.constraint(equalTo: shippingCost.rightAnchor)
         NSLayoutConstraint.activate([shippingTitleTop, shippingTitleRight])
+        
+        buyButton.translatesAutoresizingMaskIntoConstraints = false
+        let buttonTop = buyButton.topAnchor.constraint(equalTo: price.bottomAnchor, constant: 35)
+        let buttonLeft = buyButton.leftAnchor.constraint(equalTo: price.leftAnchor)
+        let buttonRight = buyButton.rightAnchor.constraint(equalTo: shippingTitle.rightAnchor)
+        NSLayoutConstraint.activate([buttonTop, buttonLeft, buttonRight])
     }
 }
