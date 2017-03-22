@@ -307,12 +307,7 @@ class ProfileViewController: UITableViewController {
     func updateprofileImage(url: URL?) {
         if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProfileTableViewCell {
             if let url = url {
-                do {
-                    let imageData = try Data(contentsOf: url)
-                    cell.profileImageView.image = UIImage(data: imageData)
-                } catch {
-                    print("Image could not be downloaded")
-                }
+                cell.profileImageView.downloadImageFrom(url: url, imageMode: .scaleAspectFill)
             } else {
                 cell.profileImageView.image = nil
             }
