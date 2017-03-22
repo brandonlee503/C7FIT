@@ -1,15 +1,15 @@
 //
-//  StoreView.swift
+//  StopWatchView.swift
 //  C7FIT
 //
-//  Created by Brandon Lee on 12/22/16.
-//  Copyright © 2016 Brandon Lee. All rights reserved.
+//  Created by Michael Lee on 2/15/17.
+//  Copyright © 2017 Brandon Lee. All rights reserved.
 //
 
 import UIKit
 
-class StoreView: UIView {
-    
+class WatchView: UIView {
+
     // MARK: - Properties
     
     var titleLabel: UILabel = UILabel()
@@ -29,7 +29,7 @@ class StoreView: UIView {
     // MARK: - Layout
     
     func setup() {
-        titleLabel.text = "Store"
+        titleLabel.text = "Watch Stuff"
         addSubview(titleLabel)
     }
     
@@ -39,4 +39,5 @@ class StoreView: UIView {
         let centerTitleY = titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         NSLayoutConstraint.activate([centerTitleX, centerTitleY])
     }
+
 }

@@ -1,5 +1,5 @@
 //
-//  StringExtensions.swift
+//  String+Conversions.swift
 //  C7FIT
 //
 //  Created by Brandon Lee on 12/27/16.
@@ -11,16 +11,16 @@ import Foundation
 /**
     Extensions for Swift's String
  */
-extension String {
-    var boolValue: Bool {
+public extension String {
+    public var boolValue: Bool {
         return NSString(string: self).boolValue
     }
     
-    var intValue: Int {
+    public var intValue: Int {
         return NSString(string: self).integerValue
     }
     
-    var doubleValue: Double {
+    public var doubleValue: Double {
         return NSString(string: self).doubleValue
     }
     
