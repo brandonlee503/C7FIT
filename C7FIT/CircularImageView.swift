@@ -12,7 +12,7 @@ import UIKit
     UIImageView adapter subclass to create rounded images as autolayout and CGLayer don't mix very well...
     http://stackoverflow.com/questions/32362934/how-to-keep-a-round-imageview-round-using-auto-layout
  */
-class CircularImageView: UIImageView {
+class CircularImageView: C7FUIImageView {
     override func layoutSubviews() {
         super.layoutSubviews()
         let radius: CGFloat = self.bounds.size.width / 2
