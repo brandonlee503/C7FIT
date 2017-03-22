@@ -53,11 +53,9 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
             navigationItem.rightBarButtonItem?.tintColor = .black
         }
         // display run details
-        detailCell.distanceQuantity.text = self.currentRun.distance.description
+        detailCell.distanceQuantity.text = self.currentRun.dispDistancePretty()
         detailCell.paceQuantity.text = self.currentRun.pace
         detailCell.secondsQuantity.text = self.currentRun.dispTimePretty()
-        
-
     }
     
     // MARK: - Init
@@ -191,6 +189,13 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
                 saveError.addAction(ok)
                 self.present(saveError, animated: true, completion:nil)
                 return
+            } else if ((runTitle.text?.characters.count)! > 26) {
+                // stop them from entering more than 26 characers in the text field?
+                let saveError = UIAlertController(title: "Error", message: "Name is too long, please be under 26 characters", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "okay", style: .cancel)
+                saveError.addAction(ok)
+                self.present(saveError, animated: true, completion:nil)
+                return
             }
             
             //save the run to firebase
@@ -229,4 +234,5 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
 }

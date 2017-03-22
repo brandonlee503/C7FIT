@@ -15,12 +15,14 @@ class RunListTableViewController: UITableViewController {
     var listRuns = [RunData?]()
     var userID: String?
     var numRows: Int?
+    var runListCell: RunListCell = RunListCell()
     
     let runListID = "runCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Your Runs"
+        
      
         tableView.delegate = self
         tableView.dataSource = self
@@ -62,6 +64,7 @@ class RunListTableViewController: UITableViewController {
             let rowTitle = listRuns[indexPath.row]?.runTitle ?? ""
             if let cell: RunListCell = tableView.dequeueReusableCell(withIdentifier: runListID, for: indexPath) as? RunListCell {
                 cell.titleLabel.text = rowTitle
+                cell.dateLabel.text = listRuns[indexPath.row]?.dispDatePretty() ?? "error"
                 return cell
             }
         }
