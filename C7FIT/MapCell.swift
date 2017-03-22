@@ -36,7 +36,6 @@ class MapCell: UITableViewCell {
         mapView.showsUserLocation = true
         
         addSubview(mapView)
-        
     }
     
     func setupConstraints() {

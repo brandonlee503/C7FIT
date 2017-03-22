@@ -32,6 +32,9 @@ class RunListCell: UITableViewCell {
     func setup() {
         titleLabel.backgroundColor = .green
         addSubview(titleLabel)
+        
+        dateLabel.backgroundColor = .green
+        addSubview(dateLabel)
     }
     
     func setupConstraints() {
@@ -40,5 +43,11 @@ class RunListCell: UITableViewCell {
         let titleTop = titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10)
         let titleBottom = titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         NSLayoutConstraint.activate([titleLead, titleTop, titleBottom])
+        
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        let dateTrail = dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+        let dateTop = dateLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor)
+        let dateBottom = dateLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
+        NSLayoutConstraint.activate([dateTrail, dateTop, dateBottom])
     }
 }

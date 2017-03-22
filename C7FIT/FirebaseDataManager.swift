@@ -167,7 +167,8 @@ struct FirebaseDataManager {
             let time = ((json["time"] as? Double)),
             let distance = ((json["distance"] as? Double)),
             let pace = json["pace"] as? String,
-            let locationsString = json["locations"] as? [AnyObject] else { return nil }
+            let locationsString = json["locations"] as? [AnyObject],
+            let dateDouble = json["date"] as? Double else { return nil }
         
         var convertedLoc = [Location]()
         for locString in locationsString {
@@ -176,7 +177,10 @@ struct FirebaseDataManager {
                 convertedLoc.append(tempLocation!)
             }
         }
-        return RunData(runTitle: runTitle, time: time, distance: distance, pace: pace, locations: convertedLoc)
+        
+        let date = Date(timeIntervalSince1970: dateDouble)
+        
+        return RunData(runTitle: runTitle, time: time, distance: distance, pace: pace, locations: convertedLoc, date: date)
     }
     
     /**

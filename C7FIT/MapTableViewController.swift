@@ -17,6 +17,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     
     let mapCellID = "mapCell"
     let startStopID = "startStopCell"
+    let timerCellID = "timerCell"
     
     // MARK: - Properties
     
@@ -30,6 +31,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     
     let startStopCell = StartStopCell()
     let mapCell = MapCell()
+    let timerCell = TimerCell()
     
     
     // MARK: - Table View Lifecycle
@@ -41,6 +43,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         tableView.dataSource = self
         tableView.register(MapCell.self, forCellReuseIdentifier: mapCellID)
         tableView.register(StartStopCell.self, forCellReuseIdentifier: startStopID)
+        tableView.register(TimerCell.self, forCellReuseIdentifier: timerCellID)
         
         setup()
         
@@ -71,7 +74,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,6 +82,9 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
             let cell = self.startStopCell
             return cell
         } else if(indexPath.row == 1) {
+            let cell = self.timerCell
+            return cell
+        } else if(indexPath.row == 2) {
             let cell = self.mapCell
             return cell
         }
@@ -95,7 +101,9 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         let cellHeight: CGFloat = 40.0
         
         if(indexPath.row == 1) {
-            return barConstants - cellHeight
+           return cellHeight * 2
+        } else if(indexPath.row == 2) {
+           return barConstants - (cellHeight * 3)
         }
         return cellHeight
     }
@@ -112,7 +120,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         }
         //stop user invalid input
         self.startStopCell.stopButton.isEnabled = true
-        self.startStopCell.startButton.isEnabled = false
+        self.startStopCell.startButton.isEnabled = true
        
         seconds = 0.0
         distance = 0.0
@@ -140,29 +148,6 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     
     func gotoRunList() {
         self.navigationController?.pushViewController(RunListTableViewController(), animated: true)
-    }
-    
-    // MARK: Create Run Data
-    
-    func createRunData() {
-        var tempRun = RunData()
-        var savedLocations = [Location]()
-        
-        print(savedLocations)
-        var i = 0
-        for location in locations {
-            var tempLocation = Location()
-            tempLocation.timestamp = location.timestamp.description
-            tempLocation.latitude = location.coordinate.latitude
-            tempLocation.longitude = location.coordinate.longitude
-            savedLocations.append(tempLocation)
-            i = i + 1
-        }
-        tempRun.distance = distance
-        tempRun.time = seconds
-        tempRun.pace = pace
-        tempRun.locations = savedLocations
-        lastRun = tempRun
     }
     
     // MARK: location tracking
@@ -196,8 +181,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
-    {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error \(error)")
     }
     
@@ -206,11 +190,38 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     func eachSecond(timer: Timer) {
         //total time for the run
         seconds = seconds + 1
+        timerCell.timeLabel.text = RunData.dispTimePrettyColon(time: seconds)
+
         
         //calculate the pace
         let paceUnit = HKUnit.meter().unitDivided(by: HKUnit.second())
-        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: distance / seconds)
+        let roundedPace = RunData.roundDouble(double: (distance/seconds), round: 2)
+        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: roundedPace)
         pace = paceQuantity.description
+    }
+    
+    // MARK: Create Run Data
+    
+    func createRunData() {
+        var tempRun = RunData()
+        var savedLocations = [Location]()
+        
+        print(savedLocations)
+        var i = 0
+        for location in locations {
+            var tempLocation = Location()
+            tempLocation.timestamp = location.timestamp.description
+            tempLocation.latitude = location.coordinate.latitude
+            tempLocation.longitude = location.coordinate.longitude
+            savedLocations.append(tempLocation)
+            i = i + 1
+        }
+        tempRun.distance = RunData.roundDouble(double: distance, round: 2)
+        tempRun.time = seconds
+        tempRun.pace = pace
+        tempRun.locations = savedLocations
+        tempRun.date = Date()
+        lastRun = tempRun
     }
 
 }

@@ -16,7 +16,7 @@ struct RunData {
     var distance: Double
     var pace: String
     var locations: [Location]
-//    let dateTime: NSDate
+    var date: Date
     
     init() {
         self.runTitle = "run"
@@ -24,15 +24,16 @@ struct RunData {
         self.distance = 0.0
         self.pace = ""
         self.locations = []
+        self.date = Date()
     }
     
-    init(runTitle: String, time: Double, distance: Double, pace: String, locations: [Location]) {
+    init(runTitle: String, time: Double, distance: Double, pace: String, locations: [Location], date: Date?) {
         self.runTitle = runTitle
         self.time = time
         self.distance = distance
         self.pace = pace
         self.locations = locations
-//        self.dateTime = dateTime
+        self.date = date ?? Date()
     }
     
     func dispTimePretty() -> String {
@@ -40,9 +41,35 @@ struct RunData {
         let HourQuantity = HKQuantity(unit: HKUnit.hour(), doubleValue: floor(seconds/360))
         let minuteQuantity = HKQuantity(unit: HKUnit.minute(), doubleValue: floor(seconds/60))
         let secondsQuantity = HKQuantity(unit: HKUnit.second(), doubleValue: seconds.truncatingRemainder(dividingBy: 60.0))
-        let prettyString = "Time Elapsed: " + HourQuantity.description + " "  + minuteQuantity.description + " " + secondsQuantity.description
+        let prettyString = HourQuantity.description + " "  + minuteQuantity.description + " " + secondsQuantity.description
         
         return prettyString
+    }
+    
+    static func dispTimePrettyColon(time: Double) -> String {
+        let second = time
+        let hour = floor(second/360)
+        let minute = floor(second/60)
+        let seconds = floor(second.truncatingRemainder(dividingBy: 60.0))
+        return String(format:"%02i:%02i:%02i",Int(hour),Int(minute),Int(seconds))
+    }
+    
+    func dispDistancePretty() -> String {
+        let units = "m"
+        let prettyString = distance.description + units
+        return prettyString
+    }
+    
+    func dispDatePretty() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        print("date")
+        print(date)
+        print("format")
+        print(dateFormatter.string(from: date))
+        return dateFormatter.string(from: date)
     }
     
     func convertLocToString() -> [Any] {
@@ -60,7 +87,14 @@ struct RunData {
             "distance": distance,
             "pace": pace,
             "locations": convertLocToString(),
-//            dateTime: dateTime
+            "date": date.timeIntervalSince1970
         ]
+    }
+    
+    static func roundDouble(double: Double, round: Int) -> Double {
+        //no other way to access decimal functions?
+        let factor = pow(10, round) as NSDecimalNumber
+        let result = (double * factor.doubleValue).rounded() / factor.doubleValue
+        return result
     }
 }

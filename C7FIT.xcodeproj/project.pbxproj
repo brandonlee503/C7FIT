@@ -51,6 +51,7 @@
 		7AB9EFAA1E6DEF3A000C20C6 /* RunListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9EFA91E6DEF3A000C20C6 /* RunListTableViewController.swift */; };
 		7AD3DEF21E5ED7CF001580CC /* RunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3DEF11E5ED7CF001580CC /* RunData.swift */; };
 		7AD3DEF41E5ED860001580CC /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3DEF31E5ED860001580CC /* LocationData.swift */; };
+		7AECE6D21E70BE7400423D82 /* TimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AECE6D11E70BE7400423D82 /* TimerCell.swift */; };
 		7AF7BBF21E5460770059A62A /* HealthKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF11E5460770059A62A /* HealthKitViewController.swift */; };
 		7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF31E5460860059A62A /* HealthKit.swift */; };
 		7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF51E5464250059A62A /* WatchView.swift */; };
@@ -136,6 +137,7 @@
 		7AB9EFA91E6DEF3A000C20C6 /* RunListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunListTableViewController.swift; sourceTree = "<group>"; };
 		7AD3DEF11E5ED7CF001580CC /* RunData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunData.swift; sourceTree = "<group>"; };
 		7AD3DEF31E5ED860001580CC /* LocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
+		7AECE6D11E70BE7400423D82 /* TimerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerCell.swift; sourceTree = "<group>"; };
 		7AF7BBF11E5460770059A62A /* HealthKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitViewController.swift; sourceTree = "<group>"; };
 		7AF7BBF31E5460860059A62A /* HealthKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 		7AF7BBF51E5464250059A62A /* WatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchView.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				7A76A7A31E6F66A100C7D8F2 /* StartStopCell.swift */,
 				7A76A7A51E6F66DA00C7D8F2 /* MapCell.swift */,
 				7A76A7A71E6F66FD00C7D8F2 /* RunDetailCell.swift */,
+				7AECE6D11E70BE7400423D82 /* TimerCell.swift */,
 			);
 			name = Map;
 			sourceTree = "<group>";
@@ -707,6 +710,7 @@
 				7A76A7A81E6F66FD00C7D8F2 /* RunDetailCell.swift in Sources */,
 				160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */,
 				7AB9EFA61E6DEF09000C20C6 /* RunListCell.swift in Sources */,
+				7AECE6D21E70BE7400423D82 /* TimerCell.swift in Sources */,
 				1658B9DE1E0F9EFD009D4F67 /* ProfileViewModel.swift in Sources */,
 				160D9B7E1E0BF5DC00801627 /* ScheduleView.swift in Sources */,
 				7A76A7A61E6F66DA00C7D8F2 /* MapCell.swift in Sources */,
