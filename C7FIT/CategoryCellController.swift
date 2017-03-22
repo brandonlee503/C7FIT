@@ -8,17 +8,18 @@
 
 import UIKit
 
+private let itemCellIdentifier = "ItemCell"
+
 class CategoryCellController: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: - Constants
-    
-    private let itemCellIdentifier = "ItemCell"
     
     let categoryCellView = CategoryCell()
     
     // MARK: - Properties
     
     var itemCategory: eBayItemCategory?
+    var storeViewController: StoreViewController?
     
     // MARK: - Initialization
     
@@ -58,16 +59,22 @@ class CategoryCellController: UICollectionViewCell, UICollectionViewDelegate, UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemCellIdentifier, for: indexPath) as! eBayItemCell
-        if let itemImage = itemCategory?.items[indexPath.row].mainImageURLString {
-            cell.itemImageView.downloadImageFrom(urlString: itemImage, imageMode: .scaleAspectFit)
+        if let itemImage = itemCategory?.items[indexPath.item].mainImage {
+            cell.itemImageView.downloadImageFrom(url: itemImage, imageMode: .scaleAspectFit)
         }
-        if let title = itemCategory?.items[indexPath.row].title {
+        if let title = itemCategory?.items[indexPath.item].title {
             cell.itemTitle.text = title
         }
-        if let price = itemCategory?.items[indexPath.row].price {
+        if let price = itemCategory?.items[indexPath.item].price {
             cell.price.text = "$\(price)"
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let item = itemCategory?.items[indexPath.item] {
+            storeViewController?.showItemDetail(item: item)
+        }
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
