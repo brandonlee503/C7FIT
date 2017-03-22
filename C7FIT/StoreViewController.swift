@@ -8,37 +8,78 @@
 
 import UIKit
 
-class StoreViewController: UIViewController {
+class StoreViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    // MARK: - Constants
+    
+    private let categoryCellIdentifier = "CategoryCell"
+    let eBayToken = eBayAPIToken()
+    let ebayDataManager = eBayDataManager()
+    
     // MARK: - Properties
     
-    var storeView = StoreView()
+    var categoryCellData: [eBayItemCategory] = []
     
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Store"
-        self.view.backgroundColor = .white
+        self.collectionView?.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
-        
-        self.view.addSubview(storeView)
-        setupConstraints()
-        self.view.setNeedsUpdateConstraints()
+        collectionView?.delegate = self
+        collectionView?.dataSource = self
+        collectionView?.register(CategoryCellController.self, forCellWithReuseIdentifier: categoryCellIdentifier)
+        submitPrecuratedQueries()
+        collectionView?.setNeedsUpdateConstraints()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    /**
+        Submit pre-curated queries for fitness eBay items
+     */
+    func submitPrecuratedQueries() {
+        eBayToken.getOAuth2Token { OAuth2Token in
+            guard let token = OAuth2Token else { return }
+            self.ebayDataManager.searchItem(query: "Yoga Ball", OAuth2Token: token) { itemCategory in
+                guard let itemCategory = itemCategory else { return }
+                self.categoryCellData.append(itemCategory)
+                self.collectionView?.reloadData()
+            }
+            
+            self.ebayDataManager.searchItem(query: "Gym Shoes", OAuth2Token: token) { itemCategory in
+                guard let itemCategory = itemCategory else { return }
+                self.categoryCellData.append(itemCategory)
+                self.collectionView?.reloadData()
+            }
+            
+            self.ebayDataManager.searchItem(query: "Exercise Mat", OAuth2Token: token) { itemCategory in
+                guard let itemCategory = itemCategory else { return }
+                self.categoryCellData.append(itemCategory)
+                self.collectionView?.reloadData()
+            }
+        }
     }
     
-    // MARK: - Layout
+    // MARK: - UICollectionView Delegate and Datasource
     
-    func setupConstraints() {
-        storeView.translatesAutoresizingMaskIntoConstraints = false
-        let topView = storeView.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomView = storeView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leftView = storeView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        let rightView = storeView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return categoryCellData.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellIdentifier, for: indexPath) as! CategoryCellController
+        cell.categoryCellView.categoryTitle.text = categoryCellData[indexPath.row].title
+        cell.itemCategory = categoryCellData[indexPath.row]
+        return cell
+    }
+    
+    // MARK: - UICollectionViewDelegateFlowLayout
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 200)
     }
 }
