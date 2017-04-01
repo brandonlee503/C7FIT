@@ -97,7 +97,7 @@ class ActivityViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            let destination = HealthKitViewController()
+            let destination = HealthKitTableViewController()
             navigationController?.pushViewController(destination, animated: true)
         }
         if indexPath.row == 1 {

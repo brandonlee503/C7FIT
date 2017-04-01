@@ -23,6 +23,7 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
     // MARK: - Properties
     
     let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
+    var healthKitManager = HealthKitManager()
     
     var currentRun: RunData
     var userID: String?
@@ -210,6 +211,8 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
             self.dismiss(animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        healthKitManager.saveRun(distance: self.currentRun.distance, date: self.currentRun.date)
         
         //alert field
         runAlert.addTextField { textMinutes in

@@ -54,21 +54,24 @@ class HealthKitViewController: UIViewController {
         updateWeight()
     }
     
+    
+    
+    
     func updateWeight() {
-        let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)
-        self.healthKitManager.queryUserData(sampleType: sampleType!, completion : { (mostRecentWeight, error) -> Void in
-            if (error != nil){
-                print("Error")
-                return;
-            }
-            self.weight = mostRecentWeight as? HKQuantitySample
-            let weightNum = self.weight?.quantity.doubleValue(for: HKUnit.gramUnit(with: HKMetricPrefix(rawValue: 0)!))
-            //placed in different thread
-            DispatchQueue.main.async() {
-                //update the text async
-                self.healthView.weightLabel.text = "Weight: " + String(weightNum!)
-            }
-        })
+//        let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)
+//        self.healthKitManager.queryUserData(sampleType: sampleType!, completion : { (mostRecentWeight, error) -> Void in
+//            if (error != nil){
+//                print("Error")
+//                return;
+//            }
+//            self.weight = mostRecentWeight as? HKQuantitySample
+//            let weightNum = self.weight?.quantity.doubleValue(for: HKUnit.gramUnit(with: HKMetricPrefix(rawValue: 0)!))
+//            //placed in different thread
+//            DispatchQueue.main.async() {
+//                //update the text async
+//                self.healthView.weightLabel.text = "Weight: " + String(weightNum!)
+//            }
+//        })
     }
 
 }

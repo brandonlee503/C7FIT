@@ -56,7 +56,7 @@ struct HealthKitManager {
             }
     }
     
-    func queryUserData(sampleType: HKSampleType, completion: @escaping(HKSample?, NSError?) -> Void! ){
+    func queryUserData(sampleType: HKSampleType, completion: @escaping(HKSample?, NSError?) -> Void ){
         //predicate
         let past = NSDate.distantPast
         let now = NSDate()
@@ -75,7 +75,6 @@ struct HealthKitManager {
             }
         
             let mostRecent = results?.first as? HKQuantitySample
-            
             if (mostRecent == nil){
                 
                 print("nil")
@@ -84,8 +83,24 @@ struct HealthKitManager {
             }
             completion(mostRecent!, nil)
         }
-        
         self.healthKitStore.execute(sampleQuery)
+    }
+    
+    func saveRun(distance: Double, date: Date) {
+        let hkType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)
+        
+        //change to miles
+        let distanceQuantity = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
+        
+        let distanceObject = HKQuantitySample(type: hkType!, quantity: distanceQuantity, start: date, end: date)
+        
+        healthKitStore.save(distanceObject, withCompletion: { (success, error) -> Void in
+            if( error != nil ) {
+                print(error)
+            } else {
+                print("success, distance recorded")
+            }
+        })
     }
     
 }
