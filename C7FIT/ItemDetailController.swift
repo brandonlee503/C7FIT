@@ -46,7 +46,7 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
 
     func buyButtonPressed() {
         if let urlString = detailItem?.webURL, let url = URL(string: urlString) {
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
