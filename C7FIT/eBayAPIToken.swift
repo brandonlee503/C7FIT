@@ -35,7 +35,7 @@ struct eBayAPIToken {
         
         let dataTask = URLSession.shared.downloadTask(with: request as URLRequest) { (location, response, error) in
             guard let location = location, error == nil else {
-                print("Error in retrieving bearer token: \(error?.localizedDescription)")
+                print("Error in retrieving bearer token: \(String(describing: error?.localizedDescription))")
                 return completion(nil)
             }
             guard let dataObject = try? Data(contentsOf: location), let dataJSON = try? JSONSerialization.jsonObject(with: dataObject, options: []) else {

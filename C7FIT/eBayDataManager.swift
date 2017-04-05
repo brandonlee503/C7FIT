@@ -32,7 +32,7 @@ struct eBayDataManager {
         request.allHTTPHeaderFields = headers
         let dataTask = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             guard let data = data, error == nil else {
-                print("Error in retrieving item: \(error?.localizedDescription)")
+                print("Error in retrieving item: \(String(describing: error?.localizedDescription))")
                 return completion(nil)
             }
             guard let dataJSON = try? JSONSerialization.jsonObject(with: data, options: []), let dataDict = dataJSON as? [String: Any] else {
@@ -63,7 +63,7 @@ struct eBayDataManager {
         request.allHTTPHeaderFields = headers
         let dataTask = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error) in
             guard let data = data, error == nil else {
-                print("Error in retrieving item: \(error?.localizedDescription)")
+                print("Error in retrieving item: \(String(describing: error?.localizedDescription))")
                 return completion(nil)
             }
             guard let dataJSON = try? JSONSerialization.jsonObject(with: data, options: []), let dataDict = dataJSON as? [String: Any] else {
