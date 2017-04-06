@@ -1,20 +1,20 @@
 //
-//  RunListTableViewCell.swift
+//  HealthInfoCell.swift
 //  C7FIT
 //
-//  Created by Michael Lee on 3/6/17.
+//  Created by Michael Lee on 3/30/17.
 //  Copyright © 2017 Brandon Lee. All rights reserved.
 //
 
 import UIKit
 
-class RunListCell: UITableViewCell {
-    
+class HealthInfoCell: UITableViewCell {
+
     // MARK: - Properties
     
     var titleLabel: UILabel = UILabel()
-    var valLabel: UILabel = UILabel()
-
+    var infoLabel: UILabel = UILabel()
+    
     // MARK: - Initialization
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -28,13 +28,13 @@ class RunListCell: UITableViewCell {
     }
     
     // MARK: - Layout
-
+    
     func setup() {
         titleLabel.backgroundColor = .green
         addSubview(titleLabel)
         
-        valLabel.backgroundColor = .green
-        addSubview(valLabel)
+        infoLabel.backgroundColor = .green
+        addSubview(infoLabel)
     }
     
     func setupConstraints() {
@@ -44,10 +44,11 @@ class RunListCell: UITableViewCell {
         let titleBottom = titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         NSLayoutConstraint.activate([titleLead, titleTop, titleBottom])
         
-        valLabel.translatesAutoresizingMaskIntoConstraints = false
-        let dateTrail = valLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
-        let dateTop = valLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor)
-        let dateBottom = valLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
-        NSLayoutConstraint.activate([dateTrail, dateTop, dateBottom])
+        infoLabel.translatesAutoresizingMaskIntoConstraints = false
+        let infoTrail = infoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+        let infoTop = infoLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor)
+        let infoBottom = infoLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
+        NSLayoutConstraint.activate([infoTrail, infoTop, infoBottom])
     }
+
 }

@@ -55,7 +55,7 @@ class RunListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning In0complete implementation, return the number of rows
+        // #warning Incomplete implementation, return the number of rows
         return numRows ?? 0
     }
 
@@ -64,7 +64,7 @@ class RunListTableViewController: UITableViewController {
             let rowTitle = listRuns[indexPath.row]?.runTitle ?? ""
             if let cell: RunListCell = tableView.dequeueReusableCell(withIdentifier: runListID, for: indexPath) as? RunListCell {
                 cell.titleLabel.text = rowTitle
-                cell.dateLabel.text = listRuns[indexPath.row]?.dispDatePretty() ?? "error"
+                cell.valLabel.text = listRuns[indexPath.row]?.dispDatePretty() ?? "error"
                 return cell
             }
         }

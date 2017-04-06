@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A47B5BD623E60A313E67E373BB97F7C06CD00D1D+++611D13B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A47B5BD623E60A313E67E373BB97F7C06CD00D1D+++728ADBB" : 9223372036854775807,
+    "A47B5BD623E60A313E67E373BB97F7C06CD00D1D+++8DFBB7D" : 9223372036854775807,
+    "A47B5BD623E60A313E67E373BB97F7C06CD00D1D+++611D13B" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "28F68525-9875-4D72-A620-7FDF9F1F0BD1",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A47B5BD623E60A313E67E373BB97F7C06CD00D1D+++728ADBB" : "..\/c7fitold\/C7FIT\/C7FIT",
+    "A47B5BD623E60A313E67E373BB97F7C06CD00D1D+++8DFBB7D" : "..\/c7fitold\/C7FIT\/C7FIT",
+    "A47B5BD623E60A313E67E373BB97F7C06CD00D1D+++611D13B" : "C7FIT\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "C7FIT",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "C7FIT.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/iOS-Capstone\/C7FIT",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A47B5BD623E60A313E67E373BB97F7C06CD00D1D+++611D13B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/iOS-Capstone\/C7FIT.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A47B5BD623E60A313E67E373BB97F7C06CD00D1D+++728ADBB"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/iOS-Capstone\/C7FIT",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A47B5BD623E60A313E67E373BB97F7C06CD00D1D+++8DFBB7D"
+    }
+  ]
+}

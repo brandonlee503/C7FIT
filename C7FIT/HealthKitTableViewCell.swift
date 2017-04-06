@@ -1,3 +1,4 @@
+
 //
 //  ActivityHealthKitTableTableViewCell.swift
 //  C7FIT
@@ -5,11 +6,10 @@
 //  Created by Michael Lee on 2/13/17.
 //  Copyright © 2017 Brandon Lee. All rights reserved.
 //
-
 import UIKit
 
 class HealthKitTableViewCell: UITableViewCell {
-
+    
     // MARK: - Properties
     
     lazy var ActivityTitle: UILabel = UILabel()
@@ -40,5 +40,5 @@ class HealthKitTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([titleLead,titleTrail,titleTop])
         
     }
-
+    
 }
