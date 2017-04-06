@@ -11,11 +11,12 @@ import Foundation
 struct eBayAPIToken {
     
     // MARK: - Constants
-        
-    let encodedOAuthCreds = "<INSERT CREDENTIALS HERE>"
-    let clientKey = "<INSERT CREDENTIALS HERE>"
-    let authorizeURL = "https://api.sandbox.ebay.com/identity/v1/oauth2/token"
-    let eBayRedirectURLName = "<INSERT CREDENTIALS HERE>"
+    
+    // Development credentials - provided for quick project setup. Update values for production app
+    let encodedOAuthCreds = "QnJhbmRvbkwtQzdGSVQtUFJELTYyNDYxNzE4YS03MDdiMDUxNzpQUkQtMjQ2MTcxOGFjMjEzLWQ3ODUtNGNkNi1iZWRhLWQ3YmQ="
+    let clientKey = "BrandonL-C7FIT-PRD-62461718a-707b0517"
+    let authorizeURL = "https://api.ebay.com/identity/v1/oauth2/token"
+    let eBayRedirectURLName = "Brandon_Lee-BrandonL-C7FIT--wuhzlwcp"
     
     /**
          Obtain a new bearer token
