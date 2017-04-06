@@ -13,26 +13,26 @@ import UIKit
     Custom UIImageView for downloading images from URLs and caching images.
  */
 class C7FUIImageView: UIImageView {
-    
+
     // MARK: - Constants
-    
+
     let imageCache = NSCache<NSString, AnyObject>()
-    
+
     // MARK: - Properties
-    
+
     var imageURLString: String?
-    
+
     func downloadImageFrom(urlString: String, imageMode: UIViewContentMode) {
         guard let url = URL(string: urlString) else { return }
         downloadImageFrom(url: url, imageMode: imageMode)
     }
-    
+
     func downloadImageFrom(url: URL, imageMode: UIViewContentMode) {
         contentMode = imageMode
         if let cachedImage = imageCache.object(forKey: url.absoluteString as NSString) as? UIImage {
             self.image = cachedImage
         } else {
-            URLSession.shared.dataTask(with: url) { data, response, error in
+            URLSession.shared.dataTask(with: url) { data, _, error in
                 guard let data = data, error == nil else { return }
                 DispatchQueue.main.async {
                     if let imageToCache = UIImage(data: data) {

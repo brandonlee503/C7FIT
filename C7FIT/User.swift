@@ -26,8 +26,20 @@ struct User {
     let legPress: String?
     let benchPress: String?
     let lateralPull: String?
-    
-    init(email: String, photoURL: String?, name: String?, bio: String?, weight: String?, height: String?, bmi: String?, mileTime: String?, pushups: String?, situps: String?, legPress: String?, benchPress: String?, lateralPull: String?) {
+
+    init(email: String,
+         photoURL: String?, 
+         name: String?, 
+         bio: String?, 
+         weight: String?, 
+         height: String?, 
+         bmi: String?, 
+         mileTime: String?, 
+         pushups: String?, 
+         situps: String?, 
+         legPress: String?, 
+         benchPress: String?, 
+         lateralPull: String?) {
         self.email = email
         self.photoURL = photoURL
         self.name = name
@@ -42,7 +54,7 @@ struct User {
         self.benchPress = benchPress
         self.lateralPull = lateralPull
     }
-    
+
     func toAnyObject() -> Any {
         return [
             "email": email,

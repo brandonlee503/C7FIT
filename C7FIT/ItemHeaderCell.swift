@@ -9,9 +9,9 @@
 import UIKit
 
 class ItemHeaderCell: UIView {
-    
+
     // MARK: - Properties
-    
+
     var imageCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -23,27 +23,27 @@ class ItemHeaderCell: UIView {
         collectionView.clipsToBounds = false
         return collectionView
     }()
-    
+
     // MARK: - Initialization
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
         setupConstraints()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Layout
-    
+
     func setup() {
         backgroundColor = .orange
         imageCollectionView.backgroundColor = .blue
         addSubview(imageCollectionView)
     }
-    
+
     func setupConstraints() {
         imageCollectionView.translatesAutoresizingMaskIntoConstraints = false
         let collectionTop = imageCollectionView.topAnchor.constraint(equalTo: topAnchor)

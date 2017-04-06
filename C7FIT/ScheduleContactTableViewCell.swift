@@ -13,7 +13,7 @@ class ScheduleContactTableViewCell: UITableViewCell {
     // MARK: - Properties
 
     var contactButton: UIButton = UIButton()
-    
+
     // MARK: - Initialization
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -22,11 +22,11 @@ class ScheduleContactTableViewCell: UITableViewCell {
         setup()
         setupConstraints()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Layout
 
     func setup() {
@@ -35,16 +35,15 @@ class ScheduleContactTableViewCell: UITableViewCell {
         contactButton.setTitleColor(.black, for: .normal)
         addSubview(contactButton)
     }
-    
+
     func setupConstraints() {
         contactButton.translatesAutoresizingMaskIntoConstraints = false
         let titleLead = contactButton.leftAnchor.constraint(equalTo: leftAnchor, constant:0)
         let titleTrail = contactButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant:0)
         let titleTop = contactButton.topAnchor.constraint(equalTo: topAnchor, constant: 0)
         let titleBot = contactButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
-        NSLayoutConstraint.activate([titleLead,titleTrail,titleTop,titleBot])
-        
-    }
+        NSLayoutConstraint.activate([titleLead, titleTrail, titleTop, titleBot])
 
+    }
 
 }

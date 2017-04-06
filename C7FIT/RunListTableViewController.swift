@@ -10,25 +10,24 @@ import UIKit
 import Firebase
 
 class RunListTableViewController: UITableViewController {
-    
+
     let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
     var listRuns = [RunData?]()
     var userID: String?
     var numRows: Int?
     var runListCell: RunListCell = RunListCell()
-    
+
     let runListID = "runCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Your Runs"
-        
-     
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(RunListCell.self, forCellReuseIdentifier: runListID)
-        
-        firebaseDataManager.monitorLoginState() { auth, user in
+
+        firebaseDataManager.monitorLoginState { _, user in
             guard let userID = user?.uid else { return self.present(LoginViewController(), animated: true, completion: nil) }
             self.firebaseDataManager.fetchUserRunList(uid: userID) { data in
                 self.numRows = Int(data.childrenCount)
@@ -41,7 +40,7 @@ class RunListTableViewController: UITableViewController {
             }
         }
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

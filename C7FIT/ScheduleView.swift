@@ -9,29 +9,29 @@
 import UIKit
 
 class ScheduleView: UIView {
-    
+
     // MARK: - Properties
-    
+
     var titleLabel: UILabel = UILabel()
-    
+
     // MARK: - Initialization
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
         setupConstraints()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     // MARK: - Layout
-    
+
     func setup() {
 
     }
-    
+
     func setupConstraints() {
 
     }

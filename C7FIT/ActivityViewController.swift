@@ -9,37 +9,36 @@
 import UIKit
 
 class ActivityViewController: UITableViewController {
-    
+
     // MARK: - Properties
-    
+
     var activityView = ActivityView()
 
-    
     // MARK: - View Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Activity"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
-        
+
         tableView.delegate = self
         tableView.dataSource = self
-        
+
         tableView.register(HealthKitTableViewCell.self, forCellReuseIdentifier: "HealthKitCell")
         tableView.register(MapTableViewCell.self, forCellReuseIdentifier: "MapCell")
         tableView.register(WatchTableViewCell.self, forCellReuseIdentifier: "WatchCell")
         tableView.register(CountTableViewCell.self, forCellReuseIdentifier: "CountCell")
         tableView.register(HeartRateTableViewCell.self, forCellReuseIdentifier: "HeartRateCell")
-        
+
    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     //Mark: - Layout
-    
+
     func setupConstraints() {
         activityView.translatesAutoresizingMaskIntoConstraints = false
         let topView = activityView.topAnchor.constraint(equalTo: view.topAnchor)
@@ -48,23 +47,20 @@ class ActivityViewController: UITableViewController {
         let rightView = activityView.rightAnchor.constraint(equalTo: view.rightAnchor)
         NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
     }
-    
-    
+
     // MARK: UITableView Delegate and Datasource
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 6
     }
-    
-    
+
 //    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //    }
-    
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             if let cell: HealthKitTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HealthKitCell") as? HealthKitTableViewCell {
@@ -94,7 +90,7 @@ class ActivityViewController: UITableViewController {
         }
         return UITableViewCell()
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             let destination = HealthKitTableViewController(style: UITableViewStyle.grouped)
@@ -117,5 +113,5 @@ class ActivityViewController: UITableViewController {
             navigationController?.pushViewController(destination, animated: true)
         }
     }
-    
+
 }

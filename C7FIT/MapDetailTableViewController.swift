@@ -11,36 +11,35 @@ import MapKit
 import HealthKit
 
 class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
-    
+
     // MARK: - Identifiers
-    
+
     let mapCellID = "mapCell"
     let detailCellID = "detailCell"
-    
+
     let detailCell = RunDetailCell()
     let mapCell = MapCell()
-    
+
     // MARK: - Properties
-    
+
     let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
     var healthKitManager = HealthKitManager()
-    
+
     var currentRun: RunData
     var userID: String?
     let hideSave: Bool
-    
-    
+
     // MARK: - Table View Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.currentRun.runTitle
-        
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MapCell.self, forCellReuseIdentifier: mapCellID)
         tableView.register(RunDetailCell.self, forCellReuseIdentifier: detailCellID)
-        
+
         // save button
         if(!loadMap() && !hideSave) {
             print("error loading map")
@@ -58,15 +57,15 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
         detailCell.paceQuantity.text = self.currentRun.pace
         detailCell.secondsQuantity.text = self.currentRun.dispTimePretty()
     }
-    
+
     // MARK: - Init
-    
+
     init(run: RunData, hideSave: Bool) {
         self.currentRun = run
         self.hideSave = hideSave
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -96,48 +95,48 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
         }
         return UITableViewCell()
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let screenSize : CGRect = UIScreen.main.bounds
-        let navBarSize : CGFloat? = self.navigationController?.navigationBar.frame.size.height
-        let tabBarSize : CGFloat? = self.tabBarController?.tabBar.frame.size.height
+        let screenSize: CGRect = UIScreen.main.bounds
+        let navBarSize: CGFloat? = self.navigationController?.navigationBar.frame.size.height
+        let tabBarSize: CGFloat? = self.tabBarController?.tabBar.frame.size.height
         let statusBarSize: CGFloat? = UIApplication.shared.statusBarFrame.height
         let barConstants = screenSize.height - (navBarSize! + tabBarSize! + statusBarSize!)
         let cellHeight: CGFloat = 100.0
-        
+
         if(indexPath.row == 1) {
             return barConstants - cellHeight
         }
         return cellHeight
     }
-    
+
     // MARK: - Map Functions
-    
+
     //determines the maps region based on the location coordinates
     func mapRegion() -> MKCoordinateRegion {
         let initialLoc = currentRun.locations[0]
-        
+
         var minLat = initialLoc.latitude
         var minLng = initialLoc.longitude
         var maxLat = minLat
         var maxLng = minLng
-        
+
         let locations = currentRun.locations
-        
+
         for location in locations {
             minLat = min(minLat, location.latitude)
             minLng = min(minLng, location.longitude)
             maxLat = max(maxLat, location.latitude)
             maxLng = max(maxLng, location.longitude)
         }
-        
+
         return MKCoordinateRegion(
             //center calc from min/max
             center: CLLocationCoordinate2D(latitude: (minLat + maxLat)/2, longitude: (minLng + maxLng)/2),
             //span to encapsulate the entire run length scaled up so view is not crowded
             span: MKCoordinateSpan(latitudeDelta: (maxLat - minLat) * 1.3, longitudeDelta: (maxLng - minLng) * 1.3))
     }
-    
+
     //renderer for the line overlay, determines how the run line will look
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let polyline = overlay as! MKPolyline
@@ -146,11 +145,11 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
         renderer.lineWidth = 4.0
         return renderer
     }
-    
+
     //draw line from coordinates
     func polyline() -> MKPolyline {
         var coords = [CLLocationCoordinate2D]()
-        
+
         print("polyline")
         let locations = currentRun.locations
         for location in locations {
@@ -160,14 +159,14 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
         print(coords)
         return MKPolyline(coordinates: &coords, count: currentRun.locations.count)
     }
-    
+
     //load the map
     func loadMap() -> Bool {
         if currentRun.locations.count > 0 {
             self.mapCell.mapView.isHidden = false
-            
+
             self.mapCell.mapView.region = mapRegion()
-            
+
             self.mapCell.mapView.add(polyline(), level: MKOverlayLevel.aboveRoads)
             return true
         } else {
@@ -175,15 +174,15 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
             return false
         }
     }
-    
+
     //save run
     func saveRun() {
         //get input for user run title
         //TODO: Check that there are no duplicates
         let runAlert = UIAlertController(title: "Run Name", message: "What do you want to name this run?", preferredStyle: .alert)
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { action in
+        let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
             let runTitle = runAlert.textFields![0] as UITextField
-            
+
             if(runTitle.text == nil || runTitle.text == "") {
                 let saveError = UIAlertController(title: "Error", message: "unable to save run, please enter a valid name", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "okay", style: .cancel)
@@ -198,11 +197,11 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
                 self.present(saveError, animated: true, completion:nil)
                 return
             }
-            
+
             //save the run to firebase
             self.currentRun.runTitle = runTitle.text!
-            self.firebaseDataManager.monitorLoginState() { auth, user in
-    
+            self.firebaseDataManager.monitorLoginState { _, user in
+
                 guard let userID = user?.uid else { return self.present(LoginViewController(), animated: true, completion: nil) }
                 self.userID = userID
                 self.firebaseDataManager.updateUserRun(uid: userID, runTitle:self.currentRun.runTitle, userRun: self.currentRun)
@@ -211,31 +210,31 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
             self.dismiss(animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        
+
         healthKitManager.saveRun(distance: self.currentRun.distance, date: self.currentRun.date)
-        
+
         //alert field
         runAlert.addTextField { textMinutes in
             textMinutes.placeholder = "run name"
             textMinutes.keyboardType = .alphabet
         }
-        
+
         runAlert.addAction(submitAction)
         runAlert.addAction(cancelAction)
         self.present(runAlert, animated: true, completion: nil)
     }
-    
+
     func saveSuccess() {
         let alert = UIAlertController(title: "Save Success", message: nil, preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
+
     //disp error message to user
     func cantSaveRun() {
         let alert = UIAlertController(title: "Location Data Error", message: "This run couldn't be saved sorry", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
+
 }

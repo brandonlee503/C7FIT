@@ -11,7 +11,7 @@ import UIKit
 class ScheduleBrowserTableViewCell: UITableViewCell {
 
     // MARK: - Properties
-    
+
     lazy var scheduleTitle: UILabel = UILabel()
     lazy var schedulePicture: UIImageView = UIImageView()
     lazy var scheduleLink: UIButton = UIButton()
@@ -24,19 +24,18 @@ class ScheduleBrowserTableViewCell: UITableViewCell {
         setup()
         setupConstraints()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Layout
-    
+
     func setup() {
-        
+
         let imageName = "club front.jpg"
         let bgImage = UIImage(named: imageName)
 
-        
         if (bgImage != nil) {
             schedulePicture.image = bgImage!
             schedulePicture.center = self.center
@@ -46,14 +45,14 @@ class ScheduleBrowserTableViewCell: UITableViewCell {
         } else {
             print("image error")
         }
-        
+
         scheduleLink.setImage(bgImage, for: .normal)
         addSubview(scheduleLink)
-        
+
         scheduleTitle.text = "Monthly Schedule"
         scheduleTitle.textAlignment = NSTextAlignment.center
         addSubview(scheduleTitle)
-      
+
     }
 
     func setupConstraints() {
@@ -61,15 +60,15 @@ class ScheduleBrowserTableViewCell: UITableViewCell {
         let titleLead = scheduleTitle.leftAnchor.constraint(equalTo: leftAnchor, constant:10)
         let titleTrail = scheduleTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant:-10)
         let titleTop = scheduleTitle.topAnchor.constraint(equalTo: topAnchor, constant: 20)
-        NSLayoutConstraint.activate([titleLead,titleTrail,titleTop])
-        
+        NSLayoutConstraint.activate([titleLead, titleTrail, titleTop])
+
         scheduleLink.translatesAutoresizingMaskIntoConstraints = false
         let linkLead = scheduleLink.leftAnchor.constraint(equalTo: leftAnchor, constant:0)
         let linkTrail = scheduleLink.trailingAnchor.constraint(equalTo: trailingAnchor, constant:0)
         let linkTop = scheduleLink.topAnchor.constraint(equalTo: topAnchor, constant: 0)
         let linkBot = scheduleLink.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
-        NSLayoutConstraint.activate([linkLead,linkTrail,linkTop,linkBot])
-    
+        NSLayoutConstraint.activate([linkLead, linkTrail, linkTop, linkBot])
+
     }
-    
+
 }

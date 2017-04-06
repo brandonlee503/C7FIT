@@ -13,23 +13,23 @@ class HealthKitTableViewController: UITableViewController {
 
     let healthInfoID = "healthInfo"
     var healthKitManager = HealthKitManager()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         healthKitManager.authorizeHealthKit()
         self.title = "Health Statistics"
-        
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(HealthInfoCell.self, forCellReuseIdentifier: healthInfoID)
-        
+
     }
-    
+
     override init(style: UITableViewStyle) {
         super.init(style: style)
-        
+
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -38,7 +38,6 @@ class HealthKitTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     // MARK: - Table view data source
 
@@ -47,8 +46,7 @@ class HealthKitTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section
-        {
+        switch section {
         case 0:
             return 4
         case 1:
@@ -68,7 +66,7 @@ class HealthKitTableViewController: UITableViewController {
             return "Other Statistics"
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
@@ -108,35 +106,32 @@ class HealthKitTableViewController: UITableViewController {
         default:
             break
         }
-        
-        
+
         if let cell: HealthInfoCell = tableView.dequeueReusableCell(withIdentifier: healthInfoID, for: indexPath) as? HealthInfoCell {
             return cell
         }
-        
+
         return UITableViewCell()
     }
-    
-    
+
     func queryData(titleLabel: String, sampleType: HKSampleType) -> HealthInfoCell {
         let cell = HealthInfoCell()
         cell.titleLabel.text = titleLabel
-        
-        
+
         self.healthKitManager.queryUserData(sampleType: sampleType, completion : { (mostRecentVal, error) -> Void in
-            if (error != nil){
+            if (error != nil) {
                 print("Error")
                 return
             }
-            
+
             let result = mostRecentVal as! HKQuantitySample
-            DispatchQueue.main.async() {
+            DispatchQueue.main.async {
                 //better way to format info label?
                 cell.infoLabel.text = String(result.quantity.description)
             }
         })
-        
+
         return cell
     }
-    
+
 }

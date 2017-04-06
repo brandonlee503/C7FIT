@@ -12,29 +12,29 @@ import Foundation
     Base struct for formatting various data types
  */
 struct ProfileViewModel {
-    
+
     // Personal Weight Array
     static let personalWeight: Array = {
         (0...400).map {"\($0)"}
     }()
-    
+
     // Imperial Height Array
     static let personalHeight: Array = {
         (12...120).map {
             ("\($0 / 12)' \($0 % 12)\"")
         }
     }()
-    
+
     // Rep Array
     static let repetitions: Array = {
         (0...1000).map {"\($0)"}
     }()
-    
+
     // Weight Array
     static let weights: Array = {
         stride(from: 0, to: 450, by: 5).map {"\($0)"}
     }()
-    
+
     /**
         Build existing user from JSON snapshot data.
      
@@ -55,10 +55,22 @@ struct ProfileViewModel {
             let legPress = json["legPress"] as? String,
             let benchPress = json["benchPress"] as? String,
             let lateralPull = json["lateralPull"] as? String else { return nil }
-        
-            return User(email: email, photoURL: photoURL, name: name, bio: bio, weight: weight, height: height, bmi: bmi, mileTime: mileTime, pushups: pushups, situps: situps, legPress: legPress, benchPress: benchPress, lateralPull: lateralPull)
+
+            return User(email: email,
+                        photoURL: photoURL,
+                        name: name, 
+                        bio: bio, 
+                        weight: weight, 
+                        height: height, 
+                        bmi: bmi, 
+                        mileTime: mileTime, 
+                        pushups: pushups, 
+                        situps: situps, 
+                        legPress: legPress, 
+                        benchPress: benchPress, 
+                        lateralPull: lateralPull)
     }
-    
+
     /**
         Calculate BMI from imperial units.
         http://extoxnet.orst.edu/faqs/dietcancer/web2/twohowto.html
@@ -73,6 +85,6 @@ struct ProfileViewModel {
         let parsedHeight = height.components(separatedBy: ["\'", " ", "\""])
         let metricHeight = Double(parsedHeight[0].intValue * 12 + parsedHeight[2].intValue) * 0.025
         let squaredHeight = pow(metricHeight, 2)
-        return String(format: "%.2f" ,(metricWeight / squaredHeight))
+        return String(format: "%.2f", (metricWeight / squaredHeight))
     }
 }

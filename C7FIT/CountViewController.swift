@@ -10,30 +10,29 @@ import UIKit
 
 class CountViewController: UIViewController {
 
-    
     // MARK: - Properties
-    
+
     var countView = CountView()
-    
+
     // MARK: - View Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Count"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
-        
+
         self.view.addSubview(countView)
         setupConstraints()
         self.view.setNeedsUpdateConstraints()
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     // MARK: - Layout
-    
+
     func setupConstraints() {
         countView.translatesAutoresizingMaskIntoConstraints = false
         let topView = countView.topAnchor.constraint(equalTo: view.topAnchor)

@@ -547,6 +547,7 @@
 				160D9B051E0B5C0D00801627 /* Resources */,
 				1583AB5B6FB29579CBE9DE1F /* [CP] Embed Pods Frameworks */,
 				CE3C1E722022F78F90F6EDA5 /* [CP] Copy Pods Resources */,
+				ACA028D21E96FFF3007834D9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -726,6 +727,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		ACA028D21E96FFF3007834D9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		C8DD59739492E08543C24306 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -801,7 +815,6 @@
 				7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */,
 				160D9B0B1E0B5C0D00801627 /* AppDelegate.swift in Sources */,
 				7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */,
-				7AF7BBF21E5460770059A62A /* HealthKitViewController.swift in Sources */,
 				1699EB331E80BBEE008171AF /* ItemInfoCell.swift in Sources */,
 				7A76A7A41E6F66A100C7D8F2 /* StartStopCell.swift in Sources */,
 				7AF7BBF81E5464310059A62A /* CountView.swift in Sources */,

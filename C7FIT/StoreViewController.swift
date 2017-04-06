@@ -13,16 +13,16 @@ private let categoryCellIdentifier = "CategoryCell"
 class StoreViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     // MARK: - Constants
-    
-    let eBayToken = eBayAPIToken()
-    let ebayDataManager = eBayDataManager()
-    
+
+    let EbayToken = EbayAPIToken()
+    let ebayDataManager = EbayDataManager()
+
     // MARK: - Properties
-    
-    var categoryCellData: [eBayItemCategory] = []
-    
+
+    var categoryCellData: [EbayItemCategory] = []
+
     // MARK: - View Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Store"
@@ -34,25 +34,25 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
         submitPrecuratedQueries()
         collectionView?.setNeedsUpdateConstraints()
     }
-    
+
     /**
-        Submit pre-curated queries for fitness eBay items
+        Submit pre-curated queries for fitness Ebay items
      */
     func submitPrecuratedQueries() {
-        eBayToken.getOAuth2Token { OAuth2Token in
+        EbayToken.getOAuth2Token { OAuth2Token in
             guard let token = OAuth2Token else { return }
             self.ebayDataManager.searchItem(query: "Yoga Ball", OAuth2Token: token) { itemCategory in
                 guard let itemCategory = itemCategory else { return }
                 self.categoryCellData.append(itemCategory)
                 self.collectionView?.reloadData()
             }
-            
+
             self.ebayDataManager.searchItem(query: "Gym Shoes", OAuth2Token: token) { itemCategory in
                 guard let itemCategory = itemCategory else { return }
                 self.categoryCellData.append(itemCategory)
                 self.collectionView?.reloadData()
             }
-            
+
             self.ebayDataManager.searchItem(query: "Exercise Mat", OAuth2Token: token) { itemCategory in
                 guard let itemCategory = itemCategory else { return }
                 self.categoryCellData.append(itemCategory)
@@ -60,17 +60,17 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
             }
         }
     }
-    
+
     // MARK: - UICollectionView Delegate and Datasource
-    
+
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categoryCellData.count
     }
-    
+
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: categoryCellIdentifier, for: indexPath) as! CategoryCellController
         cell.categoryCellView.categoryTitle.text = categoryCellData[indexPath.item].title
@@ -78,15 +78,15 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
         cell.storeViewController = self
         return cell
     }
-    
+
     // MARK: - Navigation
-    
-    func showItemDetail(item: eBayItem) {
+
+    func showItemDetail(item: EbayItem) {
         navigationController?.pushViewController(ItemDetailController(item: item), animated: true)
     }
-    
+
     // MARK: - UICollectionViewDelegateFlowLayout
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 200)
     }
