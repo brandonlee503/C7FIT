@@ -48,6 +48,7 @@
 		7A838C511E96F497003BE65F /* WatchTimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A838C4F1E96F497003BE65F /* WatchTimerCell.swift */; };
 		7A838C521E96F497003BE65F /* WatchButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A838C501E96F497003BE65F /* WatchButtonCell.swift */; };
 		7A838C541E96F4AA003BE65F /* StopWatchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A838C531E96F4AA003BE65F /* StopWatchTableViewController.swift */; };
+		7A838C581E96FA04003BE65F /* TimePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A838C571E96FA04003BE65F /* TimePickerCell.swift */; };
 		7A8B9D301E52751500B88316 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D2F1E52751500B88316 /* MapTableViewCell.swift */; };
 		7A8B9D321E52752200B88316 /* WatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D311E52752200B88316 /* WatchTableViewCell.swift */; };
 		7A8B9D341E52752D00B88316 /* CountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D331E52752D00B88316 /* CountTableViewCell.swift */; };
@@ -143,6 +144,7 @@
 		7A838C4F1E96F497003BE65F /* WatchTimerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchTimerCell.swift; sourceTree = "<group>"; };
 		7A838C501E96F497003BE65F /* WatchButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchButtonCell.swift; sourceTree = "<group>"; };
 		7A838C531E96F4AA003BE65F /* StopWatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchTableViewController.swift; sourceTree = "<group>"; };
+		7A838C571E96FA04003BE65F /* TimePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerCell.swift; sourceTree = "<group>"; };
 		7A8B9D2F1E52751500B88316 /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		7A8B9D311E52752200B88316 /* WatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchTableViewCell.swift; sourceTree = "<group>"; };
 		7A8B9D331E52752D00B88316 /* CountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountTableViewCell.swift; sourceTree = "<group>"; };
@@ -403,6 +405,23 @@
 			name = Stopwatch;
 			sourceTree = "<group>";
 		};
+		7A838C551E96F9BA003BE65F /* Countdown */ = {
+			isa = PBXGroup;
+			children = (
+				7A838C571E96FA04003BE65F /* TimePickerCell.swift */,
+				7AF7BBF71E5464310059A62A /* CountView.swift */,
+			);
+			name = Countdown;
+			sourceTree = "<group>";
+		};
+		7A838C561E96F9C6003BE65F /* Countdown */ = {
+			isa = PBXGroup;
+			children = (
+				7AF7BC011E5467B90059A62A /* CountViewController.swift */,
+			);
+			name = Countdown;
+			sourceTree = "<group>";
+		};
 		7A8B9D2C1E5272C600B88316 /* ActivityViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,7 +490,7 @@
 				7A9CBE361E8E367000AF1F25 /* Health */,
 				7AB9EFA81E6DEF1F000C20C6 /* Map */,
 				7A838C4E1E96F43A003BE65F /* Stopwatch */,
-				7AF7BC011E5467B90059A62A /* CountViewController.swift */,
+				7A838C561E96F9C6003BE65F /* Countdown */,
 				7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */,
 			);
 			name = Activity;
@@ -483,7 +502,7 @@
 				7A9CBE311E8E354200AF1F25 /* Health */,
 				7AB9EFA71E6DEF14000C20C6 /* Map */,
 				7A838C4D1E96F427003BE65F /* Stopwatch */,
-				7AF7BBF71E5464310059A62A /* CountView.swift */,
+				7A838C551E96F9BA003BE65F /* Countdown */,
 				7AF7BBF91E54643E0059A62A /* HeartRateView.swift */,
 			);
 			name = UIViews;
@@ -754,6 +773,7 @@
 				163DFC101E41A43A00593CF9 /* AbstractHealthCell.swift in Sources */,
 				7A8B9D361E52753800B88316 /* HeartRateTableViewCell.swift in Sources */,
 				7A8B9D301E52751500B88316 /* MapTableViewCell.swift in Sources */,
+				7A838C581E96FA04003BE65F /* TimePickerCell.swift in Sources */,
 				16BEBE541E6FEE050034D422 /* CategoryCell.swift in Sources */,
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
 				7AF7BC001E5467AF0059A62A /* WatchViewController.swift in Sources */,
