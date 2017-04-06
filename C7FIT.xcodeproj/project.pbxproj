@@ -67,7 +67,6 @@
 		7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF51E5464250059A62A /* WatchView.swift */; };
 		7AF7BBF81E5464310059A62A /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF71E5464310059A62A /* CountView.swift */; };
 		7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF91E54643E0059A62A /* HeartRateView.swift */; };
-		7AF7BC001E5467AF0059A62A /* WatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBFF1E5467AF0059A62A /* WatchViewController.swift */; };
 		7AF7BC021E5467B90059A62A /* CountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC011E5467B90059A62A /* CountViewController.swift */; };
 		7AF7BC041E5467C10059A62A /* HeartRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */; };
 		7AF7BC061E54EDDE0059A62A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF7BC051E54EDDE0059A62A /* HealthKit.framework */; };
@@ -163,7 +162,6 @@
 		7AF7BBF51E5464250059A62A /* WatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchView.swift; sourceTree = "<group>"; };
 		7AF7BBF71E5464310059A62A /* CountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
 		7AF7BBF91E54643E0059A62A /* HeartRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateView.swift; sourceTree = "<group>"; };
-		7AF7BBFF1E5467AF0059A62A /* WatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchViewController.swift; sourceTree = "<group>"; };
 		7AF7BC011E5467B90059A62A /* CountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountViewController.swift; sourceTree = "<group>"; };
 		7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateViewController.swift; sourceTree = "<group>"; };
 		7AF7BC051E54EDDE0059A62A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -400,7 +398,6 @@
 			isa = PBXGroup;
 			children = (
 				7A838C531E96F4AA003BE65F /* StopWatchTableViewController.swift */,
-				7AF7BBFF1E5467AF0059A62A /* WatchViewController.swift */,
 			);
 			name = Stopwatch;
 			sourceTree = "<group>";
@@ -776,7 +773,6 @@
 				7A838C581E96FA04003BE65F /* TimePickerCell.swift in Sources */,
 				16BEBE541E6FEE050034D422 /* CategoryCell.swift in Sources */,
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
-				7AF7BC001E5467AF0059A62A /* WatchViewController.swift in Sources */,
 				7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */,
 				7AAB23641E4297BA00AD7040 /* ScheduleBioTableViewCell.swift in Sources */,
 				16BEB6C61E72966A001BE973 /* eBayAPIToken.swift in Sources */,

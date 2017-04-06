@@ -105,8 +105,8 @@ class ActivityViewController: UITableViewController {
             navigationController?.pushViewController(destination, animated: true)
         }
         if indexPath.row == 2 {
-//            let destination = StopWatchTableViewController()
-//            navigationController?.pushViewController(destination, animated: true)
+            let destination = StopWatchTableViewController()
+            navigationController?.pushViewController(destination, animated: true)
         }
         if indexPath.row == 3 {
             let destination = CountViewController()
