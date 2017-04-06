@@ -102,7 +102,7 @@ struct HealthKitManager {
         
         healthKitStore.save(distanceObject, withCompletion: { (success, error) -> Void in
             if( error != nil ) {
-                print(error)
+                print(error as Any)
             } else {
                 print("success, distance recorded")
             }
