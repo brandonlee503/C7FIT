@@ -369,12 +369,24 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
 /// Adapter Pattern for UIPickerView and UITableViewCells
 extension ProfileViewController: PickerCellDelegate {
-    func onPickerOpen(_ cell: AbstractHealthCell) {
+    
+    func onPickerOpen(cell: AbstractHealthCell, picker: UIPickerView) {
         switch cell.picker.tag {
+        // Start first two cases at weight 150 lbs and height 6'5" for faster navigation
         case 1:
-            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? ProfileViewModel.personalWeight[0] : cell.dataLabel.text
+            if cell.dataLabel.text!.isEmpty {
+                picker.selectRow(150, inComponent: 0, animated: true)
+                cell.dataLabel.text = ProfileViewModel.personalWeight[150]
+            } else {
+                cell.dataLabel.text = cell.dataLabel.text
+            }
         case 2:
-            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? ProfileViewModel.personalHeight[0] : cell.dataLabel.text
+            if cell.dataLabel.text!.isEmpty {
+                picker.selectRow(54, inComponent: 0, animated: true)
+                cell.dataLabel.text = ProfileViewModel.personalHeight[54]
+            } else {
+                cell.dataLabel.text = cell.dataLabel.text
+            }
         case 5, 6:
             cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? ProfileViewModel.repetitions[0] : cell.dataLabel.text
         case 7, 8, 9:
