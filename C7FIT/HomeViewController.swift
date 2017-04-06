@@ -1,44 +1,76 @@
-//
-//  HomeViewController.swift
-//  C7FIT
-//
-//  Created by Brandon Lee on 12/21/16.
-//  Copyright © 2016 Brandon Lee. All rights reserved.
-//
-
 import UIKit
 
 class HomeViewController: UIViewController {
 
     // MARK: - Properties
-    
-    var homeView = HomeView()
-    
+
+    let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0),
+                                          collectionViewLayout: UICollectionViewFlowLayout())
+
     // MARK: - View Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Home"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
-        
-        self.view.addSubview(homeView)
+
+        self.view.addSubview(collectionView)
         setupConstraints()
         self.view.setNeedsUpdateConstraints()
+
+        collectionView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+
+        collectionView.dataSource = self
+        collectionView.register(YouTubeCollectionViewCell.classForCoder(),
+                                forCellWithReuseIdentifier: "YouTubeCollectionViewCell")
+        collectionView.register(UICollectionViewCell.classForCoder(),
+                                forCellWithReuseIdentifier: "OtherCollectionViewCell")
+
+        let collectionViewLayout = UICollectionViewFlowLayout()
+        collectionViewLayout.itemSize = CGSize(width: view.frame.width,
+                                               height: (view.frame.height - 180) / 3)
+        collectionViewLayout.minimumLineSpacing = 20
+
+        collectionView.setCollectionViewLayout(collectionViewLayout, animated: false)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     // MARK: - Layout
-    
+
     func setupConstraints() {
-        homeView.translatesAutoresizingMaskIntoConstraints = false
-        let topView = homeView.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomView = homeView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leftView = homeView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        let rightView = homeView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        let topView = collectionView.topAnchor.constraint(equalTo: view.topAnchor)
+        let bottomView = collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        let leftView = collectionView.leftAnchor.constraint(equalTo: view.leftAnchor)
+        let rightView = collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
         NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
     }
+}
+
+extension HomeViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        switch indexPath.row {
+        case 0:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YouTubeCollectionViewCell",
+                                                          for: indexPath)
+            if let cell = cell as? YouTubeCollectionViewCell {
+                cell.videoID = "LR708uA4zQ8"
+            }
+            return cell
+
+        default:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCollectionViewCell",
+                                                          for: indexPath)
+            cell.contentView.backgroundColor = .red
+            return cell
+        }
+    }
+
 }
