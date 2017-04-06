@@ -42,7 +42,7 @@ struct FirebaseDataManager {
      */
     func signIn(email: String, password: String, completion: @escaping (_: FIRUser?, _: Error?) -> Void) {
         FIRAuth.auth()?.signIn(withEmail: email, password: password) { user, error in
-            print("login screen user: \(user?.email)")
+            print("login screen user: \(String(describing: user?.email))")
             completion(user, error)
         }
     }
@@ -153,7 +153,7 @@ struct FirebaseDataManager {
                 // Update user profilePicURL
                 completion(metaData?.downloadURL())
             } else {
-                print("Upload profile pic error: \(error?.localizedDescription)")
+                print("Upload profile pic error: \(String(describing: error?.localizedDescription))")
             }
         }
     }
