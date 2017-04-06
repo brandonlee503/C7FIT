@@ -48,7 +48,7 @@ open class AbstractHealthCell: UITableViewCell {
     
     open override func becomeFirstResponder() -> Bool {
         picker.dataSource = self
-        delegate?.onPickerOpen(self)
+        delegate?.onPickerOpen(cell: self, pickerView: picker)
         return super.becomeFirstResponder()
     }
     
@@ -122,7 +122,7 @@ public protocol PickerCellDelegate: class {
         Called on picker view open
         - Parameter cell: Target
      */
-    func onPickerOpen(_ cell: AbstractHealthCell)
+    func onPickerOpen(cell: AbstractHealthCell, pickerView: UIPickerView)
     
     /**
         Called on picker view close

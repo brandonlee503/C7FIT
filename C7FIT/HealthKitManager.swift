@@ -75,7 +75,7 @@ struct HealthKitManager {
         let sampleQuery = HKSampleQuery(sampleType: sampleType, predicate: recentPredicate, limit: limit, sortDescriptors: [sortDescriptor])
         { sampleQuery, results, error in
             if error != nil {
-                completion(nil, error as? NSError)
+                completion(nil, error as NSError?)
                 return
             }
         
