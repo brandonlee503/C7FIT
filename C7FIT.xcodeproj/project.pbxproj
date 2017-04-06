@@ -59,7 +59,6 @@
 		7AD3DEF21E5ED7CF001580CC /* RunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3DEF11E5ED7CF001580CC /* RunData.swift */; };
 		7AD3DEF41E5ED860001580CC /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3DEF31E5ED860001580CC /* LocationData.swift */; };
 		7AECE6D21E70BE7400423D82 /* TimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AECE6D11E70BE7400423D82 /* TimerCell.swift */; };
-		7AF7BBF21E5460770059A62A /* HealthKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF11E5460770059A62A /* HealthKitViewController.swift */; };
 		7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF31E5460860059A62A /* HealthKit.swift */; };
 		7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF51E5464250059A62A /* WatchView.swift */; };
 		7AF7BBF81E5464310059A62A /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF71E5464310059A62A /* CountView.swift */; };
@@ -152,7 +151,6 @@
 		7AD3DEF11E5ED7CF001580CC /* RunData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunData.swift; sourceTree = "<group>"; };
 		7AD3DEF31E5ED860001580CC /* LocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		7AECE6D11E70BE7400423D82 /* TimerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerCell.swift; sourceTree = "<group>"; };
-		7AF7BBF11E5460770059A62A /* HealthKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitViewController.swift; sourceTree = "<group>"; };
 		7AF7BBF31E5460860059A62A /* HealthKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 		7AF7BBF51E5464250059A62A /* WatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchView.swift; sourceTree = "<group>"; };
 		7AF7BBF71E5464310059A62A /* CountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
@@ -402,7 +400,6 @@
 		7A9CBE361E8E367000AF1F25 /* Health */ = {
 			isa = PBXGroup;
 			children = (
-				7AF7BBF11E5460770059A62A /* HealthKitViewController.swift */,
 				7A9CBE371E8E368700AF1F25 /* HealthKitTableViewController.swift */,
 			);
 			name = Health;
@@ -742,7 +739,6 @@
 				7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */,
 				160D9B0B1E0B5C0D00801627 /* AppDelegate.swift in Sources */,
 				7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */,
-				7AF7BBF21E5460770059A62A /* HealthKitViewController.swift in Sources */,
 				7A76A7A41E6F66A100C7D8F2 /* StartStopCell.swift in Sources */,
 				7AF7BBF81E5464310059A62A /* CountView.swift in Sources */,
 				160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */,

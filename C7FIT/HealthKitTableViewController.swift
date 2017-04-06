@@ -16,12 +16,22 @@ class HealthKitTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Health Information"
+        healthKitManager.authorizeHealthKit()
+        self.title = "Health Statistics"
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(HealthInfoCell.self, forCellReuseIdentifier: healthInfoID)
         
+    }
+    
+    override init(style: UITableViewStyle) {
+        super.init(style: style)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,9 +50,9 @@ class HealthKitTableViewController: UITableViewController {
         switch section
         {
         case 0:
-            return 2
+            return 4
         case 1:
-            return 7
+            return 2
         default:
             return 0
         }
@@ -51,9 +61,9 @@ class HealthKitTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "General"
-        case 1:
             return "Health Statistics"
+        case 1:
+            return "Recent Activity"
         default:
             return "Other Statistics"
         }
@@ -62,13 +72,6 @@ class HealthKitTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            switch indexPath.row {
-            case 0:
-                break
-            default:
-                break
-            }
-        case 1:
             switch indexPath.row {
             case 0:
                 let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)
@@ -86,9 +89,18 @@ class HealthKitTableViewController: UITableViewController {
                 let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyFatPercentage)
                 let titleLabel = "Body Fat Percentage"
                 return queryData(titleLabel: titleLabel, sampleType: sampleType!)
-            case 4:
+            default:
+                break
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
                 let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)
-                let titleLabel = "Distance Ran"
+                let titleLabel = "Latest Distance Ran"
+                return queryData(titleLabel: titleLabel, sampleType: sampleType!)
+            case 1:
+                let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
+                let titleLabel = "Steps Walked"
                 return queryData(titleLabel: titleLabel, sampleType: sampleType!)
             default:
                 break
@@ -127,6 +139,4 @@ class HealthKitTableViewController: UITableViewController {
         return cell
     }
     
-
-
 }

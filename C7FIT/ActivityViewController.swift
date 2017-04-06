@@ -97,7 +97,7 @@ class ActivityViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            let destination = HealthKitTableViewController()
+            let destination = HealthKitTableViewController(style: UITableViewStyle.grouped)
             navigationController?.pushViewController(destination, animated: true)
         }
         if indexPath.row == 1 {
@@ -106,8 +106,8 @@ class ActivityViewController: UITableViewController {
             navigationController?.pushViewController(destination, animated: true)
         }
         if indexPath.row == 2 {
-            let destination = WatchViewController()
-            navigationController?.pushViewController(destination, animated: true)
+//            let destination = StopWatchTableViewController()
+//            navigationController?.pushViewController(destination, animated: true)
         }
         if indexPath.row == 3 {
             let destination = CountViewController()
@@ -119,11 +119,4 @@ class ActivityViewController: UITableViewController {
         }
     }
     
-//    func watchButtonPressed() {
-//        //not possible url scheme doesnt work.
-//        print("watch button clicked")
-//        let watchString = "clock-timer:"
-//        let url = URL(string:watchString)!
-//        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//    }
 }

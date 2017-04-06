@@ -18,6 +18,7 @@ struct HealthKitManager {
     // FIXME: figure out what data we need from Health Kit and what is available
 //    func authorizeHealthKit(completion: ((_ success:Bool,_ error: NSError) -> Void)!) {
     func authorizeHealthKit() {
+        //read data
             let healthKitRead = Set([
                 HKObjectType.characteristicType(forIdentifier: HKCharacteristicTypeIdentifier.biologicalSex)!,
                 HKObjectType.characteristicType(forIdentifier: HKCharacteristicTypeIdentifier.dateOfBirth)!,
@@ -28,9 +29,12 @@ struct HealthKitManager {
                 HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyFatPercentage)!,
                 HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!,
                 HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)!,
+                HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!,
                 HKObjectType.workoutType()
             ])
-            
+        
+        //write data
+        
             let healthKitWrite = Set([
                 HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMassIndex)!,
                 HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!,
@@ -38,6 +42,7 @@ struct HealthKitManager {
                 HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyFatPercentage)!,
                 HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!,
                 HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)!,
+                HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!,
                 HKObjectType.workoutType()
             ])
         
@@ -77,7 +82,8 @@ struct HealthKitManager {
             let mostRecent = results?.first as? HKQuantitySample
             if (mostRecent == nil){
                 
-                print("nil")
+                //may not have permission to read data or DNE
+                print("results nil")
                 return;
                 
             }
