@@ -64,7 +64,7 @@ class RunListTableViewController: UITableViewController {
             let rowTitle = listRuns[indexPath.row]?.runTitle ?? ""
             if let cell: RunListCell = tableView.dequeueReusableCell(withIdentifier: runListID, for: indexPath) as? RunListCell {
                 cell.titleLabel.text = rowTitle
-                cell.dateLabel.text = listRuns[indexPath.row]?.dispDatePretty() ?? "error"
+                cell.valLabel.text = listRuns[indexPath.row]?.dispDatePretty() ?? "error"
                 return cell
             }
         }

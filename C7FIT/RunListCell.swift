@@ -13,7 +13,7 @@ class RunListCell: UITableViewCell {
     // MARK: - Properties
     
     var titleLabel: UILabel = UILabel()
-    var dateLabel: UILabel = UILabel()
+    var valLabel: UILabel = UILabel()
 
     // MARK: - Initialization
     
@@ -33,8 +33,8 @@ class RunListCell: UITableViewCell {
         titleLabel.backgroundColor = .green
         addSubview(titleLabel)
         
-        dateLabel.backgroundColor = .green
-        addSubview(dateLabel)
+        valLabel.backgroundColor = .green
+        addSubview(valLabel)
     }
     
     func setupConstraints() {
@@ -44,10 +44,10 @@ class RunListCell: UITableViewCell {
         let titleBottom = titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
         NSLayoutConstraint.activate([titleLead, titleTop, titleBottom])
         
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        let dateTrail = dateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
-        let dateTop = dateLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor)
-        let dateBottom = dateLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
+        valLabel.translatesAutoresizingMaskIntoConstraints = false
+        let dateTrail = valLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+        let dateTop = valLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor)
+        let dateBottom = valLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
         NSLayoutConstraint.activate([dateTrail, dateTop, dateBottom])
     }
 }
