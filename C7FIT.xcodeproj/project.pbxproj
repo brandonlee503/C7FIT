@@ -73,6 +73,7 @@
 		7AF7BC061E54EDDE0059A62A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF7BC051E54EDDE0059A62A /* HealthKit.framework */; };
 		7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */; };
 		8DDE8CB2A52DA4DDF6CE47C9 /* Pods_C7FITTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */; };
+		AC96A66D1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC96A66C1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift */; };
 		DC0EF005D0A9CB5AD7082EE2 /* Pods_C7FIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53076A0C8FE5245144D9ECCE /* Pods_C7FIT.framework */; };
 /* End PBXBuildFile section */
 
@@ -169,6 +170,7 @@
 		7AF7BC051E54EDDE0059A62A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C7FITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC96A66C1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeCollectionViewCell.swift; sourceTree = "<group>"; };
 		C9EF0CEA2106516B1ECAAB5E /* Pods-C7FITTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FITTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-C7FITTests/Pods-C7FITTests.release.xcconfig"; sourceTree = "<group>"; };
 		F464551DBAC59E09F9A579D3 /* Pods-C7FIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FIT.release.xcconfig"; path = "Pods/Target Support Files/Pods-C7FIT/Pods-C7FIT.release.xcconfig"; sourceTree = "<group>"; };
 		F766E4B10DB4A79B8120E9B5 /* Pods-C7FIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FIT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-C7FIT/Pods-C7FIT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		160D9B751E0B7FC500801627 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AC96A66C1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift */,
 				160D9B791E0B88EE00801627 /* HomeView.swift */,
 				7A3E51BC1E4BD1B5009BA84A /* ScheduleViews */,
 				1626F8331E62B173002E2A9B /* StoreViews */,
@@ -717,6 +720,7 @@
 			files = (
 				7AF7BC021E5467B90059A62A /* CountViewController.swift in Sources */,
 				16594B361E6C5B350032AD26 /* eBayItem.swift in Sources */,
+				AC96A66D1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift in Sources */,
 				16576F171E1295C300BF622D /* String+Conversions.swift in Sources */,
 				7A8B9D321E52752200B88316 /* WatchTableViewCell.swift in Sources */,
 				7A76A7AC1E6F914A00C7D8F2 /* MapDetailTableViewController.swift in Sources */,
@@ -727,7 +731,6 @@
 				7A8B9D361E52753800B88316 /* HeartRateTableViewCell.swift in Sources */,
 				7A8B9D301E52751500B88316 /* MapTableViewCell.swift in Sources */,
 				16BEBE541E6FEE050034D422 /* CategoryCell.swift in Sources */,
-				7AD3DEEE1E5ED194001580CC /* MapDetailView.swift in Sources */,
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
 				16461B361E7F435E003A8723 /* ItemHeaderCell.swift in Sources */,
 				16BEB6C81E72AE20001BE973 /* ItemDetailController.swift in Sources */,
