@@ -294,17 +294,17 @@ class ProfileViewController: UITableViewController {
         // Build new user and send update
         guard let userID = self.userID, let userEmail = self.user?.email else { return }
         let updatedUser: User = User(email: userEmail,
-                                     photoURL: userDict["profilePic"], 
-                                     name: userDict["name"], 
-                                     bio: userDict["bio"], 
-                                     weight: userDict["weight"], 
-                                     height: userDict["height"], 
-                                     bmi: userDict["bmi"], 
-                                     mileTime: userDict["mileTime"], 
-                                     pushups: userDict["pushups"], 
-                                     situps: userDict["situps"], 
-                                     legPress: userDict["legPress"], 
-                                     benchPress: userDict["benchPress"], 
+                                     photoURL: userDict["profilePic"],
+                                     name: userDict["name"],
+                                     bio: userDict["bio"],
+                                     weight: userDict["weight"],
+                                     height: userDict["height"],
+                                     bmi: userDict["bmi"],
+                                     mileTime: userDict["mileTime"],
+                                     pushups: userDict["pushups"],
+                                     situps: userDict["situps"],
+                                     legPress: userDict["legPress"],
+                                     benchPress: userDict["benchPress"],
                                      lateralPull: userDict["lateralPull"])
         firebaseDataManager.updateUser(uid: userID, user: updatedUser)
 
@@ -368,7 +368,8 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
         // Make sure media is an image, if so upload it and update download URL
         if mediaType == (kUTTypeImage as String) {
-            if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage, let imageData = UIImageJPEGRepresentation(originalImage, 0.8) {
+            if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage,
+                let imageData = UIImageJPEGRepresentation(originalImage, 0.8) {
                 guard let userID = self.userID else { return }
                 firebaseDataManager.uploadProfilePicture(uid: userID, data: imageData, completion: { (url) in
                     guard let url = url else { return }
@@ -420,7 +421,8 @@ extension ProfileViewController: PickerCellDelegate {
         cell.dataLabel.textColor = .black
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int, forCell cell: AbstractHealthCell) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
+                    forComponent component: Int, forCell cell: AbstractHealthCell) -> String? {
         switch pickerView.tag {
         case 1:
             return ProfileViewModel.personalWeight[row]
@@ -435,7 +437,8 @@ extension ProfileViewController: PickerCellDelegate {
         }
     }
 
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int, forCell cell: AbstractHealthCell) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int,
+                    inComponent component: Int, forCell cell: AbstractHealthCell) {
         switch pickerView.tag {
         case 1:
             cell.dataLabel.text = ProfileViewModel.personalWeight[row]
