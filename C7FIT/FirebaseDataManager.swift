@@ -182,9 +182,8 @@ struct FirebaseDataManager {
 
         var convertedLoc = [Location]()
         for locString in locationsString {
-            let tempLocation = self.buildLocFromJson(json: locString as! [String : AnyObject])
-            if(tempLocation != nil) {
-                convertedLoc.append(tempLocation!)
+            if let tempLocation = self.buildLocFromJson(json: locString as! [String : AnyObject]) {
+                convertedLoc.append(tempLocation)
             }
         }
 

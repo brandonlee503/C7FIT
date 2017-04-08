@@ -6,6 +6,8 @@
 //  Copyright © 2016 Brandon Lee. All rights reserved.
 //
 
+// swiftlint:disable line_length
+
 import XCTest
 
 class C7FITUITests: XCTestCase {

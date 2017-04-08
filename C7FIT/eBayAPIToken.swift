@@ -6,7 +6,6 @@
 //  Copyright © 2017 Brandon Lee. All rights reserved.
 //
 
-// TODO: Fix line length
 // swiftlint:disable line_length
 
 import Foundation

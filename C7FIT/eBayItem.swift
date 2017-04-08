@@ -42,7 +42,8 @@ struct EbayItem {
         }
 
         // Get first dictionary in array and get its shipping cost
-        if let shippingOptionsDict = itemJSON["shippingOptions"] as? [[String: Any]], let shippingCostDict = shippingOptionsDict[0]["shippingCost"] as? [String: Any] {
+        if let shippingOptionsDict = itemJSON["shippingOptions"] as? [[String: Any]],
+            let shippingCostDict = shippingOptionsDict[0]["shippingCost"] as? [String: Any] {
             shippingCost = shippingCostDict["value"] as! String?
         } else {
             shippingCost = nil

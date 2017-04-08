@@ -24,10 +24,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Login"
         self.view.backgroundColor = .white
-
         self.loginView.loginButton.addTarget(self, action: #selector(self.loginPressed), for: .touchUpInside)
         self.loginView.createAccountButton.addTarget(self, action: #selector(self.createAccountPressed), for: .touchUpInside)
-
         self.view.addSubview(loginView)
         setupConstraints()
         self.view.setNeedsUpdateConstraints()
@@ -85,7 +83,6 @@ class LoginViewController: UIViewController {
         let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
             let emailField = createAccountAlert.textFields![0] as UITextField
             let passwordField = createAccountAlert.textFields![1] as UITextField
-
             // Submit create user, upon successful creation - login as well
             self.firebaseDataManager.createAccount(email: emailField.text!, password: passwordField.text!) { user, error in
                 guard user != nil else { return self.displayError(error: error!) }

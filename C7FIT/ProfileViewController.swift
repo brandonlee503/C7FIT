@@ -211,7 +211,8 @@ class ProfileViewController: UITableViewController {
                 let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
                     let minuteField = timeAlert.textFields![0] as UITextField
                     let secondField = timeAlert.textFields![1] as UITextField
-                    guard let minutes = minuteField.text, let seconds = secondField.text, minutes != "", seconds != "" else { return }
+                    guard let minutes = minuteField.text, let seconds = secondField.text,
+                        minutes != "", seconds != "" else { return }
                     cell.dataLabel.text = "\(minutes):\(seconds)"
                     self.dismiss(animated: true, completion: nil)
                 }

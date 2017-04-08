@@ -28,17 +28,17 @@ struct User {
     let lateralPull: String?
 
     init(email: String,
-         photoURL: String?, 
-         name: String?, 
-         bio: String?, 
-         weight: String?, 
-         height: String?, 
-         bmi: String?, 
-         mileTime: String?, 
-         pushups: String?, 
-         situps: String?, 
-         legPress: String?, 
-         benchPress: String?, 
+         photoURL: String?,
+         name: String?,
+         bio: String?,
+         weight: String?,
+         height: String?,
+         bmi: String?,
+         mileTime: String?,
+         pushups: String?,
+         situps: String?,
+         legPress: String?,
+         benchPress: String?,
          lateralPull: String?) {
         self.email = email
         self.photoURL = photoURL

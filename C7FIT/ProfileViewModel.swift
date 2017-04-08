@@ -58,16 +58,16 @@ struct ProfileViewModel {
 
             return User(email: email,
                         photoURL: photoURL,
-                        name: name, 
-                        bio: bio, 
-                        weight: weight, 
-                        height: height, 
-                        bmi: bmi, 
-                        mileTime: mileTime, 
-                        pushups: pushups, 
-                        situps: situps, 
-                        legPress: legPress, 
-                        benchPress: benchPress, 
+                        name: name,
+                        bio: bio,
+                        weight: weight,
+                        height: height,
+                        bmi: bmi,
+                        mileTime: mileTime,
+                        pushups: pushups,
+                        situps: situps,
+                        legPress: legPress,
+                        benchPress: benchPress,
                         lateralPull: lateralPull)
     }
 

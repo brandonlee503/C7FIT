@@ -25,7 +25,8 @@ struct EbayDataManager {
         let headers = [
             "authorization": OAuth2Token
         ]
-        let urlEncodedString = "\(browseAPIbaseURL)item/\(itemID)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let urlEncodedString = "\(browseAPIbaseURL)item/\(itemID)"
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: urlEncodedString)!
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
@@ -35,7 +36,8 @@ struct EbayDataManager {
                 print("Error in retrieving item: \(String(describing: error?.localizedDescription))")
                 return completion(nil)
             }
-            guard let dataJSON = try? JSONSerialization.jsonObject(with: data, options: []), let dataDict = dataJSON as? [String: Any] else {
+            guard let dataJSON = try? JSONSerialization.jsonObject(with: data, options: []),
+                let dataDict = dataJSON as? [String: Any] else {
                 return completion(nil)
             }
 
@@ -56,7 +58,8 @@ struct EbayDataManager {
         let headers = [
             "authorization": OAuth2Token
         ]
-        let urlEncodedString = "\(self.browseAPIbaseURL)item_summary/search?q=\(query)&limit=10".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let urlEncodedString = "\(self.browseAPIbaseURL)item_summary/search?q=\(query)&limit=10"
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = URL(string: urlEncodedString)!
         let request = NSMutableURLRequest(url: url)
         request.httpMethod = "GET"
@@ -66,7 +69,8 @@ struct EbayDataManager {
                 print("Error in retrieving item: \(String(describing: error?.localizedDescription))")
                 return completion(nil)
             }
-            guard let dataJSON = try? JSONSerialization.jsonObject(with: data, options: []), let dataDict = dataJSON as? [String: Any] else {
+            guard let dataJSON = try? JSONSerialization.jsonObject(with: data, options: []),
+                let dataDict = dataJSON as? [String: Any] else {
                 return completion(nil)
             }
 

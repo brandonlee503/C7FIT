@@ -14,7 +14,7 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
 
     // MARK: - Constants
 
-    let EbayToken = EbayAPIToken()
+    let ebayToken = EbayAPIToken()
     let ebayDataManager = EbayDataManager()
 
     // MARK: - Properties
@@ -39,7 +39,7 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
         Submit pre-curated queries for fitness Ebay items
      */
     func submitPrecuratedQueries() {
-        EbayToken.getOAuth2Token { OAuth2Token in
+        ebayToken.getOAuth2Token { OAuth2Token in
             guard let token = OAuth2Token else { return }
             self.ebayDataManager.searchItem(query: "Yoga Ball", OAuth2Token: token) { itemCategory in
                 guard let itemCategory = itemCategory else { return }
@@ -87,7 +87,9 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
 
     // MARK: - UICollectionViewDelegateFlowLayout
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 200)
     }
 }

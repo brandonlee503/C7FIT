@@ -1,3 +1,5 @@
 disabled_rules:
   - force_cast
   - todo
+
+line_length: 150
