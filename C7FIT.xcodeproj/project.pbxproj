@@ -20,6 +20,7 @@
 		160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B871E0BFA6A00801627 /* ActivityViewController.swift */; };
 		160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B891E0BFA7A00801627 /* ProfileViewController.swift */; };
 		161B933F1E9ACAF500F397C5 /* ProfilePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161B933E1E9ACAF500F397C5 /* ProfilePickerDelegate.swift */; };
+		161B93411E9AD48100F397C5 /* ProfileImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161B93401E9AD48100F397C5 /* ProfileImagePickerDelegate.swift */; };
 		16227F6D1E9A4785008A2FE4 /* ProfilePickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16227F6C1E9A4785008A2FE4 /* ProfilePickerDataSource.swift */; };
 		1626F8351E62B204002E2A9B /* CategoryCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1626F8341E62B204002E2A9B /* CategoryCellController.swift */; };
 		1626F8371E62BD1A002E2A9B /* eBayDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */; };
@@ -120,6 +121,7 @@
 		160D9B871E0BFA6A00801627 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		160D9B891E0BFA7A00801627 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		161B933E1E9ACAF500F397C5 /* ProfilePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePickerDelegate.swift; sourceTree = "<group>"; };
+		161B93401E9AD48100F397C5 /* ProfileImagePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerDelegate.swift; sourceTree = "<group>"; };
 		16227F6C1E9A4785008A2FE4 /* ProfilePickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePickerDataSource.swift; sourceTree = "<group>"; };
 		1626F8341E62B204002E2A9B /* CategoryCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCellController.swift; sourceTree = "<group>"; };
 		1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayDataManager.swift; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				164BAAA91E36E5BA00DE4C71 /* LoginViewController.swift */,
+				161B93401E9AD48100F397C5 /* ProfileImagePickerDelegate.swift */,
 				160D9B891E0BFA7A00801627 /* ProfileViewController.swift */,
 				1658B9DD1E0F9EFD009D4F67 /* ProfileViewModel.swift */,
 				16227F6C1E9A4785008A2FE4 /* ProfilePickerDataSource.swift */,
@@ -847,6 +850,7 @@
 				7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */,
 				7A838C511E96F497003BE65F /* WatchTimerCell.swift in Sources */,
 				16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */,
+				161B93411E9AD48100F397C5 /* ProfileImagePickerDelegate.swift in Sources */,
 				7AF7BC041E5467C10059A62A /* HeartRateViewController.swift in Sources */,
 				7A76A7A81E6F66FD00C7D8F2 /* RunDetailCell.swift in Sources */,
 				160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */,
