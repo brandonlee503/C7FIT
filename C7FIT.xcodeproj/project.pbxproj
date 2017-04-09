@@ -19,6 +19,8 @@
 		160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B831E0BFA4500801627 /* ActivityView.swift */; };
 		160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B871E0BFA6A00801627 /* ActivityViewController.swift */; };
 		160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B891E0BFA7A00801627 /* ProfileViewController.swift */; };
+		161B933F1E9ACAF500F397C5 /* ProfilePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161B933E1E9ACAF500F397C5 /* ProfilePickerDelegate.swift */; };
+		16227F6D1E9A4785008A2FE4 /* ProfilePickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16227F6C1E9A4785008A2FE4 /* ProfilePickerDataSource.swift */; };
 		1626F8351E62B204002E2A9B /* CategoryCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1626F8341E62B204002E2A9B /* CategoryCellController.swift */; };
 		1626F8371E62BD1A002E2A9B /* eBayDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */; };
 		163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 163771531E398E2B000B3E87 /* FirebaseDataManager.swift */; };
@@ -117,6 +119,8 @@
 		160D9B831E0BFA4500801627 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		160D9B871E0BFA6A00801627 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		160D9B891E0BFA7A00801627 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		161B933E1E9ACAF500F397C5 /* ProfilePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePickerDelegate.swift; sourceTree = "<group>"; };
+		16227F6C1E9A4785008A2FE4 /* ProfilePickerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePickerDataSource.swift; sourceTree = "<group>"; };
 		1626F8341E62B204002E2A9B /* CategoryCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCellController.swift; sourceTree = "<group>"; };
 		1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayDataManager.swift; sourceTree = "<group>"; };
 		163771531E398E2B000B3E87 /* FirebaseDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDataManager.swift; sourceTree = "<group>"; };
@@ -331,6 +335,8 @@
 				164BAAA91E36E5BA00DE4C71 /* LoginViewController.swift */,
 				160D9B891E0BFA7A00801627 /* ProfileViewController.swift */,
 				1658B9DD1E0F9EFD009D4F67 /* ProfileViewModel.swift */,
+				16227F6C1E9A4785008A2FE4 /* ProfilePickerDataSource.swift */,
+				161B933E1E9ACAF500F397C5 /* ProfilePickerDelegate.swift */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -806,6 +812,7 @@
 				7A838C581E96FA04003BE65F /* TimePickerCell.swift in Sources */,
 				16BEBE541E6FEE050034D422 /* CategoryCell.swift in Sources */,
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
+				16227F6D1E9A4785008A2FE4 /* ProfilePickerDataSource.swift in Sources */,
 				16461B361E7F435E003A8723 /* ItemHeaderCell.swift in Sources */,
 				16BEB6C81E72AE20001BE973 /* ItemDetailController.swift in Sources */,
 				7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */,
@@ -849,6 +856,7 @@
 				160D9B7E1E0BF5DC00801627 /* ScheduleView.swift in Sources */,
 				7A9CBE3A1E8E3A9C00AF1F25 /* HealthKitTableViewCell.swift in Sources */,
 				7A76A7A61E6F66DA00C7D8F2 /* MapCell.swift in Sources */,
+				161B933F1E9ACAF500F397C5 /* ProfilePickerDelegate.swift in Sources */,
 				7AD3DEF41E5ED860001580CC /* LocationData.swift in Sources */,
 				16BEBE521E6FB4E10034D422 /* eBayItemCategory.swift in Sources */,
 				7A838C521E96F497003BE65F /* WatchButtonCell.swift in Sources */,
