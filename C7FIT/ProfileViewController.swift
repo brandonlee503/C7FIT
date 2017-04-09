@@ -19,7 +19,7 @@ class ProfileViewController: UITableViewController {
 
     // MARK: - Constants
 
-    let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
+    let firebaseDataManager = FirebaseDataManager()
 
     // MARK: - Properties
 
@@ -94,99 +94,68 @@ class ProfileViewController: UITableViewController {
         }
     }
 
-    // FIXME: Lots of semi-repetitive code here.. Find a way to minimize if possible
+    func healthCellHelper(title: String, value: String, indexPath: IndexPath) -> UITableViewCell {
+        if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
+            cell.dataTitle.text = title
+            cell.dataLabel.text = value
+            cell.inputView?.tag = indexPath.row
+            return cell
+        }
+
+        return UITableViewCell()
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        switch indexPath.row {
+        case 0:
             if let cell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: profileIdentifier) as? ProfileTableViewCell {
                 cell.nameField.text = user?.name ?? ""
                 cell.bioField.text = user?.bio ?? "Add a bio"
                 cell.updateProfileButton.addTarget(self, action: #selector(updateProfilePicPressed(sender:)), for: .touchUpInside)
                 return cell
             }
-        } else if indexPath.row == 1 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
-                cell.dataTitle.text = "Weight (lbs)"
-                if let weight = user?.weight {
-                    cell.dataLabel.text = weight
-                }
-                cell.inputView?.tag = indexPath.row
-                return cell
+        case 1:
+            if let weight = user?.weight {
+                return healthCellHelper(title: "Weight (lbs)", value: weight, indexPath: indexPath)
             }
-        } else if indexPath.row == 2 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
-                cell.dataTitle.text = "Height"
-                if let height = user?.height {
-                    cell.dataLabel.text = height
-                }
-                cell.inputView?.tag = indexPath.row
-                return cell
+        case 2:
+            if let height = user?.height {
+                return healthCellHelper(title: "Height", value: height, indexPath: indexPath)
             }
-        } else if indexPath.row == 3 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
-                cell.dataTitle.text = "BMI"
-                if let bmi = user?.bmi {
-                    cell.dataLabel.text = bmi
-                }
-                return cell
+        case 3:
+            if let bmi = user?.bmi {
+                return healthCellHelper(title: "BMI", value: bmi, indexPath: indexPath)
             }
-        } else if indexPath.row == 4 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
-                cell.dataTitle.text = "Mile Time (minute, seconds)"
-                if let mileTime = user?.mileTime {
-                    cell.dataLabel.text = mileTime
-                }
-                cell.inputView?.tag = indexPath.row
-                return cell
+        case 4:
+            if let mileTime = user?.mileTime {
+                return healthCellHelper(title: "Mile Time (minute, seconds)", value: mileTime, indexPath: indexPath)
             }
-        } else if indexPath.row == 5 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
-                cell.dataTitle.text = "Pushups"
-                if let pushups = user?.pushups {
-                    cell.dataLabel.text = pushups
-                }
-                cell.inputView?.tag = indexPath.row
-                return cell
+        case 5:
+            if let pushups = user?.pushups {
+                return healthCellHelper(title: "Pushups", value: pushups, indexPath: indexPath)
             }
-        } else if indexPath.row == 6 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
-                cell.dataTitle.text = "Situps"
-                if let situps = user?.situps {
-                    cell.dataLabel.text = situps
-                }
-                cell.inputView?.tag = indexPath.row
-                return cell
+        case 6:
+            if let situps = user?.situps {
+                return healthCellHelper(title: "Situps", value: situps, indexPath: indexPath)
             }
-        } else if indexPath.row == 7 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
-                cell.dataTitle.text = "Leg Press"
-                if let legPress = user?.legPress {
-                    cell.dataLabel.text = legPress
-                }
-                cell.inputView?.tag = indexPath.row
-                return cell
+        case 7:
+            if let legPress = user?.legPress {
+                return healthCellHelper(title: "Leg Press", value: legPress, indexPath: indexPath)
             }
-        } else if indexPath.row == 8 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
-                cell.dataTitle.text = "Bench Press"
-                if let benchPress = user?.benchPress {
-                    cell.dataLabel.text = benchPress
-                }
-                cell.inputView?.tag = indexPath.row
-                return cell
+        case 8:
+            if let benchPress = user?.benchPress {
+                return healthCellHelper(title: "Bench Press", value: benchPress, indexPath: indexPath)
             }
-        } else if indexPath.row == 9 {
-            if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
-                cell.dataTitle.text = "Lateral Pull"
-                if let lateralPull = user?.lateralPull {
-                    cell.dataLabel.text = lateralPull
-                }
-                cell.inputView?.tag = indexPath.row
-                return cell
+        case 9:
+            if let lateralPull = user?.lateralPull {
+                return healthCellHelper(title: "Lateral Pull", value: lateralPull, indexPath: indexPath)
             }
-        } else if indexPath.row == 10 {
+        case 10:
             if let cell: LogoutTableViewCell = tableView.dequeueReusableCell(withIdentifier: logoutIdentifier) as? LogoutTableViewCell {
                 return cell
             }
+        default:
+            break
         }
 
         return UITableViewCell()
@@ -246,7 +215,7 @@ class ProfileViewController: UITableViewController {
     /**
         Pulls data from all client fields and updates user on server
      */
-    // TODO: Make this better if possible...
+    // swiftlint:disable function_body_length
     func saveButtonPressed() {
         self.view.endEditing(true)
         var userDict = [String: String]()
@@ -293,19 +262,19 @@ class ProfileViewController: UITableViewController {
 
         // Build new user and send update
         guard let userID = self.userID, let userEmail = self.user?.email else { return }
-        let updatedUser: User = User(email: userEmail,
-                                     photoURL: userDict["profilePic"],
-                                     name: userDict["name"],
-                                     bio: userDict["bio"],
-                                     weight: userDict["weight"],
-                                     height: userDict["height"],
-                                     bmi: userDict["bmi"],
-                                     mileTime: userDict["mileTime"],
-                                     pushups: userDict["pushups"],
-                                     situps: userDict["situps"],
-                                     legPress: userDict["legPress"],
-                                     benchPress: userDict["benchPress"],
-                                     lateralPull: userDict["lateralPull"])
+        let updatedUser = User(email: userEmail,
+                                 photoURL: userDict["profilePic"],
+                                 name: userDict["name"],
+                                 bio: userDict["bio"],
+                                 weight: userDict["weight"],
+                                 height: userDict["height"],
+                                 bmi: userDict["bmi"],
+                                 mileTime: userDict["mileTime"],
+                                 pushups: userDict["pushups"],
+                                 situps: userDict["situps"],
+                                 legPress: userDict["legPress"],
+                                 benchPress: userDict["benchPress"],
+                                 lateralPull: userDict["lateralPull"])
         firebaseDataManager.updateUser(uid: userID, user: updatedUser)
 
         // Display save alert
@@ -314,6 +283,7 @@ class ProfileViewController: UITableViewController {
         saveAlert.addAction(submitAction)
         self.present(saveAlert, animated: true, completion: nil)
     }
+    // swiftlint:enable function_body_length
 
     func updateProfilePicPressed(sender: UIButton) {
         let imagePicker = UIImagePickerController()
