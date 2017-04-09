@@ -6,6 +6,8 @@
 //  Copyright © 2017 Brandon Lee. All rights reserved.
 //
 
+// swiftlint:disable cyclomatic_complexity
+
 import UIKit
 import HealthKit
 
@@ -119,14 +121,14 @@ class HealthKitTableViewController: UITableViewController {
         cell.titleLabel.text = titleLabel
 
         self.healthKitManager.queryUserData(sampleType: sampleType, completion : { (mostRecentVal, error) -> Void in
-            if (error != nil) {
+            if error != nil {
                 print("Error")
                 return
             }
 
             let result = mostRecentVal as! HKQuantitySample
             DispatchQueue.main.async {
-                //better way to format info label?
+                // TODO: find better way to format info label
                 cell.infoLabel.text = String(result.quantity.description)
             }
         })

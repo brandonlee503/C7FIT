@@ -12,7 +12,7 @@ class ScheduleView: UIView {
 
     // MARK: - Properties
 
-    var titleLabel: UILabel = UILabel()
+    var titleLabel = UILabel()
 
     // MARK: - Initialization
 

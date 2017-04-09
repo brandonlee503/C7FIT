@@ -12,8 +12,8 @@ class HealthInfoCell: UITableViewCell {
 
     // MARK: - Properties
 
-    var titleLabel: UILabel = UILabel()
-    var infoLabel: UILabel = UILabel()
+    var titleLabel = UILabel()
+    var infoLabel = UILabel()
 
     // MARK: - Initialization
 

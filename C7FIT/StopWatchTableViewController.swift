@@ -77,7 +77,10 @@ class StopWatchTableViewController: UITableViewController {
     func createLap() {
         print("lapping")
 
-        let dispTime = String(format:"%02d:%02d.%02d", (Int)(time/60), (Int)((time).truncatingRemainder(dividingBy: 60)), (Int)((time*100).truncatingRemainder(dividingBy: 100)) )
+        let dispTime = String(format:"%02d:%02d.%02d",
+                              (Int)(time/60),
+                              (Int)((time).truncatingRemainder(dividingBy: 60)),
+                              (Int)((time*100).truncatingRemainder(dividingBy: 100)) )
         self.lapData.append(dispTime)
         self.tableView.reloadData()
     }
@@ -88,16 +91,16 @@ class StopWatchTableViewController: UITableViewController {
         self.buttonCell.lapResetButton.setTitle("Lap", for: .normal)
         self.buttonCell.lapResetButton.addTarget(self, action: #selector(createLap), for: .touchUpInside)
 
-        //reset the timer
-        //should already be stopped by "pause", so timer.invalidate already called
+        // Reset the timer
+        // Should already be stopped by "pause", so timer.invalidate already called
         self.time = 0.0
         self.prevTime = 0.0
         self.lapData.removeAll()
-        self.timerCell.changeTime(min: "00", sec: "00", ms: "00")
+        self.timerCell.changeTime(min: "00", sec: "00", mils: "00")
 
-        //add in
+        // Add in
         self.timer.invalidate()
-        //clear the rows
+        // Clear the rows
         self.tableView.reloadData()
     }
 
@@ -108,7 +111,7 @@ class StopWatchTableViewController: UITableViewController {
         let dispSec = String(format:"%02d", (Int)((time).truncatingRemainder(dividingBy: 60)) )
         let dispMs = String(format:"%02d", (Int)((time*100).truncatingRemainder(dividingBy: 100)) )
 
-        self.timerCell.changeTime(min: dispMin, sec: dispSec, ms: dispMs)
+        self.timerCell.changeTime(min: dispMin, sec: dispSec, mils: dispMs)
     }
 
     override func didReceiveMemoryWarning() {
@@ -135,11 +138,11 @@ class StopWatchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            //timer
+            // Timer
             let cell = self.timerCell
             return cell
         case 1:
-            //start stop buttons
+            // Start stop buttons
             let cell = self.buttonCell
             return cell
         default:
@@ -157,7 +160,7 @@ class StopWatchTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let cellHeight: CGFloat = 40.0
 
-        if(indexPath.section == 0 && indexPath.row == 0) {
+        if indexPath.section == 0 && indexPath.row == 0 {
             return cellHeight * 6
         }
         return cellHeight

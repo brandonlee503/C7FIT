@@ -12,8 +12,8 @@ class ScheduleBioTableViewCell: UITableViewCell {
 
     // MARK: - Properties
 
-    lazy var bioTitle: UILabel = UILabel()
-    lazy var bioText: UILabel = UILabel()
+    lazy var bioTitle = UILabel()
+    lazy var bioText = UILabel()
 
     // MARK: - Initialization
 
@@ -37,7 +37,7 @@ class ScheduleBioTableViewCell: UITableViewCell {
         addSubview(bioTitle)
 
         bioText.backgroundColor = .white
-        bioText.text = "club bio placeholder text i love gym woo club bio placeholder text i love gym woo club bio placeholder text i love gym woo club bio placeholder text i love gym woo"
+        bioText.text = "club bio placeholder text i love gym woo club bio placeholder text i l"
         bioText.numberOfLines = 0
         bioText.lineBreakMode = .byWordWrapping
         bioText.textAlignment = NSTextAlignment.center

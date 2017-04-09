@@ -12,7 +12,7 @@ class WatchTableViewCell: UITableViewCell {
 
     // MARK: - Properties
 
-    lazy var activityTitle: UILabel = UILabel()
+    lazy var activityTitle = UILabel()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

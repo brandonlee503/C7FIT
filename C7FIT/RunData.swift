@@ -92,7 +92,7 @@ struct RunData {
     }
 
     static func roundDouble(double: Double, round: Int) -> Double {
-        //no other way to access decimal functions?
+        // TODO: No other way to access decimal functions?
         let factor = pow(10, round) as NSDecimalNumber
         let result = (double * factor.doubleValue).rounded() / factor.doubleValue
         return result

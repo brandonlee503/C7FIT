@@ -12,8 +12,8 @@ class RunListCell: UITableViewCell {
 
     // MARK: - Properties
 
-    var titleLabel: UILabel = UILabel()
-    var valLabel: UILabel = UILabel()
+    var titleLabel = UILabel()
+    var valLabel = UILabel()
 
     // MARK: - Initialization
 

@@ -13,7 +13,7 @@ class MapCell: UITableViewCell {
 
     // MARK: - Properties
 
-    var mapView: MKMapView = MKMapView()
+    var mapView = MKMapView()
 
     // MARK: - Initialization
 

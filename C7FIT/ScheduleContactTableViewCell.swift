@@ -12,7 +12,7 @@ class ScheduleContactTableViewCell: UITableViewCell {
 
     // MARK: - Properties
 
-    var contactButton: UIButton = UIButton()
+    var contactButton = UIButton()
 
     // MARK: - Initialization
 

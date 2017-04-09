@@ -12,8 +12,8 @@ class HealthKit: UIView {
 
     // MARK: - Properties
 
-    var authButton: UIButton = UIButton()
-    var weightLabel: UILabel = UILabel()
+    var authButton = UIButton()
+    var weightLabel = UILabel()
 
     // MARK: - Initialization
 

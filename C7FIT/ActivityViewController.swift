@@ -37,7 +37,7 @@ class ActivityViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
 
-    //Mark: - Layout
+    // Mark: - Layout
 
     func setupConstraints() {
         activityView.translatesAutoresizingMaskIntoConstraints = false
@@ -58,9 +58,6 @@ class ActivityViewController: UITableViewController {
         return 6
     }
 
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//    }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             if let cell: HealthKitTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HealthKitCell") as? HealthKitTableViewCell {
@@ -74,7 +71,6 @@ class ActivityViewController: UITableViewController {
         }
         if indexPath.row == 2 {
             if let cell: WatchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WatchCell") as? WatchTableViewCell {
-//                cell.watchButton.addTarget(self, action: #selector(self.watchButtonPressed), for: .touchUpInside)
                 return cell
             }
         }

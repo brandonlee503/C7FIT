@@ -12,8 +12,8 @@ class WatchButtonCell: UITableViewCell {
 
     // MARK: - Properties
 
-    var startStopButton: UIButton = UIButton()
-    var lapResetButton: UIButton = UIButton()
+    var startStopButton = UIButton()
+    var lapResetButton = UIButton()
 
     // MARK: - Initialization
 

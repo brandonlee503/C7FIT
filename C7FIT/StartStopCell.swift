@@ -12,8 +12,8 @@ class StartStopCell: UITableViewCell {
 
     // MARK: - Properties
 
-    var startButton: UIButton = UIButton()
-    var stopButton: UIButton = UIButton()
+    var startButton = UIButton()
+    var stopButton = UIButton()
 
     // MARK: - Initialization
 

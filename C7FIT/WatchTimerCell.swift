@@ -12,12 +12,12 @@ class WatchTimerCell: UITableViewCell {
 
     // MARK: - Properties
 
-    var timeLabel: UILabel = UILabel()
-    var minuteLabel: UILabel = UILabel()
-    var colonLabel: UILabel = UILabel()
-    var secondLabel: UILabel = UILabel()
-    var dotLabel: UILabel = UILabel()
-    var msLabel: UILabel = UILabel()
+    var timeLabel = UILabel()
+    var minuteLabel = UILabel()
+    var colonLabel = UILabel()
+    var secondLabel = UILabel()
+    var dotLabel = UILabel()
+    var msLabel = UILabel()
 
     // MARK: - Initialization
 
@@ -34,10 +34,6 @@ class WatchTimerCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
-//        timeLabel.backgroundColor = .green
-//        timeLabel.text = "00:00.00"
-//        timeLabel.font = timeLabel.font.withSize(50.0)
-
         minuteLabel.backgroundColor = .green
         minuteLabel.text = "00"
         minuteLabel.font = minuteLabel.font.withSize(50.0)
@@ -58,7 +54,6 @@ class WatchTimerCell: UITableViewCell {
         msLabel.text = "00"
         msLabel.font = msLabel.font.withSize(50.0)
 
-//        self.addSubview(timeLabel)
         self.addSubview(minuteLabel)
         self.addSubview(secondLabel)
         self.addSubview(msLabel)
@@ -67,11 +62,6 @@ class WatchTimerCell: UITableViewCell {
     }
 
     func setupConstraints() {
-//        timeLabel.translatesAutoresizingMaskIntoConstraints = false
-//        let centerTimeX = timeLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
-//        let centerTimeY = timeLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
-//        NSLayoutConstraint.activate([centerTimeX, centerTimeY])
-
         secondLabel.translatesAutoresizingMaskIntoConstraints = false
         let centerSecondX = secondLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         let centerSecondY = secondLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
@@ -98,10 +88,10 @@ class WatchTimerCell: UITableViewCell {
         NSLayoutConstraint.activate([leftMs, centerMsY])
     }
 
-    func changeTime(min: String, sec: String, ms: String) {
+    func changeTime(min: String, sec: String, mils: String) {
         self.minuteLabel.text = min
         self.secondLabel.text = sec
-        self.msLabel.text = ms
+        self.msLabel.text = mils
     }
 
 }

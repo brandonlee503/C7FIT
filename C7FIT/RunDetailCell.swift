@@ -11,13 +11,13 @@ import UIKit
 class RunDetailCell: UITableViewCell {
 
     // MARK: - Propertiess
-    var secondsText: UILabel = UILabel()
-    var distanceText: UILabel = UILabel()
-    var paceText: UILabel = UILabel()
+    var secondsText = UILabel()
+    var distanceText = UILabel()
+    var paceText = UILabel()
 
-    var secondsQuantity: UILabel = UILabel()
-    var distanceQuantity: UILabel = UILabel()
-    var paceQuantity: UILabel = UILabel()
+    var secondsQuantity = UILabel()
+    var distanceQuantity = UILabel()
+    var paceQuantity = UILabel()
 
     // MARK: - Initialization
 

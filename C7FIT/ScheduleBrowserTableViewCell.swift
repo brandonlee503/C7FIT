@@ -12,9 +12,9 @@ class ScheduleBrowserTableViewCell: UITableViewCell {
 
     // MARK: - Properties
 
-    lazy var scheduleTitle: UILabel = UILabel()
-    lazy var schedulePicture: UIImageView = UIImageView()
-    lazy var scheduleLink: UIButton = UIButton()
+    lazy var scheduleTitle = UILabel()
+    lazy var schedulePicture = UIImageView()
+    lazy var scheduleLink = UIButton()
 
     // MARK: - Initialization
 
@@ -36,7 +36,7 @@ class ScheduleBrowserTableViewCell: UITableViewCell {
         let imageName = "club front.jpg"
         let bgImage = UIImage(named: imageName)
 
-        if (bgImage != nil) {
+        if bgImage != nil {
             schedulePicture.image = bgImage!
             schedulePicture.center = self.center
 

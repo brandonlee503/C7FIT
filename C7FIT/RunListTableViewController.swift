@@ -11,11 +11,11 @@ import Firebase
 
 class RunListTableViewController: UITableViewController {
 
-    let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
+    let firebaseDataManager = FirebaseDataManager()
     var listRuns = [RunData?]()
     var userID: String?
     var numRows: Int?
-    var runListCell: RunListCell = RunListCell()
+    var runListCell = RunListCell()
 
     let runListID = "runCell"
 
@@ -59,7 +59,7 @@ class RunListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(indexPath.row < listRuns.count) {
+        if indexPath.row < listRuns.count {
             let rowTitle = listRuns[indexPath.row]?.runTitle ?? ""
             if let cell: RunListCell = tableView.dequeueReusableCell(withIdentifier: runListID, for: indexPath) as? RunListCell {
                 cell.titleLabel.text = rowTitle

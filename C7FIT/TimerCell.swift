@@ -12,7 +12,7 @@ class TimerCell: UITableViewCell {
 
     // MARK: - Properties
 
-    var timeLabel: UILabel = UILabel()
+    var timeLabel = UILabel()
 
     // MARK: - Initialization
 
