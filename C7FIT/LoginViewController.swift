@@ -12,7 +12,7 @@ class LoginViewController: UIViewController {
 
     // MARK: - Constants
 
-    let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
+    let firebaseDataManager = FirebaseDataManager()
 
     // MARK: - Properties
 

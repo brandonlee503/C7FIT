@@ -12,11 +12,11 @@ class ItemInfoCell: UICollectionViewCell {
 
     // MARK - Properties
 
-    var itemTitle: UILabel = UILabel()
-    var price: UILabel = UILabel()
-    var shippingTitle: UILabel = UILabel()
-    var shippingCost: UILabel = UILabel()
-    var buyButton: UIButton = UIButton()
+    var itemTitle = UILabel()
+    var price = UILabel()
+    var shippingTitle = UILabel()
+    var shippingCost = UILabel()
+    var buyButton = UIButton()
 
     // MARK: - Initialization
 

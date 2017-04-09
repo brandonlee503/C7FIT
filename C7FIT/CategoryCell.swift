@@ -12,7 +12,7 @@ class CategoryCell: UIView {
 
     // MARK: - Properties
 
-    var categoryTitle: UILabel = UILabel()
+    var categoryTitle = UILabel()
 
     var itemCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -22,7 +22,7 @@ class CategoryCell: UIView {
         return collectionView
     }()
 
-    var dividerLine: UIView = UIView()
+    var dividerLine = UIView()
 
     // MARK: - Initialization
 

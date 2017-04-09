@@ -16,8 +16,8 @@ open class AbstractHealthCell: UITableViewCell {
 
     // MARK: - Properties
 
-    var dataTitle: UILabel = UILabel()
-    var dataLabel: UILabel = UILabel()
+    var dataTitle = UILabel()
+    var dataLabel = UILabel()
 
     open weak var delegate: PickerCellDelegate?
     open weak var dataSource: PickerCellDataSource?
@@ -89,6 +89,7 @@ open class AbstractHealthCell: UITableViewCell {
 // MARK: - UIPickerViewDelegate
 
 extension AbstractHealthCell: UIPickerViewDelegate {
+
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return delegate?.pickerView(pickerView, titleForRow: row, forComponent: component, forCell: self)
     }

@@ -12,7 +12,7 @@ class LogoutTableViewCell: UITableViewCell {
 
     // MARK: - Properties
 
-    var logoutLabel: UILabel = UILabel()
+    var logoutLabel = UILabel()
 
     // MARK: - Initialization
 

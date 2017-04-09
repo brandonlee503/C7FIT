@@ -12,8 +12,8 @@ class LoginView: UIView {
 
     // MARK: - Properties
 
-    var loginButton: UIButton = UIButton()
-    var createAccountButton: UIButton = UIButton()
+    var loginButton = UIButton()
+    var createAccountButton = UIButton()
 
     // MARK: - Initialization
 

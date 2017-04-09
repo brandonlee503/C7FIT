@@ -12,9 +12,9 @@ class EbayItemCell: UICollectionViewCell {
 
     // MARK - Properties
 
-    var itemImageView: C7FUIImageView = C7FUIImageView()
-    var itemTitle: UILabel = UILabel()
-    var price: UILabel = UILabel()
+    var itemImageView = C7FUIImageView()
+    var itemTitle = UILabel()
+    var price = UILabel()
 
     // MARK: - Initialization
 

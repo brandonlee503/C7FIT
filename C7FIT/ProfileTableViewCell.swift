@@ -11,10 +11,10 @@ import UIKit
 class ProfileTableViewCell: UITableViewCell {
 
     // MARK: - Properties
-    var profileImageView: CircularImageView = CircularImageView()
-    var updateProfileButton: UIButton = UIButton()
-    var nameField: UITextField = UITextField()
-    var bioField: UITextView = UITextView()
+    var profileImageView = CircularImageView()
+    var updateProfileButton = UIButton()
+    var nameField = UITextField()
+    var bioField = UITextView()
 
     // MARK: - Initialization
 

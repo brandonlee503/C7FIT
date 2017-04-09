@@ -12,7 +12,7 @@ class ItemImageCell: UICollectionViewCell {
 
     // MARK - Properties
 
-    var itemImageView: C7FUIImageView = C7FUIImageView()
+    var itemImageView = C7FUIImageView()
 
     // MARK: - Initialization
 
