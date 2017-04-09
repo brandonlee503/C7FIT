@@ -151,7 +151,6 @@ struct FirebaseDataManager {
         Uploads new profile picture to Firebase Storage
      
         - Parameter uid: User's universal ID
-        - Parameter user: User data to update
         - Parameter data: Image data to upload
         - Returns completion: A callback that returns a URL?
      */
@@ -165,6 +164,7 @@ struct FirebaseDataManager {
                 completion(metaData?.downloadURL())
             } else {
                 print("Upload profile pic error: \(String(describing: error?.localizedDescription))")
+                completion(nil)
             }
         }
     }
