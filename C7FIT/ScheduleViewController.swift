@@ -80,7 +80,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         } else if indexPath.row == 1 {
             return aspectRatioSecond * barConstants
         } else {
-            return aspectRatioThird * barConstants 
+            return aspectRatioThird * barConstants
         }
     }
 
