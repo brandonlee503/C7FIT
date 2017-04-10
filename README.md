@@ -11,7 +11,7 @@
 ## Introduction
 A fitness app allowing customers of [Club 7 Fitness](http://www.clubsevenfitness.com/) to track their workouts and purchase fitness equipment.
 
-[Rutger Farry](https://github.com/rutgerfarry), [Brandon Lee](https://github.com/brandonlee503), and [Michael Lee's](https://github.com/willmichael) senior project at Oregon State University.
+[Rutger Farry](https://github.com/rutgerfarry), [Brandon Lee](https://github.com/brandonlee503), and [Michael Lee](https://github.com/willmichael)'s senior project at Oregon State University.
 
 ## Getting started
 You'll need a few tools before getting started. Ensure you have a recend copy of Xcode downloaded. Then run the following two commands to install `bundler` and the Xcode command-line tools, if you don't have them yet.
