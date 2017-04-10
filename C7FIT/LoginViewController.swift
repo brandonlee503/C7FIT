@@ -31,10 +31,6 @@ class LoginViewController: UIViewController {
         self.view.setNeedsUpdateConstraints()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     // MARK: - Layout
 
     func setupConstraints() {

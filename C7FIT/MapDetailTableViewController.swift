@@ -70,10 +70,6 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

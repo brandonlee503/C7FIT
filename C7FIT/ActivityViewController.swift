@@ -33,10 +33,6 @@ class ActivityViewController: UITableViewController {
 
    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     // Mark: - Layout
 
     func setupConstraints() {

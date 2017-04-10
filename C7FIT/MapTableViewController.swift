@@ -62,10 +62,6 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         startStopCell.stopButton.isEnabled = false
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {

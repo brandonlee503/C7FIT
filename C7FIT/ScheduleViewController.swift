@@ -41,10 +41,6 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         self.view.setNeedsUpdateConstraints()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     // MARK: - Layout
 
     func setupConstraints() {
@@ -80,7 +76,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         } else if indexPath.row == 1 {
             return aspectRatioSecond * barConstants
         } else {
-            return aspectRatioThird * barConstants 
+            return aspectRatioThird * barConstants
         }
     }
 

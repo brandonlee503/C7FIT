@@ -72,10 +72,6 @@ class ProfileViewController: UITableViewController {
         self.view.setNeedsUpdateConstraints()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     // MARK: - UITableView Delegate and Datasource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
