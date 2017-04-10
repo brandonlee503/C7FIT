@@ -41,7 +41,6 @@
 		16D2D2EA1E38020300F6AA9F /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2D2E91E38020300F6AA9F /* ProfileTableViewCell.swift */; };
 		16D2D2EC1E38638600F6AA9F /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2D2EB1E38638600F6AA9F /* CircularImageView.swift */; };
 		16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D2D2ED1E3874F800F6AA9F /* LogoutTableViewCell.swift */; };
-		16FFF43A1E345748009B4F34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16FFF4391E345748009B4F34 /* GoogleService-Info.plist */; };
 		16FFF43D1E3459C2009B4F34 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFF43C1E3459C2009B4F34 /* User.swift */; };
 		7A1CD7A81E6400E600953698 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1CD7A71E6400E600953698 /* MapKit.framework */; };
 		7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7699391E3962E90086519A /* ScheduleBrowserTableViewCell.swift */; };
