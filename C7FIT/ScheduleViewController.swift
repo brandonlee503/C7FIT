@@ -71,8 +71,6 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         let aspectRatioSecond: CGFloat = 3/8
         let aspectRatioThird: CGFloat = 1/8
         let screenSize: CGRect = UIScreen.main.bounds
-        // Use optionals here
-        // Self.navigationController?...
         let navBarSize: CGFloat? = self.navigationController?.navigationBar.frame.size.height
         let tabBarSize: CGFloat? = self.tabBarController?.tabBar.frame.size.height
         let statusBarSize: CGFloat? = UIApplication.shared.statusBarFrame.height
@@ -80,9 +78,9 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         if indexPath.row < 1 {
             return aspectRatioFirst * barConstants
         } else if indexPath.row == 1 {
-            return aspectRatioSecond * barConstants // Clean this up later if want different
+            return aspectRatioSecond * barConstants
         } else {
-            return aspectRatioThird * barConstants // Clean this up later if want different
+            return aspectRatioThird * barConstants 
         }
     }
 
