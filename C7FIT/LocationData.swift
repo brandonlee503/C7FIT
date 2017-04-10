@@ -13,19 +13,19 @@ struct Location {
     var timestamp: String
     var latitude: Double
     var longitude: Double
-    
+
     init() {
         self.timestamp = ""
         self.latitude = 0.0
         self.longitude = 0.0
     }
-    
+
     init(timestamp: String, latitude: Double, longitude: Double) {
         self.timestamp = timestamp
         self.latitude = latitude
         self.longitude = longitude
     }
-    
+
     func toAnyObject() -> Any {
         return [
             "timestamp": timestamp,
@@ -34,4 +34,3 @@ struct Location {
         ]
     }
 }
-

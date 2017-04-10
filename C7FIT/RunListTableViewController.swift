@@ -10,25 +10,24 @@ import UIKit
 import Firebase
 
 class RunListTableViewController: UITableViewController {
-    
-    let firebaseDataManager: FirebaseDataManager = FirebaseDataManager()
+
+    let firebaseDataManager = FirebaseDataManager()
     var listRuns = [RunData?]()
     var userID: String?
     var numRows: Int?
-    var runListCell: RunListCell = RunListCell()
-    
+    var runListCell = RunListCell()
+
     let runListID = "runCell"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Your Runs"
-        
-     
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(RunListCell.self, forCellReuseIdentifier: runListID)
-        
-        firebaseDataManager.monitorLoginState() { auth, user in
+
+        firebaseDataManager.monitorLoginState { _, user in
             guard let userID = user?.uid else { return self.present(LoginViewController(), animated: true, completion: nil) }
             self.firebaseDataManager.fetchUserRunList(uid: userID) { data in
                 self.numRows = Int(data.childrenCount)
@@ -40,11 +39,6 @@ class RunListTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -60,7 +54,7 @@ class RunListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(indexPath.row < listRuns.count) {
+        if indexPath.row < listRuns.count {
             let rowTitle = listRuns[indexPath.row]?.runTitle ?? ""
             if let cell: RunListCell = tableView.dequeueReusableCell(withIdentifier: runListID, for: indexPath) as? RunListCell {
                 cell.titleLabel.text = rowTitle

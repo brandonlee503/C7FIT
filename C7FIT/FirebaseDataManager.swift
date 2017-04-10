@@ -13,13 +13,13 @@ import Firebase
     A representation of C7FIT's Firebase services.
  */
 struct FirebaseDataManager {
-    
+
     // MARK: - Constants
-    
+
     let ref = FIRDatabase.database().reference()
-    
+
     // MARK: - User Account Login/Logout
-    
+
     /**
         Create new user account with credentials.
      
@@ -32,7 +32,7 @@ struct FirebaseDataManager {
             completion(user, error)
         }
     }
-    
+
     /**
          Submit login with credentials, display profile screen if valid.
          
@@ -46,7 +46,7 @@ struct FirebaseDataManager {
             completion(user, error)
         }
     }
-    
+
     /**
         Log user out of Firebase account.
      */
@@ -57,10 +57,9 @@ struct FirebaseDataManager {
             print("Error signing out: \(signoutError.localizedDescription)")
         }
     }
-    
-    
+
     // MARK: - User Initialization
-    
+
     /**
         Build up a new user profile in Firebase database after account authentication.
      
@@ -68,13 +67,25 @@ struct FirebaseDataManager {
         - Parameter email: User email string
      */
     func buildUserProfile(uid: String, email: String) {
-        let newUser = User(email: email, photoURL: nil, name: nil, bio: nil, weight: nil, height: nil, bmi: nil, mileTime: nil, pushups: nil, situps: nil, legPress: nil, benchPress: nil, lateralPull: nil)
+        let newUser = User(email: email,
+                           photoURL: nil,
+                           name: nil,
+                           bio: nil,
+                           weight: nil,
+                           height: nil,
+                           bmi: nil,
+                           mileTime: nil,
+                           pushups: nil,
+                           situps: nil,
+                           legPress: nil,
+                           benchPress: nil,
+                           lateralPull: nil)
         let newUserRef = self.ref.child("users").child(uid)
         newUserRef.setValue(newUser.toAnyObject())
     }
-    
+
     // MARK: - User State
-    
+
     /**
         Fetch user from the database.
      
@@ -86,7 +97,7 @@ struct FirebaseDataManager {
             completion(snapshot)
         })
     }
-    
+
     /**
      fetch user runs
     */
@@ -95,11 +106,11 @@ struct FirebaseDataManager {
             completion(snapshot)
         })
     }
-    
+
     /**
      fetch list of user runs
     */
-    func fetchUserRunList(uid:String, completion: @escaping (_: FIRDataSnapshot) -> Void) {
+    func fetchUserRunList(uid: String, completion: @escaping (_: FIRDataSnapshot) -> Void) {
         ref.child("userRun").child(uid).observeSingleEvent(of: .value, with: { snapshot in
             completion(snapshot)
         })
@@ -110,13 +121,13 @@ struct FirebaseDataManager {
         - Returns completion: A callback that returns FIRAuthStateDidChangeListenerHandle
      */
     func monitorLoginState(completion: @escaping (_: FIRAuth, _: FIRUser?) -> Void) {
-        FIRAuth.auth()?.addStateDidChangeListener() { auth, user in
+        FIRAuth.auth()?.addStateDidChangeListener { auth, user in
             completion(auth, user)
         }
     }
-    
+
     // MARK: - Data Modification
-    
+
     /**
         Updates any new attributes of a given existing user
      
@@ -127,7 +138,7 @@ struct FirebaseDataManager {
         let newUserRef = self.ref.child("users").child(uid)
         newUserRef.setValue(user.toAnyObject())
     }
-    
+
     /**
         Updates any new attributes of a given user's run
     */
@@ -135,12 +146,11 @@ struct FirebaseDataManager {
         let newUserRun = self.ref.child("userRun").child(uid).child(runTitle)
         newUserRun.setValue(userRun.toAnyObject())
     }
-    
+
     /**
         Uploads new profile picture to Firebase Storage
      
         - Parameter uid: User's universal ID
-        - Parameter user: User data to update
         - Parameter data: Image data to upload
         - Returns completion: A callback that returns a URL?
      */
@@ -154,11 +164,11 @@ struct FirebaseDataManager {
                 completion(metaData?.downloadURL())
             } else {
                 print("Upload profile pic error: \(String(describing: error?.localizedDescription))")
+                completion(nil)
             }
         }
     }
-    
-    
+
     /**
         Helper function to build runData from JSON, after retrived from fireBase Db
     */
@@ -169,20 +179,19 @@ struct FirebaseDataManager {
             let pace = json["pace"] as? String,
             let locationsString = json["locations"] as? [AnyObject],
             let dateDouble = json["date"] as? Double else { return nil }
-        
+
         var convertedLoc = [Location]()
         for locString in locationsString {
-            let tempLocation = self.buildLocFromJson(json: locString as! [String : AnyObject])
-            if(tempLocation != nil) {
-                convertedLoc.append(tempLocation!)
+            if let tempLocation = self.buildLocFromJson(json: locString as! [String : AnyObject]) {
+                convertedLoc.append(tempLocation)
             }
         }
-        
+
         let date = Date(timeIntervalSince1970: dateDouble)
-        
+
         return RunData(runTitle: runTitle, time: time, distance: distance, pace: pace, locations: convertedLoc, date: date)
     }
-    
+
     /**
         Helper function to build location data from JSON, after retrieved from fireBase Db
     */
@@ -192,5 +201,5 @@ struct FirebaseDataManager {
             let longitude = (json["longitude"] as? Double) else { return nil }
         return Location(timestamp: timestamp, latitude: latitude, longitude: longitude)
     }
-    
+
 }

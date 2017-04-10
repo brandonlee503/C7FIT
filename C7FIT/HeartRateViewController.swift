@@ -10,30 +10,25 @@ import UIKit
 
 class HeartRateViewController: UIViewController {
 
-    
     // MARK: - Properties
-    
+
     var heartRateView = HeartRateView()
-    
+
     // MARK: - View Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Heart Rate"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.barTintColor = .orange
-        
+
         self.view.addSubview(heartRateView)
         setupConstraints()
         self.view.setNeedsUpdateConstraints()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
+
     // MARK: - Layout
-    
+
     func setupConstraints() {
         heartRateView.translatesAutoresizingMaskIntoConstraints = false
         let topView = heartRateView.topAnchor.constraint(equalTo: view.topAnchor)

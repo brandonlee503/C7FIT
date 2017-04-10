@@ -10,34 +10,34 @@ import UIKit
 import MapKit
 
 class MapCell: UITableViewCell {
-    
+
     // MARK: - Properties
-    
-    var mapView: MKMapView = MKMapView()
+
+    var mapView = MKMapView()
 
     // MARK: - Initialization
-    
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
         setupConstraints()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Layout
-    
+
     func setup() {
         mapView.mapType = MKMapType.standard
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
         mapView.showsUserLocation = true
-        
+
         addSubview(mapView)
     }
-    
+
     func setupConstraints() {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         let mapLeft = mapView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0)

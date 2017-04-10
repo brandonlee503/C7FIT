@@ -9,33 +9,33 @@
 import UIKit
 
 class TimerCell: UITableViewCell {
-    
+
     // MARK: - Properties
-    
-    var timeLabel: UILabel = UILabel()
-    
+
+    var timeLabel = UILabel()
+
     // MARK: - Initialization
-    
+
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setup()
         setupConstraints()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Layout
-    
+
     func setup() {
         timeLabel.backgroundColor = .green
         timeLabel.text = "00:00:00"
-    
+
         timeLabel.font = timeLabel.font.withSize(50.0)
         self.addSubview(timeLabel)
     }
-    
+
     func setupConstraints() {
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         let centerTimeX = timeLabel.centerXAnchor.constraint(equalTo: centerXAnchor)

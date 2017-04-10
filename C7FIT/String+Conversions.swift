@@ -15,13 +15,13 @@ public extension String {
     public var boolValue: Bool {
         return NSString(string: self).boolValue
     }
-    
+
     public var intValue: Int {
         return NSString(string: self).integerValue
     }
-    
+
     public var doubleValue: Double {
         return NSString(string: self).doubleValue
     }
-    
+
 }

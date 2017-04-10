@@ -10,15 +10,14 @@ import Foundation
 import HealthKit
 
 struct HealthKitManager {
-    
+
     let healthKitStore = HKHealthStore()
-    
+
     // FIXME: update NSHealthUpdateUsageDescription and NSHealthShareUsageDescription from placeholder strings
     // FIXME: build error/success handling into manager
     // FIXME: figure out what data we need from Health Kit and what is available
-//    func authorizeHealthKit(completion: ((_ success:Bool,_ error: NSError) -> Void)!) {
     func authorizeHealthKit() {
-        //read data
+        // Read data
             let healthKitRead = Set([
                 HKObjectType.characteristicType(forIdentifier: HKCharacteristicTypeIdentifier.biologicalSex)!,
                 HKObjectType.characteristicType(forIdentifier: HKCharacteristicTypeIdentifier.dateOfBirth)!,
@@ -32,9 +31,8 @@ struct HealthKitManager {
                 HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!,
                 HKObjectType.workoutType()
             ])
-        
-        //write data
-        
+
+        // Write data
             let healthKitWrite = Set([
                 HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMassIndex)!,
                 HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)!,
@@ -45,68 +43,59 @@ struct HealthKitManager {
                 HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)!,
                 HKObjectType.workoutType()
             ])
-        
-//            if HKHealthStore.isHealthDataAvailable() {
-//                let error = NSError(domain: "what", code: 2, userInfo: [NSLocalizedDescriptionKey:"Not available"])
-//                if (completion != nil) {
-//                    completion(success:false, error:error)
-//                }
-//                return
-//            }
-        
-            healthKitStore.requestAuthorization(toShare: healthKitWrite, read: healthKitRead) { (success, error) -> Void in
-                if (success == false) {
+
+            healthKitStore.requestAuthorization(toShare: healthKitWrite, read: healthKitRead) { (success, _) -> Void in
+                if success == false {
                     print("error requesting authorization")
                 }
             }
     }
-    
-    func queryUserData(sampleType: HKSampleType, completion: @escaping(HKSample?, NSError?) -> Void ){
-        //predicate
+
+    func queryUserData(sampleType: HKSampleType, completion: @escaping(HKSample?, NSError?) -> Void ) {
+        // Predicate
         let past = NSDate.distantPast
         let now = NSDate()
         let recentPredicate = HKQuery.predicateForSamples(withStart: past, end: now as Date, options: [])
-        
-        
+
         let sortDescriptor = NSSortDescriptor(key:HKSampleSortIdentifierStartDate, ascending:false)
         let limit = 1
-        
-        //call query
-        let sampleQuery = HKSampleQuery(sampleType: sampleType, predicate: recentPredicate, limit: limit, sortDescriptors: [sortDescriptor])
-        { sampleQuery, results, error in
+
+        // Call query
+        let sampleQuery = HKSampleQuery(sampleType: sampleType,
+                                        predicate: recentPredicate,
+                                        limit: limit,
+                                        sortDescriptors: [sortDescriptor]) { _, results, error in
             if error != nil {
                 completion(nil, error as NSError?)
                 return
             }
-        
+
             let mostRecent = results?.first as? HKQuantitySample
-            if (mostRecent == nil){
-                
-                //may not have permission to read data or DNE
+            if mostRecent == nil {
+                // May not have permission to read data or DNE
                 print("results nil")
-                return;
-                
+                return
             }
             completion(mostRecent!, nil)
         }
         self.healthKitStore.execute(sampleQuery)
     }
-    
+
     func saveRun(distance: Double, date: Date) {
         let hkType = HKQuantityType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)
-        
-        //change to miles
+
+        // Change to miles
         let distanceQuantity = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
-        
+
         let distanceObject = HKQuantitySample(type: hkType!, quantity: distanceQuantity, start: date, end: date)
-        
-        healthKitStore.save(distanceObject, withCompletion: { (success, error) -> Void in
-            if( error != nil ) {
+
+        healthKitStore.save(distanceObject, withCompletion: { (_, error) -> Void in
+            if error != nil {
                 print(error as Any)
             } else {
                 print("success, distance recorded")
             }
         })
     }
-    
+
 }
