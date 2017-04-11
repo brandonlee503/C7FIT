@@ -56,7 +56,7 @@
 		7A838C511E96F497003BE65F /* WatchTimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A838C4F1E96F497003BE65F /* WatchTimerCell.swift */; };
 		7A838C521E96F497003BE65F /* WatchButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A838C501E96F497003BE65F /* WatchButtonCell.swift */; };
 		7A838C541E96F4AA003BE65F /* StopWatchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A838C531E96F4AA003BE65F /* StopWatchTableViewController.swift */; };
-		7A838C581E96FA04003BE65F /* TimePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A838C571E96FA04003BE65F /* TimePickerCell.swift */; };
+		7A838C581E96FA04003BE65F /* TimePickerSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A838C571E96FA04003BE65F /* TimePickerSubCell.swift */; };
 		7A8B9D301E52751500B88316 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D2F1E52751500B88316 /* MapTableViewCell.swift */; };
 		7A8B9D321E52752200B88316 /* WatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D311E52752200B88316 /* WatchTableViewCell.swift */; };
 		7A8B9D341E52752D00B88316 /* CountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D331E52752D00B88316 /* CountTableViewCell.swift */; };
@@ -71,6 +71,8 @@
 		7AD3DEF21E5ED7CF001580CC /* RunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3DEF11E5ED7CF001580CC /* RunData.swift */; };
 		7AD3DEF41E5ED860001580CC /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3DEF31E5ED860001580CC /* LocationData.swift */; };
 		7AECE6D21E70BE7400423D82 /* TimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AECE6D11E70BE7400423D82 /* TimerCell.swift */; };
+		7AF14EB41E9C6101009C7908 /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF14EB31E9C6101009C7908 /* TimeCell.swift */; };
+		7AF14EB61E9C641E009C7908 /* CountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF14EB51E9C641E009C7908 /* CountTableViewController.swift */; };
 		7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF31E5460860059A62A /* HealthKit.swift */; };
 		7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF51E5464250059A62A /* WatchView.swift */; };
 		7AF7BBF81E5464310059A62A /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF71E5464310059A62A /* CountView.swift */; };
@@ -160,7 +162,7 @@
 		7A838C4F1E96F497003BE65F /* WatchTimerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchTimerCell.swift; sourceTree = "<group>"; };
 		7A838C501E96F497003BE65F /* WatchButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchButtonCell.swift; sourceTree = "<group>"; };
 		7A838C531E96F4AA003BE65F /* StopWatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchTableViewController.swift; sourceTree = "<group>"; };
-		7A838C571E96FA04003BE65F /* TimePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerCell.swift; sourceTree = "<group>"; };
+		7A838C571E96FA04003BE65F /* TimePickerSubCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerSubCell.swift; sourceTree = "<group>"; };
 		7A8B9D2F1E52751500B88316 /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
 		7A8B9D311E52752200B88316 /* WatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchTableViewCell.swift; sourceTree = "<group>"; };
 		7A8B9D331E52752D00B88316 /* CountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountTableViewCell.swift; sourceTree = "<group>"; };
@@ -175,6 +177,8 @@
 		7AD3DEF11E5ED7CF001580CC /* RunData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunData.swift; sourceTree = "<group>"; };
 		7AD3DEF31E5ED860001580CC /* LocationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		7AECE6D11E70BE7400423D82 /* TimerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerCell.swift; sourceTree = "<group>"; };
+		7AF14EB31E9C6101009C7908 /* TimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
+		7AF14EB51E9C641E009C7908 /* CountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountTableViewController.swift; sourceTree = "<group>"; };
 		7AF7BBF31E5460860059A62A /* HealthKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 		7AF7BBF51E5464250059A62A /* WatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchView.swift; sourceTree = "<group>"; };
 		7AF7BBF71E5464310059A62A /* CountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
@@ -432,8 +436,9 @@
 		7A838C551E96F9BA003BE65F /* Countdown */ = {
 			isa = PBXGroup;
 			children = (
-				7A838C571E96FA04003BE65F /* TimePickerCell.swift */,
+				7A838C571E96FA04003BE65F /* TimePickerSubCell.swift */,
 				7AF7BBF71E5464310059A62A /* CountView.swift */,
+				7AF14EB31E9C6101009C7908 /* TimeCell.swift */,
 			);
 			name = Countdown;
 			sourceTree = "<group>";
@@ -442,6 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				7AF7BC011E5467B90059A62A /* CountViewController.swift */,
+				7AF14EB51E9C641E009C7908 /* CountTableViewController.swift */,
 			);
 			name = Countdown;
 			sourceTree = "<group>";
@@ -747,7 +753,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "";
 		};
 		C8DD59739492E08543C24306 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -805,14 +811,16 @@
 				16594B361E6C5B350032AD26 /* eBayItem.swift in Sources */,
 				AC96A66D1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift in Sources */,
 				16576F171E1295C300BF622D /* String+Conversions.swift in Sources */,
+				7AF14EB41E9C6101009C7908 /* TimeCell.swift in Sources */,
 				7A8B9D321E52752200B88316 /* WatchTableViewCell.swift in Sources */,
 				7A76A7AC1E6F914A00C7D8F2 /* MapDetailTableViewController.swift in Sources */,
 				16D2D2EC1E38638600F6AA9F /* CircularImageView.swift in Sources */,
+				7AF14EB61E9C641E009C7908 /* CountTableViewController.swift in Sources */,
 				160D9B7A1E0B88EE00801627 /* HomeView.swift in Sources */,
 				163DFC101E41A43A00593CF9 /* AbstractHealthCell.swift in Sources */,
 				7A8B9D361E52753800B88316 /* HeartRateTableViewCell.swift in Sources */,
 				7A8B9D301E52751500B88316 /* MapTableViewCell.swift in Sources */,
-				7A838C581E96FA04003BE65F /* TimePickerCell.swift in Sources */,
+				7A838C581E96FA04003BE65F /* TimePickerSubCell.swift in Sources */,
 				16BEBE541E6FEE050034D422 /* CategoryCell.swift in Sources */,
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
 				16227F6D1E9A4785008A2FE4 /* ProfilePickerDataSource.swift in Sources */,
