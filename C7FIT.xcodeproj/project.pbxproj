@@ -73,6 +73,7 @@
 		7AECE6D21E70BE7400423D82 /* TimerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AECE6D11E70BE7400423D82 /* TimerCell.swift */; };
 		7AF14EB41E9C6101009C7908 /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF14EB31E9C6101009C7908 /* TimeCell.swift */; };
 		7AF14EB61E9C641E009C7908 /* CountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF14EB51E9C641E009C7908 /* CountTableViewController.swift */; };
+		7AF14EB81E9D31F4009C7908 /* GenLRButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF14EB71E9D31F4009C7908 /* GenLRButtonCell.swift */; };
 		7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF31E5460860059A62A /* HealthKit.swift */; };
 		7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF51E5464250059A62A /* WatchView.swift */; };
 		7AF7BBF81E5464310059A62A /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF71E5464310059A62A /* CountView.swift */; };
@@ -179,6 +180,7 @@
 		7AECE6D11E70BE7400423D82 /* TimerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerCell.swift; sourceTree = "<group>"; };
 		7AF14EB31E9C6101009C7908 /* TimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
 		7AF14EB51E9C641E009C7908 /* CountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountTableViewController.swift; sourceTree = "<group>"; };
+		7AF14EB71E9D31F4009C7908 /* GenLRButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenLRButtonCell.swift; sourceTree = "<group>"; };
 		7AF7BBF31E5460860059A62A /* HealthKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
 		7AF7BBF51E5464250059A62A /* WatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchView.swift; sourceTree = "<group>"; };
 		7AF7BBF71E5464310059A62A /* CountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 				7A838C571E96FA04003BE65F /* TimePickerSubCell.swift */,
 				7AF7BBF71E5464310059A62A /* CountView.swift */,
 				7AF14EB31E9C6101009C7908 /* TimeCell.swift */,
+				7AF14EB71E9D31F4009C7908 /* GenLRButtonCell.swift */,
 			);
 			name = Countdown;
 			sourceTree = "<group>";
@@ -855,6 +858,7 @@
 				7AB9EFAA1E6DEF3A000C20C6 /* RunListTableViewController.swift in Sources */,
 				1626F8371E62BD1A002E2A9B /* eBayDataManager.swift in Sources */,
 				16461B381E7F4AF2003A8723 /* ItemImageCell.swift in Sources */,
+				7AF14EB81E9D31F4009C7908 /* GenLRButtonCell.swift in Sources */,
 				7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */,
 				7A838C511E96F497003BE65F /* WatchTimerCell.swift in Sources */,
 				16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */,
