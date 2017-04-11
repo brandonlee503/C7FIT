@@ -6,6 +6,8 @@
 //  Copyright © 2017 Brandon Lee. All rights reserved.
 //
 
+// swiftlint:disable function_parameter_count
+
 import Foundation
 import Firebase
 
