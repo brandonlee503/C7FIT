@@ -97,7 +97,7 @@ class ActivityViewController: UITableViewController {
             navigationController?.pushViewController(destination, animated: true)
         }
         if indexPath.row == 3 {
-            let destination = CountViewController()
+            let destination = CountTableViewController()
             navigationController?.pushViewController(destination, animated: true)
         }
         if indexPath.row == 4 {
