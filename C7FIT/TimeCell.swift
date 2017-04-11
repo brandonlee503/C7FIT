@@ -47,7 +47,6 @@ class TimeCell: UITableViewCell {
         let hourBottom = hourPicker.bottomAnchor.constraint(equalTo: bottomAnchor)
         NSLayoutConstraint.activate([hourLeft, hourTop, hourRight, hourBottom])
 
-
         minPicker.translatesAutoresizingMaskIntoConstraints = false
         let minLeft = minPicker.leftAnchor.constraint(equalTo: hourPicker.rightAnchor, constant: 0)
         let minRight = minPicker.rightAnchor.constraint(equalTo: hourPicker.rightAnchor, constant: usableWidth/2)

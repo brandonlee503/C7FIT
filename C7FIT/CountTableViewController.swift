@@ -78,7 +78,6 @@ class CountTableViewController: UITableViewController {
         return UITableViewCell()
     }
 
-
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
             return 300
@@ -92,7 +91,7 @@ class CountTableViewController: UITableViewController {
         print("starting")
         self.chosenTime = (Double)(chosenHour * 3600 + chosenMin * 60)
         print(chosenTime)
-        if(chosenTime <= 0) {
+        if chosenTime <= 0 {
             return
         }
         isTimeChosen = true
@@ -135,7 +134,6 @@ class CountTableViewController: UITableViewController {
         self.buttonCell.leftButton.setTitle("Pause", for: .normal)
         self.buttonCell.leftButton.addTarget(self, action: #selector(pauseCount), for: .touchUpInside)
     }
-    
     // MARK: - Timer
 
     func updateTimer() {
@@ -151,9 +149,9 @@ class CountTableViewController: UITableViewController {
         }
     }
 
-    // MARK:- Helper
+    // MARK: - Helper
 
-    func getStringFromTime(time:Double) -> String {
+    func getStringFromTime(time: Double) -> String {
         let hour = floor(time/3600)
         let minute = floor(time/60).truncatingRemainder(dividingBy: 60)
         let second = time.truncatingRemainder(dividingBy: 60)
