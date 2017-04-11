@@ -43,4 +43,8 @@ class TimerCell: UITableViewCell {
         NSLayoutConstraint.activate([centerTimeX, centerTimeY])
     }
 
+    func changeTime(time: String) {
+        timeLabel.text = time
+    }
+
 }
