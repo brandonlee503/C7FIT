@@ -90,17 +90,6 @@ class ProfileViewController: UITableViewController {
         }
     }
 
-    func healthCellHelper(title: String, value: String, indexPath: IndexPath) -> UITableViewCell {
-        if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
-            cell.dataTitle.text = title
-            cell.dataLabel.text = value
-            cell.inputView?.tag = indexPath.row
-            return cell
-        }
-
-        return UITableViewCell()
-    }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
@@ -206,7 +195,22 @@ class ProfileViewController: UITableViewController {
         self.tableView.deselectRow(at: indexPath, animated: true)
     }
 
+    func healthCellHelper(title: String, value: String, indexPath: IndexPath) -> UITableViewCell {
+        if let cell: AbstractHealthCell = tableView.dequeueReusableCell(withIdentifier: healthIdentifier) as? AbstractHealthCell {
+            cell.dataTitle.text = title
+            cell.dataLabel.text = value
+            cell.inputView?.tag = indexPath.row
+            return cell
+        }
+
+        return UITableViewCell()
+    }
+
     // MARK: - User Interaction
+
+    func logoutPressed() {
+        firebaseDataManager.logout()
+    }
 
     /**
         Pulls data from all client fields and updates user on server
@@ -281,24 +285,6 @@ class ProfileViewController: UITableViewController {
     }
     // swiftlint:enable function_body_length
 
-    func updateProfilePicPressed(sender: UIButton) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.sourceType = .photoLibrary
-        imagePicker.mediaTypes = [kUTTypeImage as String]
-        imagePicker.delegate = self
-        self.present(imagePicker, animated: true, completion: nil)
-    }
-
-    func updateprofileImage(url: URL?) {
-        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProfileTableViewCell {
-            if let url = url {
-                cell.profileImageView.downloadImageFrom(url: url, imageMode: .scaleAspectFill)
-            } else {
-                cell.profileImageView.image = nil
-            }
-        }
-    }
-
     /**
         Update BMI as user updates their weight/height
      */
@@ -313,7 +299,28 @@ class ProfileViewController: UITableViewController {
         }
     }
 
-    func logoutPressed() {
-        firebaseDataManager.logout()
+    /**
+        Prompts user to select a new profile picture to upload
+     */
+    func updateProfilePicPressed(sender: UIButton) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.mediaTypes = [kUTTypeImage as String]
+        imagePicker.delegate = self
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+
+    /**
+        Update the view's profile picture based on a firebase storage URL
+        - Parameter url: User's profile picture URL
+     */
+    func updateprofileImage(url: URL?) {
+        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProfileTableViewCell {
+            if let url = url {
+                cell.profileImageView.downloadImageFrom(url: url, imageMode: .scaleAspectFill)
+            } else {
+                cell.profileImageView.image = nil
+            }
+        }
     }
 }
