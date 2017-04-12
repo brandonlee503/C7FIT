@@ -74,11 +74,7 @@
 		7AF14EB41E9C6101009C7908 /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF14EB31E9C6101009C7908 /* TimeCell.swift */; };
 		7AF14EB61E9C641E009C7908 /* CountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF14EB51E9C641E009C7908 /* CountTableViewController.swift */; };
 		7AF14EB81E9D31F4009C7908 /* GenLRButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF14EB71E9D31F4009C7908 /* GenLRButtonCell.swift */; };
-		7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF31E5460860059A62A /* HealthKit.swift */; };
-		7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF51E5464250059A62A /* WatchView.swift */; };
-		7AF7BBF81E5464310059A62A /* CountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF71E5464310059A62A /* CountView.swift */; };
 		7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF91E54643E0059A62A /* HeartRateView.swift */; };
-		7AF7BC021E5467B90059A62A /* CountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC011E5467B90059A62A /* CountViewController.swift */; };
 		7AF7BC041E5467C10059A62A /* HeartRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */; };
 		7AF7BC061E54EDDE0059A62A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF7BC051E54EDDE0059A62A /* HealthKit.framework */; };
 		7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */; };
@@ -181,11 +177,7 @@
 		7AF14EB31E9C6101009C7908 /* TimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
 		7AF14EB51E9C641E009C7908 /* CountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountTableViewController.swift; sourceTree = "<group>"; };
 		7AF14EB71E9D31F4009C7908 /* GenLRButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenLRButtonCell.swift; sourceTree = "<group>"; };
-		7AF7BBF31E5460860059A62A /* HealthKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKit.swift; sourceTree = "<group>"; };
-		7AF7BBF51E5464250059A62A /* WatchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchView.swift; sourceTree = "<group>"; };
-		7AF7BBF71E5464310059A62A /* CountView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountView.swift; sourceTree = "<group>"; };
 		7AF7BBF91E54643E0059A62A /* HeartRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateView.swift; sourceTree = "<group>"; };
-		7AF7BC011E5467B90059A62A /* CountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountViewController.swift; sourceTree = "<group>"; };
 		7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateViewController.swift; sourceTree = "<group>"; };
 		7AF7BC051E54EDDE0059A62A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
@@ -422,7 +414,6 @@
 			children = (
 				7A838C4F1E96F497003BE65F /* WatchTimerCell.swift */,
 				7A838C501E96F497003BE65F /* WatchButtonCell.swift */,
-				7AF7BBF51E5464250059A62A /* WatchView.swift */,
 			);
 			name = Stopwatch;
 			sourceTree = "<group>";
@@ -439,7 +430,6 @@
 			isa = PBXGroup;
 			children = (
 				7A838C571E96FA04003BE65F /* TimePickerSubCell.swift */,
-				7AF7BBF71E5464310059A62A /* CountView.swift */,
 				7AF14EB31E9C6101009C7908 /* TimeCell.swift */,
 				7AF14EB71E9D31F4009C7908 /* GenLRButtonCell.swift */,
 			);
@@ -449,7 +439,6 @@
 		7A838C561E96F9C6003BE65F /* Countdown */ = {
 			isa = PBXGroup;
 			children = (
-				7AF7BC011E5467B90059A62A /* CountViewController.swift */,
 				7AF14EB51E9C641E009C7908 /* CountTableViewController.swift */,
 			);
 			name = Countdown;
@@ -468,7 +457,6 @@
 		7A9CBE311E8E354200AF1F25 /* Health */ = {
 			isa = PBXGroup;
 			children = (
-				7AF7BBF31E5460860059A62A /* HealthKit.swift */,
 				7A9CBE321E8E35A800AF1F25 /* HealthInfoCell.swift */,
 			);
 			name = Health;
@@ -810,7 +798,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AF7BC021E5467B90059A62A /* CountViewController.swift in Sources */,
 				16594B361E6C5B350032AD26 /* eBayItem.swift in Sources */,
 				AC96A66D1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift in Sources */,
 				16576F171E1295C300BF622D /* String+Conversions.swift in Sources */,
@@ -835,10 +822,8 @@
 				16BFBBB41E6A7C7A001D088A /* eBayItemCell.swift in Sources */,
 				7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */,
 				160D9B0B1E0B5C0D00801627 /* AppDelegate.swift in Sources */,
-				7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */,
 				1699EB331E80BBEE008171AF /* ItemInfoCell.swift in Sources */,
 				7A76A7A41E6F66A100C7D8F2 /* StartStopCell.swift in Sources */,
-				7AF7BBF81E5464310059A62A /* CountView.swift in Sources */,
 				160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */,
 				7A838C541E96F4AA003BE65F /* StopWatchTableViewController.swift in Sources */,
 				163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */,
@@ -847,7 +832,6 @@
 				1626F8351E62B204002E2A9B /* CategoryCellController.swift in Sources */,
 				7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */,
 				16FFF43D1E3459C2009B4F34 /* User.swift in Sources */,
-				7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */,
 				160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */,
 				7A76A7AA1E6F6DD200C7D8F2 /* MapTableViewController.swift in Sources */,
 				1694BE1C1E71330F004E2E7D /* C7FUIImageView.swift in Sources */,
