@@ -47,7 +47,6 @@ open class AbstractHealthCell: UITableViewCell {
     }
 
     open override func becomeFirstResponder() -> Bool {
-        picker.dataSource = self
         delegate?.onPickerOpen(cell: self, pickerView: picker)
         return super.becomeFirstResponder()
     }
