@@ -34,12 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let controllers = [navigationController1, navigationController2, navigationController3, navigationController4, navigationController5]
         tabBarController.viewControllers = controllers
-
-        navigationController1.tabBarItem = UITabBarItem(title: "Home", image: nil, selectedImage: nil)
-        navigationController2.tabBarItem = UITabBarItem(title: "Schedule", image: nil, selectedImage: nil)
-        navigationController3.tabBarItem = UITabBarItem(title: "Store", image: nil, selectedImage: nil)
-        navigationController4.tabBarItem = UITabBarItem(title: "Activity", image: nil, selectedImage: nil)
-        navigationController5.tabBarItem = UITabBarItem(title: "Profile", image: nil, selectedImage: nil)
+        tabBarController.tabBar.tintColor = .orange
+        navigationController1.tabBarItem = UITabBarItem(title: "Home", image: #imageLiteral(resourceName: "tab_home_2x"), selectedImage: nil)
+        navigationController2.tabBarItem = UITabBarItem(title: "Schedule", image: #imageLiteral(resourceName: "tab_schedule_2x"), selectedImage: nil)
+        navigationController3.tabBarItem = UITabBarItem(title: "Store", image: #imageLiteral(resourceName: "tab_shopping_6x"), selectedImage: nil)
+        navigationController4.tabBarItem = UITabBarItem(title: "Activity", image: #imageLiteral(resourceName: "tab_activity_6x"), selectedImage: nil)
+        navigationController5.tabBarItem = UITabBarItem(title: "Profile", image: #imageLiteral(resourceName: "tab_person_6x"), selectedImage: nil)
 
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
