@@ -1,38 +1,52 @@
 import UIKit
 
+enum CollectionViewCellType: String {
+    case YouTube
+    case Trainers
+    case Other
+}
+
 class HomeViewController: UIViewController {
 
     // MARK: - Properties
 
-    let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0),
+    let collectionView = UICollectionView(frame: CGRect(x: 0,
+                                                        y: 0,
+                                                        width: 0,
+                                                        height: 0),
                                           collectionViewLayout: UICollectionViewFlowLayout())
 
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Home"
-        self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barTintColor = .orange
 
-        self.view.addSubview(collectionView)
+        // Appearance
+        title = "Home"
+        navigationController?.navigationBar.barTintColor = .orange
+
+        // Add collectionView
+        view.addSubview(collectionView)
         setupConstraints()
-        self.view.setNeedsUpdateConstraints()
-
+        view.setNeedsUpdateConstraints()
         collectionView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
 
         collectionView.dataSource = self
+        collectionView.delegate = self
+
         collectionView.register(YouTubeCollectionViewCell.classForCoder(),
-                                forCellWithReuseIdentifier: "YouTubeCollectionViewCell")
+                                forCellWithReuseIdentifier: CollectionViewCellType.YouTube.rawValue)
+        collectionView.register(TrainersCollectionViewCell.classForCoder(),
+                                forCellWithReuseIdentifier: CollectionViewCellType.Trainers.rawValue)
         collectionView.register(UICollectionViewCell.classForCoder(),
-                                forCellWithReuseIdentifier: "OtherCollectionViewCell")
+                                forCellWithReuseIdentifier: CollectionViewCellType.Other.rawValue)
 
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.itemSize = CGSize(width: view.frame.width,
                                                height: (view.frame.height - 180) / 3)
         collectionViewLayout.minimumLineSpacing = 20
-
-        collectionView.setCollectionViewLayout(collectionViewLayout, animated: false)
+        collectionView.setCollectionViewLayout(collectionViewLayout,
+                                               animated: false)
     }
 
     // MARK: - Layout
@@ -58,18 +72,39 @@ extension HomeViewController: UICollectionViewDataSource {
 
         switch indexPath.row {
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YouTubeCollectionViewCell",
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.YouTube.rawValue,
                                                           for: indexPath)
             if let cell = cell as? YouTubeCollectionViewCell {
                 cell.videoID = "LR708uA4zQ8"
             }
             return cell
 
+        case 1:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.Trainers.rawValue,
+                                                          for: indexPath)
+            cell.contentView.backgroundColor = .green
+            return cell
+
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OtherCollectionViewCell",
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.Other.rawValue,
                                                           for: indexPath)
             cell.contentView.backgroundColor = .red
             return cell
+        }
+    }
+
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 1:
+            let trainersViewController = TrainersViewController()
+            navigationController?.pushViewController(trainersViewController,
+                                                     animated: true)
+        default:
+            return
         }
     }
 
