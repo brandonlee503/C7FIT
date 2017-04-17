@@ -98,4 +98,31 @@ struct HealthKitManager {
         })
     }
 
+    func getAgeSex() -> ( age: Int?, sex: HKBiologicalSexObject?) {
+        var age: Int?
+        var sex: HKBiologicalSexObject?
+
+        do {
+            let birth = try healthKitStore.dateOfBirthComponents()
+            let calendar = Calendar.current
+
+            let today = Date()
+            let todayComponents = calendar.dateComponents([.year], from: today)
+            let components = calendar.dateComponents([Calendar.Component.year], from: birth, to: todayComponents)
+
+            age = components.year
+        } catch _ {
+            age = nil
+
+        }
+
+        do {
+            sex = try healthKitStore.biologicalSex()
+        } catch _ {
+            sex = nil
+        }
+
+        return (age, sex)
+    }
+
 }

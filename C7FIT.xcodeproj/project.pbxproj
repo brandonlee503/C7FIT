@@ -64,6 +64,7 @@
 		7A9CBE331E8E35A800AF1F25 /* HealthInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CBE321E8E35A800AF1F25 /* HealthInfoCell.swift */; };
 		7A9CBE381E8E368700AF1F25 /* HealthKitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CBE371E8E368700AF1F25 /* HealthKitTableViewController.swift */; };
 		7A9CBE3A1E8E3A9C00AF1F25 /* HealthKitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CBE391E8E3A9C00AF1F25 /* HealthKitTableViewCell.swift */; };
+		7A9D9E181E9EC4720049DCE4 /* HeartRateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D9E171E9EC4720049DCE4 /* HeartRateTableViewController.swift */; };
 		7AAB23641E4297BA00AD7040 /* ScheduleBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23631E4297BA00AD7040 /* ScheduleBioTableViewCell.swift */; };
 		7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23651E4298BB00AD7040 /* ScheduleContactTableViewCell.swift */; };
 		7AB9EFA61E6DEF09000C20C6 /* RunListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9EFA51E6DEF09000C20C6 /* RunListCell.swift */; };
@@ -167,6 +168,7 @@
 		7A9CBE321E8E35A800AF1F25 /* HealthInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthInfoCell.swift; sourceTree = "<group>"; };
 		7A9CBE371E8E368700AF1F25 /* HealthKitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitTableViewController.swift; sourceTree = "<group>"; };
 		7A9CBE391E8E3A9C00AF1F25 /* HealthKitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitTableViewCell.swift; sourceTree = "<group>"; };
+		7A9D9E171E9EC4720049DCE4 /* HeartRateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateTableViewController.swift; sourceTree = "<group>"; };
 		7AAB23631E4297BA00AD7040 /* ScheduleBioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleBioTableViewCell.swift; sourceTree = "<group>"; };
 		7AAB23651E4298BB00AD7040 /* ScheduleContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleContactTableViewCell.swift; sourceTree = "<group>"; };
 		7AB9EFA51E6DEF09000C20C6 /* RunListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunListCell.swift; sourceTree = "<group>"; };
@@ -470,6 +472,23 @@
 			name = Health;
 			sourceTree = "<group>";
 		};
+		7A9D9E151E9EC3EA0049DCE4 /* HeartRate */ = {
+			isa = PBXGroup;
+			children = (
+				7AF7BBF91E54643E0059A62A /* HeartRateView.swift */,
+			);
+			name = HeartRate;
+			sourceTree = "<group>";
+		};
+		7A9D9E161E9EC4590049DCE4 /* HeartRate */ = {
+			isa = PBXGroup;
+			children = (
+				7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */,
+				7A9D9E171E9EC4720049DCE4 /* HeartRateTableViewController.swift */,
+			);
+			name = HeartRate;
+			sourceTree = "<group>";
+		};
 		7AB9EFA71E6DEF14000C20C6 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -512,7 +531,7 @@
 				7AB9EFA81E6DEF1F000C20C6 /* Map */,
 				7A838C4E1E96F43A003BE65F /* Stopwatch */,
 				7A838C561E96F9C6003BE65F /* Countdown */,
-				7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */,
+				7A9D9E161E9EC4590049DCE4 /* HeartRate */,
 			);
 			name = Activity;
 			sourceTree = "<group>";
@@ -524,7 +543,7 @@
 				7AB9EFA71E6DEF14000C20C6 /* Map */,
 				7A838C4D1E96F427003BE65F /* Stopwatch */,
 				7A838C551E96F9BA003BE65F /* Countdown */,
-				7AF7BBF91E54643E0059A62A /* HeartRateView.swift */,
+				7A9D9E151E9EC3EA0049DCE4 /* HeartRate */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -804,6 +823,7 @@
 				7AF14EB41E9C6101009C7908 /* TimeCell.swift in Sources */,
 				7A8B9D321E52752200B88316 /* WatchTableViewCell.swift in Sources */,
 				7A76A7AC1E6F914A00C7D8F2 /* MapDetailTableViewController.swift in Sources */,
+				7A9D9E181E9EC4720049DCE4 /* HeartRateTableViewController.swift in Sources */,
 				16D2D2EC1E38638600F6AA9F /* CircularImageView.swift in Sources */,
 				7AF14EB61E9C641E009C7908 /* CountTableViewController.swift in Sources */,
 				160D9B7A1E0B88EE00801627 /* HomeView.swift in Sources */,

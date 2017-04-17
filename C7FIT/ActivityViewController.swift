@@ -101,7 +101,7 @@ class ActivityViewController: UITableViewController {
             navigationController?.pushViewController(destination, animated: true)
         }
         if indexPath.row == 4 {
-            let destination = HeartRateViewController()
+            let destination = HeartRateTableViewController(style: UITableViewStyle.grouped)
             navigationController?.pushViewController(destination, animated: true)
         }
     }
