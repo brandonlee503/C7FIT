@@ -11,6 +11,7 @@ import UIKit
 class ProfileTableViewCell: UITableViewCell {
 
     // MARK: - Properties
+
     var profileImageView = CircularImageView()
     var updateProfileButton = UIButton()
     var nameField = UITextField()
@@ -102,7 +103,11 @@ class ProfileTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - UITextViewDelegate
+
 extension ProfileTableViewCell: UITextViewDelegate {
+
+    // Clear placeholder text
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !bioField.text.isEmpty
     }
