@@ -15,6 +15,7 @@ class ProfileTableViewCell: UITableViewCell {
     var updateProfileButton = UIButton()
     var nameField = UITextField()
     var bioField = UITextView()
+    var placeholderLabel = UILabel()
 
     // MARK: - Initialization
 
@@ -40,41 +41,69 @@ class ProfileTableViewCell: UITableViewCell {
 
         updateProfileButton.setTitle("Update Picture", for: .normal)
         updateProfileButton.setTitleColor(.blue, for: .normal)
-        updateProfileButton.titleLabel?.font = UIFont.systemFont(ofSize: 8)
+        updateProfileButton.titleLabel?.font = .italicSystemFont(ofSize: 8)
         addSubview(updateProfileButton)
 
-        nameField.backgroundColor = .cyan
         nameField.placeholder = "Add your name"
+        nameField.font = UIFont.systemFont(ofSize: 14)
         addSubview(nameField)
 
-        bioField.backgroundColor = .red
-        bioField.text = "Add a bio"
+        placeholderLabel.text = "Add a bio"
+        placeholderLabel.font = UIFont.italicSystemFont(ofSize: 10)
+        placeholderLabel.sizeToFit()
+        placeholderLabel.textColor = .lightGray
+        placeholderLabel.isHidden = !bioField.text.isEmpty
+        bioField.addSubview(placeholderLabel)
+
+        bioField.delegate = self
+        bioField.layer.masksToBounds = false
+        bioField.layer.borderWidth = 1
+        bioField.layer.cornerRadius = 5
+        bioField.layer.borderColor = UIColor.lightGray.cgColor
+        bioField.font = UIFont.systemFont(ofSize: 10)
         addSubview(bioField)
     }
 
     func setupConstraints() {
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        let imageLeft = profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10)
-        let imageTop = profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20)
-        let imageBottom = profileImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
-        let imageWidth = profileImageView.widthAnchor.constraint(equalToConstant: 110)
-        NSLayoutConstraint.activate([imageLeft, imageTop, imageBottom, imageWidth])
-
         updateProfileButton.translatesAutoresizingMaskIntoConstraints = false
-        let buttonX = updateProfileButton.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor)
-        let buttonY = updateProfileButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor)
-        NSLayoutConstraint.activate([buttonX, buttonY])
-
         nameField.translatesAutoresizingMaskIntoConstraints = false
-        let nameLeading = nameField.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 10)
-        let nameTop = nameField.topAnchor.constraint(equalTo: profileImageView.topAnchor, constant: 10)
-        NSLayoutConstraint.activate([nameLeading, nameTop])
-
         bioField.translatesAutoresizingMaskIntoConstraints = false
-        let bioLeading = bioField.leadingAnchor.constraint(equalTo: nameField.leadingAnchor)
-        let bioTrailing = bioField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
-        let bioTop = bioField.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: 10)
-        let bioBottom = bioField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
-        NSLayoutConstraint.activate([bioLeading, bioTrailing, bioTop, bioBottom])
+        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
+            profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            profileImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            profileImageView.widthAnchor.constraint(equalToConstant: 110)
+        ])
+
+        NSLayoutConstraint.activate([
+            updateProfileButton.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor),
+            updateProfileButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            nameField.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 10),
+            nameField.topAnchor.constraint(equalTo: profileImageView.topAnchor, constant: 10)
+        ])
+
+        NSLayoutConstraint.activate([
+            bioField.leadingAnchor.constraint(equalTo: nameField.leadingAnchor),
+            bioField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            bioField.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: 10),
+            bioField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        ])
+
+        NSLayoutConstraint.activate([
+            placeholderLabel.leftAnchor.constraint(equalTo: bioField.leftAnchor, constant: 5),
+            placeholderLabel.topAnchor.constraint(equalTo: bioField.topAnchor, constant: 7)
+        ])
+    }
+}
+
+extension ProfileTableViewCell: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        placeholderLabel.isHidden = !bioField.text.isEmpty
     }
 }
