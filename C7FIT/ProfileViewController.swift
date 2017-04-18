@@ -36,6 +36,7 @@ class ProfileViewController: UITableViewController {
         self.navigationController?.navigationBar.barTintColor = .orange
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.keyboardDismissMode = .onDrag
         tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: profileIdentifier)
         tableView.register(AbstractHealthCell.self, forCellReuseIdentifier: healthIdentifier)
         tableView.register(LogoutTableViewCell.self, forCellReuseIdentifier: logoutIdentifier)
