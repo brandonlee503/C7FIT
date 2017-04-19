@@ -7,22 +7,25 @@ class TrainerCollectionViewCell: UICollectionViewCell {
     var avatar: UIImage?
     var coverPhoto: UIImage?
 
-    fileprivate let _nameLabel = UILabel()
-    fileprivate let _titleLabel = UILabel()
-    fileprivate let _avatarImageView = UIImageView()
-    fileprivate let _coverPhotoImageView = UIImageView()
+    let nameLabel = UILabel()
+    let titleLabel = UILabel()
+    let avatarImageView = UIImageView()
+    let coverPhotoImageView = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        _nameLabel.text = "Rutger Farry"
-        _titleLabel.text = "Freelance Mecha Designer"
+        nameLabel.text = "Rutger Farry"
+        titleLabel.text = "Freelance Mecha Designer"
 
-        contentView.addSubview(_nameLabel)
-        contentView.addSubview(_titleLabel)
-        contentView.addSubview(_avatarImageView)
-        contentView.addSubview(_coverPhotoImageView)
+        contentView.insertSubview(nameLabel, at: 1)
+        contentView.insertSubview(titleLabel, at: 1)
+        contentView.insertSubview(avatarImageView, at: 1)
+        contentView.insertSubview(coverPhotoImageView, at: 0)
         contentView.clipsToBounds = true
+
+        avatarImageView.image = #imageLiteral(resourceName: "spongebob")
+        coverPhotoImageView.image = #imageLiteral(resourceName: "mountain")
 
         setupConstraints()
     }
@@ -33,13 +36,28 @@ class TrainerCollectionViewCell: UICollectionViewCell {
 
     func setupConstraints() {
         let margins = contentView.layoutMarginsGuide
-        _nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            _nameLabel.topAnchor.constraint(equalTo: margins.topAnchor),
-            _nameLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
-            _titleLabel.topAnchor.constraint(equalTo: _nameLabel.bottomAnchor),
-            _titleLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor)
-        ])
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+
+        nameLabel.bottomAnchor.constraint(equalTo: margins.centerYAnchor).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor).isActive = true
+
+        titleLabel.topAnchor.constraint(equalTo: margins.centerYAnchor).isActive = true
+        titleLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor).isActive = true
+
+        avatarImageView.widthAnchor.constraint(equalToConstant: 50)
+        avatarImageView.heightAnchor.constraint(equalToConstant: 50)
+        avatarImageView.centerYAnchor.constraint(equalTo: margins.centerYAnchor).isActive = true
+        avatarImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+
+        // Make circular avatarImageView
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
+        avatarImageView.clipsToBounds = true
+        avatarImageView.layer.masksToBounds = true
+        avatarImageView.contentMode = .scaleAspectFill
+
+        coverPhotoImageView.frame = contentView.bounds
     }
 
 }
