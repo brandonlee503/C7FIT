@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileTableViewCell: UITableViewCell {
+class ProfileTableViewCell: UITableViewHeaderFooterView {
 
     // MARK: - Properties
 
@@ -20,8 +20,8 @@ class ProfileTableViewCell: UITableViewCell {
 
     // MARK: - Initialization
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         setup()
         setupConstraints()
     }
@@ -66,40 +66,42 @@ class ProfileTableViewCell: UITableViewCell {
     }
 
     func setupConstraints() {
+        // TODO: Find if there's a better way to do this
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        let imageLeft = profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10)
+        let imageTop = profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20)
+        let imageBottom = profileImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
+        let imageWidth = profileImageView.widthAnchor.constraint(equalToConstant: 110)
+        imageLeft.priority = 999
+        imageTop.priority = 999
+        imageBottom.priority = 999
+        imageWidth.priority = 999
+        NSLayoutConstraint.activate([imageLeft, imageTop, imageBottom, imageWidth])
+
         updateProfileButton.translatesAutoresizingMaskIntoConstraints = false
+        let buttonX = updateProfileButton.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor)
+        let buttonY = updateProfileButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor)
+        buttonX.priority = 999
+        buttonY.priority = 999
+        NSLayoutConstraint.activate([buttonX, buttonY])
+
         nameField.translatesAutoresizingMaskIntoConstraints = false
+        let nameLeading = nameField.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 10)
+        let nameTop = nameField.topAnchor.constraint(equalTo: profileImageView.topAnchor, constant: 10)
+        nameLeading.priority = 999
+        nameTop.priority = 999
+        NSLayoutConstraint.activate([nameLeading, nameTop])
+
         bioField.translatesAutoresizingMaskIntoConstraints = false
-        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
-            profileImageView.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            profileImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
-            profileImageView.widthAnchor.constraint(equalToConstant: 110)
-        ])
-
-        NSLayoutConstraint.activate([
-            updateProfileButton.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor),
-            updateProfileButton.topAnchor.constraint(equalTo: profileImageView.bottomAnchor)
-        ])
-
-        NSLayoutConstraint.activate([
-            nameField.leadingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: 10),
-            nameField.topAnchor.constraint(equalTo: profileImageView.topAnchor, constant: 10)
-        ])
-
-        NSLayoutConstraint.activate([
-            bioField.leadingAnchor.constraint(equalTo: nameField.leadingAnchor),
-            bioField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            bioField.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: 10),
-            bioField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
-        ])
-
-        NSLayoutConstraint.activate([
-            placeholderLabel.leftAnchor.constraint(equalTo: bioField.leftAnchor, constant: 5),
-            placeholderLabel.topAnchor.constraint(equalTo: bioField.topAnchor, constant: 7)
-        ])
+        let bioLeading = bioField.leadingAnchor.constraint(equalTo: nameField.leadingAnchor)
+        let bioTrailing = bioField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+        let bioTop = bioField.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: 10)
+        let bioBottom = bioField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        bioLeading.priority = 999
+        bioTrailing.priority = 999
+        bioTop.priority = 999
+        bioBottom.priority = 999
+        NSLayoutConstraint.activate([bioLeading, bioTrailing, bioTop, bioBottom])
     }
 }
 

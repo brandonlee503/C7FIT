@@ -11,7 +11,6 @@
 import UIKit
 import MobileCoreServices
 
-private let profileIdentifier = "ProfileCell"
 private let healthIdentifier = "HealthCell"
 private let logoutIdentifier = "LogoutCell"
 
@@ -37,9 +36,10 @@ class ProfileViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.keyboardDismissMode = .onDrag
-        tableView.register(ProfileTableViewCell.self, forCellReuseIdentifier: profileIdentifier)
         tableView.register(AbstractHealthCell.self, forCellReuseIdentifier: healthIdentifier)
         tableView.register(LogoutTableViewCell.self, forCellReuseIdentifier: logoutIdentifier)
+
+        tableView.tableHeaderView = ProfileTableViewCell()
         tableView.tableFooterView = UIView()
 
         // Add save button
@@ -80,63 +80,77 @@ class ProfileViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 11
+        return 10
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row < 1 {
-            return 150
-        } else {
-            return 50
-        }
+        return 50
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 150
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = ProfileTableViewCell()
+        view.nameField.text = user?.name ?? ""
+        view.bioField.text = user?.bio
+        view.placeholderLabel.isHidden = !view.bioField.text.isEmpty
+        view.updateProfileButton.addTarget(self, action: #selector(updateProfilePicPressed(sender:)), for: .touchUpInside)
+        self.tableView.tableHeaderView = view
+        return view
+
+//        if let cell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: profileIdentifier) as? ProfileTableViewCell {
+//            cell.nameField.text = user?.name ?? ""
+//            cell.bioField.text = user?.bio
+//            cell.placeholderLabel.isHidden = !cell.bioField.text.isEmpty
+//            cell.updateProfileButton.addTarget(self, action: #selector(updateProfilePicPressed(sender:)), for: .touchUpInside)
+//            self.tableView.tableHeaderView = cell
+//            return cell
+//        }
+
+//        return UIView()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            if let cell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: profileIdentifier) as? ProfileTableViewCell {
-                cell.nameField.text = user?.name ?? ""
-                cell.bioField.text = user?.bio ?? "Add a bio"
-                cell.updateProfileButton.addTarget(self, action: #selector(updateProfilePicPressed(sender:)), for: .touchUpInside)
-                return cell
-            }
-        case 1:
             if let weight = user?.weight {
                 return healthCellHelper(title: "Weight (lbs)", value: weight, indexPath: indexPath)
             }
-        case 2:
+        case 1:
             if let height = user?.height {
                 return healthCellHelper(title: "Height", value: height, indexPath: indexPath)
             }
-        case 3:
+        case 2:
             if let bmi = user?.bmi {
                 return healthCellHelper(title: "BMI", value: bmi, indexPath: indexPath)
             }
-        case 4:
+        case 3:
             if let mileTime = user?.mileTime {
                 return healthCellHelper(title: "Mile Time (minute, seconds)", value: mileTime, indexPath: indexPath)
             }
-        case 5:
+        case 4:
             if let pushups = user?.pushups {
                 return healthCellHelper(title: "Pushups", value: pushups, indexPath: indexPath)
             }
-        case 6:
+        case 5:
             if let situps = user?.situps {
                 return healthCellHelper(title: "Situps", value: situps, indexPath: indexPath)
             }
-        case 7:
+        case 6:
             if let legPress = user?.legPress {
                 return healthCellHelper(title: "Leg Press", value: legPress, indexPath: indexPath)
             }
-        case 8:
+        case 7:
             if let benchPress = user?.benchPress {
                 return healthCellHelper(title: "Bench Press", value: benchPress, indexPath: indexPath)
             }
-        case 9:
+        case 8:
             if let lateralPull = user?.lateralPull {
                 return healthCellHelper(title: "Lateral Pull", value: lateralPull, indexPath: indexPath)
             }
-        case 10:
+        case 9:
             if let cell: LogoutTableViewCell = tableView.dequeueReusableCell(withIdentifier: logoutIdentifier) as? LogoutTableViewCell {
                 return cell
             }
@@ -148,7 +162,7 @@ class ProfileViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let editableCells = [1, 2, 5, 6, 7, 8, 9]
+        let editableCells = [0, 1, 4, 5, 6, 7, 8]
 
         // If cell is one of the UIPickerView editable cells
         if editableCells.contains(indexPath.row) {
@@ -159,7 +173,7 @@ class ProfileViewController: UITableViewController {
                     _ = cell.becomeFirstResponder()
                 }
             }
-        } else if indexPath.row == 4 {
+        } else if indexPath.row == 3 {
             // Custom edit mile time
             if let cell = tableView.cellForRow(at: indexPath) as? AbstractHealthCell {
                 let timeAlert = UIAlertController(title: "Enter Your Mile Time", message: nil, preferredStyle: .alert)
@@ -188,7 +202,7 @@ class ProfileViewController: UITableViewController {
                 timeAlert.addAction(cancelAction)
                 self.present(timeAlert, animated: true, completion: nil)
             }
-        } else if indexPath.row == 10 {
+        } else if indexPath.row == 9 {
             // Logout user
             logoutPressed()
         }
@@ -228,32 +242,32 @@ class ProfileViewController: UITableViewController {
             userDict["profilePic"] = nil
         }
 
-        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProfileTableViewCell {
-            userDict["name"] = cell.nameField.text
-            userDict["bio"] = cell.bioField.text
+        if let header = tableView.headerView(forSection: 0) as? ProfileTableViewCell {
+            userDict["name"] = header.nameField.text
+            userDict["bio"] = header.bioField.text
         }
 
         // Add health attributes
-        for row in 1...9 {
+        for row in 0...9 {
             if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? AbstractHealthCell {
                 switch row {
-                case 1:
+                case 0:
                     userDict["weight"] = cell.dataLabel.text
-                case 2:
+                case 1:
                     userDict["height"] = cell.dataLabel.text
-                case 3:
+                case 2:
                     userDict["bmi"] = cell.dataLabel.text
-                case 4:
+                case 3:
                     userDict["mileTime"] = cell.dataLabel.text
-                case 5:
+                case 4:
                     userDict["pushups"] = cell.dataLabel.text
-                case 6:
+                case 5:
                     userDict["situps"] = cell.dataLabel.text
-                case 7:
+                case 6:
                     userDict["legPress"] = cell.dataLabel.text
-                case 8:
+                case 7:
                     userDict["benchPress"] = cell.dataLabel.text
-                case 9:
+                case 8:
                     userDict["lateralPull"] = cell.dataLabel.text
                 default:
                     break
@@ -290,12 +304,12 @@ class ProfileViewController: UITableViewController {
         Update BMI as user updates their weight/height
      */
     func updateBMI() {
-        guard let weightCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? AbstractHealthCell,
-            let heightCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? AbstractHealthCell
+        guard let weightCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? AbstractHealthCell,
+            let heightCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? AbstractHealthCell
             else { return }
         guard let weight = weightCell.dataLabel.text, let height = heightCell.dataLabel.text else { return }
         let updatedBMI = ProfileViewModel.calculateBMI(weight: weight, height: height)
-        if let cell = tableView.cellForRow(at: IndexPath(row: 3, section: 0)) as? AbstractHealthCell {
+        if let cell = tableView.cellForRow(at: IndexPath(row: 2, section: 0)) as? AbstractHealthCell {
             cell.dataLabel.text = updatedBMI
         }
     }
@@ -316,12 +330,20 @@ class ProfileViewController: UITableViewController {
         - Parameter url: User's profile picture URL
      */
     func updateprofileImage(url: URL?) {
-        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProfileTableViewCell {
+        if let header = tableView.headerView(forSection: 0) as? ProfileTableViewCell {
             if let url = url {
-                cell.profileImageView.downloadImageFrom(url: url, imageMode: .scaleAspectFill)
+                header.profileImageView.downloadImageFrom(url: url, imageMode: .scaleAspectFill)
             } else {
-                cell.profileImageView.image = nil
+                header.profileImageView.image = nil
             }
         }
+
+//        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProfileTableViewCell {
+//            if let url = url {
+//                cell.profileImageView.downloadImageFrom(url: url, imageMode: .scaleAspectFill)
+//            } else {
+//                cell.profileImageView.image = nil
+//            }
+//        }
     }
 }

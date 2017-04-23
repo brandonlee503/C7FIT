@@ -17,13 +17,13 @@ extension ProfileViewController: PickerCellDataSource {
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int, forCell: AbstractHealthCell) -> Int {
         switch pickerView.tag {
-        case 1:
+        case 0:
             return ProfileViewModel.personalWeight.count
-        case 2:
+        case 1:
             return ProfileViewModel.personalHeight.count
-        case 5, 6:
+        case 4, 5:
             return ProfileViewModel.repetitions.count
-        case 7, 8, 9:
+        case 6, 7, 8:
             return ProfileViewModel.weights.count
         default:
             return 0
