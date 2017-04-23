@@ -5,8 +5,7 @@
 //  Created by Michael Lee on 4/12/17.
 //  Copyright © 2017 Brandon Lee. All rights reserved.
 //
-
-
+// swiftlint:disable cyclomatic_complexity
 import UIKit
 import HealthKit
 
@@ -67,7 +66,7 @@ class HeartRateTableViewController: UITableViewController {
             return "User Information"
         case 1:
             if age != nil {
-                return String(format:"Target Heart Rate - %d", age!)
+                return String(format:"Target Heart Rate For %d Years", age!)
             } else {
                 return "Target Heart Rate"
             }
@@ -76,6 +75,7 @@ class HeartRateTableViewController: UITableViewController {
         }
     }
 
+    // swiftlint:disable:next function_body_length
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
@@ -272,6 +272,9 @@ class HeartRateTableViewController: UITableViewController {
             } else if curAge > 70 {
                 (self.hrLow, self.hrHigh, self.hrMax) = targets.beatZone[70]!
             }
+
+            // TODO: - we can remove targets and just use math 220-age = max
+            self.hrMax = 220 - Double(curAge)
             return
         }
     }

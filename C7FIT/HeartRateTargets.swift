@@ -9,6 +9,7 @@
 import Foundation
 
 struct HeartRateTargets {
+    // swiftlint:disable large_tuple
     let beatZone: [Double: (Double, Double, Double)] = [
         20: (100, 170, 200),
         30: (95, 162, 190),
