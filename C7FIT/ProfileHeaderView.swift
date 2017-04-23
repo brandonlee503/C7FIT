@@ -1,5 +1,5 @@
 //
-//  ProfileTableViewCell.swift
+//  ProfileHeaderView.swift
 //  C7FIT
 //
 //  Created by Brandon Lee on 1/24/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileTableViewCell: UITableViewHeaderFooterView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
 
     // MARK: - Properties
 
@@ -107,7 +107,7 @@ class ProfileTableViewCell: UITableViewHeaderFooterView {
 
 // MARK: - UITextViewDelegate
 
-extension ProfileTableViewCell: UITextViewDelegate {
+extension ProfileHeaderView: UITextViewDelegate {
 
     // Clear placeholder text
     func textViewDidChange(_ textView: UITextView) {

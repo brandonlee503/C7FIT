@@ -39,7 +39,7 @@ class ProfileViewController: UITableViewController {
         tableView.register(AbstractHealthCell.self, forCellReuseIdentifier: healthIdentifier)
         tableView.register(LogoutTableViewCell.self, forCellReuseIdentifier: logoutIdentifier)
 
-        tableView.tableHeaderView = ProfileTableViewCell()
+        tableView.tableHeaderView = ProfileHeaderView()
         tableView.tableFooterView = UIView()
 
         // Add save button
@@ -85,7 +85,7 @@ class ProfileViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = ProfileTableViewCell()
+        let header = ProfileHeaderView()
         header.nameField.text = user?.name ?? ""
         header.bioField.text = user?.bio
         if let profilePicture = self.user?.photoURL {
@@ -230,7 +230,7 @@ class ProfileViewController: UITableViewController {
             userDict["profilePic"] = nil
         }
 
-        if let header = tableView.headerView(forSection: 0) as? ProfileTableViewCell {
+        if let header = tableView.headerView(forSection: 0) as? ProfileHeaderView {
             userDict["name"] = header.nameField.text
             userDict["bio"] = header.bioField.text
         }
