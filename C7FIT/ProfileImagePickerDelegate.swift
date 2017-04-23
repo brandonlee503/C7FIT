@@ -38,4 +38,18 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
 
         dismiss(animated: true, completion: nil)
     }
+
+    /**
+     Update the view's profile picture based on a firebase storage URL
+     - Parameter url: User's profile picture URL
+     */
+    func updateprofileImage(url: URL?) {
+        if let header = tableView.headerView(forSection: 0) as? ProfileTableViewCell {
+            if let url = url {
+                header.profileImageView.downloadImageFrom(url: url, imageMode: .scaleAspectFill)
+            } else {
+                header.profileImageView.image = nil
+            }
+        }
+    }
 }

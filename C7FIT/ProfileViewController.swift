@@ -59,13 +59,6 @@ class ProfileViewController: UITableViewController {
             self.firebaseDataManager.fetchUser(uid: userID) { data in
                 guard let json = data.value as? [String: AnyObject] else { return }
                 self.user = ProfileViewModel.buildExistingUser(json: json)
-
-                if let urlString = self.user?.photoURL {
-                    self.updateprofileImage(url: URL(string: urlString))
-                } else {
-                    self.updateprofileImage(url: nil)
-                }
-
                 self.tableView.reloadData()
             }
         }
@@ -92,24 +85,19 @@ class ProfileViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = ProfileTableViewCell()
-        view.nameField.text = user?.name ?? ""
-        view.bioField.text = user?.bio
-        view.placeholderLabel.isHidden = !view.bioField.text.isEmpty
-        view.updateProfileButton.addTarget(self, action: #selector(updateProfilePicPressed(sender:)), for: .touchUpInside)
-        self.tableView.tableHeaderView = view
-        return view
+        let header = ProfileTableViewCell()
+        header.nameField.text = user?.name ?? ""
+        header.bioField.text = user?.bio
+        if let profilePicture = self.user?.photoURL {
+            header.profileImageView.downloadImageFrom(url: URL(string: profilePicture)!, imageMode: .scaleAspectFill)
+        } else {
+            header.profileImageView.image = nil
+        }
 
-//        if let cell: ProfileTableViewCell = tableView.dequeueReusableCell(withIdentifier: profileIdentifier) as? ProfileTableViewCell {
-//            cell.nameField.text = user?.name ?? ""
-//            cell.bioField.text = user?.bio
-//            cell.placeholderLabel.isHidden = !cell.bioField.text.isEmpty
-//            cell.updateProfileButton.addTarget(self, action: #selector(updateProfilePicPressed(sender:)), for: .touchUpInside)
-//            self.tableView.tableHeaderView = cell
-//            return cell
-//        }
-
-//        return UIView()
+        header.placeholderLabel.isHidden = !header.bioField.text.isEmpty
+        header.updateProfileButton.addTarget(self, action: #selector(updateProfilePicPressed(sender:)), for: .touchUpInside)
+        self.tableView.tableHeaderView = header
+        return header
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -323,27 +311,5 @@ class ProfileViewController: UITableViewController {
         imagePicker.mediaTypes = [kUTTypeImage as String]
         imagePicker.delegate = self
         self.present(imagePicker, animated: true, completion: nil)
-    }
-
-    /**
-        Update the view's profile picture based on a firebase storage URL
-        - Parameter url: User's profile picture URL
-     */
-    func updateprofileImage(url: URL?) {
-        if let header = tableView.headerView(forSection: 0) as? ProfileTableViewCell {
-            if let url = url {
-                header.profileImageView.downloadImageFrom(url: url, imageMode: .scaleAspectFill)
-            } else {
-                header.profileImageView.image = nil
-            }
-        }
-
-//        if let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? ProfileTableViewCell {
-//            if let url = url {
-//                cell.profileImageView.downloadImageFrom(url: url, imageMode: .scaleAspectFill)
-//            } else {
-//                cell.profileImageView.image = nil
-//            }
-//        }
     }
 }
