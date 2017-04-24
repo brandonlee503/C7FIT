@@ -88,12 +88,11 @@ class ProfileViewController: UITableViewController {
         let header = ProfileHeaderView()
         header.nameField.text = user?.name ?? ""
         header.bioField.text = user?.bio
-        if let profilePicture = self.user?.photoURL {
-            header.profileImageView.downloadImageFrom(url: URL(string: profilePicture)!, imageMode: .scaleAspectFill)
+        if let profilePicString = self.user?.photoURL {
+            header.profileImageView.downloadImageFrom(urlString: profilePicString, imageMode: .scaleAspectFill)
         } else {
             header.profileImageView.image = nil
         }
-
         header.placeholderLabel.isHidden = !header.bioField.text.isEmpty
         header.updateProfileButton.addTarget(self, action: #selector(updateProfilePicPressed(sender:)), for: .touchUpInside)
         self.tableView.tableHeaderView = header
