@@ -14,6 +14,7 @@ class LoginView: UIView {
 
     var loginButton = UIButton()
     var createAccountButton = UIButton()
+    var cancelButton = UIButton()
 
     // MARK: - Initialization
 
@@ -30,6 +31,9 @@ class LoginView: UIView {
     // MARK: - Layout
 
     func setup() {
+
+        backgroundColor = .orange
+        
         loginButton.setTitle("Login", for: .normal)
         loginButton.setTitleColor(.black, for: .normal)
         addSubview(loginButton)
@@ -37,17 +41,30 @@ class LoginView: UIView {
         createAccountButton.setTitle("Create Account", for: .normal)
         createAccountButton.setTitleColor(.black, for: .normal)
         addSubview(createAccountButton)
+
+        cancelButton.setImage(#imageLiteral(resourceName: "stop_2x"), for: .normal)
+        cancelButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        addSubview(cancelButton)
     }
 
     func setupConstraints() {
         loginButton.translatesAutoresizingMaskIntoConstraints = false
-        let loginX = loginButton.centerXAnchor.constraint(equalTo: centerXAnchor)
-        let loginY = loginButton.topAnchor.constraint(equalTo: centerYAnchor)
-        NSLayoutConstraint.activate([loginX, loginY])
-
         createAccountButton.translatesAutoresizingMaskIntoConstraints = false
-        let createX = createAccountButton.centerXAnchor.constraint(equalTo: loginButton.centerXAnchor)
-        let createY = createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10)
-        NSLayoutConstraint.activate([createX, createY])
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            loginButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            loginButton.topAnchor.constraint(equalTo: centerYAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            createAccountButton.centerXAnchor.constraint(equalTo: loginButton.centerXAnchor),
+            createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10)
+        ])
+
+        NSLayoutConstraint.activate([
+            cancelButton.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            cancelButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 10)
+        ])
     }
 }

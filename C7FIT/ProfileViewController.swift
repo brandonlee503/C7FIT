@@ -66,6 +66,12 @@ class ProfileViewController: UITableViewController {
         self.view.setNeedsUpdateConstraints()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        if !firebaseDataManager.isLoggedInUser() {
+            self.present(LoginViewController(), animated: true, completion: nil)
+        }
+    }
+
     // MARK: - UITableView Delegate and Datasource
 
     override func numberOfSections(in tableView: UITableView) -> Int {

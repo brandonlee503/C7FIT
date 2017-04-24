@@ -48,6 +48,15 @@ struct FirebaseDataManager {
     }
 
     /**
+        Checks if the user is currently logged in.
+     
+        - Returns bool: A bool that represents if the user is logged in
+     */
+    func isLoggedInUser() -> Bool {
+        return FIRAuth.auth()?.currentUser != nil
+    }
+
+    /**
         Log user out of Firebase account.
      */
     func logout() {

@@ -26,6 +26,7 @@ class LoginViewController: UIViewController {
         self.view.backgroundColor = .white
         self.loginView.loginButton.addTarget(self, action: #selector(self.loginPressed), for: .touchUpInside)
         self.loginView.createAccountButton.addTarget(self, action: #selector(self.createAccountPressed), for: .touchUpInside)
+        self.loginView.cancelButton.addTarget(self, action: #selector(self.cancelButtonPressed), for: .touchUpInside)
         self.view.addSubview(loginView)
         setupConstraints()
         self.view.setNeedsUpdateConstraints()
@@ -104,6 +105,12 @@ class LoginViewController: UIViewController {
         createAccountAlert.addAction(submitAction)
         createAccountAlert.addAction(cancelAction)
         self.present(createAccountAlert, animated: true, completion: nil)
+    }
+
+    func cancelButtonPressed() {
+        // Segue back to home screen
+        self.presentingViewController?.childViewControllers[0].tabBarController?.selectedIndex = 0
+        self.dismiss(animated: true, completion: nil)
     }
 
     func displayError(error: Error) {
