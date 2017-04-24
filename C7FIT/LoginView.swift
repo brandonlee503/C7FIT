@@ -33,7 +33,6 @@ class LoginView: UIView {
     func setup() {
 
         backgroundColor = .orange
-        
         loginButton.setTitle("Login", for: .normal)
         loginButton.setTitleColor(.black, for: .normal)
         addSubview(loginButton)

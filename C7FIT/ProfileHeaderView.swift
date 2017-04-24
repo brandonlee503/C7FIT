@@ -102,6 +102,13 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         bioTop.priority = 999
         bioBottom.priority = 999
         NSLayoutConstraint.activate([bioLeading, bioTrailing, bioTop, bioBottom])
+
+        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        let placeholderTop = placeholderLabel.topAnchor.constraint(equalTo: bioField.topAnchor, constant: 7)
+        let placeholderLeading = placeholderLabel.leadingAnchor.constraint(equalTo: bioField.leadingAnchor, constant: 5)
+        placeholderTop.priority = 999
+        placeholderLeading.priority = 999
+        NSLayoutConstraint.activate([placeholderTop, placeholderLeading])
     }
 }
 
