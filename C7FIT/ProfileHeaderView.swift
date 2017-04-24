@@ -37,7 +37,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         profileImageView.layer.masksToBounds = false
         profileImageView.layer.borderColor = UIColor.black.cgColor
         profileImageView.clipsToBounds = true
-        profileImageView.backgroundColor = .green
+        profileImageView.image = #imageLiteral(resourceName: "profile_placeholder")
         addSubview(profileImageView)
 
         updateProfileButton.setTitle("Update Picture", for: .normal)
