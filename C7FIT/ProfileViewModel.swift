@@ -15,12 +15,12 @@ struct ProfileViewModel {
 
     // Personal Weight Array
     static let personalWeight: Array = {
-        (0...400).map {"\($0)"}
+        (0...500).map {"\($0)"}
     }()
 
     // Imperial Height Array
     static let personalHeight: Array = {
-        (12...120).map {
+        (12...96).map {
             ("\($0 / 12)' \($0 % 12)\"")
         }
     }()

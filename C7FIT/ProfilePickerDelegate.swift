@@ -13,16 +13,17 @@ import UIKit
 /// Adapter Pattern for UIPickerView and UITableViewCells
 extension ProfileViewController: PickerCellDelegate {
 
+    // Calibrate picker selection with the dataLabel's current text
     func onPickerOpen(cell: AbstractHealthCell, pickerView: UIPickerView) {
         switch cell.picker.tag {
-        // Start first two cases at weight 150 lbs and height 6'5" for faster navigation
+        // Start first two cases at weight 150 lbs and height 5'6" for faster navigation, the rest are 0
         case 0:
             if cell.dataLabel.text!.isEmpty {
                 pickerView.selectRow(150, inComponent: 0, animated: true)
                 cell.dataLabel.text = ProfileViewModel.personalWeight[150]
                 updateBMI()
             } else {
-                cell.dataLabel.text = cell.dataLabel.text
+                pickerView.selectRow((cell.dataLabel.text?.intValue)!, inComponent: 0, animated: true)
             }
         case 1:
             if cell.dataLabel.text!.isEmpty {
@@ -30,12 +31,24 @@ extension ProfileViewController: PickerCellDelegate {
                 cell.dataLabel.text = ProfileViewModel.personalHeight[54]
                 updateBMI()
             } else {
+                pickerView.selectRow(getRowFromHeight(height: cell.dataLabel.text!), inComponent: 0, animated: true)
                 cell.dataLabel.text = cell.dataLabel.text
             }
         case 4, 5:
-            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? ProfileViewModel.repetitions[0] : cell.dataLabel.text
+            if cell.dataLabel.text!.isEmpty {
+                pickerView.selectRow(0, inComponent: 0, animated: true)
+                cell.dataLabel.text = ProfileViewModel.repetitions[0]
+            } else {
+                pickerView.selectRow((cell.dataLabel.text?.intValue)!, inComponent: 0, animated: true)
+            }
         case 6, 7, 8:
-            cell.dataLabel.text = cell.dataLabel.text!.isEmpty ? ProfileViewModel.weights[0] : cell.dataLabel.text
+            if cell.dataLabel.text!.isEmpty {
+                pickerView.selectRow(0, inComponent: 0, animated: true)
+                cell.dataLabel.text = ProfileViewModel.weights[0]
+            } else {
+                // Increments of 5...
+                pickerView.selectRow((cell.dataLabel.text?.intValue)!/5, inComponent: 0, animated: true)
+            }
         default:
             break
         }
@@ -78,5 +91,16 @@ extension ProfileViewController: PickerCellDelegate {
         default:
             break
         }
+    }
+
+    /**
+        Parses imperial height format (eg. 5'6") for row index
+
+        - Parameter height: Height string
+        - Returns Int: An integer representing the row index
+     */
+    func getRowFromHeight(height: String) -> Int {
+        let stringArray: Array = height.components(separatedBy: .punctuationCharacters)
+        return stringArray[0].intValue * 12 + stringArray[1].intValue - 12
     }
 }
