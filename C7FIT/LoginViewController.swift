@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Constants
 
@@ -22,13 +22,16 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Login"
-        self.view.backgroundColor = .white
-        self.loginView.loginButton.addTarget(self, action: #selector(self.loginPressed), for: .touchUpInside)
-        self.loginView.createAccountButton.addTarget(self, action: #selector(self.createAccountPressed), for: .touchUpInside)
-        self.view.addSubview(loginView)
+        title = "Login"
+        view.backgroundColor = .white
+        loginView.loginButton.addTarget(self, action: #selector(self.loginPressed), for: .touchUpInside)
+        loginView.createAccountButton.addTarget(self, action: #selector(self.createAccountPressed), for: .touchUpInside)
+        loginView.cancelButton.addTarget(self, action: #selector(self.cancelButtonPressed), for: .touchUpInside)
+        loginView.emailField.delegate = self
+        loginView.passwordField.delegate = self
+        view.addSubview(loginView)
         setupConstraints()
-        self.view.setNeedsUpdateConstraints()
+        view.setNeedsUpdateConstraints()
     }
 
     // MARK: - Layout
@@ -44,66 +47,30 @@ class LoginViewController: UIViewController {
 
     // MARK: - User Interaction
 
-    // FIXME: Following two functions have a lot of duplicate code
     func loginPressed() {
-        let loginAlert = UIAlertController(title: "Login", message: nil, preferredStyle: .alert)
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
-            let emailField = loginAlert.textFields![0] as UITextField
-            let passwordField = loginAlert.textFields![1] as UITextField
-
-            // Submit login with credentials, display profileVC if valid
-            self.firebaseDataManager.signIn(email: emailField.text!, password: passwordField.text!) { user, error in
-                guard user != nil else { return self.displayError(error: error!) }
-                self.dismiss(animated: true, completion: nil)
-            }
+        firebaseDataManager.signIn(email: loginView.emailField.text!, password: loginView.passwordField.text!) { user, error in
+            guard user != nil else { return self.displayError(error: error!) }
+            self.dismiss(animated: true, completion: nil)
         }
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-
-        loginAlert.addTextField { textEmail in
-            textEmail.placeholder = "Email"
-        }
-
-        loginAlert.addTextField { textPassword in
-            textPassword.isSecureTextEntry = true
-            textPassword.placeholder = "Password"
-        }
-
-        loginAlert.addAction(submitAction)
-        loginAlert.addAction(cancelAction)
-        self.present(loginAlert, animated: true, completion: nil)
     }
 
     func createAccountPressed() {
-        let createAccountAlert = UIAlertController(title: "Register", message: nil, preferredStyle: .alert)
-        let submitAction = UIAlertAction(title: "Submit", style: .default) { _ in
-            let emailField = createAccountAlert.textFields![0] as UITextField
-            let passwordField = createAccountAlert.textFields![1] as UITextField
-            // Submit create user, upon successful creation - login as well
-            self.firebaseDataManager.createAccount(email: emailField.text!, password: passwordField.text!) { user, error in
-                guard user != nil else { return self.displayError(error: error!) }
-                    self.firebaseDataManager.signIn(email: emailField.text!, password: passwordField.text!) { user, error in
-                        guard let user = user else { return self.displayError(error: error!) }
-                            self.firebaseDataManager.buildUserProfile(uid: user.uid, email: emailField.text!)
-                            self.dismiss(animated: true, completion: nil)
-                    }
-            }
+        let email = loginView.emailField.text
+        let password = loginView.passwordField.text
+        firebaseDataManager.createAccount(email: email!, password: password!) { user, error in
+            guard user != nil else { return self.displayError(error: error!) }
+            self.firebaseDataManager.signIn(email: email!, password: password!, completion: { user, error in
+                guard let user = user else { return self.displayError(error: error!) }
+                self.firebaseDataManager.buildUserProfile(uid: user.uid, email: self.loginView.emailField.text!)
+                self.dismiss(animated: true, completion: nil)
+            })
         }
+    }
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-
-        createAccountAlert.addTextField { textEmail in
-            textEmail.placeholder = "Email"
-        }
-
-        createAccountAlert.addTextField { textPassword in
-            textPassword.isSecureTextEntry = true
-            textPassword.placeholder = "Password"
-        }
-
-        createAccountAlert.addAction(submitAction)
-        createAccountAlert.addAction(cancelAction)
-        self.present(createAccountAlert, animated: true, completion: nil)
+    func cancelButtonPressed() {
+        // Segue back to home screen
+        self.presentingViewController?.childViewControllers[0].tabBarController?.selectedIndex = 0
+        self.dismiss(animated: true, completion: nil)
     }
 
     func displayError(error: Error) {
@@ -111,5 +78,12 @@ class LoginViewController: UIViewController {
         let submitAction = UIAlertAction(title: "Ok", style: .default)
         errorAlert.addAction(submitAction)
         self.present(errorAlert, animated: true, completion: nil)
+    }
+
+    // MARK: - UITextFieldDelegate
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

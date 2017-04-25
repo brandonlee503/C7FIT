@@ -63,10 +63,7 @@ open class AbstractHealthCell: UITableViewCell {
     // MARK: - Layout
 
     open func setup() {
-        dataTitle.backgroundColor = .red
         addSubview(dataTitle)
-
-        dataLabel.backgroundColor = .cyan
         addSubview(dataLabel)
     }
 
