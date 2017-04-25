@@ -14,7 +14,7 @@ class LoginView: UIView {
 
     var appLogo = UIImageView()
     var cancelButton = UIButton()
-    var usernameField = UITextField()
+    var emailField = UITextField()
     var passwordField = UITextField()
     var loginButton = UIButton()
     var createAccountButton = UIButton()
@@ -43,14 +43,14 @@ class LoginView: UIView {
         cancelButton.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         addSubview(cancelButton)
 
-        usernameField.placeholder = "Username"
-        usernameField.font = UIFont.systemFont(ofSize: 14)
-        usernameField.layer.borderColor = UIColor.black.cgColor
-        usernameField.layer.borderWidth = 1
-        usernameField.layer.cornerRadius = 5
-        usernameField.backgroundColor = .white
-        usernameField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0) // Text margin inset
-        addSubview(usernameField)
+        emailField.placeholder = "Email"
+        emailField.font = UIFont.systemFont(ofSize: 14)
+        emailField.layer.borderColor = UIColor.black.cgColor
+        emailField.layer.borderWidth = 1
+        emailField.layer.cornerRadius = 5
+        emailField.backgroundColor = .white
+        emailField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0) // Text margin inset
+        addSubview(emailField)
 
         passwordField.placeholder = "Password"
         passwordField.font = UIFont.systemFont(ofSize: 14)
@@ -59,6 +59,7 @@ class LoginView: UIView {
         passwordField.layer.cornerRadius = 5
         passwordField.backgroundColor = .white
         passwordField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
+        passwordField.isSecureTextEntry = true
         addSubview(passwordField)
 
         loginButton.setTitle("Login", for: .normal)
@@ -77,7 +78,7 @@ class LoginView: UIView {
     func setupConstraints() {
         appLogo.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        usernameField.translatesAutoresizingMaskIntoConstraints = false
+        emailField.translatesAutoresizingMaskIntoConstraints = false
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         createAccountButton.translatesAutoresizingMaskIntoConstraints = false
@@ -95,16 +96,16 @@ class LoginView: UIView {
         ])
 
         NSLayoutConstraint.activate([
-            usernameField.topAnchor.constraint(equalTo: appLogo.bottomAnchor, constant: 30),
-            usernameField.leftAnchor.constraint(equalTo: appLogo.leftAnchor, constant: 20),
-            usernameField.rightAnchor.constraint(equalTo: appLogo.rightAnchor, constant: -20),
-            usernameField.heightAnchor.constraint(equalToConstant: 30)
+            emailField.topAnchor.constraint(equalTo: appLogo.bottomAnchor, constant: 30),
+            emailField.leftAnchor.constraint(equalTo: appLogo.leftAnchor, constant: 20),
+            emailField.rightAnchor.constraint(equalTo: appLogo.rightAnchor, constant: -20),
+            emailField.heightAnchor.constraint(equalToConstant: 30)
         ])
 
         NSLayoutConstraint.activate([
-            passwordField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: 10),
-            passwordField.leftAnchor.constraint(equalTo: usernameField.leftAnchor),
-            passwordField.rightAnchor.constraint(equalTo: usernameField.rightAnchor),
+            passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 10),
+            passwordField.leftAnchor.constraint(equalTo: emailField.leftAnchor),
+            passwordField.rightAnchor.constraint(equalTo: emailField.rightAnchor),
             passwordField.heightAnchor.constraint(equalToConstant: 30)
         ])
 
