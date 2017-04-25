@@ -102,7 +102,7 @@ class LoginView: UIView {
         ])
 
         NSLayoutConstraint.activate([
-            passwordField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: 20),
+            passwordField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: 10),
             passwordField.leftAnchor.constraint(equalTo: usernameField.leftAnchor),
             passwordField.rightAnchor.constraint(equalTo: usernameField.rightAnchor),
             passwordField.heightAnchor.constraint(equalToConstant: 30)
