@@ -32,7 +32,6 @@ class ItemImageCell: UICollectionViewCell {
         backgroundColor = .purple
 
         itemImageView.contentMode = .scaleAspectFill
-        itemImageView.layer.borderColor = UIColor.gray.cgColor
         itemImageView.layer.borderWidth = 1
         itemImageView.layer.masksToBounds = true
         itemImageView.backgroundColor = .green

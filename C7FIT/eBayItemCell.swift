@@ -31,47 +31,49 @@ class EbayItemCell: UICollectionViewCell {
     // MARK: - Layout
 
     func setup() {
-        self.backgroundColor = .purple
-
         itemImageView.contentMode = .scaleAspectFill
-        itemImageView.layer.borderColor = UIColor.gray.cgColor
-        itemImageView.layer.borderWidth = 1
+        itemImageView.layer.borderWidth = 0.5
         itemImageView.layer.masksToBounds = true
-        itemImageView.backgroundColor = .green
+        // Ebay's color scheme
+        itemImageView.layer.borderColor = UIColor(red: 213/255, green: 213/255, blue: 213/255, alpha: 1).cgColor
+        itemImageView.backgroundColor = .lightGray
         itemImageView.image = UIImage(named: "club front") // TODO: Add a default image
         addSubview(itemImageView)
 
         itemTitle.font = UIFont.systemFont(ofSize: 8)
         itemTitle.textColor = .black
-        itemTitle.backgroundColor = .green
         itemTitle.lineBreakMode = .byWordWrapping
         itemTitle.numberOfLines = 2
         addSubview(itemTitle)
 
         price.font = UIFont.systemFont(ofSize: 8)
         price.textColor = .black
-        price.backgroundColor = .red
         addSubview(price)
     }
 
     func setupConstraints() {
         itemImageView.translatesAutoresizingMaskIntoConstraints = false
-        let imageTop = itemImageView.topAnchor.constraint(equalTo: topAnchor)
-        let imageLeft = itemImageView.leftAnchor.constraint(equalTo: leftAnchor)
-        let imageRight = itemImageView.rightAnchor.constraint(equalTo: rightAnchor)
-        let imageBottom = itemImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30)
-        NSLayoutConstraint.activate([imageTop, imageLeft, imageRight, imageBottom])
-
         itemTitle.translatesAutoresizingMaskIntoConstraints = false
-        let titleTop = itemTitle.topAnchor.constraint(equalTo: itemImageView.bottomAnchor, constant: 2)
-        let titleLeft = itemTitle.leftAnchor.constraint(equalTo: itemImageView.leftAnchor)
-        let titleRight = itemTitle.rightAnchor.constraint(equalTo: itemImageView.rightAnchor)
-        NSLayoutConstraint.activate([titleTop, titleLeft, titleRight])
-
         price.translatesAutoresizingMaskIntoConstraints = false
-        let priceTop = price.topAnchor.constraint(equalTo: itemTitle.bottomAnchor, constant: 2)
-        let priceLeft = price.leftAnchor.constraint(equalTo: itemImageView.leftAnchor)
-        let priceRight = price.rightAnchor.constraint(equalTo: itemImageView.rightAnchor)
-        NSLayoutConstraint.activate([priceTop, priceLeft, priceRight])
+
+        NSLayoutConstraint.activate([
+            itemImageView.topAnchor.constraint(equalTo: topAnchor),
+            itemImageView.leftAnchor.constraint(equalTo: leftAnchor),
+            itemImageView.rightAnchor.constraint(equalTo: rightAnchor),
+            itemImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30)
+        ])
+
+        NSLayoutConstraint.activate([
+            itemTitle.topAnchor.constraint(equalTo: itemImageView.bottomAnchor, constant: 2),
+            itemTitle.leftAnchor.constraint(equalTo: itemImageView.leftAnchor),
+            itemTitle.rightAnchor.constraint(equalTo: itemImageView.rightAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            price.topAnchor.constraint(equalTo: itemTitle.bottomAnchor, constant: 2),
+            price.leftAnchor.constraint(equalTo: itemImageView.leftAnchor),
+            price.rightAnchor.constraint(equalTo: itemImageView.rightAnchor),
+            price.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
 }
