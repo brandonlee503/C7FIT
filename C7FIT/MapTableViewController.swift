@@ -28,6 +28,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     lazy var locations = [CLLocation]()
     lazy var timer = Timer()
     var lastRun = RunData()
+    var currentPath = [CLLocationCoordinate2D]()
 
     let startStopCell = StartStopCell()
     let mapCell = MapCell()
@@ -81,6 +82,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
             return cell
         } else if indexPath.row == 2 {
             let cell = self.mapCell
+            self.mapCell.mapView.delegate = self
             return cell
         }
         return UITableViewCell()
@@ -136,11 +138,11 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
 
         // Create runData struct from run data and push to map detail view
         createRunData()
-        self.navigationController?.pushViewController(MapDetailTableViewController(run:lastRun, hideSave:false), animated: true)
         // Remove timer
         timer.invalidate()
         // Stop tracking user
         locationManager.stopUpdatingLocation()
+        self.navigationController?.pushViewController(MapDetailTableViewController(run:lastRun, hideSave:false), animated: true)
     }
 
     func gotoRunList() {
@@ -163,7 +165,6 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("loc")
         for location in locations {
             // Focus on the runner
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -176,6 +177,9 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
                     distance += location.distance(from: self.locations.last!)
                 }
                 self.locations.append(location)
+                self.currentPath.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude,
+                                                               longitude: location.coordinate.longitude))
+                self.mapCell.mapView.add(polyline(coords: self.currentPath), level: MKOverlayLevel.aboveRoads)
             } else {
                 print("loc accuracy too low")
             }
@@ -200,7 +204,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         pace = paceQuantity.description
     }
 
-    // MARK: Create Run Data
+    // MARK: - Create Run Data
 
     func createRunData() {
         var tempRun = RunData()
@@ -222,6 +226,21 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         tempRun.locations = savedLocations
         tempRun.date = Date()
         lastRun = tempRun
+    }
+
+    // MARK: - Display run line
+    // Renderer for the line overlay, determines how the run line will look
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let polyline = overlay as! MKPolyline
+        let renderer = MKPolylineRenderer(polyline: polyline)
+        renderer.strokeColor = UIColor.orange
+        renderer.lineWidth = 4.0
+        return renderer
+    }
+
+    // Draw line from coordinates
+    func polyline(coords: [CLLocationCoordinate2D]) -> MKPolyline {
+        return MKPolyline(coordinates: coords, count: coords.count)
     }
 
 }
