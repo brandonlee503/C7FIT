@@ -3,7 +3,7 @@ import UIKit
 enum CollectionViewCellType: String {
     case youtube
     case trainers
-    case other
+    case motivational
 }
 
 class HomeViewController: UIViewController {
@@ -38,8 +38,8 @@ class HomeViewController: UIViewController {
                                 forCellWithReuseIdentifier: CollectionViewCellType.youtube.rawValue)
         collectionView.register(TrainersCollectionViewCell.classForCoder(),
                                 forCellWithReuseIdentifier: CollectionViewCellType.trainers.rawValue)
-        collectionView.register(UICollectionViewCell.classForCoder(),
-                                forCellWithReuseIdentifier: CollectionViewCellType.other.rawValue)
+        collectionView.register(MotivationalQuoteCollectionViewCell.classForCoder(),
+                                forCellWithReuseIdentifier: CollectionViewCellType.motivational.rawValue)
 
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.itemSize = CGSize(width: view.frame.width,
@@ -82,14 +82,15 @@ extension HomeViewController: UICollectionViewDataSource {
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.trainers.rawValue,
                                                           for: indexPath)
-            cell.contentView.backgroundColor = .green
+            return cell
+
+        case 2:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.motivational.rawValue,
+                                                          for: indexPath)
             return cell
 
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.other.rawValue,
-                                                          for: indexPath)
-            cell.contentView.backgroundColor = .red
-            return cell
+            fatalError("This should not be happening. SAD!")
         }
     }
 

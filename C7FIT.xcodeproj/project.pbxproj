@@ -80,6 +80,7 @@
 		7AF7BC061E54EDDE0059A62A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF7BC051E54EDDE0059A62A /* HealthKit.framework */; };
 		7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */; };
 		8DDE8CB2A52DA4DDF6CE47C9 /* Pods_C7FITTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */; };
+		AC087E321EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC087E311EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift */; };
 		AC7D4A981EA3F76500230C94 /* TrainersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D4A971EA3F76500230C94 /* TrainersCollectionViewCell.swift */; };
 		AC7D4A9B1EA3FE4B00230C94 /* TrainersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D4A9A1EA3FE4B00230C94 /* TrainersViewController.swift */; };
 		AC7D4A9D1EA3FF1300230C94 /* Trainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D4A9C1EA3FF1300230C94 /* Trainer.swift */; };
@@ -188,6 +189,7 @@
 		7AF7BC051E54EDDE0059A62A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C7FITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC087E311EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotivationalQuoteCollectionViewCell.swift; sourceTree = "<group>"; };
 		AC7D4A971EA3F76500230C94 /* TrainersCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainersCollectionViewCell.swift; sourceTree = "<group>"; };
 		AC7D4A9A1EA3FE4B00230C94 /* TrainersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainersViewController.swift; sourceTree = "<group>"; };
 		AC7D4A9C1EA3FF1300230C94 /* Trainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trainer.swift; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 			children = (
 				AC96A66C1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift */,
 				AC7D4A971EA3F76500230C94 /* TrainersCollectionViewCell.swift */,
+				AC087E311EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift */,
 			);
 			name = "CollectionView Cells";
 			sourceTree = "<group>";
@@ -864,6 +867,7 @@
 				160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */,
 				1626F8351E62B204002E2A9B /* CategoryCellController.swift in Sources */,
 				7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */,
+				AC087E321EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift in Sources */,
 				16FFF43D1E3459C2009B4F34 /* User.swift in Sources */,
 				7AF7BBF61E5464250059A62A /* WatchView.swift in Sources */,
 				160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */,
