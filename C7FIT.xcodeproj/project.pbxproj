@@ -533,7 +533,6 @@
 				7AB9EFA71E6DEF14000C20C6 /* Map */,
 				7A838C4D1E96F427003BE65F /* Stopwatch */,
 				7A838C551E96F9BA003BE65F /* Countdown */,
-				7A9D9E151E9EC3EA0049DCE4 /* HeartRate */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -627,6 +626,9 @@
 						DevelopmentTeam = 66VR475WF9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.HealthKit = {
 								enabled = 1;
 							};

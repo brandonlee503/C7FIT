@@ -51,6 +51,10 @@
 	<string>Do you allow this app to know your current location?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Do you allow this app to access your photo library?</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
