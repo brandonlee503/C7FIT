@@ -76,8 +76,6 @@
 		7AF14EB41E9C6101009C7908 /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF14EB31E9C6101009C7908 /* TimeCell.swift */; };
 		7AF14EB61E9C641E009C7908 /* CountTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF14EB51E9C641E009C7908 /* CountTableViewController.swift */; };
 		7AF14EB81E9D31F4009C7908 /* GenLRButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF14EB71E9D31F4009C7908 /* GenLRButtonCell.swift */; };
-		7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BBF91E54643E0059A62A /* HeartRateView.swift */; };
-		7AF7BC041E5467C10059A62A /* HeartRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */; };
 		7AF7BC061E54EDDE0059A62A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF7BC051E54EDDE0059A62A /* HealthKit.framework */; };
 		7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */; };
 		8DDE8CB2A52DA4DDF6CE47C9 /* Pods_C7FITTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */; };
@@ -181,8 +179,6 @@
 		7AF14EB31E9C6101009C7908 /* TimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
 		7AF14EB51E9C641E009C7908 /* CountTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountTableViewController.swift; sourceTree = "<group>"; };
 		7AF14EB71E9D31F4009C7908 /* GenLRButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenLRButtonCell.swift; sourceTree = "<group>"; };
-		7AF7BBF91E54643E0059A62A /* HeartRateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateView.swift; sourceTree = "<group>"; };
-		7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateViewController.swift; sourceTree = "<group>"; };
 		7AF7BC051E54EDDE0059A62A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C7FITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -475,18 +471,9 @@
 			name = Health;
 			sourceTree = "<group>";
 		};
-		7A9D9E151E9EC3EA0049DCE4 /* HeartRate */ = {
-			isa = PBXGroup;
-			children = (
-				7AF7BBF91E54643E0059A62A /* HeartRateView.swift */,
-			);
-			name = HeartRate;
-			sourceTree = "<group>";
-		};
 		7A9D9E161E9EC4590049DCE4 /* HeartRate */ = {
 			isa = PBXGroup;
 			children = (
-				7AF7BC031E5467C10059A62A /* HeartRateViewController.swift */,
 				7A9D9E171E9EC4720049DCE4 /* HeartRateTableViewController.swift */,
 			);
 			name = HeartRate;
@@ -843,7 +830,6 @@
 				7AAB23641E4297BA00AD7040 /* ScheduleBioTableViewCell.swift in Sources */,
 				16BEB6C61E72966A001BE973 /* eBayAPIToken.swift in Sources */,
 				16BFBBB41E6A7C7A001D088A /* eBayItemCell.swift in Sources */,
-				7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */,
 				160D9B0B1E0B5C0D00801627 /* AppDelegate.swift in Sources */,
 				1699EB331E80BBEE008171AF /* ItemInfoCell.swift in Sources */,
 				7A76A7A41E6F66A100C7D8F2 /* StartStopCell.swift in Sources */,
@@ -871,7 +857,6 @@
 				7A838C511E96F497003BE65F /* WatchTimerCell.swift in Sources */,
 				16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */,
 				161B93411E9AD48100F397C5 /* ProfileImagePickerDelegate.swift in Sources */,
-				7AF7BC041E5467C10059A62A /* HeartRateViewController.swift in Sources */,
 				7A76A7A81E6F66FD00C7D8F2 /* RunDetailCell.swift in Sources */,
 				160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */,
 				7AB9EFA61E6DEF09000C20C6 /* RunListCell.swift in Sources */,
