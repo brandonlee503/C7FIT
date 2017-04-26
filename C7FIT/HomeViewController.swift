@@ -30,6 +30,7 @@ class HomeViewController: UIViewController {
         setupConstraints()
         view.setNeedsUpdateConstraints()
         collectionView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
+        collectionView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
 
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -43,8 +44,8 @@ class HomeViewController: UIViewController {
 
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.itemSize = CGSize(width: view.frame.width,
-                                               height: (view.frame.height - 180) / 3)
-        collectionViewLayout.minimumLineSpacing = 20
+                                               height: (view.frame.height - 140) / 3)
+        collectionViewLayout.minimumLineSpacing = 8
         collectionView.setCollectionViewLayout(collectionViewLayout,
                                                animated: false)
     }

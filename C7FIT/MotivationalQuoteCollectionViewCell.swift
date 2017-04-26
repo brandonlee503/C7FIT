@@ -11,11 +11,13 @@ class MotivationalQuoteCollectionViewCell: UICollectionViewCell {
         quoteLabel.textColor = .gray
         quoteLabel.textAlignment = .left
         quoteLabel.font = UIFont.systemFont(ofSize: 32)
+        quoteLabel.lineBreakMode = .byWordWrapping
+        quoteLabel.numberOfLines = 0
         quoteLabel.frame = contentView.bounds
-
 
         contentView.addSubview(quoteLabel)
         contentView.clipsToBounds = true
+        contentView.backgroundColor = .white
     }
 
     required init?(coder aDecoder: NSCoder) {
