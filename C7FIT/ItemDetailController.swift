@@ -39,7 +39,6 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
         super.viewDidLoad()
         title = "Item"
         collectionView?.backgroundColor = .white
-        navigationController?.navigationBar.tintColor = .black
         collectionView?.register(ItemHeaderCellController.self,
                                  forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                  withReuseIdentifier: headerReuseIdentifer)
