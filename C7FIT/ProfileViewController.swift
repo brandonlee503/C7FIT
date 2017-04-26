@@ -44,7 +44,6 @@ class ProfileViewController: UITableViewController {
         // Add save button
         let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
         navigationItem.rightBarButtonItem = saveButton
-        
         // Monitor for user login/logout state
         firebaseDataManager.monitorLoginState { _, user in
 
