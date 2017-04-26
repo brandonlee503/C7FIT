@@ -22,6 +22,8 @@ class StopWatchTableViewController: UITableViewController {
     let timerCell = WatchTimerCell()
 
     lazy var startTime = 0.0
+    lazy var lapStartTime = 0.0
+    lazy var prevLapTime = 0.0
     lazy var timer = Timer()
     lazy var time = 0.0
     lazy var prevTime = 0.0
@@ -56,6 +58,7 @@ class StopWatchTableViewController: UITableViewController {
         self.buttonCell.lapResetButton.setTitle("Lap", for: .normal)
         self.buttonCell.lapResetButton.addTarget(self, action: #selector(createLap), for: .touchUpInside)
 
+        self.lapStartTime = Date().timeIntervalSinceReferenceDate
         self.startTime = Date().timeIntervalSinceReferenceDate
         self.timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
@@ -67,6 +70,7 @@ class StopWatchTableViewController: UITableViewController {
         self.buttonCell.startStopButton.setTitle("Start", for: .normal)
         self.buttonCell.startStopButton.addTarget(self, action: #selector(startTimer), for: .touchUpInside)
 
+        self.prevLapTime = Date().timeIntervalSinceReferenceDate - lapStartTime
         self.buttonCell.lapResetButton.removeTarget(nil, action: nil, for: .allEvents)
         self.buttonCell.lapResetButton.setTitle("Reset", for: .normal)
         self.buttonCell.lapResetButton.addTarget(self, action: #selector(resetTimer), for: .touchUpInside)
@@ -76,12 +80,14 @@ class StopWatchTableViewController: UITableViewController {
 
     func createLap() {
         print("lapping")
-
+        let lapTime = self.prevLapTime + Date().timeIntervalSinceReferenceDate - lapStartTime
         let dispTime = String(format:"%02d:%02d.%02d",
-                              (Int)(time/60),
-                              (Int)((time).truncatingRemainder(dividingBy: 60)),
-                              (Int)((time*100).truncatingRemainder(dividingBy: 100)) )
-        self.lapData.append(dispTime)
+                              (Int)(lapTime/60),
+                              (Int)((lapTime).truncatingRemainder(dividingBy: 60)),
+                              (Int)((lapTime*100).truncatingRemainder(dividingBy: 100)) )
+        self.lapData.insert(dispTime, at: 0)
+        self.lapStartTime = Date().timeIntervalSinceReferenceDate
+        self.prevLapTime = 0.0
         self.tableView.reloadData()
     }
 
@@ -144,7 +150,7 @@ class StopWatchTableViewController: UITableViewController {
         default:
             if let cell = tableView.dequeueReusableCell(withIdentifier: lapCellID, for: indexPath) as? HealthInfoCell {
 
-                cell.titleLabel.text = "Lap " + String(indexPath.row)
+                cell.titleLabel.text = "Lap " + String(lapData.count-indexPath.row)
                 cell.infoLabel.text = self.lapData[indexPath.row]
 
                 return cell
