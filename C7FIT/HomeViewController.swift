@@ -1,9 +1,9 @@
 import UIKit
 
 enum CollectionViewCellType: String {
-    case YouTube
-    case Trainers
-    case Other
+    case youtube
+    case trainers
+    case other
 }
 
 class HomeViewController: UIViewController {
@@ -35,11 +35,11 @@ class HomeViewController: UIViewController {
         collectionView.delegate = self
 
         collectionView.register(YouTubeCollectionViewCell.classForCoder(),
-                                forCellWithReuseIdentifier: CollectionViewCellType.YouTube.rawValue)
+                                forCellWithReuseIdentifier: CollectionViewCellType.youtube.rawValue)
         collectionView.register(TrainersCollectionViewCell.classForCoder(),
-                                forCellWithReuseIdentifier: CollectionViewCellType.Trainers.rawValue)
+                                forCellWithReuseIdentifier: CollectionViewCellType.trainers.rawValue)
         collectionView.register(UICollectionViewCell.classForCoder(),
-                                forCellWithReuseIdentifier: CollectionViewCellType.Other.rawValue)
+                                forCellWithReuseIdentifier: CollectionViewCellType.other.rawValue)
 
         let collectionViewLayout = UICollectionViewFlowLayout()
         collectionViewLayout.itemSize = CGSize(width: view.frame.width,
@@ -72,7 +72,7 @@ extension HomeViewController: UICollectionViewDataSource {
 
         switch indexPath.row {
         case 0:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.YouTube.rawValue,
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.youtube.rawValue,
                                                           for: indexPath)
             if let cell = cell as? YouTubeCollectionViewCell {
                 cell.videoID = "LR708uA4zQ8"
@@ -80,13 +80,13 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
 
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.Trainers.rawValue,
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.trainers.rawValue,
                                                           for: indexPath)
             cell.contentView.backgroundColor = .green
             return cell
 
         default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.Other.rawValue,
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.other.rawValue,
                                                           for: indexPath)
             cell.contentView.backgroundColor = .red
             return cell
