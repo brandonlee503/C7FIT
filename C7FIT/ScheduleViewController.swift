@@ -21,7 +21,6 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         super.viewDidLoad()
         self.title = "Schedule"
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barTintColor = .orange
 
         tableView.delegate = self
         tableView.dataSource = self

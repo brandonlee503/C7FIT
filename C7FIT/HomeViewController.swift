@@ -23,7 +23,6 @@ class HomeViewController: UIViewController {
 
         // Appearance
         title = "Home"
-        navigationController?.navigationBar.barTintColor = .orange
 
         // Add collectionView
         view.addSubview(collectionView)

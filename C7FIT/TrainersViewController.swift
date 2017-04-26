@@ -25,7 +25,6 @@ class TrainersViewController: UIViewController {
 
         // Appearance
         title = "Trainers"
-        navigationController?.navigationBar.barTintColor = .orange
 
         // Add collectionView
         view.addSubview(collectionView)

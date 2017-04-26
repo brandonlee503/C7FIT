@@ -32,7 +32,6 @@ class ProfileViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Profile"
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barTintColor = .orange
         tableView.delegate = self
         tableView.dataSource = self
         tableView.keyboardDismissMode = .onDrag

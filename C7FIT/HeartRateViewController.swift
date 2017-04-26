@@ -20,7 +20,6 @@ class HeartRateViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Heart Rate"
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barTintColor = .orange
 
         self.view.addSubview(heartRateView)
         setupConstraints()
