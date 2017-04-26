@@ -117,7 +117,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         }
         // Stop user invalid input
         self.startStopCell.stopButton.isEnabled = true
-        self.startStopCell.startButton.isEnabled = true
+        self.startStopCell.startButton.isEnabled = false
 
         seconds = 0.0
         distance = 0.0
@@ -152,7 +152,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     func setupLocationTracking() {
         // Start tracking location
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.activityType = .fitness
         locationManager.distanceFilter = 5
         locationManager.requestAlwaysAuthorization()
@@ -162,6 +162,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("loc")
         for location in locations {
             // Focus on the runner
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
@@ -169,11 +170,13 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
             self.mapCell.mapView.setRegion(region, animated: true)
 
             // Dont record location if accuracy too low
-            if location.horizontalAccuracy < 50 {
+            if location.horizontalAccuracy < 20 {
                 if self.locations.count > 0 {
                     distance += location.distance(from: self.locations.last!)
                 }
                 self.locations.append(location)
+            } else {
+                print("loc accuracy too low")
             }
         }
     }

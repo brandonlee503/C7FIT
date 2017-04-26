@@ -637,7 +637,7 @@
 				TargetAttributes = {
 					160D9B061E0B5C0D00801627 = {
 						CreatedOnToolsVersion = 8.2;
-						DevelopmentTeam = 27G39RU5P8;
+						DevelopmentTeam = 66VR475WF9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
@@ -1023,10 +1023,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = C7FIT/C7FIT.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 27G39RU5P8;
+				DEVELOPMENT_TEAM = 66VR475WF9;
 				INFOPLIST_FILE = C7FIT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest2.C7FIT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest3.C7FIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1041,10 +1041,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = C7FIT/C7FIT.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 27G39RU5P8;
+				DEVELOPMENT_TEAM = 66VR475WF9;
 				INFOPLIST_FILE = C7FIT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest2.C7FIT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest3.C7FIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
