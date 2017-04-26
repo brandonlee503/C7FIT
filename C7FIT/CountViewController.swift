@@ -20,7 +20,6 @@ class CountViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Count"
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barTintColor = .orange
 
         self.view.addSubview(countView)
         setupConstraints()

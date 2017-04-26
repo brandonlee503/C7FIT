@@ -27,7 +27,6 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
         super.viewDidLoad()
         title = "Store"
         collectionView?.backgroundColor = .white
-        navigationController?.navigationBar.barTintColor = .orange
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.register(CategoryCellController.self, forCellWithReuseIdentifier: categoryCellIdentifier)
