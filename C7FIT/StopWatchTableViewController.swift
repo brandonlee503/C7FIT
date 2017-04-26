@@ -37,7 +37,7 @@ class StopWatchTableViewController: UITableViewController {
         self.tableView.dataSource = self
         self.tableView.delegate = self
 
-        tableView.register(RunListCell.self, forCellReuseIdentifier: lapCellID)
+        tableView.register(HealthInfoCell.self, forCellReuseIdentifier: lapCellID)
 
         buttonCell.startStopButton.addTarget(self, action: #selector(startTimer), for: .touchUpInside)
         buttonCell.lapResetButton.addTarget(self, action: #selector(createLap), for: .touchUpInside)
@@ -142,10 +142,10 @@ class StopWatchTableViewController: UITableViewController {
             let cell = self.buttonCell
             return cell
         default:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: lapCellID, for: indexPath) as? RunListCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: lapCellID, for: indexPath) as? HealthInfoCell {
 
                 cell.titleLabel.text = "Lap " + String(indexPath.row)
-                cell.valLabel.text = self.lapData[indexPath.row]
+                cell.infoLabel.text = self.lapData[indexPath.row]
 
                 return cell
             }

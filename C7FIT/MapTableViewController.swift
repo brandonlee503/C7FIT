@@ -154,8 +154,9 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.activityType = .fitness
-        locationManager.distanceFilter = 5
+        locationManager.distanceFilter = 2
         locationManager.requestAlwaysAuthorization()
+        locationManager.allowsBackgroundLocationUpdates = true
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
         }
