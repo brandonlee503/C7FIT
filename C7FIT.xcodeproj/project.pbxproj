@@ -1042,7 +1042,7 @@
 				DEVELOPMENT_TEAM = 27G39RU5P8;
 				INFOPLIST_FILE = C7FIT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest2.C7FIT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest.C7FIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1060,7 +1060,7 @@
 				DEVELOPMENT_TEAM = 27G39RU5P8;
 				INFOPLIST_FILE = C7FIT/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest2.C7FIT;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ClubSevenFitnessTest.C7FIT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
