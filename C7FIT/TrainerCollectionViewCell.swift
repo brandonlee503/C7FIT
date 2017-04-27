@@ -27,10 +27,11 @@ class TrainerCollectionViewCell: UICollectionViewCell {
         contentView.insertSubview(titleLabel, at: 1)
         contentView.insertSubview(avatarImageView, at: 1)
         contentView.insertSubview(coverPhotoImageView, at: 0)
-        contentView.clipsToBounds = true
 
         avatarImageView.image = #imageLiteral(resourceName: "spongebob")
-        coverPhotoImageView.image = #imageLiteral(resourceName: "mountain")
+
+        coverPhotoImageView.image = #imageLiteral(resourceName: "trainer")
+        coverPhotoImageView.contentMode = .scaleAspectFill
 
         setupConstraints()
     }
@@ -63,8 +64,17 @@ class TrainerCollectionViewCell: UICollectionViewCell {
         avatarImageView.layer.masksToBounds = true
         avatarImageView.contentMode = .scaleAspectFill
         avatarImageView.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+    }
 
+    override func layoutSubviews() {
         coverPhotoImageView.frame = contentView.bounds
+
+        let gradient = CAGradientLayer()
+        gradient.frame = coverPhotoImageView.bounds
+        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradient.locations = [0.0, 1.0]
+        coverPhotoImageView.layer.addSublayer(gradient)
+        contentView.clipsToBounds = true
     }
 
 }

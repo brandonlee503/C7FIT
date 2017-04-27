@@ -75,7 +75,7 @@ extension HomeViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.youtube.rawValue,
                                                           for: indexPath)
             if let cell = cell as? YouTubeCollectionViewCell {
-                cell.videoID = "LR708uA4zQ8"
+                cell.videoID = "SGGKHqYEMqc"
             }
             return cell
 

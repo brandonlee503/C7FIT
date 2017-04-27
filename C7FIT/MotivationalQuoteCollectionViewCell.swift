@@ -13,7 +13,6 @@ class MotivationalQuoteCollectionViewCell: UICollectionViewCell {
         quoteLabel.font = UIFont.systemFont(ofSize: 32)
         quoteLabel.lineBreakMode = .byWordWrapping
         quoteLabel.numberOfLines = 0
-        quoteLabel.frame = contentView.bounds
 
         contentView.addSubview(quoteLabel)
         contentView.clipsToBounds = true
@@ -22,6 +21,10 @@ class MotivationalQuoteCollectionViewCell: UICollectionViewCell {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSubviews() {
+        quoteLabel.frame = contentView.layoutMarginsGuide.layoutFrame
     }
 
 }
