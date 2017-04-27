@@ -83,7 +83,8 @@
 		7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */; };
 		8DDE8CB2A52DA4DDF6CE47C9 /* Pods_C7FITTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */; };
 		AC087E321EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC087E311EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift */; };
-		AC737EF01EB28BFD0000E3E2 /* Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC737EEF1EB28BFD0000E3E2 /* Snapshot.swift */; };
+		AC737EF01EB28BFD0000E3E2 /* GenerateScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC737EEF1EB28BFD0000E3E2 /* GenerateScreenshots.swift */; };
+		AC737EF81EB290360000E3E2 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC737EF71EB290360000E3E2 /* SnapshotHelper.swift */; };
 		AC7D4A981EA3F76500230C94 /* TrainersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D4A971EA3F76500230C94 /* TrainersCollectionViewCell.swift */; };
 		AC7D4A9B1EA3FE4B00230C94 /* TrainersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D4A9A1EA3FE4B00230C94 /* TrainersViewController.swift */; };
 		AC7D4A9D1EA3FF1300230C94 /* Trainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D4A9C1EA3FF1300230C94 /* Trainer.swift */; };
@@ -203,8 +204,9 @@
 		A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C7FITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC087E311EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotivationalQuoteCollectionViewCell.swift; sourceTree = "<group>"; };
 		AC737EED1EB28BFD0000E3E2 /* snapshot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = snapshot.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC737EEF1EB28BFD0000E3E2 /* Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Snapshot.swift; sourceTree = "<group>"; };
+		AC737EEF1EB28BFD0000E3E2 /* GenerateScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateScreenshots.swift; sourceTree = "<group>"; };
 		AC737EF11EB28BFD0000E3E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC737EF71EB290360000E3E2 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		AC7D4A971EA3F76500230C94 /* TrainersCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainersCollectionViewCell.swift; sourceTree = "<group>"; };
 		AC7D4A9A1EA3FE4B00230C94 /* TrainersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainersViewController.swift; sourceTree = "<group>"; };
 		AC7D4A9C1EA3FF1300230C94 /* Trainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trainer.swift; sourceTree = "<group>"; };
@@ -584,7 +586,8 @@
 		AC737EEE1EB28BFD0000E3E2 /* snapshot */ = {
 			isa = PBXGroup;
 			children = (
-				AC737EEF1EB28BFD0000E3E2 /* Snapshot.swift */,
+				AC737EEF1EB28BFD0000E3E2 /* GenerateScreenshots.swift */,
+				AC737EF71EB290360000E3E2 /* SnapshotHelper.swift */,
 				AC737EF11EB28BFD0000E3E2 /* Info.plist */,
 			);
 			path = snapshot;
@@ -995,7 +998,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC737EF01EB28BFD0000E3E2 /* Snapshot.swift in Sources */,
+				AC737EF01EB28BFD0000E3E2 /* GenerateScreenshots.swift in Sources */,
+				AC737EF81EB290360000E3E2 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1277,6 +1281,7 @@
 				AC737EF51EB28BFD0000E3E2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

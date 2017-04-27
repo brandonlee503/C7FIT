@@ -24,6 +24,7 @@ class C7FITUITests: XCTestCase {
     func testTabBarScreens() {
         let app = XCUIApplication()
         let tabBarsQuery = app.tabBars
+        tabBarsQuery.buttons["Home"].tap()
         tabBarsQuery.buttons["Schedule"].tap()
         tabBarsQuery.buttons["Store"].tap()
         tabBarsQuery.buttons["Activity"].tap()
