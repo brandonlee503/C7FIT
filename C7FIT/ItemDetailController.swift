@@ -121,13 +121,15 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
                                                                      withReuseIdentifier: headerReuseIdentifer,
                                                                      for: indexPath) as! ItemHeaderCellController
         // Get all images into one array
-        if let mainImage = item?.mainImage {
+        if let mainImage = itemDetail?.mainImage {
             header.itemImages.append(mainImage)
         }
 
-        if let additionalImages = item?.additionalImages {
+        if let additionalImages = itemDetail?.additionalImages {
             header.itemImages.append(contentsOf: additionalImages)
         }
+        // Refresh when full resolution images are downloaded
+        header.itemHeaderCellView.imageCollectionView.reloadData()
         return header
     }
 

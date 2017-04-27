@@ -39,8 +39,7 @@ class ItemHeaderCell: UIView {
     // MARK: - Layout
 
     func setup() {
-        backgroundColor = .orange
-        imageCollectionView.backgroundColor = .blue
+        imageCollectionView.backgroundColor = .white
         addSubview(imageCollectionView)
     }
 
