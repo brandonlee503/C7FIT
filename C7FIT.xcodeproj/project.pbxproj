@@ -48,6 +48,7 @@
 		16FFF43D1E3459C2009B4F34 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFF43C1E3459C2009B4F34 /* User.swift */; };
 		7A19432B1EA56D3600695CDA /* HeartRateTargets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A19432A1EA56D3600695CDA /* HeartRateTargets.swift */; };
 		7A1CD7A81E6400E600953698 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1CD7A71E6400E600953698 /* MapKit.framework */; };
+		7A3D66AD1EB2950A005DED76 /* HeartRateMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3D66AC1EB2950A005DED76 /* HeartRateMonitor.swift */; };
 		7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7699391E3962E90086519A /* ScheduleBrowserTableViewCell.swift */; };
 		7A76A7A41E6F66A100C7D8F2 /* StartStopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76A7A31E6F66A100C7D8F2 /* StartStopCell.swift */; };
 		7A76A7A61E6F66DA00C7D8F2 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76A7A51E6F66DA00C7D8F2 /* MapCell.swift */; };
@@ -151,6 +152,7 @@
 		6F1638978FFA2B1F2F25C7A2 /* Pods-C7FITTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FITTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-C7FITTests/Pods-C7FITTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A19432A1EA56D3600695CDA /* HeartRateTargets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateTargets.swift; sourceTree = "<group>"; };
 		7A1CD7A71E6400E600953698 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7A3D66AC1EB2950A005DED76 /* HeartRateMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateMonitor.swift; sourceTree = "<group>"; };
 		7A7699391E3962E90086519A /* ScheduleBrowserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleBrowserTableViewCell.swift; sourceTree = "<group>"; };
 		7A76A7A31E6F66A100C7D8F2 /* StartStopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartStopCell.swift; sourceTree = "<group>"; };
 		7A76A7A51E6F66DA00C7D8F2 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 			isa = PBXGroup;
 			children = (
 				7A9D9E171E9EC4720049DCE4 /* HeartRateTableViewController.swift */,
+				7A3D66AC1EB2950A005DED76 /* HeartRateMonitor.swift */,
 			);
 			name = HeartRate;
 			sourceTree = "<group>";
@@ -857,6 +860,7 @@
 				7AF14EB81E9D31F4009C7908 /* GenLRButtonCell.swift in Sources */,
 				7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */,
 				7A838C511E96F497003BE65F /* WatchTimerCell.swift in Sources */,
+				7A3D66AD1EB2950A005DED76 /* HeartRateMonitor.swift in Sources */,
 				16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */,
 				161B93411E9AD48100F397C5 /* ProfileImagePickerDelegate.swift in Sources */,
 				7A76A7A81E6F66FD00C7D8F2 /* RunDetailCell.swift in Sources */,
