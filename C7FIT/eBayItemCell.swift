@@ -37,7 +37,7 @@ class EbayItemCell: UICollectionViewCell {
         // Ebay's color scheme
         itemImageView.layer.borderColor = UIColor(red: 213/255, green: 213/255, blue: 213/255, alpha: 1).cgColor
         itemImageView.backgroundColor = .lightGray
-        itemImageView.image = UIImage(named: "club front") // TODO: Add a default image
+        itemImageView.image = UIImage(named: "empty_image")
         addSubview(itemImageView)
 
         itemTitle.font = UIFont.systemFont(ofSize: 8)
