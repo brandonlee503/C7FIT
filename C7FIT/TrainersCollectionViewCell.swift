@@ -14,7 +14,8 @@ class TrainersCollectionViewCell: UICollectionViewCell {
         trainersLabel.font = UIFont.systemFont(ofSize: 22)
         trainersLabel.frame = contentView.bounds
 
-        coverPhotoImageView.image = #imageLiteral(resourceName: "mountain")
+        coverPhotoImageView.image = #imageLiteral(resourceName: "trainer")
+        coverPhotoImageView.contentMode = .scaleAspectFill
         coverPhotoImageView.frame = contentView.bounds
 
         let gradient = CAGradientLayer()
