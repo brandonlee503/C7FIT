@@ -10,7 +10,7 @@ import UIKit
 
 private let reuseIdentifier = "ItemDetailCell"
 private let headerReuseIdentifer = "ItemHeader"
-private let infoIdentifier = "ItemInfoCell"
+private let primaryInfoIdentifier = "PrimaryItemInfoCell"
 
 class ItemDetailController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -40,7 +40,7 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
         collectionView?.register(ItemHeaderCellController.self,
                                  forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                  withReuseIdentifier: headerReuseIdentifer)
-        collectionView?.register(ItemInfoCell.self, forCellWithReuseIdentifier: infoIdentifier)
+        collectionView?.register(ItemPrimaryInfoCell.self, forCellWithReuseIdentifier: primaryInfoIdentifier)
     }
 
     func buyButtonPressed() {
@@ -70,7 +70,7 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item == 0 {
-            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: infoIdentifier, for: indexPath) as? ItemInfoCell {
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: primaryInfoIdentifier, for: indexPath) as? ItemPrimaryInfoCell {
                 if let title = item?.title {
                     cell.itemTitle.text = title
                 }

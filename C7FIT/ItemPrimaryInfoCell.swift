@@ -1,5 +1,5 @@
 //
-//  ItemInfoCell.swift
+//  ItemPrimaryInfoCell.swift
 //  C7FIT
 //
 //  Created by Brandon Lee on 3/20/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemInfoCell: UICollectionViewCell {
+class ItemPrimaryInfoCell: UICollectionViewCell {
 
     // MARK - Properties
 
