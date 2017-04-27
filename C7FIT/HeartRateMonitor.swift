@@ -6,12 +6,25 @@
 //  Copyright © 2017 Brandon Lee. All rights reserved.
 //
 
+// swiftlint:disable large_tuple
+
 import UIKit
 import Foundation
 import AVFoundation
 import CoreImage
 
 class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
+
+    // MARK: - Properties
+
+    var greater = 0
+    var lesser = 0
+    var lastVal = -1
+    var switches = 0
+
+    var fingerOn = false
+
+    // MARK: - Camera Capture
 
     func startCameraCapture() {
         let cameraSession = AVCaptureSession()
@@ -53,62 +66,77 @@ class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
 
             cameraSession.startRunning()
 
-            sleep(20)
+            while fingerOn == false {
+                sleep(1)
+            }
+
+            sleep(15)
+            let changes = self.switches/2
 
             print(self.greater)
             print(self.lesser)
-            print(self.switches/2)
+            print(self.changes)
+            print(changes * 4)
         } catch let error as NSError {
             print("camera error:")
             print(error)
         }
     }
 
+    // Mark: - Capture Buffer delegate
+
     func captureOutput(_ captureOutput: AVCaptureOutput!,
                        didOutputSampleBuffer sampleBuffer: CMSampleBuffer!,
                        from connection: AVCaptureConnection!) {
-        print("doing capture")
-        // Calc avg rgb value
+
+        // Store Variable
+        var bitmap = [UInt8](repeating: 0, count: 4)
+        let context = CIContext()
+
+        // Convert video output buffer usable image
         let colorImage = sampleBuffer.image()!
+
+        // Use CIAreaAverage to get average color
         let extent = colorImage.extent
         let inputExtent = CIVector(x: extent.origin.x, y: extent.origin.y, z: extent.size.width, w: extent.size.height)
         let filter = CIFilter(name: "CIAreaAverage", withInputParameters: [kCIInputImageKey: colorImage, kCIInputExtentKey: inputExtent])!
         let outputImage = filter.outputImage!
         let outputExtent = outputImage.extent
-        assert(outputExtent.size.width == 1 && outputExtent.size.height == 1)
-        var bitmap = [UInt8](repeating: 0, count: 4)
-        let context = CIContext()
-        context.render(outputImage,
-                       toBitmap: &bitmap,
-                       rowBytes: 4,
-                       bounds: CGRect(x: 0, y: 0, width: 1, height: 1),
-                       format: kCIFormatRGBA8,
-                       colorSpace: CGColorSpaceCreateDeviceRGB())
 
-        let red = CGFloat(bitmap[0]) / 255
-        let green = CGFloat(bitmap[1]) / 255
-        let blue = CGFloat(bitmap[2]) / 255
-        let alpha = CGFloat(bitmap[3]) / 255
+        // Conversion Success
+        if outputExtent.size.width == 1 && outputExtent.size.height == 1 {
 
-        // Convert to HSV values
+            // Obtain our colors
+            context.render(outputImage,
+                           toBitmap: &bitmap,
+                           rowBytes: 4,
+                           bounds: CGRect(x: 0, y: 0, width: 1, height: 1),
+                           format: kCIFormatRGBA8,
+                           colorSpace: CGColorSpaceCreateDeviceRGB())
 
-        let (hue, sat, bright) = RGBtoHSV(red: red, green: green, blue: blue, alpha: alpha)
-        print(hue)
+            let red = CGFloat(bitmap[0]) / 255
+            let green = CGFloat(bitmap[1]) / 255
+            let blue = CGFloat(bitmap[2]) / 255
+            let alpha = CGFloat(bitmap[3]) / 255
 
-        // Finger is placed over camera?
-        if sat > 0.5 && bright > 0.5 {
-            addValue(val: hue, time: 0.0)
-        } else {
-            print("finger not over camera")
+            // Convert to HSV values
+            let (hue, sat, bright) = RGBtoHSV(red: red, green: green, blue: blue, alpha: alpha)
+            print(hue)
+
+            // Check brightness high to tell if finger is placed over camera
+            if sat > 0.5 && bright > 0.5 {
+                detectChanges(val: hue, time: 0.0)
+                self.fingerOn = true
+            } else {
+                print("finger not over camera")
+            }
         }
     }
 
-    var greater = 0
-    var lesser = 0
-    var lastVal = -1
-    var switches = 0
 
-    func addValue(val: CGFloat, time: Double) -> CGFloat {
+    // MARK: - Pulse Calculation
+
+    func detectChanges(val: CGFloat, time: Double) {
         print(val)
         if val > 0.1 {
             print("greater")
@@ -125,12 +153,9 @@ class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
                 self.switches += 1
             }
         }
-        return 0.0
     }
 
-    func blink() {
-
-    }
+    // MARK: - Helper functions
 
     func RGBtoHSV(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> (hue: CGFloat, sat: CGFloat, bright: CGFloat) {
         var hue: CGFloat = 0.0
