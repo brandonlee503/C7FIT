@@ -14,12 +14,13 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
 
     // MARK: - Constants
 
-    let ebayToken = EbayAPIToken()
+    let ebayAPITokenManager = EbayAPITokenManager()
     let ebayDataManager = EbayDataManager()
 
     // MARK: - Properties
 
     var categoryCellData: [EbayItemCategory] = []
+    var ebayAPIToken: String?
 
     // MARK: - View Lifecycle
 
@@ -39,8 +40,9 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
         Submit pre-curated queries for fitness eBay items
      */
     func submitPrecuratedQueries() {
-        ebayToken.getOAuth2Token { OAuth2Token in
+        ebayAPITokenManager.getOAuth2Token { OAuth2Token in
             guard let token = OAuth2Token else { return }
+            self.ebayAPIToken = OAuth2Token
             self.ebayDataManager.searchItem(query: "Yoga Ball", OAuth2Token: token) { itemCategory in
                 guard let itemCategory = itemCategory else { return }
                 self.categoryCellData.append(itemCategory)
@@ -82,7 +84,7 @@ class StoreViewController: UICollectionViewController, UICollectionViewDelegateF
     // MARK: - Navigation
 
     func showItemDetail(item: EbayItem) {
-        navigationController?.pushViewController(ItemDetailController(item: item), animated: true)
+        navigationController?.pushViewController(ItemDetailController(item: item, token: ebayAPIToken, dataManager: ebayDataManager), animated: true)
     }
 
     // MARK: - UICollectionViewDelegateFlowLayout

@@ -36,7 +36,8 @@
 		16594B361E6C5B350032AD26 /* eBayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16594B351E6C5B350032AD26 /* eBayItem.swift */; };
 		1694BE1C1E71330F004E2E7D /* C7FUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1694BE1B1E71330F004E2E7D /* C7FUIImageView.swift */; };
 		1699EB331E80BBEE008171AF /* ItemInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699EB321E80BBEE008171AF /* ItemInfoCell.swift */; };
-		16BEB6C61E72966A001BE973 /* eBayAPIToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEB6C51E72966A001BE973 /* eBayAPIToken.swift */; };
+		16AD14E01EB1777700738D5D /* eBayItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AD14DF1EB1777700738D5D /* eBayItemDetail.swift */; };
+		16BEB6C61E72966A001BE973 /* eBayAPITokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEB6C51E72966A001BE973 /* eBayAPITokenManager.swift */; };
 		16BEB6C81E72AE20001BE973 /* ItemDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEB6C71E72AE20001BE973 /* ItemDetailController.swift */; };
 		16BEBE521E6FB4E10034D422 /* eBayItemCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEBE511E6FB4E10034D422 /* eBayItemCategory.swift */; };
 		16BEBE541E6FEE050034D422 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEBE531E6FEE050034D422 /* CategoryCell.swift */; };
@@ -142,7 +143,8 @@
 		16594B351E6C5B350032AD26 /* eBayItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayItem.swift; sourceTree = "<group>"; };
 		1694BE1B1E71330F004E2E7D /* C7FUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = C7FUIImageView.swift; sourceTree = "<group>"; };
 		1699EB321E80BBEE008171AF /* ItemInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemInfoCell.swift; sourceTree = "<group>"; };
-		16BEB6C51E72966A001BE973 /* eBayAPIToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayAPIToken.swift; sourceTree = "<group>"; };
+		16AD14DF1EB1777700738D5D /* eBayItemDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayItemDetail.swift; sourceTree = "<group>"; };
+		16BEB6C51E72966A001BE973 /* eBayAPITokenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayAPITokenManager.swift; sourceTree = "<group>"; };
 		16BEB6C71E72AE20001BE973 /* ItemDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailController.swift; sourceTree = "<group>"; };
 		16BEBE511E6FB4E10034D422 /* eBayItemCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayItemCategory.swift; sourceTree = "<group>"; };
 		16BEBE531E6FEE050034D422 /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
@@ -323,7 +325,7 @@
 		163771521E398E07000B3E87 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
-				16BEB6C51E72966A001BE973 /* eBayAPIToken.swift */,
+				16BEB6C51E72966A001BE973 /* eBayAPITokenManager.swift */,
 				1626F8361E62BD1A002E2A9B /* eBayDataManager.swift */,
 				163771531E398E2B000B3E87 /* FirebaseDataManager.swift */,
 				7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */,
@@ -395,6 +397,7 @@
 				7AD3DEF11E5ED7CF001580CC /* RunData.swift */,
 				7AD3DEF31E5ED860001580CC /* LocationData.swift */,
 				16594B351E6C5B350032AD26 /* eBayItem.swift */,
+				16AD14DF1EB1777700738D5D /* eBayItemDetail.swift */,
 				16BEBE511E6FB4E10034D422 /* eBayItemCategory.swift */,
 				AC7D4A9C1EA3FF1300230C94 /* Trainer.swift */,
 			);
@@ -852,7 +855,7 @@
 				16BEB6C81E72AE20001BE973 /* ItemDetailController.swift in Sources */,
 				7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */,
 				7AAB23641E4297BA00AD7040 /* ScheduleBioTableViewCell.swift in Sources */,
-				16BEB6C61E72966A001BE973 /* eBayAPIToken.swift in Sources */,
+				16BEB6C61E72966A001BE973 /* eBayAPITokenManager.swift in Sources */,
 				16BFBBB41E6A7C7A001D088A /* eBayItemCell.swift in Sources */,
 				7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */,
 				160D9B0B1E0B5C0D00801627 /* AppDelegate.swift in Sources */,
@@ -860,6 +863,7 @@
 				1699EB331E80BBEE008171AF /* ItemInfoCell.swift in Sources */,
 				7A76A7A41E6F66A100C7D8F2 /* StartStopCell.swift in Sources */,
 				7AF7BBF81E5464310059A62A /* CountView.swift in Sources */,
+				16AD14E01EB1777700738D5D /* eBayItemDetail.swift in Sources */,
 				160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */,
 				7A838C541E96F4AA003BE65F /* StopWatchTableViewController.swift in Sources */,
 				163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */,

@@ -14,19 +14,17 @@ private let infoIdentifier = "ItemInfoCell"
 
 class ItemDetailController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    // MARK: - Constants
+    // MARK: - Variables
 
-    var detailItem: EbayItem?
+    var item: EbayItem?
+    var itemDetail: EbayItemDetail?
 
     // MARK: - Initialization
 
-    convenience init() {
-        self.init(item: nil)
-    }
-
-    init(item: EbayItem?) {
+    init(item: EbayItem, token: String?, dataManager: EbayDataManager) {
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
-        self.detailItem = item
+        self.item = item
+        fetchItemDetails(token: token, dataManager: dataManager)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -46,8 +44,17 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
     }
 
     func buyButtonPressed() {
-        if let urlString = detailItem?.webURL, let url = URL(string: urlString) {
+        if let urlString = item?.webURL, let url = URL(string: urlString) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+
+    func fetchItemDetails(token: String?, dataManager: EbayDataManager) {
+        guard let itemID = item?.itemID, let token = token else { return }
+        dataManager.getItem(itemID: itemID, OAuth2Token: token) { itemDetailJSON in
+            guard let itemDetailJSON = itemDetailJSON else { return }
+            self.itemDetail = EbayItemDetail(itemJSON: itemDetailJSON)
+            self.collectionView?.reloadData()
         }
     }
 
@@ -64,17 +71,19 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.item == 0 {
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: infoIdentifier, for: indexPath) as? ItemInfoCell {
-                cell.itemTitle.text = detailItem?.title
+                if let title = item?.title {
+                    cell.itemTitle.text = title
+                }
                 // TODO - Potentially put price and cost parsing into a view model
-                if let price = detailItem?.price {
+                if let price = item?.price {
                     cell.price.text = "$\(price)"
                 } else {
                     cell.price.text = "Unavailable"
                 }
-                if detailItem?.shippingCost == "0.00" {
+                if item?.shippingCost == "0.00" {
                     cell.shippingCost.text = "Free"
                 } else {
-                    cell.shippingCost.text = detailItem?.shippingCost
+                    cell.shippingCost.text = item?.shippingCost
                 }
                 cell.buyButton.addTarget(self, action: #selector(self.buyButtonPressed), for: .touchUpInside)
 
@@ -92,10 +101,11 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
                                                                      withReuseIdentifier: headerReuseIdentifer,
                                                                      for: indexPath) as! ItemHeaderCellController
         // Get all images into one array
-        if let mainImage = detailItem?.mainImage {
+        if let mainImage = item?.mainImage {
             header.itemImages.append(mainImage)
         }
-        if let additionalImages = detailItem?.additionalImages {
+
+        if let additionalImages = item?.additionalImages {
             header.itemImages.append(contentsOf: additionalImages)
         }
         return header
