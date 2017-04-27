@@ -19,6 +19,7 @@ class CategoryCell: UIView {
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = .white
         return collectionView
     }()
 
@@ -39,39 +40,40 @@ class CategoryCell: UIView {
     // MARK: - Layout
 
     func setup() {
-        self.backgroundColor = .orange
         categoryTitle.text = "Category Title"
         categoryTitle.font.withSize(14)
         categoryTitle.textColor = .black
-        categoryTitle.backgroundColor = .cyan
         addSubview(categoryTitle)
 
-        itemCollectionView.backgroundColor = .blue
         addSubview(itemCollectionView)
 
-        dividerLine.backgroundColor = .yellow//UIColor(white: 0.5, alpha: 0.5)
+        dividerLine.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
         addSubview(dividerLine)
     }
 
     func setupConstraints() {
         categoryTitle.translatesAutoresizingMaskIntoConstraints = false
-        let titleTop = categoryTitle.topAnchor.constraint(equalTo: topAnchor)
-        let titleLeft = categoryTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10)
-        NSLayoutConstraint.activate([titleTop, titleLeft])
-
-        // Bottom offset for divider line
         itemCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        let collectionTop = itemCollectionView.topAnchor.constraint(equalTo: categoryTitle.bottomAnchor)
-        let collectionBottom = itemCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -0.5)
-        let collectionLeft = itemCollectionView.leftAnchor.constraint(equalTo: leftAnchor)
-        let collectionRight = itemCollectionView.rightAnchor.constraint(equalTo: rightAnchor)
-        NSLayoutConstraint.activate([collectionTop, collectionBottom, collectionLeft, collectionRight])
-
         dividerLine.translatesAutoresizingMaskIntoConstraints = false
-        let dividerLineTop = dividerLine.topAnchor.constraint(equalTo: itemCollectionView.bottomAnchor)
-        let dividerLineBottom = dividerLine.bottomAnchor.constraint(equalTo: bottomAnchor)
-        let dividerLineLeft = dividerLine.leftAnchor.constraint(equalTo: leftAnchor)
-        let dividerLineRight = dividerLine.rightAnchor.constraint(equalTo: rightAnchor)
-        NSLayoutConstraint.activate([dividerLineTop, dividerLineBottom, dividerLineLeft, dividerLineRight])
+
+        NSLayoutConstraint.activate([
+            categoryTitle.topAnchor.constraint(equalTo: topAnchor),
+            categoryTitle.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10)
+        ])
+
+        NSLayoutConstraint.activate([
+            itemCollectionView.topAnchor.constraint(equalTo: categoryTitle.bottomAnchor),
+            // Bottom offset for divider line
+            itemCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
+            itemCollectionView.leftAnchor.constraint(equalTo: leftAnchor),
+            itemCollectionView.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
+
+        NSLayoutConstraint.activate([
+            dividerLine.topAnchor.constraint(equalTo: itemCollectionView.bottomAnchor, constant: 9.5),
+            dividerLine.bottomAnchor.constraint(equalTo: bottomAnchor),
+            dividerLine.leftAnchor.constraint(equalTo: leftAnchor),
+            dividerLine.rightAnchor.constraint(equalTo: rightAnchor)
+        ])
     }
 }

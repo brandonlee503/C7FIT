@@ -9,18 +9,22 @@
 import Foundation
 
 /**
-    A model representation of an Ebay item fetched from search
+    A model representation of an Ebay item fetched from search query
  */
 struct EbayItem {
+    let itemID: String?
     let mainImage: URL?
     var additionalImages = [URL?]()
     let title: String?
     let price: String?
+    let condition: String?
     let shippingCost: String?
     let webURL: String?
 
     // A bit ugly with nested JSON, but it's done how Apple says - https://developer.apple.com/swift/blog/?id=37
     init(itemJSON: [String: Any]) {
+        itemID = itemJSON["itemId"] as! String?
+
         if let imageDict = itemJSON["image"] as? [String: Any] {
             mainImage = URL(string: imageDict["imageUrl"] as! String)
         } else {
@@ -40,6 +44,8 @@ struct EbayItem {
         } else {
             price = nil
         }
+
+        condition = itemJSON["condition"] as! String?
 
         // Get first dictionary in array and get its shipping cost
         if let shippingOptionsDict = itemJSON["shippingOptions"] as? [[String: Any]],

@@ -45,12 +45,10 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
             print("error loading map")
             let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(cantSaveRun))
             navigationItem.rightBarButtonItem = saveButton
-            navigationItem.rightBarButtonItem?.tintColor = .black
         } else if !hideSave {
             // Display save button with correct functionality
             let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveRun))
             navigationItem.rightBarButtonItem = saveButton
-            navigationItem.rightBarButtonItem?.tintColor = .black
         }
         // Display run details
         detailCell.distanceQuantity.text = self.currentRun.dispDistancePretty()

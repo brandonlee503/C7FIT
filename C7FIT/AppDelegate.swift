@@ -18,7 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.orange]
+        let navigationBarApperance = UINavigationBar.appearance()
+        navigationBarApperance.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.orange]
+        navigationBarApperance.tintColor = .gray
 
         // Initialize tabBar controller and navigation controllers
         let tabBarController = UITabBarController()
