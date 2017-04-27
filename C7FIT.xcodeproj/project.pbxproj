@@ -37,6 +37,7 @@
 		1694BE1C1E71330F004E2E7D /* C7FUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1694BE1B1E71330F004E2E7D /* C7FUIImageView.swift */; };
 		1699EB331E80BBEE008171AF /* ItemPrimaryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1699EB321E80BBEE008171AF /* ItemPrimaryInfoCell.swift */; };
 		16AD14E01EB1777700738D5D /* eBayItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AD14DF1EB1777700738D5D /* eBayItemDetail.swift */; };
+		16AD14E21EB1DA1E00738D5D /* ItemSecondaryInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AD14E11EB1DA1E00738D5D /* ItemSecondaryInfoCell.swift */; };
 		16BEB6C61E72966A001BE973 /* eBayAPITokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEB6C51E72966A001BE973 /* eBayAPITokenManager.swift */; };
 		16BEB6C81E72AE20001BE973 /* ItemDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEB6C71E72AE20001BE973 /* ItemDetailController.swift */; };
 		16BEBE521E6FB4E10034D422 /* eBayItemCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BEBE511E6FB4E10034D422 /* eBayItemCategory.swift */; };
@@ -144,6 +145,7 @@
 		1694BE1B1E71330F004E2E7D /* C7FUIImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = C7FUIImageView.swift; sourceTree = "<group>"; };
 		1699EB321E80BBEE008171AF /* ItemPrimaryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemPrimaryInfoCell.swift; sourceTree = "<group>"; };
 		16AD14DF1EB1777700738D5D /* eBayItemDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayItemDetail.swift; sourceTree = "<group>"; };
+		16AD14E11EB1DA1E00738D5D /* ItemSecondaryInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemSecondaryInfoCell.swift; sourceTree = "<group>"; };
 		16BEB6C51E72966A001BE973 /* eBayAPITokenManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayAPITokenManager.swift; sourceTree = "<group>"; };
 		16BEB6C71E72AE20001BE973 /* ItemDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailController.swift; sourceTree = "<group>"; };
 		16BEBE511E6FB4E10034D422 /* eBayItemCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eBayItemCategory.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				16461B351E7F435E003A8723 /* ItemHeaderCell.swift */,
 				16461B371E7F4AF2003A8723 /* ItemImageCell.swift */,
 				1699EB321E80BBEE008171AF /* ItemPrimaryInfoCell.swift */,
+				16AD14E11EB1DA1E00738D5D /* ItemSecondaryInfoCell.swift */,
 			);
 			name = StoreViews;
 			sourceTree = "<group>";
@@ -836,6 +839,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7AF7BC021E5467B90059A62A /* CountViewController.swift in Sources */,
+				16AD14E21EB1DA1E00738D5D /* ItemSecondaryInfoCell.swift in Sources */,
 				16594B361E6C5B350032AD26 /* eBayItem.swift in Sources */,
 				AC96A66D1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift in Sources */,
 				16576F171E1295C300BF622D /* String+Conversions.swift in Sources */,

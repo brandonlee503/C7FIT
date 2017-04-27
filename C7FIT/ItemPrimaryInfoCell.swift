@@ -33,28 +33,24 @@ class ItemPrimaryInfoCell: UICollectionViewCell {
     // MARK: - Layout
 
     func setup() {
-        self.backgroundColor = .purple
+        backgroundColor = .white
 
         itemTitle.font = UIFont.systemFont(ofSize: 18)
         itemTitle.textColor = .black
-        itemTitle.backgroundColor = .green
         itemTitle.lineBreakMode = .byWordWrapping
         itemTitle.numberOfLines = 2
         addSubview(itemTitle)
 
         price.font = UIFont.systemFont(ofSize: 20)
         price.textColor = .black
-        price.backgroundColor = .red
         addSubview(price)
 
         shippingCost.font = UIFont.systemFont(ofSize: 14)
         shippingCost.textColor = .black
-        shippingCost.backgroundColor = .blue
         addSubview(shippingCost)
 
         shippingTitle.font = UIFont.systemFont(ofSize: 8)
         shippingTitle.textColor = .gray
-        shippingTitle.backgroundColor = .orange
         shippingTitle.text = "Shipping"
         addSubview(shippingTitle)
 
@@ -89,7 +85,7 @@ class ItemPrimaryInfoCell: UICollectionViewCell {
         NSLayoutConstraint.activate([shippingTitleTop, shippingTitleRight])
 
         buyButton.translatesAutoresizingMaskIntoConstraints = false
-        let buttonTop = buyButton.topAnchor.constraint(equalTo: price.bottomAnchor, constant: 35)
+        let buttonTop = buyButton.topAnchor.constraint(equalTo: price.bottomAnchor, constant: 25)
         let buttonLeft = buyButton.leftAnchor.constraint(equalTo: price.leftAnchor)
         let buttonRight = buyButton.rightAnchor.constraint(equalTo: shippingTitle.rightAnchor)
         NSLayoutConstraint.activate([buttonTop, buttonLeft, buttonRight])

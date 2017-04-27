@@ -11,6 +11,7 @@ import UIKit
 private let reuseIdentifier = "ItemDetailCell"
 private let headerReuseIdentifer = "ItemHeader"
 private let primaryInfoIdentifier = "PrimaryItemInfoCell"
+private let secondaryInfoIdentifier = "SecondaryItemInfoCell"
 
 class ItemDetailController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -36,11 +37,12 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Item"
-        collectionView?.backgroundColor = .white
+        collectionView?.backgroundColor = UIColor(red: 213/255, green: 213/255, blue: 213/255, alpha: 1)
         collectionView?.register(ItemHeaderCellController.self,
                                  forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                  withReuseIdentifier: headerReuseIdentifer)
         collectionView?.register(ItemPrimaryInfoCell.self, forCellWithReuseIdentifier: primaryInfoIdentifier)
+        collectionView?.register(ItemSecondaryInfoCell.self, forCellWithReuseIdentifier: secondaryInfoIdentifier)
     }
 
     func buyButtonPressed() {
@@ -65,7 +67,7 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -86,6 +88,24 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
                     cell.shippingCost.text = item?.shippingCost
                 }
                 cell.buyButton.addTarget(self, action: #selector(self.buyButtonPressed), for: .touchUpInside)
+
+                return cell
+            }
+        } else if indexPath.item == 1 {
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: secondaryInfoIdentifier, for: indexPath) as? ItemSecondaryInfoCell {
+                if let condition = item?.condition {
+                    cell.itemCondition.text = "Condition: \(condition)"
+                } else {
+                    cell.itemCondition.text = "Condition: Unavailable"
+                }
+                if let location = itemDetail?.location {
+                    cell.itemLocation.text = "Shipping Location: \(location)"
+                } else {
+                    cell.itemLocation.text = "Shipping Location: Unavailable"
+                }
+                if let description = itemDetail?.shortDescription {
+                    cell.shortDescription.text = description
+                }
 
                 return cell
             }
@@ -115,7 +135,11 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 150)
+        if indexPath.item == 0 {
+            return CGSize(width: view.frame.width, height: 150)
+        }
+
+        return CGSize(width: view.frame.width, height: 200)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
