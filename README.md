@@ -27,6 +27,7 @@ cd C7FIT
 bundle install
 bundle exec pod install
 ```
+The project should now be openable and buildable through the `C7FIT.xcworkspace` file.
 
 ## Contributing
 ### Branches
