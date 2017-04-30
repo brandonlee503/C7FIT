@@ -1,5 +1,5 @@
 //
-//  ScheduleContactTableViewCell.swift
+//  ClubContactCell.swift
 //  C7FIT
 //
 //  Created by Michael Lee on 2/1/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScheduleContactTableViewCell: UITableViewCell {
+class ClubContactCell: UITableViewCell {
 
     // MARK: - Properties
 
@@ -18,7 +18,6 @@ class ScheduleContactTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        print("Contact cell")
         setup()
         setupConstraints()
     }
@@ -30,6 +29,7 @@ class ScheduleContactTableViewCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
+        backgroundColor = .clear
         contactButton.backgroundColor = .white
         contactButton.setTitle("Contact Us", for: .normal)
         contactButton.setTitleColor(.black, for: .normal)
@@ -38,12 +38,11 @@ class ScheduleContactTableViewCell: UITableViewCell {
 
     func setupConstraints() {
         contactButton.translatesAutoresizingMaskIntoConstraints = false
-        let titleLead = contactButton.leftAnchor.constraint(equalTo: leftAnchor, constant:0)
-        let titleTrail = contactButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant:0)
-        let titleTop = contactButton.topAnchor.constraint(equalTo: topAnchor, constant: 0)
-        let titleBot = contactButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
-        NSLayoutConstraint.activate([titleLead, titleTrail, titleTop, titleBot])
-
+        NSLayoutConstraint.activate([
+            contactButton.leftAnchor.constraint(equalTo: leftAnchor),
+            contactButton.rightAnchor.constraint(equalTo: rightAnchor),
+            contactButton.topAnchor.constraint(equalTo: topAnchor),
+            contactButton.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
-
 }

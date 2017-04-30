@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize tabBar controller and navigation controllers
         let tabBarController = UITabBarController()
         let tabViewController1 = HomeViewController()
-        let tabViewController2 = ScheduleViewController()
+        let tabViewController2 = ScheduleViewController(style: .plain)
         let tabViewController3 = StoreViewController(collectionViewLayout: UICollectionViewFlowLayout())
         let tabViewController4 = ActivityViewController()
         let tabViewController5 = ProfileViewController()

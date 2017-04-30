@@ -18,6 +18,19 @@ struct FirebaseDataManager {
 
     let ref = FIRDatabase.database().reference()
 
+    // MARK: - Static Information
+
+    /**
+        Fetch club information
+
+        - Returns completion: A callback that returns a FIRDataSnapshot
+     */
+    func fetchClubInfo(completion: @escaping (_: FIRDataSnapshot) -> Void) {
+        ref.child("clubInfo").observeSingleEvent(of: .value, with: { snapshot in
+            completion(snapshot)
+        })
+    }
+
     // MARK: - User Account Login/Logout
 
     /**
