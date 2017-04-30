@@ -12,14 +12,13 @@ class ClubBioCell: UITableViewCell {
 
     // MARK: - Properties
 
-    lazy var bioTitle = UILabel()
-    lazy var bioText = UILabel()
+    let bioTitle = UILabel()
+    let bioDescription = UILabel()
 
     // MARK: - Initialization
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        print("Bio cell")
         setup()
         setupConstraints()
     }
@@ -31,34 +30,30 @@ class ClubBioCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
-        bioTitle.backgroundColor = .white
         bioTitle.text = "Club Bio"
-        bioTitle.textAlignment = NSTextAlignment.center
+        bioTitle.textAlignment = .center
         addSubview(bioTitle)
 
-        bioText.backgroundColor = .white
-        bioText.text = "club bio placeholder text i love gym woo club bio placeholder text i l"
-        bioText.numberOfLines = 0
-        bioText.lineBreakMode = .byWordWrapping
-        bioText.textAlignment = NSTextAlignment.center
-        addSubview(bioText)
-
+        bioDescription.numberOfLines = 0
+        bioDescription.lineBreakMode = .byWordWrapping
+        bioDescription.textAlignment = .center
+        addSubview(bioDescription)
     }
 
     func setupConstraints() {
         bioTitle.translatesAutoresizingMaskIntoConstraints = false
-        let titleLead = bioTitle.leftAnchor.constraint(equalTo: leftAnchor, constant:10)
-        let titleTrail = bioTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant:-10)
-        let titleTop = bioTitle.topAnchor.constraint(equalTo: topAnchor, constant: 10)
-        let titleBot = bioTitle.bottomAnchor.constraint(equalTo: bioText.topAnchor, constant: -10)
-        NSLayoutConstraint.activate([titleLead, titleTrail, titleTop, titleBot])
+        bioDescription.translatesAutoresizingMaskIntoConstraints = false
 
-        bioText.translatesAutoresizingMaskIntoConstraints = false
-        let TextLead = bioText.leftAnchor.constraint(equalTo: leftAnchor, constant:10)
-        let TextTrail = bioText.trailingAnchor.constraint(equalTo: trailingAnchor, constant:-10)
-        let TextTop = bioText.topAnchor.constraint(equalTo: bioTitle.bottomAnchor, constant:10)
-        NSLayoutConstraint.activate([TextLead, TextTrail, TextTop])
+        NSLayoutConstraint.activate([
+            bioTitle.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
+            bioTitle.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
+            bioTitle.topAnchor.constraint(equalTo: topAnchor, constant: 10)
+        ])
 
+        NSLayoutConstraint.activate([
+            bioDescription.leftAnchor.constraint(equalTo: bioTitle.leftAnchor),
+            bioDescription.rightAnchor.constraint(equalTo: bioTitle.rightAnchor),
+            bioDescription.topAnchor.constraint(equalTo: bioTitle.bottomAnchor, constant: 10)
+        ])
     }
-
 }

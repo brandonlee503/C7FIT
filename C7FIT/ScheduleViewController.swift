@@ -24,7 +24,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
     var scheduleURL: String?
     var clubBio: String?
     var clubEmail: String?
-    var clubPhone: String?
+    var clubPhone: Int?
 
     // MARK: - Initialization
 
@@ -35,7 +35,8 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
             self.scheduleURL = json["scheduleLink"] as? String
             self.clubBio = json["bio"] as? String
             self.clubEmail = json["email"] as? String
-            self.clubPhone = json["phone"] as? String
+            self.clubPhone = json["phone"] as? Int
+            self.tableView.reloadData()
         }
     }
 
@@ -94,6 +95,9 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
             }
         } else if indexPath.row == 1 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: bioIdentifier) as? ClubBioCell {
+                if let clubBio = clubBio {
+                    cell.bioDescription.text = clubBio
+                }
                 return cell
             }
         } else if indexPath.row == 2 {
@@ -113,66 +117,50 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
     }
 
     func contactButtonPressed() {
-        print("contact button pressed")
         let contactGymAlert = UIAlertController(title: "Contact Us", message: nil, preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ -> Void in }
         let emailAction = UIAlertAction(title: "Email", style: .default, handler: { _ in
-            print("email")
             self.sendEmail()
         })
         let textAction = UIAlertAction(title: "Text", style: .default, handler: { _ in
-            print("text")
             self.sendText()
         })
         let callAction = UIAlertAction(title: "Call", style: .default, handler: { _ in
-            print("Call")
-            self.callGym()
+            self.sendCall()
         })
-
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ -> Void in }
         contactGymAlert.addAction(cancelAction)
         contactGymAlert.addAction(emailAction)
         contactGymAlert.addAction(textAction)
         contactGymAlert.addAction(callAction)
-
         self.present(contactGymAlert, animated:true, completion:nil)
     }
 
     func sendEmail() {
-        if MFMailComposeViewController.canSendMail() {
-            let gymEmail = "infinitenl@gmail.com"
-            let sampleBody = "<p>Testing text</p>"
-            let mail = MFMailComposeViewController()
-            mail.mailComposeDelegate = self
-            mail.setToRecipients([gymEmail])
-            mail.setMessageBody(sampleBody, isHTML: true)
-
-            present(mail, animated: true, completion: nil)
-        } else {
-            print(MFMailComposeViewController.canSendMail())
-            print("fail to open email box")
+        guard MFMailComposeViewController.canSendMail(), let gymEmail = clubEmail else {
+            return
         }
+
+        let mail = MFMailComposeViewController()
+        mail.mailComposeDelegate = self
+        mail.setToRecipients([gymEmail])
+        present(mail, animated: true, completion: nil)
     }
 
     func sendText() {
-        if MFMessageComposeViewController.canSendText() {
-            print("sending text")
-            let gymPhone = "229929292"
-            let sampleText = "what the"
-            let message = MFMessageComposeViewController()
-
-            message.body = sampleText
-            message.recipients = [gymPhone]
-            message.messageComposeDelegate = self
-            present(message, animated: true, completion: nil)
+        guard MFMessageComposeViewController.canSendText(), let gymPhone = clubPhone else {
+            return
         }
 
+        let message = MFMessageComposeViewController()
+        message.messageComposeDelegate = self
+        message.recipients = [String(gymPhone)]
+        present(message, animated: true, completion: nil)
     }
 
-    func callGym() {
-        let gymPhone = "229929292"
-        let phoneString = "tel://" + gymPhone
-        let url = URL(string:phoneString)!
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    func sendCall() {
+        guard let gymPhone = clubPhone else { return }
+        let phoneURL = URL(string: "tel://\(gymPhone)")!
+        UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
     }
 
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
