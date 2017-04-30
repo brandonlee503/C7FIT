@@ -25,6 +25,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         tableView.register(ScheduleCell.self, forCellReuseIdentifier: scheduleIdentifier)
         tableView.register(ClubBioCell.self, forCellReuseIdentifier: bioIdentifier)
         tableView.register(ClubContactCell.self, forCellReuseIdentifier: contactIdentifier)
+        tableView.tableFooterView = UITableViewCell()
         view.backgroundColor = .white
         view.setNeedsUpdateConstraints()
     }
@@ -60,7 +61,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: scheduleIdentifier) as? ScheduleCell {
-                cell.scheduleLink.addTarget(self, action: #selector(self.scheduleLinkPressed), for: .touchUpInside)
+                cell.scheduleButton.addTarget(self, action: #selector(self.scheduleLinkPressed), for: .touchUpInside)
                 return cell
             }
         } else if indexPath.row == 1 {
@@ -76,25 +77,12 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         return UITableViewCell()
     }
 
-    // MARK: - Cell Functions
-    // MARK: BrowserCell Link Function
+    // MARK: - User Interaction
 
     func scheduleLinkPressed() {
-        print("scheduleLinkPressed")
-        if let linkUrl = URL(string: "http:clubsevenfitness.com") {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(linkUrl, options: [:],
-                                          completionHandler: { (success) in
-                                            print("Open \(success)")
-                })
-            } else {
-                let success = UIApplication.shared.openURL(linkUrl)
-                print("Open \(success)")
-            }
-        }
+        UIApplication.shared.open(URL(string: "https://clients.mindbodyonline.com/classic/ws?studioid=283911&stype=-10&sView=day&sLoc=0")!, options: [:], completionHandler: nil)
     }
 
-    // MARK: ContactCell Button Function
     func contactButtonPressed() {
         print("contact button pressed")
         let contactGymAlert = UIAlertController(title: "Contact Us", message: nil, preferredStyle: .actionSheet)
