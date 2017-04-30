@@ -1,5 +1,5 @@
 //
-//  ScheduleBrowserTableViewCell.swift
+//  ScheduleCell.swift
 //  C7FIT
 //
 //  Created by Michael Lee on 1/25/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScheduleBrowserTableViewCell: UITableViewCell {
+class ScheduleCell: UITableViewCell {
 
     // MARK: - Properties
 

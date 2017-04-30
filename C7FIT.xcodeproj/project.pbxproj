@@ -49,7 +49,7 @@
 		16FFF43A1E345748009B4F34 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 16FFF4391E345748009B4F34 /* GoogleService-Info.plist */; };
 		16FFF43D1E3459C2009B4F34 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FFF43C1E3459C2009B4F34 /* User.swift */; };
 		7A1CD7A81E6400E600953698 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A1CD7A71E6400E600953698 /* MapKit.framework */; };
-		7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7699391E3962E90086519A /* ScheduleBrowserTableViewCell.swift */; };
+		7A76993A1E3962E90086519A /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7699391E3962E90086519A /* ScheduleCell.swift */; };
 		7A76A7A41E6F66A100C7D8F2 /* StartStopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76A7A31E6F66A100C7D8F2 /* StartStopCell.swift */; };
 		7A76A7A61E6F66DA00C7D8F2 /* MapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76A7A51E6F66DA00C7D8F2 /* MapCell.swift */; };
 		7A76A7A81E6F66FD00C7D8F2 /* RunDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A76A7A71E6F66FD00C7D8F2 /* RunDetailCell.swift */; };
@@ -66,8 +66,8 @@
 		7A9CBE331E8E35A800AF1F25 /* HealthInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CBE321E8E35A800AF1F25 /* HealthInfoCell.swift */; };
 		7A9CBE381E8E368700AF1F25 /* HealthKitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CBE371E8E368700AF1F25 /* HealthKitTableViewController.swift */; };
 		7A9CBE3A1E8E3A9C00AF1F25 /* HealthKitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CBE391E8E3A9C00AF1F25 /* HealthKitTableViewCell.swift */; };
-		7AAB23641E4297BA00AD7040 /* ScheduleBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23631E4297BA00AD7040 /* ScheduleBioTableViewCell.swift */; };
-		7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23651E4298BB00AD7040 /* ScheduleContactTableViewCell.swift */; };
+		7AAB23641E4297BA00AD7040 /* ClubBioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23631E4297BA00AD7040 /* ClubBioCell.swift */; };
+		7AAB23661E4298BB00AD7040 /* ClubContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23651E4298BB00AD7040 /* ClubContactCell.swift */; };
 		7AB9EFA61E6DEF09000C20C6 /* RunListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9EFA51E6DEF09000C20C6 /* RunListCell.swift */; };
 		7AB9EFAA1E6DEF3A000C20C6 /* RunListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9EFA91E6DEF3A000C20C6 /* RunListTableViewController.swift */; };
 		7AD3DEF21E5ED7CF001580CC /* RunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3DEF11E5ED7CF001580CC /* RunData.swift */; };
@@ -169,7 +169,7 @@
 		53076A0C8FE5245144D9ECCE /* Pods_C7FIT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C7FIT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F1638978FFA2B1F2F25C7A2 /* Pods-C7FITTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FITTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-C7FITTests/Pods-C7FITTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7A1CD7A71E6400E600953698 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		7A7699391E3962E90086519A /* ScheduleBrowserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleBrowserTableViewCell.swift; sourceTree = "<group>"; };
+		7A7699391E3962E90086519A /* ScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		7A76A7A31E6F66A100C7D8F2 /* StartStopCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartStopCell.swift; sourceTree = "<group>"; };
 		7A76A7A51E6F66DA00C7D8F2 /* MapCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapCell.swift; sourceTree = "<group>"; };
 		7A76A7A71E6F66FD00C7D8F2 /* RunDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunDetailCell.swift; sourceTree = "<group>"; };
@@ -186,8 +186,8 @@
 		7A9CBE321E8E35A800AF1F25 /* HealthInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthInfoCell.swift; sourceTree = "<group>"; };
 		7A9CBE371E8E368700AF1F25 /* HealthKitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitTableViewController.swift; sourceTree = "<group>"; };
 		7A9CBE391E8E3A9C00AF1F25 /* HealthKitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitTableViewCell.swift; sourceTree = "<group>"; };
-		7AAB23631E4297BA00AD7040 /* ScheduleBioTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleBioTableViewCell.swift; sourceTree = "<group>"; };
-		7AAB23651E4298BB00AD7040 /* ScheduleContactTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleContactTableViewCell.swift; sourceTree = "<group>"; };
+		7AAB23631E4297BA00AD7040 /* ClubBioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubBioCell.swift; sourceTree = "<group>"; };
+		7AAB23651E4298BB00AD7040 /* ClubContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubContactCell.swift; sourceTree = "<group>"; };
 		7AB9EFA51E6DEF09000C20C6 /* RunListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunListCell.swift; sourceTree = "<group>"; };
 		7AB9EFA91E6DEF3A000C20C6 /* RunListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunListTableViewController.swift; sourceTree = "<group>"; };
 		7AD3DEF11E5ED7CF001580CC /* RunData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunData.swift; sourceTree = "<group>"; };
@@ -452,9 +452,9 @@
 			isa = PBXGroup;
 			children = (
 				160D9B7D1E0BF5DC00801627 /* ScheduleView.swift */,
-				7A7699391E3962E90086519A /* ScheduleBrowserTableViewCell.swift */,
-				7AAB23631E4297BA00AD7040 /* ScheduleBioTableViewCell.swift */,
-				7AAB23651E4298BB00AD7040 /* ScheduleContactTableViewCell.swift */,
+				7A7699391E3962E90086519A /* ScheduleCell.swift */,
+				7AAB23631E4297BA00AD7040 /* ClubBioCell.swift */,
+				7AAB23651E4298BB00AD7040 /* ClubContactCell.swift */,
 			);
 			name = ScheduleViews;
 			sourceTree = "<group>";
@@ -928,8 +928,8 @@
 				16227F6D1E9A4785008A2FE4 /* ProfilePickerDataSource.swift in Sources */,
 				16461B361E7F435E003A8723 /* ItemHeaderCell.swift in Sources */,
 				16BEB6C81E72AE20001BE973 /* ItemDetailController.swift in Sources */,
-				7A76993A1E3962E90086519A /* ScheduleBrowserTableViewCell.swift in Sources */,
-				7AAB23641E4297BA00AD7040 /* ScheduleBioTableViewCell.swift in Sources */,
+				7A76993A1E3962E90086519A /* ScheduleCell.swift in Sources */,
+				7AAB23641E4297BA00AD7040 /* ClubBioCell.swift in Sources */,
 				16BEB6C61E72966A001BE973 /* eBayAPITokenManager.swift in Sources */,
 				16BFBBB41E6A7C7A001D088A /* eBayItemCell.swift in Sources */,
 				7AF7BBFA1E54643E0059A62A /* HeartRateView.swift in Sources */,
@@ -960,7 +960,7 @@
 				7AB9EFAA1E6DEF3A000C20C6 /* RunListTableViewController.swift in Sources */,
 				1626F8371E62BD1A002E2A9B /* eBayDataManager.swift in Sources */,
 				16461B381E7F4AF2003A8723 /* ItemImageCell.swift in Sources */,
-				7AAB23661E4298BB00AD7040 /* ScheduleContactTableViewCell.swift in Sources */,
+				7AAB23661E4298BB00AD7040 /* ClubContactCell.swift in Sources */,
 				7A838C511E96F497003BE65F /* WatchTimerCell.swift in Sources */,
 				16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */,
 				161B93411E9AD48100F397C5 /* ProfileImagePickerDelegate.swift in Sources */,

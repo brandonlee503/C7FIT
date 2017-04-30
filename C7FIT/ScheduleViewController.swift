@@ -9,6 +9,10 @@
 import UIKit
 import MessageUI
 
+private let scheduleIdentifier = "ScheduleCell"
+private let bioIdentifier = "BioCell"
+private let contactIdentifier = "ContactCell"
+
 class ScheduleViewController: UITableViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
 
     // MARK: - Properties
@@ -19,25 +23,23 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Schedule"
-        self.view.backgroundColor = .white
+        title = "Schedule"
 
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(ScheduleBrowserTableViewCell.self, forCellReuseIdentifier: "BrowserLinkCell")
-
-        tableView.register(ScheduleBioTableViewCell.self, forCellReuseIdentifier: "BioCell")
-        tableView.register(ScheduleContactTableViewCell.self, forCellReuseIdentifier: "ContactCell")
+        tableView.register(ScheduleCell.self, forCellReuseIdentifier: scheduleIdentifier)
+        tableView.register(ClubBioCell.self, forCellReuseIdentifier: bioIdentifier)
+        tableView.register(ClubContactCell.self, forCellReuseIdentifier: contactIdentifier)
 
         if tableView.contentSize.height < tableView.frame.size.height {
             tableView.isScrollEnabled = false
         } else {
             tableView.isScrollEnabled = true
         }
-
-        self.view.addSubview(scheduleView)
+        view.backgroundColor = .white
+        view.addSubview(scheduleView)
         setupConstraints()
-        self.view.setNeedsUpdateConstraints()
+        view.setNeedsUpdateConstraints()
     }
 
     // MARK: - Layout
@@ -51,7 +53,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
     }
 
-    // MARK: UITableView Delegate and Datasource
+    // MARK: - UITableView Delegate and Datasource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -81,16 +83,16 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "BrowserLinkCell") as? ScheduleBrowserTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: scheduleIdentifier) as? ScheduleCell {
                 cell.scheduleLink.addTarget(self, action: #selector(self.scheduleLinkPressed), for: .touchUpInside)
                 return cell
             }
         } else if indexPath.row == 1 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "BioCell") as? ScheduleBioTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: bioIdentifier) as? ClubBioCell {
                 return cell
             }
         } else if indexPath.row == 2 {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell") as? ScheduleContactTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: contactIdentifier) as? ClubContactCell {
                 cell.contactButton.addTarget(self, action: #selector(self.contactButtonPressed), for: .touchUpInside)
                 return cell
             }
