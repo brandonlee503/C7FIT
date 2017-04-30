@@ -29,6 +29,7 @@ class ClubContactCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
+        backgroundColor = .clear
         contactButton.backgroundColor = .white
         contactButton.setTitle("Contact Us", for: .normal)
         contactButton.setTitleColor(.black, for: .normal)

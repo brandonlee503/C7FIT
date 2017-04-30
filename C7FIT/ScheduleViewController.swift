@@ -54,8 +54,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         tableView.register(ScheduleCell.self, forCellReuseIdentifier: scheduleIdentifier)
         tableView.register(ClubBioCell.self, forCellReuseIdentifier: bioIdentifier)
         tableView.register(ClubContactCell.self, forCellReuseIdentifier: contactIdentifier)
-        tableView.tableFooterView = UITableViewCell()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         view.setNeedsUpdateConstraints()
     }
 
@@ -95,6 +94,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
             }
         } else if indexPath.row == 1 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: bioIdentifier) as? ClubBioCell {
+                cell.selectionStyle = .none
                 if let clubBio = clubBio {
                     cell.bioDescription.text = clubBio
                 }

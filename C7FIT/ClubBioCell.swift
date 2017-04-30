@@ -12,6 +12,7 @@ class ClubBioCell: UITableViewCell {
 
     // MARK: - Properties
 
+    let cardView = UIView()
     let bioTitle = UILabel()
     let bioDescription = UILabel()
 
@@ -30,24 +31,44 @@ class ClubBioCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
+        backgroundColor = .clear
+        contentView.backgroundColor = UIColor.clear
+
+        cardView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
+        cardView.layer.masksToBounds = false
+        cardView.layer.cornerRadius = 2.0
+        cardView.layer.shadowOffset = CGSize(width: -1, height: 1)
+        cardView.layer.shadowOpacity = 0.2
+        contentView.addSubview(cardView)
+        contentView.sendSubview(toBack: cardView)
+
         bioTitle.text = "Club Bio"
         bioTitle.textAlignment = .center
         addSubview(bioTitle)
 
+        bioDescription.font = UIFont.systemFont(ofSize: 14)
         bioDescription.numberOfLines = 0
         bioDescription.lineBreakMode = .byWordWrapping
-        bioDescription.textAlignment = .center
+        bioDescription.textAlignment = .left
         addSubview(bioDescription)
     }
 
     func setupConstraints() {
+        cardView.translatesAutoresizingMaskIntoConstraints = false
         bioTitle.translatesAutoresizingMaskIntoConstraints = false
         bioDescription.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
+            cardView.leftAnchor.constraint(equalTo: leftAnchor),
+            cardView.rightAnchor.constraint(equalTo: rightAnchor),
+            cardView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            cardView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        ])
+
+        NSLayoutConstraint.activate([
             bioTitle.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
             bioTitle.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
-            bioTitle.topAnchor.constraint(equalTo: topAnchor, constant: 10)
+            bioTitle.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 10)
         ])
 
         NSLayoutConstraint.activate([
