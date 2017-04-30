@@ -30,8 +30,8 @@ class TimerCell: UITableViewCell {
 
     func setup() {
         timeLabel.text = "00:00:00"
-
         timeLabel.font = timeLabel.font.withSize(50.0)
+        timeLabel.textColor = .orange
         self.addSubview(timeLabel)
     }
 

@@ -34,11 +34,9 @@ class MapTableViewCell: UITableViewCell {
 
     func setupConstraints() {
         activityTitle.translatesAutoresizingMaskIntoConstraints = false
-        let titleLead = activityTitle.leftAnchor.constraint(equalTo: leftAnchor, constant:10)
-        let titleTrail = activityTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant:-10)
-        let titleTop = activityTitle.topAnchor.constraint(equalTo: topAnchor, constant: 20)
-        NSLayoutConstraint.activate([titleLead, titleTrail, titleTop])
-
+        let titleX = activityTitle.centerXAnchor.constraint(equalTo: centerXAnchor)
+        let titleY = activityTitle.centerYAnchor.constraint(equalTo: centerYAnchor)
+        NSLayoutConstraint.activate([titleX, titleY])
     }
 
 }

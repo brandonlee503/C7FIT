@@ -38,15 +38,13 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.allowsSelection = false
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MapCell.self, forCellReuseIdentifier: mapCellID)
         tableView.register(StartStopCell.self, forCellReuseIdentifier: startStopID)
         tableView.register(TimerCell.self, forCellReuseIdentifier: timerCellID)
-
         setup()
-
     }
 
     // Setup the cells
@@ -58,8 +56,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         // Cell buttons
         startStopCell.startButton.addTarget(self, action: #selector(startTrackRun), for: .touchUpInside)
         startStopCell.stopButton.addTarget(self, action: #selector(stopTrackRun), for: .touchUpInside)
-        startStopCell.startButton.isEnabled = true
-        startStopCell.stopButton.isEnabled = false
+        colorSwitch(startEnabled: 1)
     }
 
     // MARK: - Table view data source
@@ -74,14 +71,14 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row  == 0 {
-            let cell = self.startStopCell
-            return cell
-        } else if indexPath.row == 1 {
             let cell = self.timerCell
             return cell
-        } else if indexPath.row == 2 {
+        } else if indexPath.row == 1 {
             let cell = self.mapCell
             self.mapCell.mapView.delegate = self
+            return cell
+        } else if indexPath.row == 2 {
+            let cell = self.startStopCell
             return cell
         }
         return UITableViewCell()
@@ -96,10 +93,10 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         let barConstants = screenSize.height - (navBarSize! + tabBarSize! + statusBarSize!)
         let cellHeight: CGFloat = 40.0
 
-        if indexPath.row == 1 {
+        if indexPath.row == 0 || indexPath.row == 2 {
            return cellHeight * 2
-        } else if indexPath.row == 2 {
-           return barConstants - (cellHeight * 3)
+        } else if indexPath.row == 1 {
+           return barConstants - (cellHeight * 4)
         }
         return cellHeight
     }
@@ -117,8 +114,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
             return
         }
         // Stop user invalid input
-        self.startStopCell.stopButton.isEnabled = true
-        self.startStopCell.startButton.isEnabled = false
+        colorSwitch(startEnabled: 0)
 
         seconds = 0.0
         distance = 0.0
@@ -131,10 +127,8 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
 
     func stopTrackRun() {
         // Stop user from invalid input
-        self.startStopCell.startButton.isEnabled = true
-        self.startStopCell.stopButton.isEnabled = false
+        colorSwitch(startEnabled: 1)
         self.tableView.reloadData()
-
         // Create runData struct from run data and push to map detail view
         createRunData()
         // Remove timer
@@ -240,6 +234,26 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     // Draw line from coordinates
     func polyline(coords: [CLLocationCoordinate2D]) -> MKPolyline {
         return MKPolyline(coordinates: coords, count: coords.count)
+    }
+
+    func colorSwitch(startEnabled: Int) {
+        if startEnabled == 1 {
+            self.startStopCell.startButton.setTitleColor(.white, for: .normal)
+            self.startStopCell.startButton.backgroundColor = .orange
+            self.startStopCell.startButton.isUserInteractionEnabled = true
+
+            self.startStopCell.stopButton.setTitleColor(.orange, for: .normal)
+            self.startStopCell.stopButton.backgroundColor = .white
+            self.startStopCell.stopButton.isUserInteractionEnabled = false
+        } else {
+            self.startStopCell.startButton.setTitleColor(.orange, for: .normal)
+            self.startStopCell.startButton.backgroundColor = .white
+            self.startStopCell.startButton.isUserInteractionEnabled = false
+
+            self.startStopCell.stopButton.setTitleColor(.white, for: .normal)
+            self.startStopCell.stopButton.backgroundColor = .orange
+            self.startStopCell.stopButton.isUserInteractionEnabled = true
+        }
     }
 
 }

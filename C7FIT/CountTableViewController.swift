@@ -34,7 +34,9 @@ class CountTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.isScrollEnabled = false
+        tableView.tableFooterView = UIView()
+        tableView.allowsSelection = false
         self.buttonCell.leftButton.setTitle("Start", for: .normal)
         self.buttonCell.rightButton.setTitle("Stop", for: .normal)
         self.buttonCell.leftButton.backgroundColor = .green

@@ -31,11 +31,12 @@ class StartStopCell: UITableViewCell {
 
     func setup() {
         startButton.setTitle("Start Run", for: .normal)
-        startButton.backgroundColor = .green
+        startButton.backgroundColor = .orange
         addSubview(startButton)
 
         stopButton.setTitle("Stop Run", for: .normal)
-        stopButton.backgroundColor = .red
+        stopButton.setTitleColor(.orange, for: .normal)
+        stopButton.backgroundColor = .white
         addSubview(stopButton)
     }
 

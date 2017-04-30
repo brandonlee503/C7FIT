@@ -35,12 +35,12 @@ class StopWatchTableViewController: UITableViewController {
     override func viewDidLoad() {
         print("viewdidload")
         super.viewDidLoad()
-
+        tableView.allowsSelection = false
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        tableView.tableFooterView = UIView()
 
         tableView.register(HealthInfoCell.self, forCellReuseIdentifier: lapCellID)
-
         buttonCell.startStopButton.addTarget(self, action: #selector(startTimer), for: .touchUpInside)
         buttonCell.lapResetButton.addTarget(self, action: #selector(createLap), for: .touchUpInside)
 
@@ -163,7 +163,7 @@ class StopWatchTableViewController: UITableViewController {
         let cellHeight: CGFloat = 40.0
 
         if indexPath.section == 0 && indexPath.row == 0 {
-            return cellHeight * 6
+            return cellHeight * 8
         }
         return cellHeight
     }

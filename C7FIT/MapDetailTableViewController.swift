@@ -34,7 +34,7 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.currentRun.runTitle
-
+        tableView.allowsSelection = false
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MapCell.self, forCellReuseIdentifier: mapCellID)
