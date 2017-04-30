@@ -15,42 +15,18 @@ private let contactIdentifier = "ContactCell"
 
 class ScheduleViewController: UITableViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
 
-    // MARK: - Properties
-
-    var scheduleView = ScheduleView()
-
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Schedule"
-
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ScheduleCell.self, forCellReuseIdentifier: scheduleIdentifier)
         tableView.register(ClubBioCell.self, forCellReuseIdentifier: bioIdentifier)
         tableView.register(ClubContactCell.self, forCellReuseIdentifier: contactIdentifier)
-
-        if tableView.contentSize.height < tableView.frame.size.height {
-            tableView.isScrollEnabled = false
-        } else {
-            tableView.isScrollEnabled = true
-        }
         view.backgroundColor = .white
-        view.addSubview(scheduleView)
-        setupConstraints()
         view.setNeedsUpdateConstraints()
-    }
-
-    // MARK: - Layout
-
-    func setupConstraints() {
-        scheduleView.translatesAutoresizingMaskIntoConstraints = false
-        let topView = scheduleView.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomView = scheduleView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leftView = scheduleView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        let rightView = scheduleView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
     }
 
     // MARK: - UITableView Delegate and Datasource
