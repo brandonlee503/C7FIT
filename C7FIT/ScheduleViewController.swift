@@ -15,6 +15,34 @@ private let contactIdentifier = "ContactCell"
 
 class ScheduleViewController: UITableViewController, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate {
 
+    // MARK: - Constants
+
+    let firebaseDataManager = FirebaseDataManager()
+
+    // MARK: - Variables
+
+    var scheduleURL: String?
+    var clubBio: String?
+    var clubEmail: String?
+    var clubPhone: String?
+
+    // MARK: - Initialization
+
+    override init(style: UITableViewStyle) {
+        super.init(style: style)
+        firebaseDataManager.fetchClubInfo { data in
+            guard let json = data.value as? [String: Any] else { return }
+            self.scheduleURL = json["scheduleLink"] as? String
+            self.clubBio = json["bio"] as? String
+            self.clubEmail = json["email"] as? String
+            self.clubPhone = json["phone"] as? String
+        }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -80,7 +108,8 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
     // MARK: - User Interaction
 
     func scheduleLinkPressed() {
-        UIApplication.shared.open(URL(string: "https://clients.mindbodyonline.com/classic/ws?studioid=283911&stype=-10&sView=day&sLoc=0")!, options: [:], completionHandler: nil)
+        guard let scheduleURL = scheduleURL, let scheduleLink = URL(string: scheduleURL) else { return }
+        UIApplication.shared.open(scheduleLink, options: [:], completionHandler: nil)
     }
 
     func contactButtonPressed() {
