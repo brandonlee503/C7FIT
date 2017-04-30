@@ -43,6 +43,7 @@ class StopWatchTableViewController: UITableViewController {
         tableView.register(HealthInfoCell.self, forCellReuseIdentifier: lapCellID)
         buttonCell.startStopButton.addTarget(self, action: #selector(startTimer), for: .touchUpInside)
         buttonCell.lapResetButton.addTarget(self, action: #selector(createLap), for: .touchUpInside)
+        buttonCell.lapResetButton.isUserInteractionEnabled = false
 
     }
 
@@ -57,6 +58,7 @@ class StopWatchTableViewController: UITableViewController {
         self.buttonCell.lapResetButton.removeTarget(nil, action: nil, for: .allEvents)
         self.buttonCell.lapResetButton.setTitle("Lap", for: .normal)
         self.buttonCell.lapResetButton.addTarget(self, action: #selector(createLap), for: .touchUpInside)
+        buttonCell.lapResetButton.isUserInteractionEnabled = true
 
         self.lapStartTime = Date().timeIntervalSinceReferenceDate
         self.startTime = Date().timeIntervalSinceReferenceDate
@@ -96,6 +98,7 @@ class StopWatchTableViewController: UITableViewController {
         self.buttonCell.lapResetButton.removeTarget(nil, action: nil, for: .allEvents)
         self.buttonCell.lapResetButton.setTitle("Lap", for: .normal)
         self.buttonCell.lapResetButton.addTarget(self, action: #selector(createLap), for: .touchUpInside)
+        self.buttonCell.lapResetButton.isUserInteractionEnabled = false
 
         // Reset the timer
         // Should already be stopped by "pause", so timer.invalidate already called

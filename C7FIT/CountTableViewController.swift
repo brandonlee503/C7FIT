@@ -39,8 +39,9 @@ class CountTableViewController: UITableViewController {
         tableView.allowsSelection = false
         self.buttonCell.leftButton.setTitle("Start", for: .normal)
         self.buttonCell.rightButton.setTitle("Stop", for: .normal)
-        self.buttonCell.leftButton.backgroundColor = .green
-        self.buttonCell.rightButton.backgroundColor = .red
+        self.buttonCell.leftButton.backgroundColor = .orange
+        self.buttonCell.rightButton.backgroundColor = .white
+        self.buttonCell.rightButton.setTitleColor(.orange, for: .normal)
 
         self.buttonCell.leftButton.addTarget(self, action: #selector(startCount), for: .touchUpInside)
         self.buttonCell.rightButton.addTarget(self, action: #selector(stopCount), for: .touchUpInside)
