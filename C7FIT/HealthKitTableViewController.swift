@@ -20,7 +20,7 @@ class HealthKitTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         healthKitManager.authorizeHealthKit()
-        self.title = "Health Statistics"
+        self.title = "Today's Activity"
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -30,7 +30,6 @@ class HealthKitTableViewController: UITableViewController {
 
     override init(style: UITableViewStyle) {
         super.init(style: style)
-
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -26,7 +26,7 @@ class HealthKitTableViewCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
-        activityTitle.text = "Health Stats"
+        activityTitle.text = "Today's Activity"
         activityTitle.textAlignment = NSTextAlignment.center
         addSubview(activityTitle)
     }

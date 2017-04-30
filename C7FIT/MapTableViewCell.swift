@@ -27,7 +27,7 @@ class MapTableViewCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
-        activityTitle.text = "Map Tracker"
+        activityTitle.text = "Activity Tracker"
         activityTitle.textAlignment = NSTextAlignment.center
         addSubview(activityTitle)
     }
