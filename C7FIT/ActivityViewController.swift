@@ -5,6 +5,7 @@
 //  Created by Brandon Lee on 12/22/16.
 //  Copyright © 2016 Brandon Lee. All rights reserved.
 //
+// swiftlint:disable cyclomatic_complexity
 
 import UIKit
 
