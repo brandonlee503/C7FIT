@@ -326,7 +326,7 @@
 			children = (
 				160D9B771E0B80DE00801627 /* HomeViewController.swift */,
 				AC7D4A9A1EA3FE4B00230C94 /* TrainersViewController.swift */,
-				160D9B7B1E0BF4CC00801627 /* ScheduleViewController.swift */,
+				165FE6D81EB5D5DD003B72EC /* Schedule */,
 				16BFBBB21E6A7B82001D088A /* Store */,
 				7AF7BBED1E545FEE0059A62A /* Activity */,
 				166983DA1E5088D500B36107 /* Profile */,
@@ -356,6 +356,14 @@
 				7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */,
 			);
 			name = Stores;
+			sourceTree = "<group>";
+		};
+		165FE6D81EB5D5DD003B72EC /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				160D9B7B1E0BF4CC00801627 /* ScheduleViewController.swift */,
+			);
+			name = Schedule;
 			sourceTree = "<group>";
 		};
 		166983D91E5088A800B36107 /* ProfileViews */ = {
