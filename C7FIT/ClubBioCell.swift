@@ -32,13 +32,8 @@ class ClubBioCell: UITableViewCell {
 
     func setup() {
         backgroundColor = .clear
-        contentView.backgroundColor = UIColor.clear
 
-        cardView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 0.9])
-        cardView.layer.masksToBounds = false
-        cardView.layer.cornerRadius = 2.0
-        cardView.layer.shadowOffset = CGSize(width: -1, height: 1)
-        cardView.layer.shadowOpacity = 0.2
+        cardView.backgroundColor = .white
         contentView.addSubview(cardView)
         contentView.sendSubview(toBack: cardView)
 
