@@ -54,7 +54,6 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         // Old run button
         let oldRunButton = UIBarButtonItem(title: "Old Runs", style: .plain, target: self, action: #selector(gotoRunList))
         navigationItem.rightBarButtonItem = oldRunButton
-        navigationItem.rightBarButtonItem?.tintColor = .black
 
         // Cell buttons
         startStopCell.startButton.addTarget(self, action: #selector(startTrackRun), for: .touchUpInside)

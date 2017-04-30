@@ -14,6 +14,15 @@ A fitness app allowing customers of [Club 7 Fitness](http://www.clubsevenfitness
 [Rutger Farry](https://github.com/rutgerfarry), [Brandon Lee](https://github.com/brandonlee503), and [Michael Lee](https://github.com/willmichael)'s senior project at Oregon State University.
 
 ## Getting started
+
+The reccomended development environment is:
+```
+MacOS Sierra
+iOS 10
+Xcode 8.3
+Swift 3.1
+```
+
 You'll need a few tools before getting started. Ensure you have a recend copy of Xcode downloaded. Then run the following two commands to install `bundler` and the Xcode command-line tools, if you don't have them yet.
 ```sh
 [sudo] gem install bundler
@@ -27,6 +36,7 @@ cd C7FIT
 bundle install
 bundle exec pod install
 ```
+The project should now be openable and buildable through the `C7FIT.xcworkspace` file.
 
 ## Contributing
 ### Branches

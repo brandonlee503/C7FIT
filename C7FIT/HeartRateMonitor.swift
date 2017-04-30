@@ -75,7 +75,6 @@ class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
 
             print(self.greater)
             print(self.lesser)
-            print(self.changes)
             print(changes * 4)
         } catch let error as NSError {
             print("camera error:")

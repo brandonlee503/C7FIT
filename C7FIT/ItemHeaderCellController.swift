@@ -58,7 +58,6 @@ class ItemHeaderCellController: UICollectionViewCell, UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: itemImageCellIdentifier, for: indexPath) as! ItemImageCell
         if let itemImage = itemImages[indexPath.item] {
-            // FIXME: Image quality is poor currently
             cell.itemImageView.downloadImageFrom(url: itemImage, imageMode: .scaleAspectFit)
         }
         return cell

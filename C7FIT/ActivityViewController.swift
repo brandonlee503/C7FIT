@@ -20,7 +20,6 @@ class ActivityViewController: UITableViewController {
         super.viewDidLoad()
         self.title = "Activity"
         self.view.backgroundColor = .white
-        self.navigationController?.navigationBar.barTintColor = .orange
 
         tableView.delegate = self
         tableView.dataSource = self

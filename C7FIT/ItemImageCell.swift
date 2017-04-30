@@ -29,14 +29,10 @@ class ItemImageCell: UICollectionViewCell {
     // MARK: - Layout
 
     func setup() {
-        backgroundColor = .purple
-
+        backgroundColor = .lightGray
         itemImageView.contentMode = .scaleAspectFill
-        itemImageView.layer.borderColor = UIColor.gray.cgColor
-        itemImageView.layer.borderWidth = 1
         itemImageView.layer.masksToBounds = true
-        itemImageView.backgroundColor = .green
-        itemImageView.image = UIImage(named: "club front") // TODO: Add a default image
+        itemImageView.image = UIImage(named: "empty_image")
         addSubview(itemImageView)
     }
 
