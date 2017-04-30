@@ -1,5 +1,5 @@
 //
-//  ScheduleContactTableViewCell.swift
+//  ClubContactCell.swift
 //  C7FIT
 //
 //  Created by Michael Lee on 2/1/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScheduleContactTableViewCell: UITableViewCell {
+class ClubContactCell: UITableViewCell {
 
     // MARK: - Properties
 
