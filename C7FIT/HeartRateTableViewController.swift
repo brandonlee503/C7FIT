@@ -6,24 +6,28 @@
 //  Copyright © 2017 Brandon Lee. All rights reserved.
 //
 // swiftlint:disable cyclomatic_complexity
+// swiftlint:disable body_length
+
 import UIKit
 import HealthKit
 import AVFoundation
 import CoreImage
 
-class HeartRateTableViewController: UITableViewController {
+class HeartRateTableViewController: UITableViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
 
     let healthInfoID = "healthInfo"
     var healthKitManager = HealthKitManager()
     let heartRateMonitor = HeartRateMonitor()
 
-    // MARK :- Properties
+    // MARK: - Properties
+
     var age: Int?
     var sex: String?
     var hrLow: Double = -1
     var hrHigh: Double = -1
     var hrMax: Double = -1
-    var validFrameCounter: Int = 0
+
+    // MARK: - View Life
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +38,7 @@ class HeartRateTableViewController: UITableViewController {
         tableView.dataSource = self
 
         tableView.register(HealthInfoCell.self, forCellReuseIdentifier: healthInfoID)
-
+        // TODO: - stretch goal heartRateMonitor.startCameraCapture()
     }
 
     override init(style: UITableViewStyle) {
@@ -139,8 +143,7 @@ class HeartRateTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
             if indexPath.row == 0 {
-//                calcHeartRateModal()
-                getHeartRate()
+                calcHeartRateModal()
             }
         }
         self.tableView.deselectRow(at: indexPath, animated: true)
@@ -284,13 +287,11 @@ class HeartRateTableViewController: UITableViewController {
         }
     }
 
-
     func getHeartRate() {
         let heartAlert = UIAlertController(title: "Place and hold your finger over the Camera lens and Flashlight, and then press Ready",
                                            message: "", preferredStyle: .alert)
         let readyAction = UIAlertAction(title: "Ready", style: .default) { _ in
             self.heartRateMonitor.startCameraCapture()
-
             // TODO: - Update UI to show we're calculating?
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)

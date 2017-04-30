@@ -7,6 +7,8 @@
 //
 
 // swiftlint:disable large_tuple
+// swiftlint:disable cyclomatic_complexity
+// swiftlint:disable function_body_length
 
 import UIKit
 import Foundation
@@ -14,20 +16,28 @@ import AVFoundation
 import CoreImage
 
 class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
-
     // MARK: - Properties
 
     var greater = 0
     var lesser = 0
     var lastVal = -1
     var switches = 0
+    var changes = 0
+    let settleFrames = 150.0
+    var validFrameCounter = 0.0
+    var timer = Timer()
+
+    let lengthBeat = 20
+    let maxPeriod = 1.5
+    let minPeriod = 0.1
+    let maxNumPeriod = 20
 
     var fingerOn = false
 
+    let cameraSession = AVCaptureSession()
     // MARK: - Camera Capture
 
     func startCameraCapture() {
-        let cameraSession = AVCaptureSession()
         cameraSession.sessionPreset = AVCaptureSessionPresetMedium
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         do {
@@ -59,27 +69,40 @@ class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
                 print("fail add output")
             }
 
-            cameraSession.commitConfiguration()
-
             let queue = DispatchQueue(label: "com.invasivecode.videoQueue")
             dataOutput.setSampleBufferDelegate(self, queue: queue)
-
+            cameraSession.commitConfiguration()
             cameraSession.startRunning()
+            UIApplication.shared.isIdleTimerDisabled = true
 
-            while fingerOn == false {
-                sleep(1)
-            }
+            self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateHeart), userInfo: nil, repeats: true)
 
-            sleep(15)
-            let changes = self.switches/2
-
-            print(self.greater)
-            print(self.lesser)
-            print(changes * 4)
         } catch let error as NSError {
             print("camera error:")
             print(error)
         }
+    }
+
+    func updateHeart() {
+        let avgPeriod = getAvgPulses()
+        if avgPeriod == -1 {
+            print("fail")
+        } else {
+            let pulse = 60.0/avgPeriod
+            print("RESULT")
+            print(pulse)
+            timer.invalidate()
+            cameraSession.stopRunning()
+            posIdx = 0
+            negIdx = 0
+            periodIndex = 0
+            posPrevVals.removeAll()
+            negPrevVals.removeAll()
+            periods.removeAll()
+            periodTimes.removeAll()
+
+        }
+
     }
 
     // Mark: - Capture Buffer delegate
@@ -120,11 +143,17 @@ class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
 
             // Convert to HSV values
             let (hue, sat, bright) = RGBtoHSV(red: red, green: green, blue: blue, alpha: alpha)
-            print(hue)
 
             // Check brightness high to tell if finger is placed over camera
             if sat > 0.5 && bright > 0.5 {
-                detectChanges(val: hue, time: 0.0)
+
+                self.validFrameCounter += 1
+
+                let filterVal = filterValue(val: hue)
+
+                if self.validFrameCounter > self.settleFrames {
+                    detectChanges(val: filterVal, time: CACurrentMediaTime())
+                }
                 self.fingerOn = true
             } else {
                 print("finger not over camera")
@@ -132,25 +161,82 @@ class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         }
     }
 
-
     // MARK: - Pulse Calculation
+    var posPrevVals = [CGFloat]()
+    var posIdx = 0
+    var negPrevVals = [CGFloat]()
+    var negIdx = 0
+    var pulses = 0.0
 
     func detectChanges(val: CGFloat, time: Double) {
-        print(val)
-        if val > 0.1 {
-            print("greater")
+        if val > 0 {
             self.greater += 1
-            self.lastVal = 1
-            if self.lastVal == -1 || self.lastVal == 0 {
-                self.switches += 1
+            if posPrevVals.count <= lengthBeat {
+                posPrevVals.append(val)
+            } else {
+                posPrevVals.insert(val, at: posIdx)
             }
-        } else if val <= 0.1 {
-            print("lesser")
+
+            posIdx += 1
+            if posIdx >= lengthBeat {
+                posIdx = 0
+            }
+        } else if val <= 0 {
             self.lesser += 1
-            self.lastVal = 0
-            if self.lastVal == -1 || self.lastVal == 1 {
-                self.switches += 1
+            if negPrevVals.count <= lengthBeat {
+                negPrevVals.append(val)
+            } else {
+                negPrevVals.insert(val, at: negIdx)
             }
+
+            negIdx += 1
+            if negIdx >= lengthBeat {
+                negIdx = 0
+            }
+        }
+        var count: CGFloat = 0
+        var total: CGFloat = 0
+        for i in posPrevVals {
+            count += 1
+            total += i
+        }
+
+        let avgUp = total/count
+
+        count = 0
+        total = 0
+
+        for i in negPrevVals {
+            count += 1
+            total += i
+        }
+
+        let avgDown = total/count
+
+        if val < -0.5 * avgDown {
+            lastVal = 0 // Down
+        }
+
+        if val > 0.5 * avgUp && lastVal == 0 {
+            lastVal = 1 // Up state, need to change where this is?
+            if time - periodStart < maxPeriod && time-periodStart > minPeriod {
+                print("time-period")
+                print(time-periodStart)
+                if periods.count <= maxNumPeriod {
+                    print("appending")
+                    periods.append(time-periodStart)
+                    periodTimes.append(time)
+                } else {
+                    print("inserting")
+                    periods.insert(time-periodStart, at: periodIndex)
+                    periodTimes.insert(time, at: periodIndex)
+                }
+                periodIndex += 1
+                if periodIndex > maxNumPeriod {
+                    periodIndex = 0
+                }
+            }
+            periodStart = time
         }
     }
 
@@ -163,6 +249,56 @@ class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         let color = UIColor(red: red, green: green, blue: blue, alpha: alpha)
         color.getHue(&hue, saturation: &sat, brightness: &bright, alpha: nil)
         return (hue, sat, bright)
+    }
+
+    var xvb = [CGFloat](repeating: 0, count: 13)
+    var yvb = [CGFloat](repeating: 0, count: 13)
+
+    func filterValue(val: CGFloat) -> CGFloat {
+        let gain: CGFloat = 2.263280900
+
+        xvb[0] = xvb[1]; xvb[1] = xvb[2]; xvb[2] = xvb[3]; xvb[3] = xvb[4]; xvb[4] = xvb[5]
+        xvb[5] = xvb[6]; xvb[6] = xvb[7]; xvb[7] = xvb[8]; xvb[8] = xvb[9]; xvb[9] = xvb[10]
+        xvb[10] =  val / gain
+        yvb[0] = yvb[1]; yvb[1] = yvb[2]; yvb[2] = yvb[3]; yvb[3] = yvb[4]; yvb[4] = yvb[5]
+        yvb[5] = yvb[6]; yvb[6] = yvb[7]; yvb[7] = yvb[8]; yvb[8] = yvb[9]; yvb[9] = yvb[10]
+        yvb[10] =   (xvb[10] - xvb[0]) + 5 * (xvb[2] - xvb[8]) + 10 * (xvb[6] - xvb[4])
+            + ( -0.0000000000 * yvb[0]) + (  0.0357796363 * yvb[1])
+            + ( -0.1476158522 * yvb[2]) + (  0.3992561394 * yvb[3])
+            + ( -1.1743136181 * yvb[4]) + (  2.4692165842 * yvb[5])
+            + ( -3.3820859632 * yvb[6]) + (  3.9628972812 * yvb[7])
+            + ( -4.3832594900 * yvb[8]) + (  3.2101976096 * yvb[9])
+        return yvb[10]
+    }
+
+    var periods = [Double]()
+    var periodStart = 0.0
+    var periodTimes = [Double]()
+    var periodIndex = 0
+
+    func getAvgPulses() -> Double {
+        let time = CACurrentMediaTime()
+        var total = 0.0
+        var count = 0.0
+        if periods.count < self.maxNumPeriod {
+            print(periods.count)
+            return -1.0
+        }
+        for i in (0..<self.maxNumPeriod) {
+            if time - periodTimes[i] < 10 {
+                print("total")
+                print(total)
+                count += 1
+                total += periods[i]
+            } else {
+            }
+        }
+        if count > 2 {
+            return total/count
+        } else {
+            print("no count")
+        }
+        return -1.0
     }
 }
 
