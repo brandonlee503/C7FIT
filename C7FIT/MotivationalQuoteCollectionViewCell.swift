@@ -1,8 +1,15 @@
 import UIKit
+import AVFoundation
+
+protocol MotivationalQuoteCellProtocol {
+    var audioUrl: URL? { get set }
+    func play()
+}
 
 class MotivationalQuoteCollectionViewCell: UICollectionViewCell {
 
     let quoteLabel = UILabel()
+    fileprivate var _audioPlayer: AVAudioPlayer?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,4 +34,26 @@ class MotivationalQuoteCollectionViewCell: UICollectionViewCell {
         quoteLabel.frame = contentView.layoutMarginsGuide.layoutFrame
     }
 
+}
+
+extension MotivationalQuoteCollectionViewCell: MotivationalQuoteCellProtocol {
+    var audioUrl: URL? {
+        get {
+            return _audioPlayer?.url
+        } set (maybeUrl) {
+            if let url = maybeUrl {
+                do {
+                    _audioPlayer = try AVAudioPlayer(contentsOf: url)
+                    _audioPlayer?.prepareToPlay()
+                } catch {
+                    print("error initializing audioplayer with new url: \(url)")
+                }
+            }
+        }
+    }
+
+    func play() {
+        _audioPlayer?.prepareToPlay()
+        _audioPlayer?.play()
+    }
 }

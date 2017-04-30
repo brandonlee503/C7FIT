@@ -81,6 +81,8 @@
 		7AF7BC061E54EDDE0059A62A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AF7BC051E54EDDE0059A62A /* HealthKit.framework */; };
 		7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */; };
 		8DDE8CB2A52DA4DDF6CE47C9 /* Pods_C7FITTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */; };
+		AC07746F1EB67F5500BB68BB /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC07746E1EB67F5500BB68BB /* AppError.swift */; };
+		AC0774711EB6857B00BB68BB /* youCanDoIt.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC0774701EB6857B00BB68BB /* youCanDoIt.mp3 */; };
 		AC087E321EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC087E311EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift */; };
 		AC737EF01EB28BFD0000E3E2 /* GenerateScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC737EEF1EB28BFD0000E3E2 /* GenerateScreenshots.swift */; };
 		AC737EF81EB290360000E3E2 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC737EF71EB290360000E3E2 /* SnapshotHelper.swift */; };
@@ -200,6 +202,8 @@
 		7AF7BC051E54EDDE0059A62A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		7AF7BC071E54EF5C0059A62A /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C7FITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC07746E1EB67F5500BB68BB /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		AC0774701EB6857B00BB68BB /* youCanDoIt.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = youCanDoIt.mp3; sourceTree = "<group>"; };
 		AC087E311EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotivationalQuoteCollectionViewCell.swift; sourceTree = "<group>"; };
 		AC737EED1EB28BFD0000E3E2 /* snapshot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = snapshot.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC737EEF1EB28BFD0000E3E2 /* GenerateScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateScreenshots.swift; sourceTree = "<group>"; };
@@ -404,6 +408,8 @@
 			children = (
 				160D9B0A1E0B5C0D00801627 /* AppDelegate.swift */,
 				160D9B111E0B5C0D00801627 /* Assets.xcassets */,
+				AC07746E1EB67F5500BB68BB /* AppError.swift */,
+				AC0774701EB6857B00BB68BB /* youCanDoIt.mp3 */,
 				16D2D2EB1E38638600F6AA9F /* CircularImageView.swift */,
 				1694BE1B1E71330F004E2E7D /* C7FUIImageView.swift */,
 				16576F161E1295C300BF622D /* String+Conversions.swift */,
@@ -769,6 +775,7 @@
 			files = (
 				16FFF43A1E345748009B4F34 /* GoogleService-Info.plist in Resources */,
 				160D9B121E0B5C0D00801627 /* Assets.xcassets in Resources */,
+				AC0774711EB6857B00BB68BB /* youCanDoIt.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -960,6 +967,7 @@
 				7AAB23661E4298BB00AD7040 /* ClubContactCell.swift in Sources */,
 				7A838C511E96F497003BE65F /* WatchTimerCell.swift in Sources */,
 				16D2D2EE1E3874F800F6AA9F /* LogoutTableViewCell.swift in Sources */,
+				AC07746F1EB67F5500BB68BB /* AppError.swift in Sources */,
 				161B93411E9AD48100F397C5 /* ProfileImagePickerDelegate.swift in Sources */,
 				7AF7BC041E5467C10059A62A /* HeartRateViewController.swift in Sources */,
 				7A76A7A81E6F66FD00C7D8F2 /* RunDetailCell.swift in Sources */,

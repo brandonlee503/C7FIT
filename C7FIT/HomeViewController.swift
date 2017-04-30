@@ -87,6 +87,10 @@ extension HomeViewController: UICollectionViewDataSource {
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.motivational.rawValue,
                                                           for: indexPath)
+            if let cell = cell as? MotivationalQuoteCollectionViewCell,
+                let url = Bundle.main.url(forResource: "youCanDoIt", withExtension: "mp3") {
+                cell.audioUrl = url
+            }
             return cell
 
         default:
@@ -104,6 +108,9 @@ extension HomeViewController: UICollectionViewDelegate {
             let trainersViewController = TrainersViewController()
             navigationController?.pushViewController(trainersViewController,
                                                      animated: true)
+        case 2:
+            let cell = collectionView.cellForItem(at: indexPath) as! MotivationalQuoteCollectionViewCell
+            cell.play()
         default:
             return
         }
