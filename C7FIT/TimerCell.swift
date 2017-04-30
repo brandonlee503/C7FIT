@@ -29,7 +29,6 @@ class TimerCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
-        timeLabel.backgroundColor = .green
         timeLabel.text = "00:00:00"
 
         timeLabel.font = timeLabel.font.withSize(50.0)

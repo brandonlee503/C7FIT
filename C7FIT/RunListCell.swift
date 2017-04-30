@@ -32,10 +32,8 @@ class RunListCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
-        titleLabel.backgroundColor = .green
         addSubview(titleLabel)
 
-        valLabel.backgroundColor = .green
         addSubview(valLabel)
 
         mapView.mapType = MKMapType.standard
