@@ -37,7 +37,7 @@ class ItemDetailController: UICollectionViewController, UICollectionViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Item"
-        collectionView?.backgroundColor = UIColor(red: 213/255, green: 213/255, blue: 213/255, alpha: 1)
+        collectionView?.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         collectionView?.register(ItemHeaderCellController.self,
                                  forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                  withReuseIdentifier: headerReuseIdentifer)
