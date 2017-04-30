@@ -87,8 +87,8 @@ class RunListTableViewController: UITableViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let polyline = overlay as! MKPolyline
         let renderer = MKPolylineRenderer(polyline: polyline)
-        renderer.strokeColor = UIColor.black
-        renderer.lineWidth = 4.0
+        renderer.strokeColor = UIColor.orange
+        renderer.lineWidth = 6.0
         return renderer
     }
 

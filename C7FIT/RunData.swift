@@ -21,7 +21,7 @@ struct RunData {
     var date: Date
 
     init() {
-        self.runTitle = "run"
+        self.runTitle = "Run"
         self.time = 0.0
         self.distance = 0.0
         self.pace = ""

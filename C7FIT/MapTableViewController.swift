@@ -172,7 +172,10 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
                 self.locations.append(location)
                 self.currentPath.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude,
                                                                longitude: location.coordinate.longitude))
-                self.mapCell.mapView.add(polyline(coords: self.currentPath), level: MKOverlayLevel.aboveRoads)
+
+                if seconds > 3 {
+                    self.mapCell.mapView.add(polyline(coords: self.currentPath), level: MKOverlayLevel.aboveRoads)
+                }
             } else {
                 print("loc accuracy too low")
             }
@@ -189,10 +192,15 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         // Total time for the run
         seconds += 1
         timerCell.timeLabel.text = RunData.dispTimePrettyColon(time: seconds)
+        let secondsHK = HKQuantity(unit: HKUnit.second(), doubleValue: seconds)
+        let distanceHK = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
+        print(secondsHK.description)
+        print(distanceHK.description)
 
         // Calculate the pace
-        let paceUnit = HKUnit.meter().unitDivided(by: HKUnit.second())
-        let roundedPace = RunData.roundDouble(double: (distance/seconds), round: 2)
+        let paceUnit = HKUnit.minute().unitDivided(by: HKUnit.mile())
+        let paceVal = secondsHK.doubleValue(for: HKUnit.minute()) / distanceHK.doubleValue(for: HKUnit.mile())
+        let roundedPace = RunData.roundDouble(double: paceVal, round: 2)
         let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: roundedPace)
         pace = paceQuantity.description
     }
@@ -218,6 +226,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         tempRun.pace = pace
         tempRun.locations = savedLocations
         tempRun.date = Date()
+        tempRun.runTitle = "Today's Run"
         lastRun = tempRun
     }
 
@@ -227,7 +236,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         let polyline = overlay as! MKPolyline
         let renderer = MKPolylineRenderer(polyline: polyline)
         renderer.strokeColor = UIColor.orange
-        renderer.lineWidth = 4.0
+        renderer.lineWidth = 6.0
         return renderer
     }
 
