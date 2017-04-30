@@ -110,7 +110,7 @@ extension HomeViewController: UICollectionViewDelegate {
                                                      animated: true)
         case 2:
             let cell = collectionView.cellForItem(at: indexPath) as! MotivationalQuoteCollectionViewCell
-            cell.play()
+            cell.togglePlayback()
         default:
             return
         }

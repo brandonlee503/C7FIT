@@ -3,7 +3,7 @@ import AVFoundation
 
 protocol MotivationalQuoteCellProtocol {
     var audioUrl: URL? { get set }
-    func play()
+    func togglePlayback()
 }
 
 class MotivationalQuoteCollectionViewCell: UICollectionViewCell {
@@ -52,8 +52,13 @@ extension MotivationalQuoteCollectionViewCell: MotivationalQuoteCellProtocol {
         }
     }
 
-    func play() {
-        _audioPlayer?.prepareToPlay()
-        _audioPlayer?.play()
+    func togglePlayback() {
+        if let playing = _audioPlayer?.isPlaying {
+            if playing {
+                _audioPlayer?.pause()
+            } else {
+                _audioPlayer?.play()
+            }
+        }
     }
 }
