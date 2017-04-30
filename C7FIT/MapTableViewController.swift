@@ -119,6 +119,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         seconds = 0.0
         distance = 0.0
         locations.removeAll(keepingCapacity: false)
+        currentPath.removeAll(keepingCapacity: false)
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(eachSecond), userInfo: nil, repeats: true)
         setupLocationTracking()
 
@@ -194,8 +195,6 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         timerCell.timeLabel.text = RunData.dispTimePrettyColon(time: seconds)
         let secondsHK = HKQuantity(unit: HKUnit.second(), doubleValue: seconds)
         let distanceHK = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
-        print(secondsHK.description)
-        print(distanceHK.description)
 
         // Calculate the pace
         let paceUnit = HKUnit.minute().unitDivided(by: HKUnit.mile())
@@ -211,7 +210,6 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         var tempRun = RunData()
         var savedLocations = [Location]()
 
-        print(savedLocations)
         var i = 0
         for location in locations {
             var tempLocation = Location()
@@ -221,7 +219,8 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
             savedLocations.append(tempLocation)
             i += 1
         }
-        tempRun.distance = RunData.roundDouble(double: distance, round: 2)
+        let distanceHK = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
+        tempRun.distance = RunData.roundDouble(double: distanceHK.doubleValue(for: HKUnit.mile()), round: 2)
         tempRun.time = seconds
         tempRun.pace = pace
         tempRun.locations = savedLocations

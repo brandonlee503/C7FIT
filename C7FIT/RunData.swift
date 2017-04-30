@@ -40,7 +40,7 @@ struct RunData {
 
     func dispTimePretty() -> String {
         let seconds = time
-        let HourQuantity = HKQuantity(unit: HKUnit.hour(), doubleValue: floor(seconds/360))
+        let HourQuantity = HKQuantity(unit: HKUnit.hour(), doubleValue: floor(seconds/3600))
         let minuteQuantity = HKQuantity(unit: HKUnit.minute(), doubleValue: floor(seconds/60))
         let secondsQuantity = HKQuantity(unit: HKUnit.second(), doubleValue: seconds.truncatingRemainder(dividingBy: 60.0))
         let prettyString = HourQuantity.description + " "  + minuteQuantity.description + " " + secondsQuantity.description
@@ -50,14 +50,14 @@ struct RunData {
 
     static func dispTimePrettyColon(time: Double) -> String {
         let second = time
-        let hour = floor(second/360)
+        let hour = floor(second/3600)
         let minute = floor(second/60)
         let seconds = floor(second.truncatingRemainder(dividingBy: 60.0))
         return String(format:"%02i:%02i:%02i", Int(hour), Int(minute), Int(seconds))
     }
 
     func dispDistancePretty() -> String {
-        let units = "m"
+        let units = "mi"
         let prettyString = distance.description + units
         return prettyString
     }
