@@ -24,6 +24,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     var seconds = 0.0
     var distance = 0.0
     var pace = ""
+    var recordUserLoc = 0
     lazy var locationManager = CLLocationManager()
     lazy var locations = [CLLocation]()
     lazy var timer = Timer()
@@ -57,6 +58,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         startStopCell.startButton.addTarget(self, action: #selector(startTrackRun), for: .touchUpInside)
         startStopCell.stopButton.addTarget(self, action: #selector(stopTrackRun), for: .touchUpInside)
         colorSwitch(startEnabled: 1)
+        setupLocationTracking()
     }
 
     // MARK: - Table view data source
@@ -116,12 +118,15 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         // Stop user invalid input
         colorSwitch(startEnabled: 0)
 
-        seconds = 0.0
-        distance = 0.0
-        locations.removeAll(keepingCapacity: false)
-        currentPath.removeAll(keepingCapacity: false)
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(eachSecond), userInfo: nil, repeats: true)
-        setupLocationTracking()
+        self.seconds = 0.0
+        self.distance = 0.0
+        self.locations.removeAll(keepingCapacity: false)
+        self.currentPath.removeAll(keepingCapacity: false)
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(eachSecond), userInfo: nil, repeats: true)
+        self.recordUserLoc = 1
+        for o in self.mapCell.mapView.overlays {
+            self.mapCell.mapView.remove(o)
+        }
 
         self.tableView.reloadData()
     }
@@ -135,7 +140,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         // Remove timer
         timer.invalidate()
         // Stop tracking user
-        locationManager.stopUpdatingLocation()
+        self.recordUserLoc = 0
         self.navigationController?.pushViewController(MapDetailTableViewController(run:lastRun, hideSave:false), animated: true)
     }
 
@@ -165,20 +170,22 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
             self.mapCell.mapView.setRegion(region, animated: true)
 
-            // Dont record location if accuracy too low
-            if location.horizontalAccuracy < 20 {
-                if self.locations.count > 0 {
-                    distance += location.distance(from: self.locations.last!)
-                }
-                self.locations.append(location)
-                self.currentPath.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude,
-                                                               longitude: location.coordinate.longitude))
+            if self.recordUserLoc == 1 {
+                // Dont record location if accuracy too low
+                if location.horizontalAccuracy < 20 {
+                    if self.locations.count > 0 {
+                        distance += location.distance(from: self.locations.last!)
+                    }
+                    self.locations.append(location)
+                    self.currentPath.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude,
+                                                                   longitude: location.coordinate.longitude))
 
-                if seconds > 3 {
-                    self.mapCell.mapView.add(polyline(coords: self.currentPath), level: MKOverlayLevel.aboveRoads)
+                    if seconds > 1 {
+                        self.mapCell.mapView.add(polyline(coords: self.currentPath), level: MKOverlayLevel.aboveRoads)
+                    }
+                } else {
+                    print("loc accuracy too low")
                 }
-            } else {
-                print("loc accuracy too low")
             }
         }
     }
