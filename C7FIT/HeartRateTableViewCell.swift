@@ -27,7 +27,7 @@ class HeartRateTableViewCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
-        activityTitle.text = "Heart Rate"
+        activityTitle.text = "Heartrate Calculator"
         activityTitle.textAlignment = NSTextAlignment.center
         addSubview(activityTitle)
     }

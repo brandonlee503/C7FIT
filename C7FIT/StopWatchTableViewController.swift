@@ -35,9 +35,12 @@ class StopWatchTableViewController: UITableViewController {
     override func viewDidLoad() {
         print("viewdidload")
         super.viewDidLoad()
+
+        self.title = "Stopwatch"
+        tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         tableView.allowsSelection = false
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
+        tableView.dataSource = self
+        tableView.delegate = self
         tableView.tableFooterView = UIView()
 
         tableView.register(HealthInfoCell.self, forCellReuseIdentifier: lapCellID)

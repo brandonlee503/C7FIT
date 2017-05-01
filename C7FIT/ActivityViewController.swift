@@ -20,7 +20,7 @@ class ActivityViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Activity"
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
 
         tableView.delegate = self
         tableView.dataSource = self
@@ -84,26 +84,31 @@ class ActivityViewController: UITableViewController {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 if let cell: HealthKitTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HealthKitCell") as? HealthKitTableViewCell {
+                    cell.accessoryType = .disclosureIndicator
                     return cell
                 }
             }
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 if let cell: WatchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WatchCell") as? WatchTableViewCell {
+                    cell.accessoryType = .disclosureIndicator
                     return cell
                 }
             } else if indexPath.row == 1 {
                 if let cell: CountTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CountCell") as? CountTableViewCell {
+                    cell.accessoryType = .disclosureIndicator
                     return cell
                 }
             } else if indexPath.row == 2 {
                 if let cell: HeartRateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HeartRateCell") as? HeartRateTableViewCell {
+                    cell.accessoryType = .disclosureIndicator
                     return cell
                 }
             }
         } else if indexPath.section == 2 {
             if indexPath.row == 0 {
                 if let cell: MapTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MapCell") as? MapTableViewCell {
+                    cell.accessoryType = .disclosureIndicator
                     return cell
                 }
             }

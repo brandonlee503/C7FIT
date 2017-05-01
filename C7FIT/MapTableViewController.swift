@@ -39,6 +39,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Activity Tracker"
         tableView.allowsSelection = false
         tableView.delegate = self
         tableView.dataSource = self

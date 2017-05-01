@@ -27,7 +27,7 @@ class CountTableViewCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
-        activityTitle.text = "Count Down"
+        activityTitle.text = "Countdown Timer"
         activityTitle.textAlignment = NSTextAlignment.center
         addSubview(activityTitle)
     }

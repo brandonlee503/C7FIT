@@ -21,7 +21,7 @@ class HealthKitTableViewController: UITableViewController {
         super.viewDidLoad()
         healthKitManager.authorizeHealthKit()
         self.title = "Today's Activity"
-
+        tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(HealthInfoCell.self, forCellReuseIdentifier: healthInfoID)

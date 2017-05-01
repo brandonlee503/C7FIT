@@ -34,9 +34,12 @@ class CountTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         tableView.isScrollEnabled = false
         tableView.tableFooterView = UIView()
         tableView.allowsSelection = false
+        self.title = "Countdown"
         self.buttonCell.leftButton.setTitle("Start", for: .normal)
         self.buttonCell.rightButton.setTitle("Stop", for: .normal)
         self.buttonCell.leftButton.backgroundColor = .orange

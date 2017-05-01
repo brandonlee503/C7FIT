@@ -32,10 +32,11 @@ class HeartRateTableViewController: UITableViewController, AVCaptureVideoDataOut
     override func viewDidLoad() {
         super.viewDidLoad()
         healthKitManager.authorizeHealthKit()
-        self.title = "Heart Rate"
+        self.title = "Heartrate"
 
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
 
         tableView.register(HealthInfoCell.self, forCellReuseIdentifier: healthInfoID)
         // TODO: - stretch goal heartRateMonitor.startCameraCapture()
