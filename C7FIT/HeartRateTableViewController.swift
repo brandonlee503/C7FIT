@@ -32,7 +32,7 @@ class HeartRateTableViewController: UITableViewController, AVCaptureVideoDataOut
     override func viewDidLoad() {
         super.viewDidLoad()
         healthKitManager.authorizeHealthKit()
-        self.title = "Heartrate"
+        self.title = "Heart Rate"
 
         tableView.delegate = self
         tableView.dataSource = self

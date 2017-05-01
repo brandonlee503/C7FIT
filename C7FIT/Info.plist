@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>To calculate heart beat</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDocumentTypes</key>
@@ -43,6 +41,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>To calculate heart beat</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Do you allow this app to access your HealthKit data?</string>
 	<key>NSHealthUpdateUsageDescription</key>
@@ -50,7 +50,7 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Do you allow this app to always know your location?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Do you allow this app to know your current location?</string>
+	<string>Do you allow this app to access your current location?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Do you allow this app to access your photo library?</string>
 	<key>UIBackgroundModes</key>

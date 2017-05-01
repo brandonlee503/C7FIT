@@ -82,7 +82,7 @@ class ActivityViewController: UITableViewController {
                 cell.accessoryType = .disclosureIndicator
                 return cell
             } else if indexPath.row == 2 {
-                cell.textLabel?.text = "Heartrate Calculator"
+                cell.textLabel?.text = "Heart Rate Calculator"
                 cell.accessoryType = .disclosureIndicator
                 return cell
             }
