@@ -29,10 +29,9 @@ class TimerCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
-        timeLabel.backgroundColor = .green
         timeLabel.text = "00:00:00"
-
         timeLabel.font = timeLabel.font.withSize(50.0)
+        timeLabel.textColor = .orange
         self.addSubview(timeLabel)
     }
 
@@ -41,6 +40,10 @@ class TimerCell: UITableViewCell {
         let centerTimeX = timeLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
         let centerTimeY = timeLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         NSLayoutConstraint.activate([centerTimeX, centerTimeY])
+    }
+
+    func changeTime(time: String) {
+        timeLabel.text = time
     }
 
 }

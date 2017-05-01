@@ -22,6 +22,8 @@ class StopWatchTableViewController: UITableViewController {
     let timerCell = WatchTimerCell()
 
     lazy var startTime = 0.0
+    lazy var lapStartTime = 0.0
+    lazy var prevLapTime = 0.0
     lazy var timer = Timer()
     lazy var time = 0.0
     lazy var prevTime = 0.0
@@ -34,13 +36,17 @@ class StopWatchTableViewController: UITableViewController {
         print("viewdidload")
         super.viewDidLoad()
 
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
+        self.title = "Stopwatch"
+        tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
+        tableView.allowsSelection = false
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.tableFooterView = UIView()
 
-        tableView.register(RunListCell.self, forCellReuseIdentifier: lapCellID)
-
+        tableView.register(HealthInfoCell.self, forCellReuseIdentifier: lapCellID)
         buttonCell.startStopButton.addTarget(self, action: #selector(startTimer), for: .touchUpInside)
         buttonCell.lapResetButton.addTarget(self, action: #selector(createLap), for: .touchUpInside)
+        buttonCell.lapResetButton.isUserInteractionEnabled = false
 
     }
 
@@ -55,7 +61,9 @@ class StopWatchTableViewController: UITableViewController {
         self.buttonCell.lapResetButton.removeTarget(nil, action: nil, for: .allEvents)
         self.buttonCell.lapResetButton.setTitle("Lap", for: .normal)
         self.buttonCell.lapResetButton.addTarget(self, action: #selector(createLap), for: .touchUpInside)
+        buttonCell.lapResetButton.isUserInteractionEnabled = true
 
+        self.lapStartTime = Date().timeIntervalSinceReferenceDate
         self.startTime = Date().timeIntervalSinceReferenceDate
         self.timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
     }
@@ -67,6 +75,7 @@ class StopWatchTableViewController: UITableViewController {
         self.buttonCell.startStopButton.setTitle("Start", for: .normal)
         self.buttonCell.startStopButton.addTarget(self, action: #selector(startTimer), for: .touchUpInside)
 
+        self.prevLapTime = Date().timeIntervalSinceReferenceDate - lapStartTime
         self.buttonCell.lapResetButton.removeTarget(nil, action: nil, for: .allEvents)
         self.buttonCell.lapResetButton.setTitle("Reset", for: .normal)
         self.buttonCell.lapResetButton.addTarget(self, action: #selector(resetTimer), for: .touchUpInside)
@@ -76,12 +85,14 @@ class StopWatchTableViewController: UITableViewController {
 
     func createLap() {
         print("lapping")
-
+        let lapTime = self.prevLapTime + Date().timeIntervalSinceReferenceDate - lapStartTime
         let dispTime = String(format:"%02d:%02d.%02d",
-                              (Int)(time/60),
-                              (Int)((time).truncatingRemainder(dividingBy: 60)),
-                              (Int)((time*100).truncatingRemainder(dividingBy: 100)) )
-        self.lapData.append(dispTime)
+                              (Int)(lapTime/60),
+                              (Int)((lapTime).truncatingRemainder(dividingBy: 60)),
+                              (Int)((lapTime*100).truncatingRemainder(dividingBy: 100)) )
+        self.lapData.insert(dispTime, at: 0)
+        self.lapStartTime = Date().timeIntervalSinceReferenceDate
+        self.prevLapTime = 0.0
         self.tableView.reloadData()
     }
 
@@ -90,6 +101,7 @@ class StopWatchTableViewController: UITableViewController {
         self.buttonCell.lapResetButton.removeTarget(nil, action: nil, for: .allEvents)
         self.buttonCell.lapResetButton.setTitle("Lap", for: .normal)
         self.buttonCell.lapResetButton.addTarget(self, action: #selector(createLap), for: .touchUpInside)
+        self.buttonCell.lapResetButton.isUserInteractionEnabled = false
 
         // Reset the timer
         // Should already be stopped by "pause", so timer.invalidate already called
@@ -142,10 +154,10 @@ class StopWatchTableViewController: UITableViewController {
             let cell = self.buttonCell
             return cell
         default:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: lapCellID, for: indexPath) as? RunListCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: lapCellID, for: indexPath) as? HealthInfoCell {
 
-                cell.titleLabel.text = "Lap " + String(indexPath.row)
-                cell.valLabel.text = self.lapData[indexPath.row]
+                cell.titleLabel.text = "Lap " + String(lapData.count-indexPath.row)
+                cell.infoLabel.text = self.lapData[indexPath.row]
 
                 return cell
             }
@@ -157,7 +169,7 @@ class StopWatchTableViewController: UITableViewController {
         let cellHeight: CGFloat = 40.0
 
         if indexPath.section == 0 && indexPath.row == 0 {
-            return cellHeight * 6
+            return cellHeight * 8
         }
         return cellHeight
     }

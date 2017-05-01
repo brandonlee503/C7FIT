@@ -24,10 +24,12 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     var seconds = 0.0
     var distance = 0.0
     var pace = ""
+    var recordUserLoc = 0
     lazy var locationManager = CLLocationManager()
     lazy var locations = [CLLocation]()
     lazy var timer = Timer()
     var lastRun = RunData()
+    var currentPath = [CLLocationCoordinate2D]()
 
     let startStopCell = StartStopCell()
     let mapCell = MapCell()
@@ -37,15 +39,14 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = "Activity Tracker"
+        tableView.allowsSelection = false
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MapCell.self, forCellReuseIdentifier: mapCellID)
         tableView.register(StartStopCell.self, forCellReuseIdentifier: startStopID)
         tableView.register(TimerCell.self, forCellReuseIdentifier: timerCellID)
-
         setup()
-
     }
 
     // Setup the cells
@@ -57,8 +58,8 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         // Cell buttons
         startStopCell.startButton.addTarget(self, action: #selector(startTrackRun), for: .touchUpInside)
         startStopCell.stopButton.addTarget(self, action: #selector(stopTrackRun), for: .touchUpInside)
-        startStopCell.startButton.isEnabled = true
-        startStopCell.stopButton.isEnabled = false
+        colorSwitch(startEnabled: 1)
+        setupLocationTracking()
     }
 
     // MARK: - Table view data source
@@ -73,13 +74,14 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row  == 0 {
-            let cell = self.startStopCell
-            return cell
-        } else if indexPath.row == 1 {
             let cell = self.timerCell
             return cell
-        } else if indexPath.row == 2 {
+        } else if indexPath.row == 1 {
             let cell = self.mapCell
+            self.mapCell.mapView.delegate = self
+            return cell
+        } else if indexPath.row == 2 {
+            let cell = self.startStopCell
             return cell
         }
         return UITableViewCell()
@@ -94,10 +96,10 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         let barConstants = screenSize.height - (navBarSize! + tabBarSize! + statusBarSize!)
         let cellHeight: CGFloat = 40.0
 
-        if indexPath.row == 1 {
+        if indexPath.row == 0 || indexPath.row == 2 {
            return cellHeight * 2
-        } else if indexPath.row == 2 {
-           return barConstants - (cellHeight * 3)
+        } else if indexPath.row == 1 {
+           return barConstants - (cellHeight * 4)
         }
         return cellHeight
     }
@@ -115,31 +117,32 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
             return
         }
         // Stop user invalid input
-        self.startStopCell.stopButton.isEnabled = true
-        self.startStopCell.startButton.isEnabled = true
+        colorSwitch(startEnabled: 0)
 
-        seconds = 0.0
-        distance = 0.0
-        locations.removeAll(keepingCapacity: false)
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(eachSecond), userInfo: nil, repeats: true)
-        setupLocationTracking()
+        self.seconds = 0.0
+        self.distance = 0.0
+        self.locations.removeAll(keepingCapacity: false)
+        self.currentPath.removeAll(keepingCapacity: false)
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(eachSecond), userInfo: nil, repeats: true)
+        self.recordUserLoc = 1
+        for o in self.mapCell.mapView.overlays {
+            self.mapCell.mapView.remove(o)
+        }
 
         self.tableView.reloadData()
     }
 
     func stopTrackRun() {
         // Stop user from invalid input
-        self.startStopCell.startButton.isEnabled = true
-        self.startStopCell.stopButton.isEnabled = false
+        colorSwitch(startEnabled: 1)
         self.tableView.reloadData()
-
         // Create runData struct from run data and push to map detail view
         createRunData()
-        self.navigationController?.pushViewController(MapDetailTableViewController(run:lastRun, hideSave:false), animated: true)
         // Remove timer
         timer.invalidate()
         // Stop tracking user
-        locationManager.stopUpdatingLocation()
+        self.recordUserLoc = 0
+        self.navigationController?.pushViewController(MapDetailTableViewController(run:lastRun, hideSave:false), animated: true)
     }
 
     func gotoRunList() {
@@ -151,10 +154,11 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     func setupLocationTracking() {
         // Start tracking location
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.activityType = .fitness
-        locationManager.distanceFilter = 5
+        locationManager.distanceFilter = 2
         locationManager.requestAlwaysAuthorization()
+        locationManager.allowsBackgroundLocationUpdates = true
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
         }
@@ -167,12 +171,22 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
             let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
             self.mapCell.mapView.setRegion(region, animated: true)
 
-            // Dont record location if accuracy too low
-            if location.horizontalAccuracy < 50 {
-                if self.locations.count > 0 {
-                    distance += location.distance(from: self.locations.last!)
+            if self.recordUserLoc == 1 {
+                // Dont record location if accuracy too low
+                if location.horizontalAccuracy < 20 {
+                    if self.locations.count > 0 {
+                        distance += location.distance(from: self.locations.last!)
+                    }
+                    self.locations.append(location)
+                    self.currentPath.append(CLLocationCoordinate2D(latitude: location.coordinate.latitude,
+                                                                   longitude: location.coordinate.longitude))
+
+                    if seconds > 1 {
+                        self.mapCell.mapView.add(polyline(coords: self.currentPath), level: MKOverlayLevel.aboveRoads)
+                    }
+                } else {
+                    print("loc accuracy too low")
                 }
-                self.locations.append(location)
             }
         }
     }
@@ -187,21 +201,23 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         // Total time for the run
         seconds += 1
         timerCell.timeLabel.text = RunData.dispTimePrettyColon(time: seconds)
+        let secondsHK = HKQuantity(unit: HKUnit.second(), doubleValue: seconds)
+        let distanceHK = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
 
         // Calculate the pace
-        let paceUnit = HKUnit.meter().unitDivided(by: HKUnit.second())
-        let roundedPace = RunData.roundDouble(double: (distance/seconds), round: 2)
+        let paceUnit = HKUnit.minute().unitDivided(by: HKUnit.mile())
+        let paceVal = secondsHK.doubleValue(for: HKUnit.minute()) / distanceHK.doubleValue(for: HKUnit.mile())
+        let roundedPace = RunData.roundDouble(double: paceVal, round: 2)
         let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: roundedPace)
         pace = paceQuantity.description
     }
 
-    // MARK: Create Run Data
+    // MARK: - Create Run Data
 
     func createRunData() {
         var tempRun = RunData()
         var savedLocations = [Location]()
 
-        print(savedLocations)
         var i = 0
         for location in locations {
             var tempLocation = Location()
@@ -211,12 +227,49 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
             savedLocations.append(tempLocation)
             i += 1
         }
-        tempRun.distance = RunData.roundDouble(double: distance, round: 2)
+        let distanceHK = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
+        tempRun.distance = RunData.roundDouble(double: distanceHK.doubleValue(for: HKUnit.mile()), round: 2)
         tempRun.time = seconds
         tempRun.pace = pace
         tempRun.locations = savedLocations
         tempRun.date = Date()
+        tempRun.runTitle = "Today's Run"
         lastRun = tempRun
+    }
+
+    // MARK: - Display run line
+    // Renderer for the line overlay, determines how the run line will look
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let polyline = overlay as! MKPolyline
+        let renderer = MKPolylineRenderer(polyline: polyline)
+        renderer.strokeColor = UIColor.orange
+        renderer.lineWidth = 6.0
+        return renderer
+    }
+
+    // Draw line from coordinates
+    func polyline(coords: [CLLocationCoordinate2D]) -> MKPolyline {
+        return MKPolyline(coordinates: coords, count: coords.count)
+    }
+
+    func colorSwitch(startEnabled: Int) {
+        if startEnabled == 1 {
+            self.startStopCell.startButton.setTitleColor(.white, for: .normal)
+            self.startStopCell.startButton.backgroundColor = .orange
+            self.startStopCell.startButton.isUserInteractionEnabled = true
+
+            self.startStopCell.stopButton.setTitleColor(.orange, for: .normal)
+            self.startStopCell.stopButton.backgroundColor = .white
+            self.startStopCell.stopButton.isUserInteractionEnabled = false
+        } else {
+            self.startStopCell.startButton.setTitleColor(.orange, for: .normal)
+            self.startStopCell.startButton.backgroundColor = .white
+            self.startStopCell.startButton.isUserInteractionEnabled = false
+
+            self.startStopCell.stopButton.setTitleColor(.white, for: .normal)
+            self.startStopCell.stopButton.backgroundColor = .orange
+            self.startStopCell.stopButton.isUserInteractionEnabled = true
+        }
     }
 
 }

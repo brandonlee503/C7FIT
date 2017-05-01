@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class RunListCell: UITableViewCell {
 
@@ -14,6 +15,7 @@ class RunListCell: UITableViewCell {
 
     var titleLabel = UILabel()
     var valLabel = UILabel()
+    var mapView = MKMapView()
 
     // MARK: - Initialization
 
@@ -30,24 +32,34 @@ class RunListCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
-        titleLabel.backgroundColor = .green
         addSubview(titleLabel)
 
-        valLabel.backgroundColor = .green
         addSubview(valLabel)
+
+        mapView.mapType = MKMapType.standard
+        mapView.isZoomEnabled = false
+        mapView.isScrollEnabled = false
+        mapView.showsUserLocation = false
+
+        addSubview(mapView)
     }
 
     func setupConstraints() {
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        let mapLeft = mapView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10)
+        let mapRight = mapView.rightAnchor.constraint(equalTo: mapView.leftAnchor, constant: 100)
+        let mapTop = mapView.topAnchor.constraint(equalTo: topAnchor, constant: 10)
+        let mapBottom = mapView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+        NSLayoutConstraint.activate([mapLeft, mapRight, mapTop, mapBottom])
+
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        let titleLead = titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10)
+        let titleLead = titleLabel.leftAnchor.constraint(equalTo: mapView.rightAnchor, constant: 10)
         let titleTop = titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10)
-        let titleBottom = titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
-        NSLayoutConstraint.activate([titleLead, titleTop, titleBottom])
+        NSLayoutConstraint.activate([titleLead, titleTop])
 
         valLabel.translatesAutoresizingMaskIntoConstraints = false
-        let dateTrail = valLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
-        let dateTop = valLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor)
-        let dateBottom = valLabel.bottomAnchor.constraint(equalTo: titleLabel.bottomAnchor)
-        NSLayoutConstraint.activate([dateTrail, dateTop, dateBottom])
+        let dateLeft = valLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor)
+        let dateTop = valLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15)
+        NSLayoutConstraint.activate([dateLeft, dateTop])
     }
 }

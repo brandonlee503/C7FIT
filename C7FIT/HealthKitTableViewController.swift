@@ -7,6 +7,7 @@
 //
 
 // swiftlint:disable cyclomatic_complexity
+// swiftlint:disable function_body_length
 
 import UIKit
 import HealthKit
@@ -19,8 +20,8 @@ class HealthKitTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         healthKitManager.authorizeHealthKit()
-        self.title = "Health Statistics"
-
+        self.title = "Today's Activity"
+        tableView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(HealthInfoCell.self, forCellReuseIdentifier: healthInfoID)
@@ -29,7 +30,6 @@ class HealthKitTableViewController: UITableViewController {
 
     override init(style: UITableViewStyle) {
         super.init(style: style)
-
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -71,19 +71,19 @@ class HealthKitTableViewController: UITableViewController {
             case 0:
                 let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMass)
                 let titleLabel = "Weight"
-                return queryData(titleLabel: titleLabel, sampleType: sampleType!)
+                return queryData(titleLabel: titleLabel, sampleType: sampleType!, path: indexPath)
             case 1:
                 let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.height)
                 let titleLabel = "Height"
-                return queryData(titleLabel: titleLabel, sampleType: sampleType!)
+                return queryData(titleLabel: titleLabel, sampleType: sampleType!, path: indexPath)
             case 2:
                 let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyMassIndex)
                 let titleLabel = "BMI"
-                return queryData(titleLabel: titleLabel, sampleType: sampleType!)
+                return queryData(titleLabel: titleLabel, sampleType: sampleType!, path: indexPath)
             case 3:
                 let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.bodyFatPercentage)
                 let titleLabel = "Body Fat Percentage"
-                return queryData(titleLabel: titleLabel, sampleType: sampleType!)
+                return queryData(titleLabel: titleLabel, sampleType: sampleType!, path: indexPath)
             default:
                 break
             }
@@ -92,11 +92,11 @@ class HealthKitTableViewController: UITableViewController {
             case 0:
                 let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.distanceWalkingRunning)
                 let titleLabel = "Latest Distance Ran"
-                return queryData(titleLabel: titleLabel, sampleType: sampleType!)
+                return queryData(titleLabel: titleLabel, sampleType: sampleType!, path: indexPath)
             case 1:
                 let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.stepCount)
                 let titleLabel = "Steps Walked"
-                return queryData(titleLabel: titleLabel, sampleType: sampleType!)
+                return queryData(titleLabel: titleLabel, sampleType: sampleType!, path: indexPath)
             default:
                 break
             }
@@ -111,7 +111,7 @@ class HealthKitTableViewController: UITableViewController {
         return UITableViewCell()
     }
 
-    func queryData(titleLabel: String, sampleType: HKSampleType) -> HealthInfoCell {
+    func queryData(titleLabel: String, sampleType: HKSampleType, path: IndexPath) -> HealthInfoCell {
         let cell = HealthInfoCell()
         cell.titleLabel.text = titleLabel
 
@@ -120,14 +120,56 @@ class HealthKitTableViewController: UITableViewController {
                 print("Error")
                 return
             }
-
-            let result = mostRecentVal as! HKQuantitySample
-            DispatchQueue.main.async {
-                // TODO: find better way to format info label
-                cell.infoLabel.text = String(result.quantity.description)
+            if let result = mostRecentVal as? HKQuantitySample {
+                DispatchQueue.main.async {
+                    var labelHK: HKQuantity?
+                    if path.section == 0 {
+                        switch path.row {
+                        case 0:
+                            // Weight
+                            labelHK = HKQuantity(unit: HKUnit.pound(),
+                                                 doubleValue: RunData.roundDouble(double: result.quantity.doubleValue(for: HKUnit.pound()), round: 2))
+                            break
+                        case 1:
+                            // Height
+                            labelHK = HKQuantity(unit: HKUnit.foot(),
+                                                 doubleValue: RunData.roundDouble(double: result.quantity.doubleValue(for: HKUnit.foot()), round: 2))
+                            break
+                        case 2:
+                            // BMI
+                            labelHK = HKQuantity(unit: HKUnit.count(), doubleValue: result.quantity.doubleValue(for: HKUnit.count()))
+                            break
+                        case 3:
+                            // Body Fat %
+                            labelHK = HKQuantity(unit: HKUnit.percent(), doubleValue: result.quantity.doubleValue(for: HKUnit.percent()))
+                            break
+                        default:
+                            labelHK = nil
+                            break
+                        }
+                    } else if path.section == 1 {
+                        switch path.row {
+                        case 0:
+                            // Distance Ran
+                            labelHK = HKQuantity(unit: HKUnit.mile(),
+                                                 doubleValue: RunData.roundDouble(double: result.quantity.doubleValue(for: HKUnit.mile()), round: 2))
+                            break
+                        case 1:
+                            // Step Count
+                            labelHK = HKQuantity(unit: HKUnit.count(),
+                                                 doubleValue: RunData.roundDouble(double: result.quantity.doubleValue(for: HKUnit.count()), round: 2))
+                            break
+                        default:
+                            labelHK = nil
+                            break
+                        }
+                    }
+                    if let lhk = labelHK {
+                        cell.infoLabel.text = String(lhk.description)
+                    }
+                }
             }
         })
-
         return cell
     }
 

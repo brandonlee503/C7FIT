@@ -34,7 +34,7 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.currentRun.runTitle
-
+        tableView.allowsSelection = false
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MapCell.self, forCellReuseIdentifier: mapCellID)
@@ -135,8 +135,8 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let polyline = overlay as! MKPolyline
         let renderer = MKPolylineRenderer(polyline: polyline)
-        renderer.strokeColor = UIColor.black
-        renderer.lineWidth = 4.0
+        renderer.strokeColor = UIColor.orange
+        renderer.lineWidth = 6.0
         return renderer
     }
 

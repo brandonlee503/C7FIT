@@ -34,25 +34,21 @@ class WatchTimerCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
-        minuteLabel.backgroundColor = .green
+        let fontSize: CGFloat = 70.0
         minuteLabel.text = "00"
-        minuteLabel.font = minuteLabel.font.withSize(50.0)
+        minuteLabel.font = minuteLabel.font.withSize(fontSize)
 
-        colonLabel.backgroundColor = .green
         colonLabel.text = ":"
-        colonLabel.font = colonLabel.font.withSize(50.0)
+        colonLabel.font = colonLabel.font.withSize(fontSize)
 
-        secondLabel.backgroundColor = .green
         secondLabel.text = "00"
-        secondLabel.font = secondLabel.font.withSize(50.0)
+        secondLabel.font = secondLabel.font.withSize(fontSize)
 
-        dotLabel.backgroundColor = .green
         dotLabel.text = "."
-        dotLabel.font = dotLabel.font.withSize(50.0)
+        dotLabel.font = dotLabel.font.withSize(fontSize)
 
-        msLabel.backgroundColor = .green
         msLabel.text = "00"
-        msLabel.font = msLabel.font.withSize(50.0)
+        msLabel.font = msLabel.font.withSize(fontSize)
 
         self.addSubview(minuteLabel)
         self.addSubview(secondLabel)

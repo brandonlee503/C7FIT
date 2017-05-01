@@ -30,10 +30,8 @@ class HealthInfoCell: UITableViewCell {
     // MARK: - Layout
 
     func setup() {
-        titleLabel.backgroundColor = .green
         addSubview(titleLabel)
 
-        infoLabel.backgroundColor = .green
         addSubview(infoLabel)
     }
 

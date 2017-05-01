@@ -31,11 +31,12 @@ class WatchButtonCell: UITableViewCell {
 
     func setup() {
         startStopButton.setTitle("Start", for: .normal)
-        startStopButton.backgroundColor = .green
+        startStopButton.backgroundColor = .orange
         addSubview(startStopButton)
 
         lapResetButton.setTitle("Lap", for: .normal)
-        lapResetButton.backgroundColor = .red
+        lapResetButton.setTitleColor(.orange, for: .normal)
+        lapResetButton.backgroundColor = .white
         addSubview(lapResetButton)
     }
 
