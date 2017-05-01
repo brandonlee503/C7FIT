@@ -11,10 +11,6 @@ import UIKit
 
 class ActivityViewController: UITableViewController {
 
-    // MARK: - Properties
-
-    var activityView = ActivityView()
-
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -24,12 +20,6 @@ class ActivityViewController: UITableViewController {
 
         tableView.delegate = self
         tableView.dataSource = self
-
-        tableView.register(HealthKitTableViewCell.self, forCellReuseIdentifier: "HealthKitCell")
-        tableView.register(MapTableViewCell.self, forCellReuseIdentifier: "MapCell")
-        tableView.register(WatchTableViewCell.self, forCellReuseIdentifier: "WatchCell")
-        tableView.register(CountTableViewCell.self, forCellReuseIdentifier: "CountCell")
-        tableView.register(HeartRateTableViewCell.self, forCellReuseIdentifier: "HeartRateCell")
     }
 
     init() {
@@ -42,12 +32,6 @@ class ActivityViewController: UITableViewController {
     // Mark: - Layout
 
     func setupConstraints() {
-        activityView.translatesAutoresizingMaskIntoConstraints = false
-        let topView = activityView.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomView = activityView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leftView = activityView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        let rightView = activityView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
     }
 
     // MARK: UITableView Delegate and Datasource
@@ -81,36 +65,32 @@ class ActivityViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
         if indexPath.section == 0 {
             if indexPath.row == 0 {
-                if let cell: HealthKitTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HealthKitCell") as? HealthKitTableViewCell {
-                    cell.accessoryType = .disclosureIndicator
-                    return cell
-                }
+                cell.textLabel?.text = "Today's Activity"
+                cell.accessoryType = .disclosureIndicator
+                return cell
             }
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
-                if let cell: WatchTableViewCell = tableView.dequeueReusableCell(withIdentifier: "WatchCell") as? WatchTableViewCell {
-                    cell.accessoryType = .disclosureIndicator
-                    return cell
-                }
+                cell.textLabel?.text = "Stopwatch"
+                cell.accessoryType = .disclosureIndicator
+                return cell
             } else if indexPath.row == 1 {
-                if let cell: CountTableViewCell = tableView.dequeueReusableCell(withIdentifier: "CountCell") as? CountTableViewCell {
-                    cell.accessoryType = .disclosureIndicator
-                    return cell
-                }
+                cell.textLabel?.text = "Countdown Timer"
+                cell.accessoryType = .disclosureIndicator
+                return cell
             } else if indexPath.row == 2 {
-                if let cell: HeartRateTableViewCell = tableView.dequeueReusableCell(withIdentifier: "HeartRateCell") as? HeartRateTableViewCell {
-                    cell.accessoryType = .disclosureIndicator
-                    return cell
-                }
+                cell.textLabel?.text = "Heartrate Calculator"
+                cell.accessoryType = .disclosureIndicator
+                return cell
             }
         } else if indexPath.section == 2 {
             if indexPath.row == 0 {
-                if let cell: MapTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MapCell") as? MapTableViewCell {
-                    cell.accessoryType = .disclosureIndicator
-                    return cell
-                }
+                cell.textLabel?.text = "Activity Tracker"
+                cell.accessoryType = .disclosureIndicator
+                return cell
             }
         }
         return UITableViewCell()

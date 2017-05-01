@@ -15,8 +15,6 @@
 		160D9B7A1E0B88EE00801627 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B791E0B88EE00801627 /* HomeView.swift */; };
 		160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B7B1E0BF4CC00801627 /* ScheduleViewController.swift */; };
 		160D9B801E0BF91400801627 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B7F1E0BF91400801627 /* StoreViewController.swift */; };
-		160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B831E0BFA4500801627 /* ActivityView.swift */; };
-		160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B871E0BFA6A00801627 /* ActivityViewController.swift */; };
 		160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B891E0BFA7A00801627 /* ProfileViewController.swift */; };
 		161B933F1E9ACAF500F397C5 /* ProfilePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161B933E1E9ACAF500F397C5 /* ProfilePickerDelegate.swift */; };
 		161B93411E9AD48100F397C5 /* ProfileImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161B93401E9AD48100F397C5 /* ProfileImagePickerDelegate.swift */; };
@@ -60,16 +58,12 @@
 		7A838C521E96F497003BE65F /* WatchButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A838C501E96F497003BE65F /* WatchButtonCell.swift */; };
 		7A838C541E96F4AA003BE65F /* StopWatchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A838C531E96F4AA003BE65F /* StopWatchTableViewController.swift */; };
 		7A838C581E96FA04003BE65F /* TimePickerSubCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A838C571E96FA04003BE65F /* TimePickerSubCell.swift */; };
-		7A8B9D301E52751500B88316 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D2F1E52751500B88316 /* MapTableViewCell.swift */; };
-		7A8B9D321E52752200B88316 /* WatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D311E52752200B88316 /* WatchTableViewCell.swift */; };
-		7A8B9D341E52752D00B88316 /* CountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D331E52752D00B88316 /* CountTableViewCell.swift */; };
-		7A8B9D361E52753800B88316 /* HeartRateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B9D351E52753800B88316 /* HeartRateTableViewCell.swift */; };
 		7A9CBE331E8E35A800AF1F25 /* HealthInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CBE321E8E35A800AF1F25 /* HealthInfoCell.swift */; };
 		7A9CBE381E8E368700AF1F25 /* HealthKitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CBE371E8E368700AF1F25 /* HealthKitTableViewController.swift */; };
-		7A9CBE3A1E8E3A9C00AF1F25 /* HealthKitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9CBE391E8E3A9C00AF1F25 /* HealthKitTableViewCell.swift */; };
 		7A9D9E181E9EC4720049DCE4 /* HeartRateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9D9E171E9EC4720049DCE4 /* HeartRateTableViewController.swift */; };
 		7AAB23641E4297BA00AD7040 /* ClubBioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23631E4297BA00AD7040 /* ClubBioCell.swift */; };
 		7AAB23661E4298BB00AD7040 /* ClubContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB23651E4298BB00AD7040 /* ClubContactCell.swift */; };
+		7AB866F01EB6C045003617EB /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB866EF1EB6C045003617EB /* ActivityViewController.swift */; };
 		7AB9EFA61E6DEF09000C20C6 /* RunListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9EFA51E6DEF09000C20C6 /* RunListCell.swift */; };
 		7AB9EFAA1E6DEF3A000C20C6 /* RunListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB9EFA91E6DEF3A000C20C6 /* RunListTableViewController.swift */; };
 		7AD3DEF21E5ED7CF001580CC /* RunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD3DEF11E5ED7CF001580CC /* RunData.swift */; };
@@ -133,8 +127,6 @@
 		160D9B791E0B88EE00801627 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		160D9B7B1E0BF4CC00801627 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		160D9B7F1E0BF91400801627 /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
-		160D9B831E0BFA4500801627 /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
-		160D9B871E0BFA6A00801627 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		160D9B891E0BFA7A00801627 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		161B933E1E9ACAF500F397C5 /* ProfilePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePickerDelegate.swift; sourceTree = "<group>"; };
 		161B93401E9AD48100F397C5 /* ProfileImagePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImagePickerDelegate.swift; sourceTree = "<group>"; };
@@ -181,16 +173,12 @@
 		7A838C501E96F497003BE65F /* WatchButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchButtonCell.swift; sourceTree = "<group>"; };
 		7A838C531E96F4AA003BE65F /* StopWatchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchTableViewController.swift; sourceTree = "<group>"; };
 		7A838C571E96FA04003BE65F /* TimePickerSubCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerSubCell.swift; sourceTree = "<group>"; };
-		7A8B9D2F1E52751500B88316 /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTableViewCell.swift; sourceTree = "<group>"; };
-		7A8B9D311E52752200B88316 /* WatchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchTableViewCell.swift; sourceTree = "<group>"; };
-		7A8B9D331E52752D00B88316 /* CountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountTableViewCell.swift; sourceTree = "<group>"; };
-		7A8B9D351E52753800B88316 /* HeartRateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateTableViewCell.swift; sourceTree = "<group>"; };
 		7A9CBE321E8E35A800AF1F25 /* HealthInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthInfoCell.swift; sourceTree = "<group>"; };
 		7A9CBE371E8E368700AF1F25 /* HealthKitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitTableViewController.swift; sourceTree = "<group>"; };
-		7A9CBE391E8E3A9C00AF1F25 /* HealthKitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitTableViewCell.swift; sourceTree = "<group>"; };
 		7A9D9E171E9EC4720049DCE4 /* HeartRateTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeartRateTableViewController.swift; sourceTree = "<group>"; };
 		7AAB23631E4297BA00AD7040 /* ClubBioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubBioCell.swift; sourceTree = "<group>"; };
 		7AAB23651E4298BB00AD7040 /* ClubContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubContactCell.swift; sourceTree = "<group>"; };
+		7AB866EF1EB6C045003617EB /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		7AB9EFA51E6DEF09000C20C6 /* RunListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunListCell.swift; sourceTree = "<group>"; };
 		7AB9EFA91E6DEF3A000C20C6 /* RunListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunListTableViewController.swift; sourceTree = "<group>"; };
 		7AD3DEF11E5ED7CF001580CC /* RunData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunData.swift; sourceTree = "<group>"; };
@@ -502,8 +490,6 @@
 			isa = PBXGroup;
 			children = (
 				7AF7BBEE1E5460420059A62A /* UIViews */,
-				7AF7BBEA1E545DDD0059A62A /* CellViews */,
-				160D9B831E0BFA4500801627 /* ActivityView.swift */,
 			);
 			name = ActivityViews;
 			sourceTree = "<group>";
@@ -555,22 +541,10 @@
 			name = Map;
 			sourceTree = "<group>";
 		};
-		7AF7BBEA1E545DDD0059A62A /* CellViews */ = {
-			isa = PBXGroup;
-			children = (
-				7A8B9D2F1E52751500B88316 /* MapTableViewCell.swift */,
-				7A8B9D311E52752200B88316 /* WatchTableViewCell.swift */,
-				7A8B9D331E52752D00B88316 /* CountTableViewCell.swift */,
-				7A8B9D351E52753800B88316 /* HeartRateTableViewCell.swift */,
-				7A9CBE391E8E3A9C00AF1F25 /* HealthKitTableViewCell.swift */,
-			);
-			name = CellViews;
-			sourceTree = "<group>";
-		};
 		7AF7BBED1E545FEE0059A62A /* Activity */ = {
 			isa = PBXGroup;
 			children = (
-				160D9B871E0BFA6A00801627 /* ActivityViewController.swift */,
+				7AB866EF1EB6C045003617EB /* ActivityViewController.swift */,
 				7A9CBE361E8E367000AF1F25 /* Health */,
 				7AB9EFA81E6DEF1F000C20C6 /* Map */,
 				7A838C4E1E96F43A003BE65F /* Stopwatch */,
@@ -924,21 +898,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7AF7BC021E5467B90059A62A /* CountViewController.swift in Sources */,
 				16AD14E21EB1DA1E00738D5D /* ItemSecondaryInfoCell.swift in Sources */,
 				16594B361E6C5B350032AD26 /* eBayItem.swift in Sources */,
 				AC96A66D1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift in Sources */,
 				16576F171E1295C300BF622D /* String+Conversions.swift in Sources */,
 				7AF14EB41E9C6101009C7908 /* TimeCell.swift in Sources */,
-				7A8B9D321E52752200B88316 /* WatchTableViewCell.swift in Sources */,
 				7A76A7AC1E6F914A00C7D8F2 /* MapDetailTableViewController.swift in Sources */,
 				7A9D9E181E9EC4720049DCE4 /* HeartRateTableViewController.swift in Sources */,
 				16D2D2EC1E38638600F6AA9F /* CircularImageView.swift in Sources */,
 				7AF14EB61E9C641E009C7908 /* CountTableViewController.swift in Sources */,
 				160D9B7A1E0B88EE00801627 /* HomeView.swift in Sources */,
 				163DFC101E41A43A00593CF9 /* AbstractHealthCell.swift in Sources */,
-				7A8B9D361E52753800B88316 /* HeartRateTableViewCell.swift in Sources */,
-				7A8B9D301E52751500B88316 /* MapTableViewCell.swift in Sources */,
 				7A838C581E96FA04003BE65F /* TimePickerSubCell.swift in Sources */,
 				16BEBE541E6FEE050034D422 /* CategoryCell.swift in Sources */,
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
@@ -951,12 +921,9 @@
 				16BEB6C61E72966A001BE973 /* eBayAPITokenManager.swift in Sources */,
 				16BFBBB41E6A7C7A001D088A /* eBayItemCell.swift in Sources */,
 				160D9B0B1E0B5C0D00801627 /* AppDelegate.swift in Sources */,
-				7AF7BBF41E5460860059A62A /* HealthKit.swift in Sources */,
 				1699EB331E80BBEE008171AF /* ItemPrimaryInfoCell.swift in Sources */,
 				7A76A7A41E6F66A100C7D8F2 /* StartStopCell.swift in Sources */,
-				7AF7BBF81E5464310059A62A /* CountView.swift in Sources */,
 				16AD14E01EB1777700738D5D /* eBayItemDetail.swift in Sources */,
-				160D9B881E0BFA6A00801627 /* ActivityViewController.swift in Sources */,
 				7A838C541E96F4AA003BE65F /* StopWatchTableViewController.swift in Sources */,
 				163771541E398E2B000B3E87 /* FirebaseDataManager.swift in Sources */,
 				7A9CBE381E8E368700AF1F25 /* HealthKitTableViewController.swift in Sources */,
@@ -985,11 +952,10 @@
 				AC07746F1EB67F5500BB68BB /* AppError.swift in Sources */,
 				161B93411E9AD48100F397C5 /* ProfileImagePickerDelegate.swift in Sources */,
 				7A76A7A81E6F66FD00C7D8F2 /* RunDetailCell.swift in Sources */,
-				160D9B841E0BFA4500801627 /* ActivityView.swift in Sources */,
 				7AB9EFA61E6DEF09000C20C6 /* RunListCell.swift in Sources */,
+				7AB866F01EB6C045003617EB /* ActivityViewController.swift in Sources */,
 				7AECE6D21E70BE7400423D82 /* TimerCell.swift in Sources */,
 				1658B9DE1E0F9EFD009D4F67 /* ProfileViewModel.swift in Sources */,
-				7A9CBE3A1E8E3A9C00AF1F25 /* HealthKitTableViewCell.swift in Sources */,
 				AC7D4A9D1EA3FF1300230C94 /* Trainer.swift in Sources */,
 				7A76A7A61E6F66DA00C7D8F2 /* MapCell.swift in Sources */,
 				161B933F1E9ACAF500F397C5 /* ProfilePickerDelegate.swift in Sources */,
@@ -997,7 +963,6 @@
 				7AD3DEF41E5ED860001580CC /* LocationData.swift in Sources */,
 				16BEBE521E6FB4E10034D422 /* eBayItemCategory.swift in Sources */,
 				7A838C521E96F497003BE65F /* WatchButtonCell.swift in Sources */,
-				7A8B9D341E52752D00B88316 /* CountTableViewCell.swift in Sources */,
 				164BAAAC1E36E5D900DE4C71 /* LoginView.swift in Sources */,
 				160D9B781E0B80DE00801627 /* HomeViewController.swift in Sources */,
 				7A9CBE331E8E35A800AF1F25 /* HealthInfoCell.swift in Sources */,
