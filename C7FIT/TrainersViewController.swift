@@ -1,6 +1,6 @@
 import UIKit
 
-let trainerCellIdentifier = "TrainerCollectionViewCell"
+let trainerCellIdentifier = "TrainerDetailCell"
 
 class TrainersViewController: UIViewController {
 
@@ -34,7 +34,7 @@ class TrainersViewController: UIViewController {
 
         collectionView.dataSource = self
 
-        collectionView.register(TrainerCollectionViewCell.classForCoder(),
+        collectionView.register(TrainerDetailCell.classForCoder(),
                                 forCellWithReuseIdentifier: trainerCellIdentifier)
 
         let collectionViewLayout = UICollectionViewFlowLayout()

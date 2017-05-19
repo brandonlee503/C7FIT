@@ -1,6 +1,6 @@
 import UIKit
 
-class TrainersCollectionViewCell: UICollectionViewCell {
+class TrainerCell: UICollectionViewCell {
 
     let trainersLabel = UILabel()
     let coverPhotoImageView = UIImageView()

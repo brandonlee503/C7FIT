@@ -1,6 +1,6 @@
 import UIKit
 
-class TrainerCollectionViewCell: UICollectionViewCell {
+class TrainerDetailCell: UICollectionViewCell {
 
     var name: String?
     var title: String?

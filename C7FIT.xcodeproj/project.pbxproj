@@ -76,14 +76,14 @@
 		8DDE8CB2A52DA4DDF6CE47C9 /* Pods_C7FITTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */; };
 		AC07746F1EB67F5500BB68BB /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC07746E1EB67F5500BB68BB /* AppError.swift */; };
 		AC0774711EB6857B00BB68BB /* youCanDoIt.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AC0774701EB6857B00BB68BB /* youCanDoIt.mp3 */; };
-		AC087E321EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC087E311EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift */; };
+		AC087E321EB03AD500921352 /* QuoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC087E311EB03AD500921352 /* QuoteCell.swift */; };
 		AC737EF01EB28BFD0000E3E2 /* GenerateScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC737EEF1EB28BFD0000E3E2 /* GenerateScreenshots.swift */; };
 		AC737EF81EB290360000E3E2 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC737EF71EB290360000E3E2 /* SnapshotHelper.swift */; };
-		AC7D4A981EA3F76500230C94 /* TrainersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D4A971EA3F76500230C94 /* TrainersCollectionViewCell.swift */; };
+		AC7D4A981EA3F76500230C94 /* TrainerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D4A971EA3F76500230C94 /* TrainerCell.swift */; };
 		AC7D4A9B1EA3FE4B00230C94 /* TrainersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D4A9A1EA3FE4B00230C94 /* TrainersViewController.swift */; };
 		AC7D4A9D1EA3FF1300230C94 /* Trainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D4A9C1EA3FF1300230C94 /* Trainer.swift */; };
-		AC7D4A9F1EA400A700230C94 /* TrainerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D4A9E1EA400A700230C94 /* TrainerCollectionViewCell.swift */; };
-		AC96A66D1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC96A66C1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift */; };
+		AC7D4A9F1EA400A700230C94 /* TrainerDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D4A9E1EA400A700230C94 /* TrainerDetailCell.swift */; };
+		AC96A66D1E96BF9C00B503AD /* YouTubeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC96A66C1E96BF9C00B503AD /* YouTubeCell.swift */; };
 		DC0EF005D0A9CB5AD7082EE2 /* Pods_C7FIT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53076A0C8FE5245144D9ECCE /* Pods_C7FIT.framework */; };
 /* End PBXBuildFile section */
 
@@ -190,16 +190,16 @@
 		A26E7A8DB5013E286D061DA4 /* Pods_C7FITTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_C7FITTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC07746E1EB67F5500BB68BB /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		AC0774701EB6857B00BB68BB /* youCanDoIt.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = youCanDoIt.mp3; sourceTree = "<group>"; };
-		AC087E311EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MotivationalQuoteCollectionViewCell.swift; sourceTree = "<group>"; };
+		AC087E311EB03AD500921352 /* QuoteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteCell.swift; sourceTree = "<group>"; };
 		AC737EED1EB28BFD0000E3E2 /* snapshot.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = snapshot.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC737EEF1EB28BFD0000E3E2 /* GenerateScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateScreenshots.swift; sourceTree = "<group>"; };
 		AC737EF11EB28BFD0000E3E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC737EF71EB290360000E3E2 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
-		AC7D4A971EA3F76500230C94 /* TrainersCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainersCollectionViewCell.swift; sourceTree = "<group>"; };
+		AC7D4A971EA3F76500230C94 /* TrainerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerCell.swift; sourceTree = "<group>"; };
 		AC7D4A9A1EA3FE4B00230C94 /* TrainersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainersViewController.swift; sourceTree = "<group>"; };
 		AC7D4A9C1EA3FF1300230C94 /* Trainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trainer.swift; sourceTree = "<group>"; };
-		AC7D4A9E1EA400A700230C94 /* TrainerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerCollectionViewCell.swift; sourceTree = "<group>"; };
-		AC96A66C1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeCollectionViewCell.swift; sourceTree = "<group>"; };
+		AC7D4A9E1EA400A700230C94 /* TrainerDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerDetailCell.swift; sourceTree = "<group>"; };
+		AC96A66C1E96BF9C00B503AD /* YouTubeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeCell.swift; sourceTree = "<group>"; };
 		C9EF0CEA2106516B1ECAAB5E /* Pods-C7FITTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FITTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-C7FITTests/Pods-C7FITTests.release.xcconfig"; sourceTree = "<group>"; };
 		F464551DBAC59E09F9A579D3 /* Pods-C7FIT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FIT.release.xcconfig"; path = "Pods/Target Support Files/Pods-C7FIT/Pods-C7FIT.release.xcconfig"; sourceTree = "<group>"; };
 		F766E4B10DB4A79B8120E9B5 /* Pods-C7FIT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-C7FIT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-C7FIT/Pods-C7FIT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -304,7 +304,6 @@
 				1626F8331E62B173002E2A9B /* StoreViews */,
 				7A8B9D2C1E5272C600B88316 /* ActivityViews */,
 				166983D91E5088A800B36107 /* ProfileViews */,
-				AC7D4A9E1EA400A700230C94 /* TrainerCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -595,6 +594,10 @@
 		AC7D4A961EA3F53100230C94 /* HomeViews */ = {
 			isa = PBXGroup;
 			children = (
+				AC96A66C1E96BF9C00B503AD /* YouTubeCell.swift */,
+				AC7D4A971EA3F76500230C94 /* TrainerCell.swift */,
+				AC087E311EB03AD500921352 /* QuoteCell.swift */,
+				AC7D4A9E1EA400A700230C94 /* TrainerDetailCell.swift */,
 				AC7D4A991EA3F81F00230C94 /* CollectionViewCells */,
 			);
 			name = HomeViews;
@@ -603,9 +606,6 @@
 		AC7D4A991EA3F81F00230C94 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				AC96A66C1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift */,
-				AC7D4A971EA3F76500230C94 /* TrainersCollectionViewCell.swift */,
-				AC087E311EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift */,
 			);
 			name = CollectionViewCells;
 			sourceTree = "<group>";
@@ -905,7 +905,7 @@
 			files = (
 				16AD14E21EB1DA1E00738D5D /* ItemSecondaryInfoCell.swift in Sources */,
 				16594B361E6C5B350032AD26 /* eBayItem.swift in Sources */,
-				AC96A66D1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift in Sources */,
+				AC96A66D1E96BF9C00B503AD /* YouTubeCell.swift in Sources */,
 				16576F171E1295C300BF622D /* String+Conversions.swift in Sources */,
 				7AF14EB41E9C6101009C7908 /* TimeCell.swift in Sources */,
 				7A76A7AC1E6F914A00C7D8F2 /* MapDetailTableViewController.swift in Sources */,
@@ -916,7 +916,7 @@
 				7A838C581E96FA04003BE65F /* TimePickerSubCell.swift in Sources */,
 				16BEBE541E6FEE050034D422 /* CategoryCell.swift in Sources */,
 				164BAAAA1E36E5BA00DE4C71 /* LoginViewController.swift in Sources */,
-				AC7D4A9F1EA400A700230C94 /* TrainerCollectionViewCell.swift in Sources */,
+				AC7D4A9F1EA400A700230C94 /* TrainerDetailCell.swift in Sources */,
 				16227F6D1E9A4785008A2FE4 /* ProfilePickerDataSource.swift in Sources */,
 				16461B361E7F435E003A8723 /* ItemHeaderCell.swift in Sources */,
 				16BEB6C81E72AE20001BE973 /* ItemDetailController.swift in Sources */,
@@ -934,7 +934,7 @@
 				160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */,
 				1626F8351E62B204002E2A9B /* CategoryCellController.swift in Sources */,
 				7AF7BC081E54EF5C0059A62A /* HealthKitManager.swift in Sources */,
-				AC087E321EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift in Sources */,
+				AC087E321EB03AD500921352 /* QuoteCell.swift in Sources */,
 				16FFF43D1E3459C2009B4F34 /* User.swift in Sources */,
 				160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */,
 				7A76A7AA1E6F6DD200C7D8F2 /* MapTableViewController.swift in Sources */,
@@ -963,7 +963,7 @@
 				AC7D4A9D1EA3FF1300230C94 /* Trainer.swift in Sources */,
 				7A76A7A61E6F66DA00C7D8F2 /* MapCell.swift in Sources */,
 				161B933F1E9ACAF500F397C5 /* ProfilePickerDelegate.swift in Sources */,
-				AC7D4A981EA3F76500230C94 /* TrainersCollectionViewCell.swift in Sources */,
+				AC7D4A981EA3F76500230C94 /* TrainerCell.swift in Sources */,
 				7AD3DEF41E5ED860001580CC /* LocationData.swift in Sources */,
 				16BEBE521E6FB4E10034D422 /* eBayItemCategory.swift in Sources */,
 				7A838C521E96F497003BE65F /* WatchButtonCell.swift in Sources */,

@@ -40,11 +40,11 @@ class HomeViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        collectionView.register(YouTubeCollectionViewCell.classForCoder(),
+        collectionView.register(YouTubeCell.classForCoder(),
                                 forCellWithReuseIdentifier: CollectionViewCellType.youtube.rawValue)
-        collectionView.register(TrainersCollectionViewCell.classForCoder(),
+        collectionView.register(TrainerCell.classForCoder(),
                                 forCellWithReuseIdentifier: CollectionViewCellType.trainers.rawValue)
-        collectionView.register(MotivationalQuoteCollectionViewCell.classForCoder(),
+        collectionView.register(QuoteCell.classForCoder(),
                                 forCellWithReuseIdentifier: CollectionViewCellType.motivational.rawValue)
 
         let collectionViewLayout = UICollectionViewFlowLayout()
@@ -92,7 +92,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.youtube.rawValue,
                                                           for: indexPath)
-            if let cell = cell as? YouTubeCollectionViewCell {
+            if let cell = cell as? YouTubeCell {
                 cell.videoID = videoID
             }
             return cell
@@ -105,7 +105,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.motivational.rawValue,
                                                           for: indexPath)
-            if let cell = cell as? MotivationalQuoteCollectionViewCell,
+            if let cell = cell as? QuoteCell,
                 let url = Bundle.main.url(forResource: "youCanDoIt", withExtension: "mp3") {
                 cell.audioUrl = url
                 cell.quoteLabel.text = quote
@@ -127,7 +127,7 @@ extension HomeViewController: UICollectionViewDelegate {
             navigationController?.pushViewController(trainersViewController,
                                                      animated: true)
         case 2:
-            let cell = collectionView.cellForItem(at: indexPath) as! MotivationalQuoteCollectionViewCell
+            let cell = collectionView.cellForItem(at: indexPath) as! QuoteCell
             cell.togglePlayback()
         default:
             return
