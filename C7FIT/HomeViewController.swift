@@ -8,13 +8,19 @@ enum CollectionViewCellType: String {
 
 class HomeViewController: UIViewController {
 
-    // MARK: - Properties
+    // MARK: - Constants
 
+    let firebaseDataManager = FirebaseDataManager()
     let collectionView = UICollectionView(frame: CGRect(x: 0,
                                                         y: 0,
                                                         width: 0,
                                                         height: 0),
                                           collectionViewLayout: UICollectionViewFlowLayout())
+
+    // MARK: - Properties
+
+    var videoID: String?
+    var quote: String?
 
     // MARK: - View Lifecycle
 
@@ -47,17 +53,29 @@ class HomeViewController: UIViewController {
         collectionViewLayout.minimumLineSpacing = 8
         collectionView.setCollectionViewLayout(collectionViewLayout,
                                                animated: false)
+
+        firebaseDataManager.fetchHomeScreenInfo { data in
+            guard let json = data.value as? [String: Any] else { return }
+            guard let videos = json["videos"] as? [String: Any] else { return }
+            guard let quotes = json["quotes"] as? [String: Any] else { return }
+            let videoIndex = Int(arc4random_uniform(UInt32(videos.count)))
+            let quoteIndex = Int(arc4random_uniform(UInt32(quotes.count)))
+            self.videoID = Array(videos.values)[videoIndex] as? String
+            self.quote = Array(quotes.values)[quoteIndex] as? String
+            self.collectionView.reloadData()
+        }
     }
 
     // MARK: - Layout
 
     func setupConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        let topView = collectionView.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomView = collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leftView = collectionView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        let rightView = collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
     }
 }
 
@@ -75,7 +93,7 @@ extension HomeViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.youtube.rawValue,
                                                           for: indexPath)
             if let cell = cell as? YouTubeCollectionViewCell {
-                cell.videoID = "SGGKHqYEMqc"
+                cell.videoID = videoID
             }
             return cell
 
@@ -90,6 +108,7 @@ extension HomeViewController: UICollectionViewDataSource {
             if let cell = cell as? MotivationalQuoteCollectionViewCell,
                 let url = Bundle.main.url(forResource: "youCanDoIt", withExtension: "mp3") {
                 cell.audioUrl = url
+                cell.quoteLabel.text = quote
             }
             return cell
 
@@ -97,7 +116,6 @@ extension HomeViewController: UICollectionViewDataSource {
             fatalError("This should not be happening. SAD!")
         }
     }
-
 }
 
 extension HomeViewController: UICollectionViewDelegate {
@@ -115,5 +133,4 @@ extension HomeViewController: UICollectionViewDelegate {
             return
         }
     }
-
 }
