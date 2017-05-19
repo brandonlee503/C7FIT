@@ -598,16 +598,8 @@
 				AC7D4A971EA3F76500230C94 /* TrainerCell.swift */,
 				AC087E311EB03AD500921352 /* QuoteCell.swift */,
 				AC7D4A9E1EA400A700230C94 /* TrainerDetailCell.swift */,
-				AC7D4A991EA3F81F00230C94 /* CollectionViewCells */,
 			);
 			name = HomeViews;
-			sourceTree = "<group>";
-		};
-		AC7D4A991EA3F81F00230C94 /* CollectionViewCells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
