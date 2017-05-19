@@ -64,12 +64,14 @@ class LoginView: UIView {
 
         loginButton.setTitle("Login", for: .normal)
         loginButton.setTitleColor(.white, for: .normal)
+        loginButton.titleLabel?.font = .systemFont(ofSize: 10)
         loginButton.backgroundColor = .black
         loginButton.layer.cornerRadius = 5
         addSubview(loginButton)
 
         createAccountButton.setTitle("Create Account", for: .normal)
         createAccountButton.setTitleColor(.white, for: .normal)
+        createAccountButton.titleLabel?.font = .systemFont(ofSize: 10)
         createAccountButton.backgroundColor = .black
         createAccountButton.layer.cornerRadius = 5
         addSubview(createAccountButton)
