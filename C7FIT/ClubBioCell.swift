@@ -41,7 +41,7 @@ class ClubBioCell: UITableViewCell {
         bioTitle.textAlignment = .center
         addSubview(bioTitle)
 
-        bioDescription.font = UIFont.systemFont(ofSize: 12)
+        bioDescription.font = UIFont.systemFont(ofSize: 10)
         bioDescription.numberOfLines = 0
         bioDescription.lineBreakMode = .byWordWrapping
         bioDescription.textAlignment = .left
