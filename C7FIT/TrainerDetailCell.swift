@@ -2,36 +2,29 @@ import UIKit
 
 class TrainerDetailCell: UICollectionViewCell {
 
-    var name: String?
-    var title: String?
-    var avatar: UIImage?
-    var coverPhoto: UIImage?
-
     let nameLabel = UILabel()
-    let titleLabel = UILabel()
-    let avatarImageView = UIImageView()
-    let coverPhotoImageView = UIImageView()
+    let bioLabel = UILabel()
+    let avatarImageView = CircularImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        nameLabel.text = "Rutger Farry"
-        nameLabel.textColor = .white
-        nameLabel.font = UIFont.systemFont(ofSize: 22)
+        nameLabel.font = .systemFont(ofSize: 22)
 
-        titleLabel.text = "Freelance Mecha Designer"
-        titleLabel.textColor = .white
-        titleLabel.font = UIFont.systemFont(ofSize: 18)
+        bioLabel.font = .systemFont(ofSize: 10)
+        bioLabel.numberOfLines = 0
+        bioLabel.lineBreakMode = .byWordWrapping
 
         contentView.insertSubview(nameLabel, at: 1)
-        contentView.insertSubview(titleLabel, at: 1)
+        contentView.insertSubview(bioLabel, at: 1)
         contentView.insertSubview(avatarImageView, at: 1)
-        contentView.insertSubview(coverPhotoImageView, at: 0)
 
-        avatarImageView.image = #imageLiteral(resourceName: "spongebob")
-
-        coverPhotoImageView.image = #imageLiteral(resourceName: "trainer")
-        coverPhotoImageView.contentMode = .scaleAspectFill
+        avatarImageView.image = #imageLiteral(resourceName: "profile_placeholder")
+        avatarImageView.layer.borderWidth = 1
+        avatarImageView.layer.masksToBounds = false
+        avatarImageView.layer.borderColor = UIColor.black.cgColor
+        avatarImageView.clipsToBounds = true
+        avatarImageView.contentMode = .scaleAspectFill
 
         setupConstraints()
     }
@@ -42,39 +35,27 @@ class TrainerDetailCell: UICollectionViewCell {
 
     func setupConstraints() {
         let margins = contentView.layoutMarginsGuide
-        let avatarImageViewSize: CGFloat = 50
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        let avatarImageViewSize: CGFloat = 100
         avatarImageView.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        bioLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        nameLabel.bottomAnchor.constraint(equalTo: margins.centerYAnchor).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8.0).isActive = true
+        NSLayoutConstraint.activate([
+            avatarImageView.leftAnchor.constraint(equalTo: margins.leftAnchor),
+            avatarImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            avatarImageView.widthAnchor.constraint(equalToConstant: avatarImageViewSize),
+            avatarImageView.heightAnchor.constraint(equalToConstant: avatarImageViewSize)
+        ])
 
-        titleLabel.topAnchor.constraint(equalTo: margins.centerYAnchor).isActive = true
-        titleLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 8.0).isActive = true
+        NSLayoutConstraint.activate([
+            nameLabel.leftAnchor.constraint(equalTo: avatarImageView.rightAnchor, constant: 8),
+            nameLabel.topAnchor.constraint(equalTo: avatarImageView.topAnchor)
+        ])
 
-        avatarImageView.widthAnchor.constraint(equalToConstant: avatarImageViewSize).isActive = true
-        avatarImageView.heightAnchor.constraint(equalToConstant: avatarImageViewSize).isActive = true
-        avatarImageView.centerYAnchor.constraint(equalTo: margins.centerYAnchor).isActive = true
-        avatarImageView.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
-
-        // Make circular avatarImageView
-        avatarImageView.layer.cornerRadius = avatarImageViewSize / 2
-        avatarImageView.clipsToBounds = true
-        avatarImageView.layer.masksToBounds = true
-        avatarImageView.contentMode = .scaleAspectFill
-        avatarImageView.layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        NSLayoutConstraint.activate([
+            bioLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            bioLabel.leftAnchor.constraint(equalTo: nameLabel.leftAnchor),
+            bioLabel.rightAnchor.constraint(equalTo: margins.rightAnchor)
+        ])
     }
-
-    override func layoutSubviews() {
-        coverPhotoImageView.frame = contentView.bounds
-
-        let gradient = CAGradientLayer()
-        gradient.frame = coverPhotoImageView.bounds
-        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        gradient.locations = [0.0, 1.0]
-        coverPhotoImageView.layer.addSublayer(gradient)
-        contentView.clipsToBounds = true
-    }
-
 }

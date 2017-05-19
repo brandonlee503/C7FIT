@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
 
     var videoID: String?
     var quote: String?
+    var trainers: [Trainer] = []
 
     // MARK: - View Lifecycle
 
@@ -54,18 +55,39 @@ class HomeViewController: UIViewController {
         collectionView.setCollectionViewLayout(collectionViewLayout,
                                                animated: false)
 
+        // Fetch all assets from firebase and set them accordingly
+        fetchAssets()
+    }
+
+    func fetchAssets() {
         firebaseDataManager.fetchHomeScreenInfo { data in
             guard let json = data.value as? [String: Any] else { return }
             guard let videos = json["videos"] as? [String: Any] else { return }
             guard let quotes = json["quotes"] as? [String: Any] else { return }
+            guard let trainerJSON = json["trainers"] as? [String: Any] else { return }
+
+            // Load random video and quote
             let videoIndex = Int(arc4random_uniform(UInt32(videos.count)))
             let quoteIndex = Int(arc4random_uniform(UInt32(quotes.count)))
             self.videoID = Array(videos.values)[videoIndex] as? String
             self.quote = Array(quotes.values)[quoteIndex] as? String
+
+            // Load trainers for detail view
+            for trainer in trainerJSON {
+                let fullName = trainer.key.components(separatedBy: " ")
+                let trainerDetails = trainer.value as? [String: Any]
+                let avatar = trainerDetails?["avatar"] as! String
+                let avatarURL = URL(string: avatar)!
+                let bio = trainerDetails?["bio"] as! String
+                self.trainers.append(Trainer(firstName: fullName.first!,
+                                              lastName: fullName.last!,
+                                              bio: bio,
+                                              avatar: avatarURL,
+                                              coverPhoto: nil))
+            }
             self.collectionView.reloadData()
         }
     }
-
     // MARK: - Layout
 
     func setupConstraints() {
@@ -123,7 +145,7 @@ extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 1:
-            let trainersViewController = TrainersViewController()
+            let trainersViewController = TrainersViewController(trainerData: trainers)
             navigationController?.pushViewController(trainersViewController,
                                                      animated: true)
         case 2:

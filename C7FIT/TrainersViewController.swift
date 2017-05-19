@@ -4,7 +4,7 @@ let trainerCellIdentifier = "TrainerDetailCell"
 
 class TrainersViewController: UIViewController {
 
-    // MARK: - Properties
+    // MARK: - Constants
 
     let collectionView = UICollectionView(frame: CGRect(x: 0,
                                                         y: 0,
@@ -12,11 +12,20 @@ class TrainersViewController: UIViewController {
                                                         height: 0),
                                           collectionViewLayout: UICollectionViewFlowLayout())
 
-    let trainers: [Trainer] = [Trainer(firstName: "Rutger",
-                                       lastName: "Farry",
-                                       bio: "Freelance mecha designer",
-                                       avatar: #imageLiteral(resourceName: "tab_person_6x"),
-                                       coverPhoto: #imageLiteral(resourceName: "club front"))]
+    // MARK: - Properties
+
+    lazy var trainers: [Trainer] = []
+
+    // MARK: - Initialization
+
+    init(trainerData: [Trainer]) {
+        super.init(nibName: nil, bundle: nil)
+        trainers = trainerData
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 
     // MARK: - View Lifecycle
 
@@ -25,6 +34,7 @@ class TrainersViewController: UIViewController {
 
         // Appearance
         title = "Trainers"
+        collectionView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
 
         // Add collectionView
         view.addSubview(collectionView)
@@ -48,13 +58,13 @@ class TrainersViewController: UIViewController {
 
     func setupConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        let topView = collectionView.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomView = collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leftView = collectionView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        let rightView = collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
     }
-
 }
 
 extension TrainersViewController: UICollectionViewDataSource {
@@ -65,11 +75,14 @@ extension TrainersViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: trainerCellIdentifier,
-                                                      for: indexPath)
-        cell.backgroundColor = .white
-        return cell
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: trainerCellIdentifier,
+                                                         for: indexPath) as? TrainerDetailCell {
+            cell.backgroundColor = .white
+            cell.nameLabel.text = "\(trainers[indexPath.item].firstName) \(trainers[indexPath.item].lastName)"
+            cell.bioLabel.text = trainers[indexPath.item].bio
+            cell.avatarImageView.downloadImageFrom(url: trainers[indexPath.item].avatar, imageMode: .scaleAspectFit)
+            return cell
+        }
+        return UICollectionViewCell()
     }
-
 }
