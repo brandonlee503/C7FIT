@@ -12,7 +12,6 @@
 		160D9B201E0B5C0D00801627 /* C7FITTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B1F1E0B5C0D00801627 /* C7FITTests.swift */; };
 		160D9B2B1E0B5C0D00801627 /* C7FITUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B2A1E0B5C0D00801627 /* C7FITUITests.swift */; };
 		160D9B781E0B80DE00801627 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B771E0B80DE00801627 /* HomeViewController.swift */; };
-		160D9B7A1E0B88EE00801627 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B791E0B88EE00801627 /* HomeView.swift */; };
 		160D9B7C1E0BF4CC00801627 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B7B1E0BF4CC00801627 /* ScheduleViewController.swift */; };
 		160D9B801E0BF91400801627 /* StoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B7F1E0BF91400801627 /* StoreViewController.swift */; };
 		160D9B8A1E0BFA7A00801627 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160D9B891E0BFA7A00801627 /* ProfileViewController.swift */; };
@@ -124,7 +123,6 @@
 		160D9B2A1E0B5C0D00801627 /* C7FITUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C7FITUITests.swift; sourceTree = "<group>"; };
 		160D9B2C1E0B5C0D00801627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		160D9B771E0B80DE00801627 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		160D9B791E0B88EE00801627 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		160D9B7B1E0BF4CC00801627 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		160D9B7F1E0BF91400801627 /* StoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreViewController.swift; sourceTree = "<group>"; };
 		160D9B891E0BFA7A00801627 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -589,20 +587,19 @@
 		AC7D4A961EA3F53100230C94 /* HomeViews */ = {
 			isa = PBXGroup;
 			children = (
-				AC7D4A991EA3F81F00230C94 /* CollectionView Cells */,
-				160D9B791E0B88EE00801627 /* HomeView.swift */,
+				AC7D4A991EA3F81F00230C94 /* CollectionViewCells */,
 			);
 			name = HomeViews;
 			sourceTree = "<group>";
 		};
-		AC7D4A991EA3F81F00230C94 /* CollectionView Cells */ = {
+		AC7D4A991EA3F81F00230C94 /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
 				AC96A66C1E96BF9C00B503AD /* YouTubeCollectionViewCell.swift */,
 				AC7D4A971EA3F76500230C94 /* TrainersCollectionViewCell.swift */,
 				AC087E311EB03AD500921352 /* MotivationalQuoteCollectionViewCell.swift */,
 			);
-			name = "CollectionView Cells";
+			name = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -907,7 +904,6 @@
 				7A9D9E181E9EC4720049DCE4 /* HeartRateTableViewController.swift in Sources */,
 				16D2D2EC1E38638600F6AA9F /* CircularImageView.swift in Sources */,
 				7AF14EB61E9C641E009C7908 /* CountTableViewController.swift in Sources */,
-				160D9B7A1E0B88EE00801627 /* HomeView.swift in Sources */,
 				163DFC101E41A43A00593CF9 /* AbstractHealthCell.swift in Sources */,
 				7A838C581E96FA04003BE65F /* TimePickerSubCell.swift in Sources */,
 				16BEBE541E6FEE050034D422 /* CategoryCell.swift in Sources */,
