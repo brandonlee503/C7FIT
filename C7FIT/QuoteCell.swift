@@ -6,7 +6,7 @@ protocol MotivationalQuoteCellProtocol {
     func togglePlayback()
 }
 
-class MotivationalQuoteCollectionViewCell: UICollectionViewCell {
+class QuoteCell: UICollectionViewCell {
 
     let quoteLabel = UILabel()
     fileprivate var _audioPlayer: AVAudioPlayer?
@@ -36,7 +36,7 @@ class MotivationalQuoteCollectionViewCell: UICollectionViewCell {
 
 }
 
-extension MotivationalQuoteCollectionViewCell: MotivationalQuoteCellProtocol {
+extension QuoteCell: MotivationalQuoteCellProtocol {
     var audioUrl: URL? {
         get {
             return _audioPlayer?.url

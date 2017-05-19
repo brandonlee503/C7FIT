@@ -8,13 +8,20 @@ enum CollectionViewCellType: String {
 
 class HomeViewController: UIViewController {
 
-    // MARK: - Properties
+    // MARK: - Constants
 
+    let firebaseDataManager = FirebaseDataManager()
     let collectionView = UICollectionView(frame: CGRect(x: 0,
                                                         y: 0,
                                                         width: 0,
                                                         height: 0),
                                           collectionViewLayout: UICollectionViewFlowLayout())
+
+    // MARK: - Properties
+
+    var videoID: String?
+    var quote: String?
+    var trainers: [Trainer] = []
 
     // MARK: - View Lifecycle
 
@@ -34,11 +41,11 @@ class HomeViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
 
-        collectionView.register(YouTubeCollectionViewCell.classForCoder(),
+        collectionView.register(YouTubeCell.classForCoder(),
                                 forCellWithReuseIdentifier: CollectionViewCellType.youtube.rawValue)
-        collectionView.register(TrainersCollectionViewCell.classForCoder(),
+        collectionView.register(TrainerCell.classForCoder(),
                                 forCellWithReuseIdentifier: CollectionViewCellType.trainers.rawValue)
-        collectionView.register(MotivationalQuoteCollectionViewCell.classForCoder(),
+        collectionView.register(QuoteCell.classForCoder(),
                                 forCellWithReuseIdentifier: CollectionViewCellType.motivational.rawValue)
 
         let collectionViewLayout = UICollectionViewFlowLayout()
@@ -47,17 +54,50 @@ class HomeViewController: UIViewController {
         collectionViewLayout.minimumLineSpacing = 8
         collectionView.setCollectionViewLayout(collectionViewLayout,
                                                animated: false)
+
+        // Fetch all assets from firebase and set them accordingly
+        fetchAssets()
     }
 
+    func fetchAssets() {
+        firebaseDataManager.fetchHomeScreenInfo { data in
+            guard let json = data.value as? [String: Any] else { return }
+            guard let videos = json["videos"] as? [String: Any] else { return }
+            guard let quotes = json["quotes"] as? [String: Any] else { return }
+            guard let trainerJSON = json["trainers"] as? [String: Any] else { return }
+
+            // Load random video and quote
+            let videoIndex = Int(arc4random_uniform(UInt32(videos.count)))
+            let quoteIndex = Int(arc4random_uniform(UInt32(quotes.count)))
+            self.videoID = Array(videos.values)[videoIndex] as? String
+            self.quote = Array(quotes.values)[quoteIndex] as? String
+
+            // Load trainers for detail view
+            for trainer in trainerJSON {
+                let fullName = trainer.key.components(separatedBy: " ")
+                let trainerDetails = trainer.value as? [String: Any]
+                let avatar = trainerDetails?["avatar"] as! String
+                let avatarURL = URL(string: avatar)!
+                let bio = trainerDetails?["bio"] as! String
+                self.trainers.append(Trainer(firstName: fullName.first!,
+                                              lastName: fullName.last!,
+                                              bio: bio,
+                                              avatar: avatarURL,
+                                              coverPhoto: nil))
+            }
+            self.collectionView.reloadData()
+        }
+    }
     // MARK: - Layout
 
     func setupConstraints() {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        let topView = collectionView.topAnchor.constraint(equalTo: view.topAnchor)
-        let bottomView = collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let leftView = collectionView.leftAnchor.constraint(equalTo: view.leftAnchor)
-        let rightView = collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        NSLayoutConstraint.activate([topView, bottomView, leftView, rightView])
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
     }
 }
 
@@ -74,8 +114,8 @@ extension HomeViewController: UICollectionViewDataSource {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.youtube.rawValue,
                                                           for: indexPath)
-            if let cell = cell as? YouTubeCollectionViewCell {
-                cell.videoID = "SGGKHqYEMqc"
+            if let cell = cell as? YouTubeCell {
+                cell.videoID = videoID
             }
             return cell
 
@@ -87,9 +127,10 @@ extension HomeViewController: UICollectionViewDataSource {
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCellType.motivational.rawValue,
                                                           for: indexPath)
-            if let cell = cell as? MotivationalQuoteCollectionViewCell,
+            if let cell = cell as? QuoteCell,
                 let url = Bundle.main.url(forResource: "youCanDoIt", withExtension: "mp3") {
                 cell.audioUrl = url
+                cell.quoteLabel.text = quote
             }
             return cell
 
@@ -97,7 +138,6 @@ extension HomeViewController: UICollectionViewDataSource {
             fatalError("This should not be happening. SAD!")
         }
     }
-
 }
 
 extension HomeViewController: UICollectionViewDelegate {
@@ -105,15 +145,14 @@ extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.row {
         case 1:
-            let trainersViewController = TrainersViewController()
+            let trainersViewController = TrainersViewController(trainerData: trainers)
             navigationController?.pushViewController(trainersViewController,
                                                      animated: true)
         case 2:
-            let cell = collectionView.cellForItem(at: indexPath) as! MotivationalQuoteCollectionViewCell
+            let cell = collectionView.cellForItem(at: indexPath) as! QuoteCell
             cell.togglePlayback()
         default:
             return
         }
     }
-
 }

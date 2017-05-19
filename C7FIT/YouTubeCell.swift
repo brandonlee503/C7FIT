@@ -7,7 +7,7 @@ protocol YouTubePlayerProtocol {
     func pause()
 }
 
-class YouTubeCollectionViewCell: UICollectionViewCell {
+class YouTubeCell: UICollectionViewCell {
 
     fileprivate let youTubePlayerView: YTPlayerView
     fileprivate var _videoID: String? {
@@ -35,7 +35,7 @@ class YouTubeCollectionViewCell: UICollectionViewCell {
 
 }
 
-extension YouTubeCollectionViewCell: YouTubePlayerProtocol {
+extension YouTubeCell: YouTubePlayerProtocol {
 
     var videoID: String? {
         get {

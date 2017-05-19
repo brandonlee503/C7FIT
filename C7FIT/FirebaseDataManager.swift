@@ -21,6 +21,17 @@ struct FirebaseDataManager {
     // MARK: - Static Information
 
     /**
+        Fetch trainers and daily content data for homescreen
+     
+         - Returns completion: A callback that returns a FIRDataSnapshot
+     */
+    func fetchHomeScreenInfo(completion: @escaping (_: FIRDataSnapshot) -> Void) {
+        ref.child("homescreen").observeSingleEvent(of: .value) { snapshot in
+            completion(snapshot)
+        }
+    }
+
+    /**
         Fetch club information
 
         - Returns completion: A callback that returns a FIRDataSnapshot
