@@ -1,0 +1,117 @@
+% Change table
+
+\subsection*{Final Requirements Table}
+
+\begin{center}
+\begin{tabular}{ |p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}| } 
+ \hline
+ \textbf{Requirement} & \textbf{What happened to it} & \textbf{Comments} \\ 
+\hline
+  Home Tab & Implemented & Completed \\ \hline
+ Home will be a tableview with three cells. Some of these will be tappable, allowing users to view more detail than the snippet shown in the cell: & Implemented & Completed \\ \hline
+ Today’s workout video & Implemented & Completed \\ \hline
+ This will display a Youtube video & Implemented & Completed \\ \hline
+ The video URL will be retrieved from a static file either in Firebase or a GitHub repo & Implemented & Ended up being stored in Firebase \\ \hline
+ The video will be different every day & Implemented & Completed \\ \hline
+ Selecting the video will open it in a landscape, full-screen view & Implemented & Completed \\ \hline
+ Today’s Motivation & Implemented & Completed \\ \hline
+ This is a simple cell that just contains a motivational phrase & Implemented & Completed \\ \hline
+ The phrase will be fetched from a static file in a GitHub repo & Implemented & Storage has moved to Firebase \\ \hline
+ Store & Implemented & Completed \\ \hline
+ The Store view will be a tableview of items available for sale from the Club Seven eBay store & Implemented & Completed \\ \hline
+ Each cell will contain a picture of the item, its price, and name. Other metadata from eBay may be included & Implemented & Completed \\ \hline
+ The store will use the eBay API to list products sold by C7FIT & Implemented & Completed \\ \hline
+ Tapping a cell will show more information about the item, with the option to purchase it on eBay & Implemented & Completed \\ \hline
+ Schedule Tab & Implemented & Completed \\ \hline
+ The schedule will be a WKWebView (basically an embedded web browser) that opens the schedule webpage from Club Seven Fitness's website & Implemented & Completed \\ \hline
+ As a stretch goal, we may hook into a Google Calendar or parse the HTML to display a calendar using native elements & Attempted & Did not integrate in final product. \\ \hline
+ Activity Tab & Implemented & Completed \\ \hline
+ The activity tab screen will be a collection of tools, user activity, and health results. & Implemented & Completed \\ \hline
+ Today’s Activity & Implemented & Completed \\ \hline
+ 
+\end{tabular}
+\newpage
+
+\begin{tabular}{ |p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}| } 
+ \hline
+ 
+ The top section of the Activity Tab shall have a title Today Activity. & Implemented & Completed \\ \hline
+ The content in the today activity section will include steps and active time from the Health Kit SDK. & Implemented & Completed \\ \hline
+ If the user does not have a profile on Health Kit SDK then a message will be displayed to the user.  “To get activity go to health app on your phone” & Implemented & Completed \\ \hline
+ Workout Tools & Implemented & Completed \\ \hline
+ The section session shall have a title “Workout Tools” & Implemented & Completed \\ \hline
+ There will be three tools in this section. & Implemented & Completed \\ \hline
+ The first tool will be stop watch. & Implemented & Completed \\ \hline
+ The stopwatch cell shall have text saying “Stop Watch” and shall have a right caret. & Implemented & Completed \\ \hline
+ If the user taps the stopwatch cell a new screen shall be started. & Implemented & Completed \\ \hline
+ The stopwatch screen shall have a title Stop Watch and a left caret. & Implemented & Completed \\ \hline
+ If the left caret is selected the user will be returned to the activity tab. & Implemented & Completed \\ \hline
+ The stopwatch screen shall have a timer. & Implemented & Completed \\ \hline
+ The stopwatch screen shall have a Start button that starts the timer. & Implemented & Completed \\ \hline
+ The stopwatch screen shall have a Stop button that stops the timer. & Implemented & Completed \\ \hline
+ The time shall remain on the screen until the user taps the start button again. & Implemented & Completed \\ \hline
+ The second tool will be countdown time. & Implemented & Completed \\ \hline
+ The countdown cell shall have text saying “Countdown Timer” and shall have a right caret. & Implemented & Completed \\ \hline
+ If the user taps the countdown cell a new screen shall be started. & Implemented & Completed \\ \hline
+ The countdown screen shall have a title Countdown Timer and a left caret. & Implemented & Completed \\ \hline
+ If the left caret is selected the user will be returned to the activity tab. & Implemented & Completed \\ \hline
+ The countdown screen shall have a timer. & Implemented & Completed \\ \hline
+ 
+ \end{tabular}
+\newpage
+
+\begin{tabular}{ |p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}| } 
+ \hline
+ 
+ The countdown screen shall have an option to select a timer duration. & Implemented & Completed \\ \hline
+ The countdown screen shall have a Start button that starts the timer. & Implemented & Completed \\ \hline
+ The countdown screen shall have a Stop button that stops the timer. & Implemented & Completed \\ \hline
+ The time shall remain on the screen until the user taps the start button again. & Implemented & Completed \\ \hline
+ Map & Implemented & Completed \\ \hline
+ The map screen shall have a title saying Map and a right caret. & Implemented & Completed \\ \hline
+ The map shall use the Mapkit SDK. & Implemented & Completed \\ \hline
+ The map shall show a map with current location. & Implemented & Completed \\ \hline
+ The map shall a Start Activity - have a start activity option. & Implemented & Completed \\ \hline
+ The map shall a Track Activity - track activity to record the track and draw it on the map. & Implemented & Completed \\ \hline
+ The map shall a Finish Activity - stop the activity. & Implemented & Completed \\ \hline
+ The map shall an Activity Details - Time and Distance for activity. & Implemented & Completed \\ \hline
+ The map shall a Save Activity - Save locally on device in core data with time as title. & Implemented & Completed \\ \hline
+ The map shall a View an Activity - Stretch goal to remap an activity. & Implemented & Completed \\ \hline
+ Test Results & Implemented & Completed \\ \hline
+ The test results section shall list all current recorded results. & Implemented & Completed \\ \hline
+ The test results section will have an edit option. & Implemented & Completed \\ \hline
+ The edit option will launch a new screen that lists the test results and allows the user to enter the correct data. & Implemented & Completed \\ \hline
+ Test results will include:  Mile Time, Number of Push Up in a Minute, Number of Situps in a Minute, Leg Press, Bench Press, Lat Pull. & Implemented & Completed \\ \hline
+ Profile Tab & Implemented & Completed \\ \hline
+ The more tab shall display the signed in users profile. & Implemented & Completed \\ \hline
+ 
+ \end{tabular}
+\newpage
+
+\begin{tabular}{ |p{0.3\linewidth}|p{0.3\linewidth}|p{0.3\linewidth}| } 
+ \hline
+ 
+ The elements that will be displayed include picture, name, and info from the HealthKit service. & Implemented & Completed \\ \hline
+\end{tabular}
+\end{center}
+
+\subsection*{Final Gantt Chart}
+
+\noindent\resizebox{\textwidth}{!}{
+\begin{tikzpicture}[x=.5cm, y=1cm]
+\begin{ganttchart}{1}{32}
+  \gantttitle{2016-2017 (Working Weeks)}{32} \\
+  \gantttitlelist{1,...,32}{1} \\
+  \ganttbar{Writing}{1}{32} \\
+  \ganttbar{Sketch}{1}{4} \\
+  \ganttbar{Base Code}{4}{10} \\
+  \ganttbar{API/Network}{10}{12} \\
+  \ganttbar{Templating}{3}{4} \\
+  \ganttbar{MVP}{4}{17} \\
+  \ganttbar{Add. Features}{17}{31} \\
+  \ganttbar{Testing}{32}{32} \\
+  \ganttbar{QA}{32}{32} \\
+  \ganttbar{App Store}{32}{32} \\
+\end{ganttchart}
+\end{tikzpicture}
+}
