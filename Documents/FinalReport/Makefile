@@ -3,3 +3,6 @@ all:
 
 clean:
 	latexmk -C
+
+clean-aux:
+	latexmk -c
