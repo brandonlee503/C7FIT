@@ -37,8 +37,8 @@ class ProfileViewController: UITableViewController {
         tableView.keyboardDismissMode = .onDrag
         tableView.register(AbstractHealthCell.self, forCellReuseIdentifier: healthIdentifier)
         tableView.register(LogoutTableViewCell.self, forCellReuseIdentifier: logoutIdentifier)
-
-        tableView.tableHeaderView = ProfileHeaderView()
+        
+        setupTableViewHeader()
         tableView.tableFooterView = UIView()
 
         // Add save button
@@ -62,13 +62,30 @@ class ProfileViewController: UITableViewController {
 
         self.view.setNeedsUpdateConstraints()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         if !firebaseDataManager.isLoggedInUser() {
             self.present(LoginViewController(), animated: true, completion: nil)
         }
     }
-
+    
+    /// Helper function to setup ProfileHeaderView()
+    func setupTableViewHeader() {
+        let header = ProfileHeaderView()
+        header.nameField.text = user?.name ?? ""
+        header.bioField.text = user?.bio
+        if let profilePicString = self.user?.photoURL {
+            header.profileImageView.downloadImageFrom(urlString: profilePicString, imageMode: .scaleAspectFill)
+        } else {
+            header.profileImageView.image = nil
+        }
+        header.placeholderLabel.isHidden = !header.bioField.text.isEmpty
+        header.updateProfileButton.addTarget(self, action: #selector(updateProfilePicPressed(sender:)), for: .touchUpInside)
+        
+        header.frame.size.height = 150
+        tableView.tableHeaderView = header
+    }
+    
     // MARK: - UITableView Delegate and Datasource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -81,25 +98,6 @@ class ProfileViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
-    }
-
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 150
-    }
-
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = ProfileHeaderView()
-        header.nameField.text = user?.name ?? ""
-        header.bioField.text = user?.bio
-        if let profilePicString = self.user?.photoURL {
-            header.profileImageView.downloadImageFrom(urlString: profilePicString, imageMode: .scaleAspectFill)
-        } else {
-            header.profileImageView.image = nil
-        }
-        header.placeholderLabel.isHidden = !header.bioField.text.isEmpty
-        header.updateProfileButton.addTarget(self, action: #selector(updateProfilePicPressed(sender:)), for: .touchUpInside)
-        self.tableView.tableHeaderView = header
-        return header
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
