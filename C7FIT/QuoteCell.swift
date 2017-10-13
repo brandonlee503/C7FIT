@@ -9,19 +9,25 @@ protocol MotivationalQuoteCellProtocol {
 class QuoteCell: UICollectionViewCell {
 
     let quoteLabel = UILabel()
+    let coverPhotoImageView = C7FUIImageView()
     fileprivate var _audioPlayer: AVAudioPlayer?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         quoteLabel.text = "Life is like a box of chocolates"
-        quoteLabel.textColor = .gray
+        quoteLabel.textColor = .white
         quoteLabel.textAlignment = .left
         quoteLabel.font = UIFont.systemFont(ofSize: 32)
         quoteLabel.lineBreakMode = .byWordWrapping
         quoteLabel.numberOfLines = 0
+        
+        coverPhotoImageView.image = #imageLiteral(resourceName: "quoteBackground")
+        coverPhotoImageView.contentMode = .scaleAspectFill
+        coverPhotoImageView.frame = contentView.bounds
 
-        contentView.addSubview(quoteLabel)
+        contentView.insertSubview(quoteLabel, at: 1)
+        contentView.insertSubview(coverPhotoImageView, at: 0)
         contentView.clipsToBounds = true
         contentView.backgroundColor = .white
     }
