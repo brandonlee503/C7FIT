@@ -10,10 +10,12 @@ class TrainerDetailCell: UICollectionViewCell {
         super.init(frame: frame)
 
         nameLabel.font = .systemFont(ofSize: 22)
-
-        bioLabel.font = .systemFont(ofSize: 10)
+        
+        bioLabel.adjustsFontSizeToFitWidth = true
+        bioLabel.minimumScaleFactor = 0.5
         bioLabel.numberOfLines = 0
-        bioLabel.lineBreakMode = .byWordWrapping
+        bioLabel.lineBreakMode = .byTruncatingTail
+        bioLabel.textAlignment = .left
 
         contentView.insertSubview(nameLabel, at: 1)
         contentView.insertSubview(bioLabel, at: 1)
@@ -53,9 +55,10 @@ class TrainerDetailCell: UICollectionViewCell {
         ])
 
         NSLayoutConstraint.activate([
-            bioLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            bioLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 1),
             bioLabel.leftAnchor.constraint(equalTo: nameLabel.leftAnchor),
-            bioLabel.rightAnchor.constraint(equalTo: margins.rightAnchor)
+            bioLabel.rightAnchor.constraint(equalTo: margins.rightAnchor),
+            bioLabel.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: -5)
         ])
     }
 }
