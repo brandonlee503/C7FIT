@@ -173,7 +173,7 @@ class HeartRateTableViewController: UITableViewController, AVCaptureVideoDataOut
 
         // Alert field
         heartAlert.addTextField { textMinutes in
-            textMinutes.placeholder = "run name"
+            textMinutes.placeholder = "Heartbeats"
             textMinutes.keyboardType = .numberPad
         }
 
