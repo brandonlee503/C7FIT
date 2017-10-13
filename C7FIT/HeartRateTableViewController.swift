@@ -253,6 +253,12 @@ class HeartRateTableViewController: UITableViewController, AVCaptureVideoDataOut
         let cell = HealthInfoCell()
         cell.titleLabel.text = titleLabel
         cell.infoLabel.text = data
+        
+        // Disable selection of non-interactive cells
+        if data.count > 0 {
+            cell.selectionStyle = .none
+        }
+        
         return cell
     }
 
