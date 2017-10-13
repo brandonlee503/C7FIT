@@ -41,9 +41,10 @@ class ClubBioCell: UITableViewCell {
         bioTitle.textAlignment = .center
         addSubview(bioTitle)
 
-        bioDescription.font = UIFont.systemFont(ofSize: 10)
+        bioDescription.adjustsFontSizeToFitWidth = true
+        bioDescription.minimumScaleFactor = 0.5
         bioDescription.numberOfLines = 0
-        bioDescription.lineBreakMode = .byWordWrapping
+        bioDescription.lineBreakMode = .byTruncatingTail
         bioDescription.textAlignment = .left
         addSubview(bioDescription)
     }
@@ -70,8 +71,8 @@ class ClubBioCell: UITableViewCell {
         NSLayoutConstraint.activate([
             bioDescription.leftAnchor.constraint(equalTo: bioTitle.leftAnchor),
             bioDescription.rightAnchor.constraint(equalTo: bioTitle.rightAnchor),
-            bioDescription.topAnchor.constraint(equalTo: bioTitle.bottomAnchor),
-            bioDescription.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10)
+            bioDescription.topAnchor.constraint(equalTo: bioTitle.bottomAnchor, constant: 10),
+            bioDescription.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
         ])
     }
 }
