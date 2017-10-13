@@ -54,6 +54,7 @@ class ScheduleViewController: UITableViewController, MFMailComposeViewController
         tableView.register(ScheduleCell.self, forCellReuseIdentifier: scheduleIdentifier)
         tableView.register(ClubBioCell.self, forCellReuseIdentifier: bioIdentifier)
         tableView.register(ClubContactCell.self, forCellReuseIdentifier: contactIdentifier)
+        tableView.tableFooterView = UIView()
         view.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         view.setNeedsUpdateConstraints()
     }
