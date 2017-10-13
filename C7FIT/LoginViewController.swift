@@ -27,6 +27,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         loginView.loginButton.addTarget(self, action: #selector(self.loginPressed), for: .touchUpInside)
         loginView.createAccountButton.addTarget(self, action: #selector(self.createAccountPressed), for: .touchUpInside)
         loginView.cancelButton.addTarget(self, action: #selector(self.cancelButtonPressed), for: .touchUpInside)
+        loginView.forgotPasswordButton.addTarget(self, action: #selector(self.forgotPasswordPressed), for: .touchUpInside)
         loginView.emailField.delegate = self
         loginView.passwordField.delegate = self
         view.addSubview(loginView)
@@ -67,6 +68,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    func forgotPasswordPressed() {
+        if let email = loginView.emailField.text, email.count > 0 {
+            firebaseDataManager.sendPasswordResetEmail(email: email) { error in
+                guard !(error != nil) else { return self.displayError(error: error!) }
+                let confirmationAlert = UIAlertController(title: "Verification Email Sent",
+                                                          message: "A verification email has been sent to your account to reset your password.",
+                                                          preferredStyle: .alert)
+                let submitAction = UIAlertAction(title: "Ok", style: .default)
+                confirmationAlert.addAction(submitAction)
+                self.present(confirmationAlert, animated: true, completion: nil)
+            }
+        } else {
+            let missingEmailAlert = UIAlertController(title: "Missing field", message: "Please enter an email", preferredStyle: .alert)
+            let submitAction = UIAlertAction(title: "Ok", style: .default)
+            missingEmailAlert.addAction(submitAction)
+            self.present(missingEmailAlert, animated: true, completion: nil)
+        }
+    }
+    
     func cancelButtonPressed() {
         // Segue back to home screen
         self.presentingViewController?.childViewControllers[0].tabBarController?.selectedIndex = 0

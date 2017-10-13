@@ -18,6 +18,7 @@ class LoginView: UIView {
     var passwordField = UITextField()
     var loginButton = UIButton()
     var createAccountButton = UIButton()
+    var forgotPasswordButton = UIButton()
 
     // MARK: - Initialization
 
@@ -75,6 +76,13 @@ class LoginView: UIView {
         createAccountButton.backgroundColor = .black
         createAccountButton.layer.cornerRadius = 5
         addSubview(createAccountButton)
+        
+        forgotPasswordButton.setTitle("Forgot Password", for: .normal)
+        forgotPasswordButton.setTitleColor(.white, for: .normal)
+        forgotPasswordButton.titleLabel?.font = .systemFont(ofSize: 10)
+        forgotPasswordButton.backgroundColor = .black
+        forgotPasswordButton.layer.cornerRadius = 5
+        addSubview(forgotPasswordButton)
     }
 
     func setupConstraints() {
@@ -84,6 +92,7 @@ class LoginView: UIView {
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         createAccountButton.translatesAutoresizingMaskIntoConstraints = false
+        forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             appLogo.topAnchor.constraint(equalTo: topAnchor, constant: 50),
@@ -123,6 +132,13 @@ class LoginView: UIView {
             createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10),
             createAccountButton.leftAnchor.constraint(equalTo: loginButton.leftAnchor),
             createAccountButton.rightAnchor.constraint(equalTo: loginButton.rightAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            forgotPasswordButton.centerXAnchor.constraint(equalTo: createAccountButton.centerXAnchor),
+            forgotPasswordButton.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 10),
+            forgotPasswordButton.leftAnchor.constraint(equalTo: createAccountButton.leftAnchor),
+            forgotPasswordButton.rightAnchor.constraint(equalTo: createAccountButton.rightAnchor)
         ])
     }
 }

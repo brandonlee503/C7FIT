@@ -72,6 +72,18 @@ struct FirebaseDataManager {
     }
 
     /**
+         Submit password reset with credentials.
+     
+         - Parameter email: User email string
+         - Returns completion: A callback that returns FIRAuthCallback
+     */
+    func sendPasswordResetEmail(email: String, completion: @escaping (_:Error?) -> Void) {
+        FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: { error in
+            completion(error)
+        })
+    }
+    
+    /**
         Checks if the user is currently logged in.
      
         - Returns bool: A bool that represents if the user is logged in
