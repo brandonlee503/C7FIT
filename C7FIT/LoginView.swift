@@ -129,14 +129,14 @@ class LoginView: UIView {
 
         NSLayoutConstraint.activate([
             createAccountButton.centerXAnchor.constraint(equalTo: loginButton.centerXAnchor),
-            createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10),
+            createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 15),
             createAccountButton.leftAnchor.constraint(equalTo: loginButton.leftAnchor),
             createAccountButton.rightAnchor.constraint(equalTo: loginButton.rightAnchor)
         ])
         
         NSLayoutConstraint.activate([
             forgotPasswordButton.centerXAnchor.constraint(equalTo: createAccountButton.centerXAnchor),
-            forgotPasswordButton.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 10),
+            forgotPasswordButton.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 15),
             forgotPasswordButton.leftAnchor.constraint(equalTo: createAccountButton.leftAnchor),
             forgotPasswordButton.rightAnchor.constraint(equalTo: createAccountButton.rightAnchor)
         ])
