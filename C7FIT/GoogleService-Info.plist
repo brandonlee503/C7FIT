@@ -7,34 +7,34 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>210271337853-0p2p4efa8m5t67o2homlm5dcg67joto5.apps.googleusercontent.com</string>
+	<string>84160123920-tk2t14knbef0vead5al3h7ln80f0cs32.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.210271337853-0p2p4efa8m5t67o2homlm5dcg67joto5</string>
+	<string>com.googleusercontent.apps.84160123920-tk2t14knbef0vead5al3h7ln80f0cs32</string>
 	<key>API_KEY</key>
-	<string>AIzaSyC3-Hd1wyXoCR9oYAN0CRHxtM4GTUvYvJo</string>
+	<string>AIzaSyB7CtFYU6N1BAivIL1I03c1KbJrsbr6Sm8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>210271337853</string>
+	<string>84160123920</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.ClubSevenFitness.C7FIT</string>
 	<key>PROJECT_ID</key>
-	<string>c7fit-dc056</string>
+	<string>c7fit-prod</string>
 	<key>STORAGE_BUCKET</key>
-	<string>c7fit-dc056.appspot.com</string>
+	<string>c7fit-prod.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false/>
+	<false></false>
 	<key>IS_GCM_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true/>
+	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:210271337853:ios:94c233c53860f2c8</string>
+	<string>1:84160123920:ios:94c233c53860f2c8</string>
 	<key>DATABASE_URL</key>
-	<string>https://c7fit-dc056.firebaseio.com</string>
+	<string>https://c7fit-prod.firebaseio.com</string>
 </dict>
 </plist>
