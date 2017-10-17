@@ -44,7 +44,7 @@ extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationCo
      - Parameter url: User's profile picture URL
      */
     func updateprofileImage(url: URL?) {
-        if let header = tableView.tableHeaderView as? ProfileHeaderView {//= tableView.headerView(forSection: 0) as? ProfileHeaderView {
+        if let header = tableView.tableHeaderView as? ProfileHeaderView {
             if let url = url {
                 header.profileImageView.downloadImageFromFirebase(url: url, imageMode: .scaleAspectFill)
             } else {
