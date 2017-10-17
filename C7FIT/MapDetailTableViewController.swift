@@ -42,7 +42,6 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
 
         // Save button
         if !loadMap() && !hideSave {
-            print("error loading map")
             let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(cantSaveRun))
             navigationItem.rightBarButtonItem = saveButton
         } else if !hideSave {
@@ -144,13 +143,12 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
     func polyline() -> MKPolyline {
         var coords = [CLLocationCoordinate2D]()
 
-        print("polyline")
         let locations = currentRun.locations
         for location in locations {
             coords.append(CLLocationCoordinate2D(latitude: location.latitude,
                                                  longitude: location.longitude))
         }
-        print(coords)
+        
         return MKPolyline(coordinates: &coords, count: currentRun.locations.count)
     }
 

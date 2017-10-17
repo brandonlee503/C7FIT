@@ -67,10 +67,6 @@ struct RunData {
         dateFormatter.locale = Locale(identifier: "en_US")
         dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .none
-        print("date")
-        print(date)
-        print("format")
-        print(dateFormatter.string(from: date))
         return dateFormatter.string(from: date)
     }
 

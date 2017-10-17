@@ -113,7 +113,7 @@ class HeartRateTableViewController: UITableViewController, AVCaptureVideoDataOut
                 midLabel = String(format:"%.0f - %.0f", self.hrLow, self.hrHigh)
                 maxLabel = String(format:"%.0f", self.hrMax)
             } else {
-                print("less than 0")
+                // Less than 0
                 midLabel = "N/A"
                 maxLabel = "N/A"
             }

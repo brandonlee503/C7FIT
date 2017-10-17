@@ -46,7 +46,7 @@ struct HealthKitManager {
 
             healthKitStore.requestAuthorization(toShare: healthKitWrite, read: healthKitRead) { (success, _) -> Void in
                 if success == false {
-                    print("error requesting authorization")
+                    // Error in requesting authorization
                 }
             }
     }
@@ -73,7 +73,6 @@ struct HealthKitManager {
             let mostRecent = results?.first as? HKQuantitySample
             if mostRecent == nil {
                 // May not have permission to read data or DNE
-                print("results nil")
                 return
             }
             completion(mostRecent!, nil)

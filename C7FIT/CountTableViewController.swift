@@ -94,9 +94,7 @@ class CountTableViewController: UITableViewController {
     // MARK: - Button functions
 
     func startCount() {
-        print("starting")
         self.chosenTime = (Double)(chosenHour * 3600 + chosenMin * 60)
-        print(chosenTime)
         if chosenTime <= 0 {
             return
         }
@@ -110,7 +108,6 @@ class CountTableViewController: UITableViewController {
     }
 
     func stopCount() {
-        print("stopping")
         isTimeChosen = false
         // Reset all Time variables
         self.currentTime = 0
@@ -126,7 +123,6 @@ class CountTableViewController: UITableViewController {
     }
 
     func pauseCount() {
-        print("pausing")
         self.timer.invalidate()
         self.buttonCell.leftButton.removeTarget(nil, action: nil, for: .allEvents)
         self.buttonCell.leftButton.setTitle("Unpause", for: .normal)
@@ -134,7 +130,6 @@ class CountTableViewController: UITableViewController {
     }
 
     func unPauseCount() {
-        print("unpausing")
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         self.buttonCell.leftButton.removeTarget(nil, action: nil, for: .allEvents)
         self.buttonCell.leftButton.setTitle("Pause", for: .normal)

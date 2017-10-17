@@ -176,7 +176,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
                         self.mapCell.mapView.add(polyline(coords: self.currentPath), level: MKOverlayLevel.aboveRoads)
                     }
                 } else {
-                    print("loc accuracy too low")
+                    // Location accuracy too low
                 }
             }
         }

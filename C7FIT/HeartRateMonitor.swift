@@ -35,6 +35,7 @@ class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     var fingerOn = false
 
     let cameraSession = AVCaptureSession()
+    
     // MARK: - Camera Capture
 
     func startCameraCapture() {
@@ -54,7 +55,7 @@ class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
             if cameraSession.canAddInput(deviceInput) == true {
                 cameraSession.addInput(deviceInput)
             } else {
-                print("fail add input")
+                // Failed to add input
             }
 
             let dataOutput = AVCaptureVideoDataOutput()
@@ -78,7 +79,6 @@ class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
             self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateHeart), userInfo: nil, repeats: true)
 
         } catch let error as NSError {
-            print("camera error:")
             print(error)
         }
     }
@@ -86,11 +86,9 @@ class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
     func updateHeart() {
         let avgPeriod = getAvgPulses()
         if avgPeriod == -1 {
-            print("fail")
+            // Fail
         } else {
             let pulse = 60.0/avgPeriod
-            print("RESULT")
-            print(pulse)
             timer.invalidate()
             cameraSession.stopRunning()
             posIdx = 0
@@ -220,14 +218,10 @@ class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         if val > 0.5 * avgUp && lastVal == 0 {
             lastVal = 1 // Up state, need to change where this is?
             if time - periodStart < maxPeriod && time-periodStart > minPeriod {
-                print("time-period")
-                print(time-periodStart)
                 if periods.count <= maxNumPeriod {
-                    print("appending")
                     periods.append(time-periodStart)
                     periodTimes.append(time)
                 } else {
-                    print("inserting")
                     periods.insert(time-periodStart, at: periodIndex)
                     periodTimes.insert(time, at: periodIndex)
                 }
@@ -281,13 +275,10 @@ class HeartRateMonitor: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
         var total = 0.0
         var count = 0.0
         if periods.count < self.maxNumPeriod {
-            print(periods.count)
             return -1.0
         }
         for i in (0..<self.maxNumPeriod) {
             if time - periodTimes[i] < 10 {
-                print("total")
-                print(total)
                 count += 1
                 total += periods[i]
             } else {

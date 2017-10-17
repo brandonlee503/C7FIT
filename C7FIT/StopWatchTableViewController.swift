@@ -33,7 +33,6 @@ class StopWatchTableViewController: UITableViewController {
     // MARK: - Initialization
 
     override func viewDidLoad() {
-        print("viewdidload")
         super.viewDidLoad()
 
         self.title = "Stopwatch"
@@ -53,7 +52,6 @@ class StopWatchTableViewController: UITableViewController {
     // MARK: - Timer function
 
     func startTimer() {
-        print("starting")
         self.buttonCell.startStopButton.removeTarget(nil, action: nil, for: .allEvents)
         self.buttonCell.startStopButton.setTitle("Pause", for: .normal)
         self.buttonCell.startStopButton.addTarget(self, action: #selector(pauseTimer), for: .touchUpInside)
@@ -69,7 +67,6 @@ class StopWatchTableViewController: UITableViewController {
     }
 
     func pauseTimer() {
-        print("pausing")
         self.prevTime = time
         self.buttonCell.startStopButton.removeTarget(nil, action: nil, for: .allEvents)
         self.buttonCell.startStopButton.setTitle("Start", for: .normal)
@@ -84,7 +81,6 @@ class StopWatchTableViewController: UITableViewController {
     }
 
     func createLap() {
-        print("lapping")
         let lapTime = self.prevLapTime + Date().timeIntervalSinceReferenceDate - lapStartTime
         let dispTime = String(format:"%02d:%02d.%02d",
                               (Int)(lapTime/60),
@@ -97,7 +93,6 @@ class StopWatchTableViewController: UITableViewController {
     }
 
     func resetTimer() {
-        print("resetting")
         self.buttonCell.lapResetButton.removeTarget(nil, action: nil, for: .allEvents)
         self.buttonCell.lapResetButton.setTitle("Lap", for: .normal)
         self.buttonCell.lapResetButton.addTarget(self, action: #selector(createLap), for: .touchUpInside)

@@ -117,7 +117,7 @@ class HealthKitTableViewController: UITableViewController {
 
         self.healthKitManager.queryUserData(sampleType: sampleType, completion : { (mostRecentVal, error) -> Void in
             if error != nil {
-                print("Error")
+                // Error
                 return
             }
             if let result = mostRecentVal as? HKQuantitySample {
