@@ -218,13 +218,17 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         timerCell.timeLabel.text = RunData.dispTimePrettyColon(time: seconds)
         let secondsHK = HKQuantity(unit: HKUnit.second(), doubleValue: seconds)
         let distanceHK = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
-
-        // Calculate the pace
-        let paceUnit = HKUnit.minute().unitDivided(by: HKUnit.mile())
-        let paceVal = secondsHK.doubleValue(for: HKUnit.minute()) / distanceHK.doubleValue(for: HKUnit.mile())
-        let roundedPace = RunData.roundDouble(double: paceVal, round: 2)
-        let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: roundedPace)
-        pace = paceQuantity.description
+        
+        // Calculate the pace if there was actual distance made
+        if distanceHK.doubleValue(for: HKUnit.mile()) > 0 {
+            let paceUnit = HKUnit.minute().unitDivided(by: HKUnit.mile())
+            let paceVal = secondsHK.doubleValue(for: HKUnit.minute()) / distanceHK.doubleValue(for: HKUnit.mile())
+            let roundedPace = RunData.roundDouble(double: paceVal, round: 2)
+            let paceQuantity = HKQuantity(unit: paceUnit, doubleValue: roundedPace)
+            pace = paceQuantity.description
+        } else {
+            pace = "No Pace Recorded"
+        }
     }
 
     // MARK: - Create Run Data
