@@ -29,11 +29,6 @@ class ActivityViewController: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // Mark: - Layout
-
-    func setupConstraints() {
-    }
-
     // MARK: UITableView Delegate and Datasource
 
     override func numberOfSections(in tableView: UITableView) -> Int {

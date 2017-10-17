@@ -52,7 +52,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Do you allow this app to access your current location?</string>
     <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Do you allow this app to access your current location?</string>
+    <string>Do you allow this app to access your current location? (Always Allow will let you exit the app while your workout updates)</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Do you allow this app to access your photo library?</string>
 	<key>UIBackgroundModes</key>

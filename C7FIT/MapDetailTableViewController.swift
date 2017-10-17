@@ -54,7 +54,7 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
         detailCell.paceQuantity.text = self.currentRun.pace
         detailCell.secondsQuantity.text = self.currentRun.dispTimePretty()
     }
-
+    
     // MARK: - Init
 
     init(run: RunData, hideSave: Bool) {
@@ -176,15 +176,15 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
             let runTitle = runAlert.textFields![0] as UITextField
 
             if runTitle.text == nil || runTitle.text == "" {
-                let saveError = UIAlertController(title: "Error", message: "unable to save run, please enter a valid name", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "okay", style: .cancel)
+                let saveError = UIAlertController(title: "Error", message: "Please enter a valid name", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "Ok", style: .cancel)
                 saveError.addAction(ok)
                 self.present(saveError, animated: true, completion:nil)
                 return
             } else if (runTitle.text?.characters.count)! > 26 {
                 // Stop them from entering more than 26 characers in the text field?
                 let saveError = UIAlertController(title: "Error", message: "Name is too long, please be under 26 characters", preferredStyle: .alert)
-                let ok = UIAlertAction(title: "okay", style: .cancel)
+                let ok = UIAlertAction(title: "Ok", style: .cancel)
                 saveError.addAction(ok)
                 self.present(saveError, animated: true, completion:nil)
                 return
@@ -207,7 +207,6 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
 
         // Alert field
         runAlert.addTextField { textMinutes in
-            textMinutes.placeholder = "run name"
             textMinutes.keyboardType = .alphabet
         }
 
@@ -225,7 +224,7 @@ class MapDetailTableViewController: UITableViewController, MKMapViewDelegate {
     // Disp error message to user
     func cantSaveRun() {
         let alert = UIAlertController(title: "Location Data Error",
-                                      message: "This run couldn't be saved sorry",
+                                      message: "Sorry, this run couldn't be saved",
                                       preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)

@@ -57,7 +57,7 @@ struct RunData {
     }
 
     func dispDistancePretty() -> String {
-        let units = "mi"
+        let units = " mi"
         let prettyString = distance.description + units
         return prettyString
     }

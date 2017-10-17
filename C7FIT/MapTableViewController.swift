@@ -51,7 +51,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
 
     // Setup the cells
     func setup() {
-        // Old run button
+        // Old runs Button
         let oldRunButton = UIBarButtonItem(title: "Old Runs", style: .plain, target: self, action: #selector(gotoRunList))
         navigationItem.rightBarButtonItem = oldRunButton
 
