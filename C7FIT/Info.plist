@@ -51,6 +51,8 @@
 	<string>Do you allow this app to always know your location?</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Do you allow this app to access your current location?</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>Do you allow this app to access your current location?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Do you allow this app to access your photo library?</string>
 	<key>UIBackgroundModes</key>

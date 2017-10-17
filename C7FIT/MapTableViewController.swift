@@ -108,14 +108,8 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
 
     func startTrackRun() {
         // Check location services
-        if !CLLocationManager.locationServicesEnabled() {
-            let alert = UIAlertController(title: "Location Services Disabled",
-                                          message: "Please allow C7Fit to use your location to track your run",
-                                          preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
+        checkLocationServices()
+
         // Stop user invalid input
         colorSwitch(startEnabled: 0)
 
@@ -149,7 +143,7 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         self.navigationController?.pushViewController(RunListTableViewController(), animated: true)
     }
 
-    // MARK: location tracking
+    // MARK: Location Tracking
 
     func setupLocationTracking() {
         // Start tracking location
@@ -157,11 +151,8 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.activityType = .fitness
         locationManager.distanceFilter = 2
-        locationManager.requestAlwaysAuthorization()
         locationManager.allowsBackgroundLocationUpdates = true
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
-        }
+        checkLocationServices()
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -193,6 +184,30 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error \(error)")
+    }
+    
+    func checkLocationServices() {
+        if CLLocationManager.locationServicesEnabled() {
+            // Location services not enabled for C7FIT
+            switch CLLocationManager.authorizationStatus() {
+            case .authorizedAlways, .authorizedWhenInUse:
+                locationManager.startUpdatingLocation()
+            case .restricted, .denied:
+                let alert = UIAlertController(title: "Location Services Disabled",
+                                              message: "Please allow C7FIT to access location to track your workouts.",
+                                              preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+                present(alert, animated: true, completion: nil)
+            case .notDetermined:
+                locationManager.requestAlwaysAuthorization()
+            }
+        } else {
+            // Location services are disabled on device entirely
+            let alert = UIAlertController(title: "Location Services Disabled",
+                                          message: "Location Services are disabled on your Device. Please enable for access.",
+                                          preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        }
     }
 
     // MARK: Timer
