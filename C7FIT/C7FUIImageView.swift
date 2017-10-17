@@ -45,4 +45,15 @@ class C7FUIImageView: UIImageView {
             }.resume()
         }
     }
+    
+    func downloadImageFromFirebase(url: URL, imageMode: UIViewContentMode) {
+        let firebaseDataManager = FirebaseDataManager()
+        firebaseDataManager.generateFirebaseDownloadURL(url: url) { firebaseURL in
+            if let firebaseURL = firebaseURL {
+                self.downloadImageFrom(url: firebaseURL, imageMode: imageMode)
+            } else {
+                print("downloadImageFromFirebase() error")
+            }
+        }
+    }
 }

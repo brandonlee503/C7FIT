@@ -144,7 +144,7 @@ struct FirebaseDataManager {
     }
 
     /**
-     fetch user runs
+         Fetch user runs.
     */
     func fetchUserRun(uid: String, runTitle: String, completion: @escaping (_: FIRDataSnapshot) -> Void) {
         ref.child("userRun").child(uid).child(runTitle).observeSingleEvent(of: .value, with: { snapshot in
@@ -153,7 +153,7 @@ struct FirebaseDataManager {
     }
 
     /**
-     fetch list of user runs
+         Fetch list of user runs.
     */
     func fetchUserRunList(uid: String, completion: @escaping (_: FIRDataSnapshot) -> Void) {
         ref.child("userRun").child(uid).observeSingleEvent(of: .value, with: { snapshot in
@@ -247,4 +247,19 @@ struct FirebaseDataManager {
         return Location(timestamp: timestamp, latitude: latitude, longitude: longitude)
     }
 
+    
+    /**
+         Build download URL from new Firebase storage protocol.
+     */
+    func generateFirebaseDownloadURL(url: URL, completion: @escaping (_: URL?) -> Void) {
+        let pathReference = FIRStorage.storage().reference(forURL: url.absoluteString)
+        pathReference.downloadURL { url, error in
+            if error == nil {
+                completion(url)
+            } else {
+                print("Generate download link error: \(String(describing: error?.localizedDescription))")
+                completion(nil)
+            }
+        }
+    }
 }

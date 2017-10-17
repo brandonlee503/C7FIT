@@ -38,7 +38,6 @@ class ProfileViewController: UITableViewController {
         tableView.register(AbstractHealthCell.self, forCellReuseIdentifier: healthIdentifier)
         tableView.register(LogoutTableViewCell.self, forCellReuseIdentifier: logoutIdentifier)
         
-        setupTableViewHeader()
         tableView.tableFooterView = UIView()
 
         // Add save button
@@ -56,10 +55,11 @@ class ProfileViewController: UITableViewController {
             self.firebaseDataManager.fetchUser(uid: userID) { data in
                 guard let json = data.value as? [String: AnyObject] else { return }
                 self.user = ProfileViewModel.buildExistingUser(json: json)
+                self.setupTableViewHeader()
                 self.tableView.reloadData()
             }
         }
-
+        
         self.view.setNeedsUpdateConstraints()
     }
     
@@ -74,8 +74,8 @@ class ProfileViewController: UITableViewController {
         let header = ProfileHeaderView()
         header.nameField.text = user?.name ?? ""
         header.bioField.text = user?.bio
-        if let profilePicString = self.user?.photoURL {
-            header.profileImageView.downloadImageFrom(urlString: profilePicString, imageMode: .scaleAspectFill)
+        if let profilePicURL = URL(string: (self.user?.photoURL)!) {
+            header.profileImageView.downloadImageFromFirebase(url: profilePicURL, imageMode: .scaleAspectFill)
         } else {
             header.profileImageView.image = nil
         }
@@ -229,12 +229,12 @@ class ProfileViewController: UITableViewController {
         } else {
             userDict["profilePic"] = nil
         }
-
-        if let header = tableView.headerView(forSection: 0) as? ProfileHeaderView {
+        
+        if let header = tableView.tableHeaderView as? ProfileHeaderView {
             userDict["name"] = header.nameField.text
             userDict["bio"] = header.bioField.text
         }
-
+        
         // Add health attributes
         for row in 0...9 {
             if let cell = tableView.cellForRow(at: IndexPath(row: row, section: 0)) as? AbstractHealthCell {
