@@ -39,6 +39,7 @@ class ClubBioCell: UITableViewCell {
 
         bioTitle.text = "Club Bio"
         bioTitle.textAlignment = .center
+        bioTitle.font = UIFont.boldSystemFont(ofSize: 16.0)
         addSubview(bioTitle)
 
         bioDescription.adjustsFontSizeToFitWidth = true
