@@ -57,6 +57,9 @@ class C7FUIImageView: UIImageView {
         }
     }
     
+    /**
+         Helper method to download images from Firebase's new storage database protocol
+     */
     func downloadImageFromFirebase(url: URL, imageMode: UIViewContentMode) {
         let firebaseDataManager = FirebaseDataManager()
         firebaseDataManager.generateFirebaseDownloadURL(url: url) { firebaseURL in
