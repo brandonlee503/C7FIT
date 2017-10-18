@@ -76,9 +76,8 @@ class ProfileViewController: UITableViewController {
         header.bioField.text = user?.bio
         if let profilePicURL = URL(string: (self.user?.photoURL)!) {
             header.profileImageView.downloadImageFromFirebase(url: profilePicURL, imageMode: .scaleAspectFill)
-        } else {
-            header.profileImageView.image = nil
         }
+        
         header.placeholderLabel.isHidden = !header.bioField.text.isEmpty
         header.updateProfileButton.addTarget(self, action: #selector(updateProfilePicPressed(sender:)), for: .touchUpInside)
         
