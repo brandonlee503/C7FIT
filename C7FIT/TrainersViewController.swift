@@ -80,7 +80,7 @@ extension TrainersViewController: UICollectionViewDataSource {
             cell.backgroundColor = .white
             cell.nameLabel.text = "\(trainers[indexPath.item].firstName) \(trainers[indexPath.item].lastName)"
             cell.bioLabel.text = trainers[indexPath.item].bio
-            cell.avatarImageView.downloadImageFromFirebase(url: trainers[indexPath.item].avatar, imageMode: .scaleAspectFit)
+            cell.avatarImageView.downloadImageFrom(url: trainers[indexPath.item].avatar, imageMode: .scaleAspectFit)
             return cell
         }
         return UICollectionViewCell()
