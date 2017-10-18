@@ -49,6 +49,20 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         tableView.register(TimerCell.self, forCellReuseIdentifier: timerCellID)
         setup()
     }
+    
+    /// Clear any existing run data
+    override func viewWillAppear(_ animated: Bool) {
+        seconds = 0.0
+        distance = 0.0
+        locations.removeAll(keepingCapacity: false)
+        currentPath.removeAll(keepingCapacity: false)
+        timerCell.timeLabel.text = RunData.dispTimePrettyColon(time: seconds)
+        for overlay in self.mapCell.mapView.overlays {
+            self.mapCell.mapView.remove(overlay)
+        }
+        
+        tableView.reloadData()
+    }
 
     // Setup the cells
     func setup() {
