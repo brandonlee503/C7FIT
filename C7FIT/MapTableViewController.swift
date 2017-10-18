@@ -34,8 +34,9 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
     let startStopCell = StartStopCell()
     let mapCell = MapCell()
     let timerCell = TimerCell()
+    let firebaseDataManager = FirebaseDataManager()
 
-    // MARK: - Table View Lifecycle
+    // MARK: - UITableView Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,10 +60,15 @@ class MapTableViewController: UITableViewController, MKMapViewDelegate, CLLocati
         startStopCell.startButton.addTarget(self, action: #selector(startTrackRun), for: .touchUpInside)
         startStopCell.stopButton.addTarget(self, action: #selector(stopTrackRun), for: .touchUpInside)
         colorSwitch(startEnabled: 1)
-        setupLocationTracking()
+        
+        // Block the user from using this service at all until they're logged in so we can actually record their runs
+        firebaseDataManager.monitorLoginState { _, user in
+            guard user?.uid != nil else { return self.present(LoginViewController(), animated: true, completion: nil) }
+            self.setupLocationTracking()
+        }
     }
 
-    // MARK: - Table view data source
+    // MARK: - UITableView Data Source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
